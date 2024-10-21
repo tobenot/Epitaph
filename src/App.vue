@@ -30,6 +30,31 @@ export default {
       navItems: config.navItems,
       siteTitle: config.siteTitle
     }
+  },
+  watch: {
+    '$route' (to, from) {
+      // 根据路由更新标题
+      document.title = this.getPageTitle(to)
+    }
+  },
+  methods: {
+    getPageTitle(route) {
+      const baseTitle = this.siteTitle
+      if (route.name === 'Home') {
+        return baseTitle
+      } else if (route.name === 'Project') {
+        const projectId = parseInt(route.params.id)
+        const project = config.projects.find(p => p.id === projectId)
+        return project ? `${project.title} | ${baseTitle}` : baseTitle
+      } else if (route.name === 'About') {
+        return `关于我 | ${baseTitle}`
+      }
+      return baseTitle
+    }
+  },
+  mounted() {
+    // 设置初始标题
+    document.title = this.getPageTitle(this.$route)
   }
 }
 </script>

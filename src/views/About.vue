@@ -2,7 +2,7 @@
   <div class="about">
     <h2 class="animate-fade-in-up">{{ about.title }}</h2>
     <p class="about-content animate-fade-in-up" style="animation-delay: 0.2s;">{{ about.content }}</p>
-    <h3 class="animate-fade-in-up" style="animation-delay: 0.4s;">个人作品</h3>
+    <h3 class="animate-fade-in-up" style="animation-delay: 0.4s;">画廊</h3>
     <div class="personal-works">
       <div v-for="(work, index) in about.personalWorks" 
            :key="work.title" 

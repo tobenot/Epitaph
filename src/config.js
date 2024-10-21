@@ -27,18 +27,25 @@ export default {
       link: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/"
     },
     {
-      id: 11,
-      title: "不止于纸上的故事：鸿律篇",
-      image: require('@/assets/images/bbr_title.png'),
-      description: "已经完成的作为礼物的小说，预备借助AI来动画化。",
-      link: "https://www.bilibili.com/video/BV1gk2PY9E9C/"
-    },
-    {
       id: 12,
       title: "不止于纸上的故事",
       image: require('@/assets/images/bbw.png'),
       description: "大模型跑团游戏，网页端。",
       link: "https://bb.tobenot.top/main/"
+    },
+    {
+      id: 7,
+      title: "文明史诗",
+      image: require('@/assets/images/civ.png'),
+      description: "一款弹幕互动联机的AI图文文明发展演化游戏。",
+      link: "https://play-live.bilibili.com/details/1729301917890"
+    },
+    {
+      id: 11,
+      title: "不止于纸上的故事：鸿律篇",
+      image: require('@/assets/images/bbr_title.png'),
+      description: "已经完成的作为礼物的小说，预备借助AI来动画化。",
+      link: "https://www.bilibili.com/video/BV1gk2PY9E9C/"
     },
     {
       id: 6,
@@ -67,13 +74,6 @@ export default {
       image: require('@/assets/images/ns_header.jpg'),
       description: "处女作。2018年高二的作品，与几个同学们一起制作。全是策划。",
       link: "https://store.steampowered.com/app/843050/North_Stars/"
-    },
-    {
-      id: 7,
-      title: "文明史诗",
-      image: require('@/assets/images/civ.png'),
-      description: "一款弹幕互动联机的AI图文文明发展演化游戏。",
-      link: "https://play-live.bilibili.com/details/1729301917890"
     },
     {
       id: 8,
@@ -122,7 +122,7 @@ export default {
     title: "关于我",
     content: "看这里不如看博客？",
     personalWorks: [
-      { title: "2024年生日绘", image: require('@/assets/images/return.png') },
+      { title: "2024年生日绘《回归》（致敬心灵杀手2）", image: require('@/assets/images/return.png') },
     ]
   }
 }
