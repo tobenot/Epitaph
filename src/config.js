@@ -6,32 +6,11 @@ export default {
   ],
   projects: [
     {
-      id: 1,
-      title: "作家之屋",
-      image: require('@/assets/images/teacat.webp'),
-      description: "博客，【成为人类】事件的主要促进者。",
-      link: "https://tobenot.top/"
-    },
-    {
       id: 2,
       title: "猎蝗人",
       image: require('@/assets/images/lh_header_schinese.jpg'),
       description: "第三人称关卡制清版太空射击游戏。大二的作品，我与音乐师制作，外援建模。",
       link: "https://store.steampowered.com/app/3008350/"
-    },
-    {
-      id: 4,
-      title: "夜酱：沉默杀手",
-      image: require('@/assets/images/nbsk_header.jpg'),
-      description: "第三人称动作游戏，大一下的作品，我与音乐师制作，外援建模。",
-      link: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/"
-    },
-    {
-      id: 12,
-      title: "不止于纸上的故事",
-      image: require('@/assets/images/bbw.png'),
-      description: "大模型跑团游戏，网页端。",
-      link: "https://bb.tobenot.top/main/"
     },
     {
       id: 7,
@@ -41,11 +20,32 @@ export default {
       link: "https://play-live.bilibili.com/details/1729301917890"
     },
     {
+      id: 12,
+      title: "不止于纸上的故事",
+      image: require('@/assets/images/bbw.png'),
+      description: "大模型跑团游戏，网页端。",
+      link: "https://bb.tobenot.top/main/"
+    },
+    {
       id: 11,
       title: "不止于纸上的故事：鸿律篇",
       image: require('@/assets/images/bbr_title.png'),
       description: "已经完成的作为礼物的小说，预备借助AI来动画化。",
       link: "https://www.bilibili.com/video/BV1gk2PY9E9C/"
+    },
+    {
+      id: 1,
+      title: "作家之屋",
+      image: require('@/assets/images/teacat.webp'),
+      description: "博客，【成为人类】事件的主要促进者。",
+      link: "https://tobenot.top/"
+    },
+    {
+      id: 4,
+      title: "夜酱：沉默杀手",
+      image: require('@/assets/images/nbsk_header.jpg'),
+      description: "第三人称动作游戏，大一下的作品，我与音乐师制作，外援建模。",
+      link: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/"
     },
     {
       id: 6,
