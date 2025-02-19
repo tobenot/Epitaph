@@ -114,7 +114,7 @@ export default {
       id: 15,
       title: "不止于纸上的故事：幻灭篇",
       image: require('@/assets/images/bbd.png'),
-      description: "本来想做严肃游戏，讲高中学习方法和心界起源的，暂时没空做。",
+      description: "本来想做严肃游戏，讲高中学习方法和心界起源的，但是我还不如直接跟你讲。",
       link: "https://tobenot.top/Beyond-Books-Disillusionment/"
     }
   ],
