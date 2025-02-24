@@ -24,14 +24,14 @@ export default {
       title: "不止于纸上的故事",
       image: require('@/assets/images/bbw.png'),
       description: "大模型跑团游戏，网页端。",
-      link: "https://bb.tobenot.top/main/"
+      link: "https://tobenot.itch.io/beyond-books"
     },
     {
       id: 11,
       title: "不止于纸上的故事：鸿律篇",
       image: require('@/assets/images/bbr_title.png'),
       description: "已经完成的作为礼物的小说，预备借助AI来动画化。",
-      link: "https://www.bilibili.com/video/BV1gk2PY9E9C/"
+      link: "https://www.bilibili.com/video/BV1xPFNe1E8T/"
     },
     {
       id: 1,
