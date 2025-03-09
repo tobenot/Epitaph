@@ -1,13 +1,13 @@
 export default {
   common: {
-    siteTitle: "Epitaph - tobenot's Works & Thoughts Collection",
+    siteTitle: "Epitaph - tobenot's Works Collection",
     nav: {
       home: "Home",
       about: "About",
-      blog: "Blog"
+      blog: "Blog (Thoughts Collection)"
     },
     footer: {
-      quote: "As splendid as summer flowers, as serene as autumn leaves",
+      quote: "Embrace each day with joy, live life to its fullest beauty",
       copyright: "All Rights Reserved"
     },
     actions: {
@@ -18,7 +18,7 @@ export default {
     }
   },
   home: {
-    subtitle: "The most precious thing in life is not gold, but the traces of thoughts and creations"
+    subtitle: "Life is a beautiful journey filled with wonderful moments, cherish the joy of creation and discovery"
   },
   about: {
     title: "About Me",

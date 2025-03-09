@@ -1,13 +1,13 @@
 export default {
   common: {
-    siteTitle: "Epitaph | 墓志铭 - tobenot的作品与思想集",
+    siteTitle: "墓志铭 - tobenot的作品集",
     nav: {
       home: "首页",
       about: "关于我",
-      blog: "博客"
+      blog: "博客（思想集）"
     },
     footer: {
-      quote: "生如夏花之绚烂，死如秋叶之静美",
+      quote: "热爱生活的每一天，尽情体验生命的美好",
       copyright: "保留所有权利"
     },
     actions: {
@@ -18,11 +18,11 @@ export default {
     }
   },
   home: {
-    subtitle: "生命中最珍贵的并非黄金，而是思想与创造的痕迹"
+    subtitle: "生活是一段充满精彩瞬间的旅程，珍惜创造与发现的喜悦"
   },
   about: {
     title: "关于我",
-    subtitle: "我们并非为了生而活，而是为了留下痕迹",
+    subtitle: "活在当下，享受生活，同时创造美好的回忆",
     sectionTitle: "痕迹画廊",
     signature: "—— tobenot"
   },
