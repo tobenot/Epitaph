@@ -1,6 +1,6 @@
 <template>
   <div class="project" v-if="project">
-    <img :src="project.image" :alt="project.title" class="project-image animate-fade-in-up">
+    <img :src="project.image" :alt="project.title" class="project-image animate-fade-in-up" @click="openLink">
     <div class="project-details animate-fade-in-up" style="animation-delay: 0.2s;">
       <h2>{{ project.title }}</h2>
       <p>{{ project.description }}</p>
@@ -22,6 +22,13 @@ export default {
   created() {
     const id = parseInt(this.$route.params.id)
     this.project = config.projects.find(p => p.id === id)
+  },
+  methods: {
+    openLink() {
+      if (this.project && this.project.link) {
+        window.open(this.project.link, '_blank')
+      }
+    }
   }
 }
 </script>
@@ -39,6 +46,7 @@ export default {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .project:hover .project-image {

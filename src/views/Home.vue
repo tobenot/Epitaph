@@ -6,7 +6,7 @@
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
-           @click="goToProject(project.id)">
+           @click="openProjectLink(project.link)">
         <img :src="project.image" :alt="project.title">
         <div class="project-info">
           <h3>{{ project.title }}</h3>
@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    goToProject(id) {
-      this.$router.push({ name: 'Project', params: { id } })
+    openProjectLink(link) {
+      window.open(link, '_blank')
     }
   }
 }
@@ -57,10 +57,29 @@ export default {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: '点击跳转';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    
+    &::after {
+      opacity: 1;
+    }
   }
 
   img {

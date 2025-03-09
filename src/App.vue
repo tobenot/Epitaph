@@ -5,6 +5,7 @@
         <router-link v-for="item in navItems" :key="item.path" :to="item.path">
           {{ item.name }}
         </router-link>
+        <a href="https://tobenot.top/" target="_blank" rel="noopener noreferrer" class="external-link">博客</a>
       </nav>
     </header>
 
@@ -107,6 +108,14 @@ header {
 
       &:hover, &.router-link-active {
         color: var(--primary-color);
+      }
+    }
+
+    .external-link {
+      color: var(--primary-color);
+      
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
