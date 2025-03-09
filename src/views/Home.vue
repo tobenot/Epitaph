@@ -12,8 +12,24 @@
       <div class="decorative-line"></div>
     </div>
     
+    <div class="sort-controls">
+      <span class="sort-title">{{ $t('common.sort.title') }}:</span>
+      <button 
+        @click="sortBy = 'pride'" 
+        :class="{ active: sortBy === 'pride' }"
+        class="sort-button">
+        {{ $t('common.sort.byPride') }}
+      </button>
+      <button 
+        @click="sortBy = 'date'" 
+        :class="{ active: sortBy === 'date' }"
+        class="sort-button">
+        {{ $t('common.sort.byDate') }}
+      </button>
+    </div>
+    
     <div class="projects-grid">
-      <div v-for="(project, index) in projects" 
+      <div v-for="(project, index) in sortedProjects" 
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
@@ -23,6 +39,7 @@
           <div class="project-info">
             <h3>{{ project.titleKey[currentLocale] }}</h3>
             <p>{{ project.descriptionKey[currentLocale] }}</p>
+            <div class="project-date">{{ $t('common.sort.date') }} {{ project.date.year }}/{{ project.date.month }}</div>
           </div>
           <div class="explore-text">{{ $t("common.actions.explore") }}</div>
         </div>
@@ -44,12 +61,28 @@ export default {
   data() {
     return {
       siteTitle: this.$t('common.siteTitle'),
-      projects: config.projects
+      projects: config.projects,
+      sortBy: 'pride' // 默认按自豪度排序
     }
   },
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    },
+    sortedProjects() {
+      if (this.sortBy === 'pride') {
+        // 按照配置文件中的原始顺序（自豪度排序）
+        return [...this.projects]
+      } else if (this.sortBy === 'date') {
+        // 按时间排序（最新的在前面）
+        return [...this.projects].sort((a, b) => {
+          if (a.date.year !== b.date.year) {
+            return b.date.year - a.date.year
+          }
+          return b.date.month - a.date.month
+        })
+      }
+      return this.projects
     }
   },
   watch: {
@@ -156,6 +189,40 @@ export default {
   }
 }
 
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  
+  .sort-title {
+    font-family: 'Lora', serif;
+    margin-right: 1rem;
+    color: var(--secondary-color);
+  }
+  
+  .sort-button {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    
+    &:hover {
+      background-color: rgba(var(--accent-color-rgb), 0.1);
+    }
+    
+    &.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+  }
+}
+
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
@@ -240,6 +307,7 @@ export default {
     flex-grow: 1;
     height: 120px;
     overflow: hidden;
+    position: relative;
 
     h3 {
       font-family: 'Playfair Display', serif;
@@ -264,6 +332,17 @@ export default {
       text-overflow: ellipsis;
       height: 150px;
     }
+    
+    .project-date {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--secondary-color);
+      opacity: 0.7;
+      font-style: italic;
+      font-family: 'Lora', serif;
+    }
   }
 }
 
@@ -287,6 +366,18 @@ export default {
     
     .site-title {
       font-size: 2.5rem;
+    }
+  }
+  
+  .sort-controls {
+    flex-direction: column;
+    
+    .sort-title {
+      margin-bottom: 0.5rem;
+    }
+    
+    .sort-button {
+      margin-bottom: 0.5rem;
     }
   }
   

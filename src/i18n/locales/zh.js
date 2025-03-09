@@ -15,6 +15,12 @@ export default {
       viewProject: "访问项目",
       click: "点击访问",
       explore: "点击探索"
+    },
+    sort: {
+      title: "排序方式",
+      byPride: "按自豪度",
+      byDate: "按时间",
+      date: ""
     }
   },
   home: {

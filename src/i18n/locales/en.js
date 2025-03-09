@@ -15,6 +15,12 @@ export default {
       viewProject: "Visit Project",
       click: "Click to Visit",
       explore: "Click to Explore"
+    },
+    sort: {
+      title: "Sort by",
+      byPride: "By Pride",
+      byDate: "By Date",
+      date: ""
     }
   },
   home: {
