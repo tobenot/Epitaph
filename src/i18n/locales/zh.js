@@ -18,7 +18,7 @@ export default {
     },
     sort: {
       title: "排序方式",
-      byPride: "按自豪度",
+      byPride: "按本人喜好度",
       byDate: "按时间",
       date: ""
     }

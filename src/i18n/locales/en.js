@@ -18,7 +18,7 @@ export default {
     },
     sort: {
       title: "Sort by",
-      byPride: "By Pride",
+      byPride: "By My Favor",
       byDate: "By Date",
       date: ""
     }
