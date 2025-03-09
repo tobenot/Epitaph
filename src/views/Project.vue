@@ -7,24 +7,24 @@
         <div class="frame-corner bottom-left"></div>
         <div class="frame-corner bottom-right"></div>
       </div>
-      <h1>{{ project.title }}</h1>
+      <h1>{{ project.titleKey[currentLocale] }}</h1>
       <div class="decorative-line"></div>
     </div>
     
     <div class="project-content">
       <div class="project-image-wrapper animate-fade-in-up">
-        <img :src="project.image" :alt="project.title" class="project-image" @click="openLink">
+        <img :src="project.image" :alt="project.titleKey[currentLocale]" class="project-image" @click="openLink">
         <div class="image-overlay">
-          <span>点击访问</span>
+          <span>{{ $t('common.actions.click') }}</span>
         </div>
       </div>
       
       <div class="project-details animate-fade-in-up" style="animation-delay: 0.2s;">
         <div class="details-card">
-          <h2>关于此作品</h2>
-          <p>{{ project.description }}</p>
+          <h2>{{ $t('project.aboutWork') }}</h2>
+          <p>{{ project.descriptionKey[currentLocale] }}</p>
           <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link">
-            <span>访问项目</span>
+            <span>{{ $t('common.actions.viewProject') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
@@ -34,7 +34,7 @@
     <div class="back-link animate-fade-in-up" style="animation-delay: 0.3s;">
       <router-link to="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        返回作品集
+        {{ $t('common.actions.back') }}
       </router-link>
     </div>
   </div>
@@ -42,12 +42,22 @@
 
 <script>
 import config from '../config'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'Project',
+  setup() {
+    const { t, locale } = useI18n()
+    return { t, locale }
+  },
   data() {
     return {
       project: null
+    }
+  },
+  computed: {
+    currentLocale() {
+      return this.$i18n.locale
     }
   },
   created() {
@@ -66,7 +76,7 @@ export default {
 
 <style scoped lang="scss">
 .project-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -140,8 +150,9 @@ export default {
 }
 
 .project-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
@@ -152,6 +163,7 @@ export default {
   border-radius: 4px;
   box-shadow: 0 10px 25px var(--shadow-color);
   cursor: pointer;
+  width: 550px;
   
   &:hover {
     .project-image {
@@ -201,6 +213,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 550px;
 }
 
 .details-card {
@@ -282,8 +295,9 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .project-content {
-    grid-template-columns: 1fr;
+  .project-image-wrapper,
+  .project-details {
+    width: 100%;
   }
   
   .project-header h1 {

@@ -7,32 +7,32 @@
         <div class="frame-corner bottom-left"></div>
         <div class="frame-corner bottom-right"></div>
       </div>
-      <h1>{{ about.title }}</h1>
+      <h1>{{ $t('about.title') }}</h1>
       <div class="decorative-line"></div>
-      <p class="quote">"我们并非为了生而活，而是为了留下痕迹"</p>
+      <p class="quote">{{ $t('about.subtitle') }}</p>
     </div>
     
     <div class="about-content-wrapper">
       <div class="about-content animate-fade-in-up" style="animation-delay: 0.2s;">
-        <p>{{ about.content }}</p>
+        <p>{{ about.contentKey[currentLocale] }}</p>
       </div>
     </div>
     
     <div class="gallery-section">
       <div class="section-header animate-fade-in-up" style="animation-delay: 0.4s;">
-        <h2>痕迹画廊</h2>
+        <h2>{{ $t('about.sectionTitle') }}</h2>
         <div class="decorative-line"></div>
       </div>
       
       <div class="personal-works">
         <div v-for="(work, index) in about.personalWorks" 
-             :key="work.title" 
+             :key="index" 
              class="work-item animate-fade-in-up" 
              :style="{ animationDelay: `${0.6 + index * 0.1}s` }">
           <div class="work-frame">
-            <img :src="work.image" :alt="work.title">
+            <img :src="work.image" :alt="work.titleKey[currentLocale]">
             <div class="work-caption">
-              <p>{{ work.title }}</p>
+              <p>{{ work.titleKey[currentLocale] }}</p>
             </div>
           </div>
         </div>
@@ -40,19 +40,29 @@
     </div>
     
     <div class="signature animate-fade-in-up" style="animation-delay: 0.8s;">
-      <p>—— tobenot</p>
+      <p>{{ $t('about.signature') }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import config from '../config'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'About',
+  setup() {
+    const { t, locale } = useI18n()
+    return { t, locale }
+  },
   data() {
     return {
       about: config.about
+    }
+  },
+  computed: {
+    currentLocale() {
+      return this.$i18n.locale
     }
   }
 }

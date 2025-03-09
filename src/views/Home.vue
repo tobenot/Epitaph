@@ -8,7 +8,7 @@
         <div class="frame-corner bottom-right"></div>
       </div>
       <h1 class="site-title">{{ siteTitle }}</h1>
-      <p class="site-subtitle">生命中最珍贵的并非黄金，而是思想与创造的痕迹</p>
+      <p class="site-subtitle">{{ $t('home.subtitle') }}</p>
       <div class="decorative-line"></div>
     </div>
     
@@ -19,10 +19,10 @@
            :style="{ animationDelay: `${index * 0.1}s` }"
            @click="openProjectLink(project.link)">
         <div class="card-frame">
-          <img :src="project.image" :alt="project.title">
+          <img :src="project.image" :alt="project.titleKey[currentLocale]">
           <div class="project-info">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
+            <h3>{{ project.titleKey[currentLocale] }}</h3>
+            <p>{{ project.descriptionKey[currentLocale] }}</p>
           </div>
         </div>
       </div>
@@ -32,13 +32,28 @@
 
 <script>
 import config from '../config'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'Home',
+  setup() {
+    const { t, locale } = useI18n()
+    return { t, locale }
+  },
   data() {
     return {
-      siteTitle: config.siteTitle,
+      siteTitle: this.$t('common.siteTitle'),
       projects: config.projects
+    }
+  },
+  computed: {
+    currentLocale() {
+      return this.$i18n.locale
+    }
+  },
+  watch: {
+    currentLocale() {
+      this.siteTitle = this.$t('common.siteTitle')
     }
   },
   methods: {
@@ -55,6 +70,9 @@ export default {
   margin-bottom: 4rem;
   padding: 2rem 0;
   position: relative;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   
   .frame-decoration {
     position: absolute;
@@ -129,19 +147,19 @@ export default {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2.5rem;
-  padding: 0 1rem;
-  grid-auto-rows: minmax(420px, auto);
+  padding: 0 0.5rem;
 }
 
 .project-card {
   position: relative;
   perspective: 1000px;
   cursor: pointer;
-  display: flex;
-  height: 100%;
+  width: 420px;
+  height: 420px;
   
   .card-frame {
     background-color: var(--card-bg);
@@ -210,6 +228,8 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 120px;
+    overflow: hidden;
 
     h3 {
       font-family: 'Playfair Display', serif;
@@ -219,6 +239,7 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      height: 40px;
     }
 
     p {
@@ -231,13 +252,22 @@ export default {
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      height: 150px;
     }
+  }
+}
+
+@media (min-width: 1500px) {
+  .projects-grid {
+    max-width: 1460px;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 1100px) {
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
+    max-width: 990px;
+    margin: 0 auto;
   }
 }
 
@@ -251,8 +281,8 @@ export default {
   }
   
   .projects-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: minmax(380px, auto);
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 </style>

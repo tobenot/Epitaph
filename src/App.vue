@@ -12,9 +12,24 @@
             {{ item.name }}
           </router-link>
           <a href="https://tobenot.top/" target="_blank" rel="noopener noreferrer" class="external-link">
-            <span>博客</span>
+            <span>{{ $t('common.nav.blog') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
+          <div class="lang-switcher">
+            <button 
+              @click="changeLocale('zh')" 
+              :class="{ active: currentLocale === 'zh' }"
+              title="切换到中文">
+              中
+            </button>
+            <span>/</span>
+            <button 
+              @click="changeLocale('en')" 
+              :class="{ active: currentLocale === 'en' }"
+              title="Switch to English">
+              En
+            </button>
+          </div>
         </nav>
       </div>
     </header>
@@ -28,10 +43,10 @@
     <footer>
       <div class="footer-content">
         <div class="footer-epitaph">
-          <p class="quote">"生如夏花之绚烂，死如秋叶之静美"</p>
+          <p class="quote">{{ $t('common.footer.quote') }}</p>
           <div class="decorative-line"></div>
         </div>
-        <p class="copyright">&copy; {{ new Date().getFullYear() }} {{ siteTitle }}. 保留所有权利。</p>
+        <p class="copyright">&copy; {{ new Date().getFullYear() }} {{ siteTitle }}. {{ $t('common.footer.copyright') }}</p>
       </div>
     </footer>
   </div>
@@ -39,38 +54,64 @@
 
 <script>
 import config from './config'
+import { useI18n } from 'vue-i18n'
+import { setLocale } from './i18n'
 
 export default {
   name: 'App',
+  setup() {
+    const { t, locale } = useI18n()
+    return { t, locale }
+  },
   data() {
     return {
-      navItems: config.navItems,
-      siteTitle: config.siteTitle
+      navItems: [
+        { name: this.$t('common.nav.home'), path: "/" },
+        { name: this.$t('common.nav.about'), path: "/about" }
+      ],
+      siteTitle: this.$t('common.siteTitle')
+    }
+  },
+  computed: {
+    currentLocale() {
+      return this.$i18n.locale
     }
   },
   watch: {
-    '$route' (to, from) {
-      // 根据路由更新标题
+    '$route'(to, from) {
       document.title = this.getPageTitle(to)
+    },
+    currentLocale() {
+      // 更新菜单项
+      this.navItems = [
+        { name: this.$t('common.nav.home'), path: "/" },
+        { name: this.$t('common.nav.about'), path: "/about" }
+      ]
+      this.siteTitle = this.$t('common.siteTitle')
+      // 更新标题
+      document.title = this.getPageTitle(this.$route)
     }
   },
   methods: {
     getPageTitle(route) {
-      const baseTitle = this.siteTitle
+      const baseTitle = this.$t('common.siteTitle')
       if (route.name === 'Home') {
         return baseTitle
       } else if (route.name === 'Project') {
         const projectId = parseInt(route.params.id)
         const project = config.projects.find(p => p.id === projectId)
-        return project ? `${project.title} | ${baseTitle}` : baseTitle
+        return project ? `${project.titleKey[this.currentLocale]} | ${baseTitle}` : baseTitle
       } else if (route.name === 'About') {
-        return `关于我 | ${baseTitle}`
+        return `${this.$t('about.title')} | ${baseTitle}`
       }
       return baseTitle
+    },
+    changeLocale(locale) {
+      this.$i18n.locale = locale
+      setLocale(locale)
     }
   },
   mounted() {
-    // 设置初始标题
     document.title = this.getPageTitle(this.$route)
   }
 }
@@ -213,7 +254,7 @@ header {
 
 main {
   flex-grow: 1;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -288,5 +329,38 @@ img {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  
+  button {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    padding: 0.2rem 0.4rem;
+    
+    &:hover, &.active {
+      opacity: 1;
+      color: var(--accent-color);
+    }
+    
+    &.active {
+      font-weight: bold;
+    }
+  }
+  
+  span {
+    color: var(--secondary-color);
+    margin: 0 0.2rem;
+    opacity: 0.6;
+  }
 }
 </style>
