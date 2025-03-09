@@ -1,5 +1,5 @@
 export default {
-  siteTitle: "tobenot的作品集/墓志铭 庆祝2024年现实生日而设计",
+  siteTitle: "Epitaph | 墓志铭 - tobenot的作品与思想集",
   navItems: [
     { name: "首页", path: "/" },
     { name: "关于我", path: "/about" }
