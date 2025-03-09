@@ -175,7 +175,7 @@ export default {
     flex-direction: column;
     
     &::after {
-      content: '点击探索';
+      content: '{{ $t("common.actions.explore") }}';
       position: absolute;
       top: 50%;
       left: 50%;
