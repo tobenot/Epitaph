@@ -6,6 +6,71 @@ export default {
   ],
   projects: [
     {
+      id: 17,
+      titleKey: {
+        zh: "万象魔法学院（OMA)",
+        en: "Omnivista Magic Academy（OMA)"
+      },
+      image: require('@/assets/images/magic_academy.png'),
+      descriptionKey: {
+        zh: "AI原生开放世界mud《万象魔法学院》 ✨ 魔法校园冒险世界 × Deepseek🐬 NPC动态叙事实时CG × 无限人生模拟 × 种田钓鱼采集探宝 🔮与挚友书写魔法奇旅！",
+        en: "AI-native open-world MUD 'Omnivista Magic Academy' ✨ Magical campus adventure world × Deepseek🐬 NPC dynamic narrative real-time CG × Infinite life simulation × Farming, fishing, gathering, treasure hunting 🔮Write magical adventures with friends!"
+      },
+      link: "http://xhslink.com/a/eKWmczIAd6e5"
+    },
+    {
+      id: 18,
+      titleKey: {
+        zh: "与AI的睡前故事",
+        en: "Bedtime Stories with AI"
+      },
+      image: require('@/assets/images/bedtime_stories.png'),
+      descriptionKey: {
+        zh: "一个适合小说作者/剧本/人机恋爱好者的deepseek大模型客户端",
+        en: "A Deepseek LLM client for novel writers, screenplay authors, and human-AI relationship enthusiasts"
+      },
+      link: "https://tobenot.top/Bedtime-Stories-with-AI/"
+    },
+    {
+      id: 19,
+      titleKey: {
+        zh: "提示词管理器",
+        en: "Prompt Manager"
+      },
+      image: require('@/assets/images/prompt_manager.png'),
+      descriptionKey: {
+        zh: "一个轻量级的浏览器端提示词管理工具，帮助用户创建、编辑、分类和导出提示词模板。数据存储在浏览器本地，无需后端服务器。",
+        en: "A lightweight browser-side prompt management tool that helps users create, edit, categorize and export prompt templates. Data is stored locally in the browser without the need for a backend server."
+      },
+      link: "https://tobenot.top/prompt-manager/"
+    },
+    {
+      id: 20,
+      titleKey: {
+        zh: "旅路罗盘",
+        en: "Travel Compass"
+      },
+      image: require('@/assets/images/travel_compass.png'),
+      descriptionKey: {
+        zh: "个人导航站。一个纯静态、预设导航链接的导航站。",
+        en: "Personal navigation site. A purely static navigation site with preset navigation links."
+      },
+      link: "https://tobenot.top/travel-compass/"
+    },
+    {
+      id: 21,
+      titleKey: {
+        zh: "时间拳",
+        en: "Tempus Pugnus"
+      },
+      image: require('@/assets/images/tempus_pugnus.png'),
+      descriptionKey: {
+        zh: "灵感来自\"共鸣之武器\"的极简时间管理工具，具有浮动窗口界面。为任务设置时间限制，跟踪进度并获取提醒 - 帮助您保持专注和高效。",
+        en: "Inspired by 'Resonant Weapons', a minimalist time management tool with floating window interface. Set time limits for tasks, track progress, and get reminders - helping you stay focused and productive."
+      },
+      link: "https://github.com/tobenot/TempusPugnus"
+    },
+    {
       id: 2,
       titleKey: {
         zh: "猎蝗人",
@@ -22,7 +87,7 @@ export default {
       id: 7,
       titleKey: {
         zh: "文明史诗",
-        en: "Epic of Civilization"
+        en: "Civilization Epic"
       },
       image: require('@/assets/images/civ.png'),
       descriptionKey: {
@@ -48,7 +113,7 @@ export default {
       id: 11,
       titleKey: {
         zh: "不止于纸上的故事：鸿律篇",
-        en: "Beyond Books: Hong Lu Chapter"
+        en: "Beyond Books: RULES"
       },
       image: require('@/assets/images/bbr_title.png'),
       descriptionKey: {
@@ -61,7 +126,7 @@ export default {
       id: 1,
       titleKey: {
         zh: "作家之屋",
-        en: "Writer's House"
+        en: "Sanctuary Of Writers"
       },
       image: require('@/assets/images/teacat.webp'),
       descriptionKey: {
@@ -204,7 +269,7 @@ export default {
       id: 15,
       titleKey: {
         zh: "不止于纸上的故事：幻灭篇",
-        en: "Beyond Books: Disillusionment Chapter"
+        en: "Beyond Books: Disillusionment"
       },
       image: require('@/assets/images/bbd.png'),
       descriptionKey: {
