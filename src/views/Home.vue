@@ -24,6 +24,7 @@
             <h3>{{ project.titleKey[currentLocale] }}</h3>
             <p>{{ project.descriptionKey[currentLocale] }}</p>
           </div>
+          <div class="explore-text">{{ $t("common.actions.explore") }}</div>
         </div>
       </div>
     </div>
@@ -173,9 +174,9 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
     
-    &::after {
-      content: '{{ $t("common.actions.explore") }}';
+    .explore-text {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -190,6 +191,10 @@ export default {
       letter-spacing: 1px;
       z-index: 2;
     }
+    
+    &:hover .explore-text {
+      opacity: 1;
+    }
   }
 
   &:hover {
@@ -198,10 +203,6 @@ export default {
     .card-frame {
       transform: translateY(-10px) rotateX(5deg);
       box-shadow: 0 20px 30px var(--shadow-color);
-      
-      &::after {
-        opacity: 1;
-      }
     }
   }
 
