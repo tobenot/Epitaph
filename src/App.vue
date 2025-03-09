@@ -46,7 +46,7 @@
           <p class="quote">{{ $t('common.footer.quote') }}</p>
           <div class="decorative-line"></div>
         </div>
-        <p class="copyright">&copy; {{ new Date().getFullYear() }} {{ siteTitle }}. {{ $t('common.footer.copyright') }}</p>
+        <p class="copyright">&copy; {{ new Date().getFullYear() }} {{ $t('common.siteTitle') }}. {{ $t('common.footer.copyright') }}</p>
       </div>
     </footer>
   </div>
@@ -81,15 +81,18 @@ export default {
     '$route'(to, from) {
       document.title = this.getPageTitle(to)
     },
-    currentLocale() {
-      // 更新菜单项
-      this.navItems = [
-        { name: this.$t('common.nav.home'), path: "/" },
-        { name: this.$t('common.nav.about'), path: "/about" }
-      ]
-      this.siteTitle = this.$t('common.siteTitle')
-      // 更新标题
-      document.title = this.getPageTitle(this.$route)
+    currentLocale: {
+      immediate: true,
+      handler() {
+        // 更新菜单项
+        this.navItems = [
+          { name: this.$t('common.nav.home'), path: "/" },
+          { name: this.$t('common.nav.about'), path: "/about" }
+        ]
+        this.siteTitle = this.$t('common.siteTitle')
+        // 更新标题
+        document.title = this.getPageTitle(this.$route)
+      }
     }
   },
   methods: {
@@ -112,7 +115,11 @@ export default {
     }
   },
   mounted() {
-    document.title = this.getPageTitle(this.$route)
+    // 确保在组件挂载完成后更新标题
+    this.$nextTick(() => {
+      this.siteTitle = this.$t('common.siteTitle')
+      document.title = this.getPageTitle(this.$route)
+    })
   }
 }
 </script>

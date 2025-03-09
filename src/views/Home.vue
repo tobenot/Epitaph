@@ -7,7 +7,7 @@
         <div class="frame-corner bottom-left"></div>
         <div class="frame-corner bottom-right"></div>
       </div>
-      <h1 class="site-title">{{ siteTitle }}</h1>
+      <h1 class="site-title">{{ $t('common.siteTitle') }}</h1>
       <p class="site-subtitle">{{ $t('home.subtitle') }}</p>
       <div class="decorative-line"></div>
     </div>
@@ -53,14 +53,23 @@ export default {
     }
   },
   watch: {
-    currentLocale() {
-      this.siteTitle = this.$t('common.siteTitle')
+    currentLocale: {
+      immediate: true,
+      handler() {
+        this.siteTitle = this.$t('common.siteTitle')
+      }
     }
   },
   methods: {
     openProjectLink(link) {
       window.open(link, '_blank')
     }
+  },
+  mounted() {
+    // 确保在组件加载完成后获取正确的标题
+    this.$nextTick(() => {
+      this.siteTitle = this.$t('common.siteTitle')
+    })
   }
 }
 </script>
