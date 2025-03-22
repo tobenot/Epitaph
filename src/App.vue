@@ -67,7 +67,8 @@ export default {
     return {
       navItems: [
         { name: this.$t('common.nav.home'), path: "/" },
-        { name: this.$t('common.nav.about'), path: "/about" }
+        { name: this.$t('common.nav.about'), path: "/about" },
+        { name: this.$t('common.nav.experience'), path: "/experience" }
       ],
       siteTitle: this.$t('common.siteTitle')
     }
@@ -87,7 +88,8 @@ export default {
         // 更新菜单项
         this.navItems = [
           { name: this.$t('common.nav.home'), path: "/" },
-          { name: this.$t('common.nav.about'), path: "/about" }
+          { name: this.$t('common.nav.about'), path: "/about" },
+          { name: this.$t('common.nav.experience'), path: "/experience" }
         ]
         this.siteTitle = this.$t('common.siteTitle')
         // 更新标题

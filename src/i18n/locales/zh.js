@@ -4,7 +4,8 @@ export default {
     nav: {
       home: "首页",
       about: "关于我",
-      blog: "博客（思想集）"
+      blog: "博客（思想集）",
+      experience: "体验指南"
     },
     footer: {
       quote: "热爱生活的每一天，尽情体验生命的美好",
@@ -34,5 +35,13 @@ export default {
   },
   project: {
     aboutWork: "关于此作品"
+  },
+  experience: {
+    title: "体验指南",
+    subtitle: "按照精心设计的路径，体验我的创作历程",
+    guideTitle: "推荐体验顺序",
+    duration: "预计时间",
+    instructions: "操作指引",
+    startExperience: "开始体验"
   }
 } 

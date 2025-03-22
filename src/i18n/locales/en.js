@@ -4,7 +4,8 @@ export default {
     nav: {
       home: "Home",
       about: "About",
-      blog: "Blog (Thoughts Collection)"
+      blog: "Blog (Thoughts Collection)",
+      experience: "Experience Guide"
     },
     footer: {
       quote: "Embrace each day with joy, live life to its fullest beauty",
@@ -34,5 +35,13 @@ export default {
   },
   project: {
     aboutWork: "About This Work"
+  },
+  experience: {
+    title: "Experience Guide",
+    subtitle: "Follow a carefully designed path to experience my creative journey",
+    guideTitle: "Recommended Experience Order",
+    duration: "Estimated Time",
+    instructions: "Instructions",
+    startExperience: "Start Experience"
   }
 } 
