@@ -5,7 +5,10 @@ export default {
       home: "首页",
       about: "关于我",
       blog: "博客（思想集）",
-      experience: "体验指南"
+      experience: "体验指南",
+      paintings: "绘画",
+      photographs: "摄影",
+      sounds: "留声"
     },
     footer: {
       quote: "热爱生活的每一天，尽情体验生命的美好",
@@ -43,5 +46,27 @@ export default {
     duration: "预计时间",
     instructions: "操作指引",
     startExperience: "开始体验"
+  },
+  gallery: {
+    title: "画廊",
+    description: "这里收录了我的绘画作品和摄影作品，记录生活中的美好瞬间",
+    noGallery: "暂无画廊作品"
+  },
+  paintings: {
+    title: "绘画",
+    description: "这里展示我的绘画创作，记录心灵的色彩",
+    noPaintings: "暂无绘画作品"
+  },
+  photographs: {
+    title: "摄影",
+    description: "通过镜头捕捉的瞬间，定格时光与光影",
+    noPhotographs: "暂无摄影作品"
+  },
+  sounds: {
+    title: "留声",
+    description: "这里是我的声音创作空间，记录音乐与声音的点滴",
+    showLyrics: "显示歌词",
+    hideLyrics: "隐藏歌词",
+    noSounds: "暂无音频作品"
   }
 } 

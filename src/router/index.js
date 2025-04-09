@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Project from '../views/Project.vue'
 import About from '../views/About.vue'
 import Experience from '../views/Experience.vue'
+import Gallery from '../views/Gallery.vue'
+import Sounds from '../views/Sounds.vue'
 
 const routes = [
   {
@@ -24,6 +26,28 @@ const routes = [
     path: '/experience',
     name: 'Experience',
     component: Experience
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: Gallery
+  },
+  {
+    path: '/paintings',
+    name: 'Paintings',
+    component: Gallery,
+    props: { defaultGalleryType: 'paintings' }
+  },
+  {
+    path: '/photographs',
+    name: 'Photographs',
+    component: Gallery,
+    props: { defaultGalleryType: 'photographs' }
+  },
+  {
+    path: '/sounds',
+    name: 'Sounds',
+    component: Sounds
   }
 ]
 

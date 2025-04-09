@@ -5,7 +5,10 @@ export default {
       home: "Home",
       about: "About",
       blog: "Blog (Thoughts Collection)",
-      experience: "Experience Guide"
+      experience: "Experience Guide",
+      paintings: "Paintings",
+      photographs: "Photography",
+      sounds: "Sounds"
     },
     footer: {
       quote: "Embrace each day with joy, live life to its fullest beauty",
@@ -43,5 +46,27 @@ export default {
     duration: "Estimated Time",
     instructions: "Instructions",
     startExperience: "Start Experience"
+  },
+  gallery: {
+    title: "Gallery",
+    description: "A collection of my paintings and photography works, capturing beautiful moments in life",
+    noGallery: "No gallery works available"
+  },
+  paintings: {
+    title: "Paintings",
+    description: "A showcase of my painting creations, capturing the colors of the mind",
+    noPaintings: "No paintings available"
+  },
+  photographs: {
+    title: "Photography",
+    description: "Moments captured through the lens, freezing time and light",
+    noPhotographs: "No photographs available"
+  },
+  sounds: {
+    title: "Sounds",
+    description: "This is my sound creation space, recording music and sounds",
+    showLyrics: "Show Lyrics",
+    hideLyrics: "Hide Lyrics",
+    noSounds: "No audio works available"
   }
 } 

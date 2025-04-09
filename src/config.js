@@ -2,6 +2,9 @@ export default {
   siteTitle: "Epitaph | 墓志铭 - tobenot的作品与思想集",
   navItems: [
     { name: "首页", path: "/" },
+    { name: "绘画", path: "/paintings" },
+    { name: "摄影", path: "/photographs" },
+    { name: "留声", path: "/sounds" },
     { name: "关于我", path: "/about" },
     { name: "体验指南", path: "/experience" }
   ],
@@ -301,19 +304,70 @@ export default {
       link: "https://www.bilibili.com/video/BV1o34y1h7Pu/"
     }
   ],
+  galleries: [
+    {
+      id: "paintings",
+      titleKey: {
+        zh: "绘画作品",
+        en: "Paintings"
+      },
+      descriptionKey: {
+        zh: "这里存放我的绘画创作。",
+        en: "A collection of my paintings."
+      },
+      items: [
+        {
+          id: "p1",
+          titleKey: { zh: "《回归》", en: "'Return'" },
+          image: require('@/assets/images/paintings/DRAW_20241022_return.png'),
+          descriptionKey: { zh: "2024年生日绘，致敬心灵杀手2。", en: "2024 Birthday Drawing, Tribute to Alan Wake 2." },
+          date: { year: 2024 },
+          medium: { zh: "数字绘画", en: "Digital Painting"}
+        },
+      ]
+    },
+    {
+      id: "photographs",
+      titleKey: {
+        zh: "摄影作品",
+        en: "Photographs"
+      },
+      descriptionKey: {
+        zh: "捕捉生活中的光影瞬间。",
+        en: "Capturing moments of light and shadow."
+      },
+      items: [
+        {
+          id: "ph1",
+          titleKey: { zh: "街景", en: "Street View" },
+          image: require('@/assets/images/photos/IMG_20240817_205326_Tencent.webp'),
+          descriptionKey: { zh: "腾讯滨海大厦", en: "Tencent Binhai Tower" },
+          date: { year: 2024, month: 8 },
+          location: { zh: "深圳", en: "Shenzhen"}
+        },
+      ]
+    }
+  ],
+  sounds: [
+    {
+      id: "s1",
+      titleKey: { zh: "高望看客", en: "High-Rise Observer" },
+      audioFile: require('@/assets/audio/high-rise_observer.mp3'),
+      descriptionKey: { zh: "情感比较激烈的后摇", en: "Emotional post-rock" },
+      genre: { zh: "后摇", en: "Post-rock"},
+      date: { year: 2024, month: 1 },
+      lyricsKey: {
+         zh: "（无歌词）",
+         en: "(No lyrics)"
+      }
+    },
+  ],
   about: {
     contentKey: {
       zh: "看这里不如看博客？",
       en: "Better check out the blog than here?"
     },
     personalWorks: [
-      { 
-        titleKey: {
-          zh: "2024年生日绘《回归》（致敬心灵杀手2）",
-          en: "2024 Birthday Drawing 'Return' (Tribute to Alan Wake 2)"
-        }, 
-        image: require('@/assets/images/return.png') 
-      }
     ]
   },
   experience: {

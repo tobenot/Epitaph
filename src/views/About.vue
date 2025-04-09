@@ -18,27 +18,6 @@
       </div>
     </div>
     
-    <div class="gallery-section">
-      <div class="section-header animate-fade-in-up" style="animation-delay: 0.4s;">
-        <h2>{{ $t('about.sectionTitle') }}</h2>
-        <div class="decorative-line"></div>
-      </div>
-      
-      <div class="personal-works">
-        <div v-for="(work, index) in about.personalWorks" 
-             :key="index" 
-             class="work-item animate-fade-in-up" 
-             :style="{ animationDelay: `${0.6 + index * 0.1}s` }">
-          <div class="work-frame">
-            <img :src="work.image" :alt="work.titleKey[currentLocale]">
-            <div class="work-caption">
-              <p>{{ work.titleKey[currentLocale] }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
     <div class="signature animate-fade-in-up" style="animation-delay: 0.8s;">
       <p>{{ $t('about.signature') }}</p>
     </div>
@@ -180,79 +159,6 @@ export default {
   z-index: 1;
 }
 
-.gallery-section {
-  margin-bottom: 3rem;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  
-  .decorative-line {
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    margin: 0 auto;
-  }
-}
-
-.personal-works {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
-}
-
-.work-item {
-  overflow: hidden;
-}
-
-.work-frame {
-  background-color: var(--card-bg);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px var(--shadow-color);
-    
-    img {
-      transform: scale(1.08);
-      filter: grayscale(0%);
-    }
-  }
-  
-  img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    transition: all 0.5s ease;
-    filter: grayscale(30%);
-    display: block;
-  }
-  
-  .work-caption {
-    padding: 1.2rem 1rem;
-    text-align: center;
-    
-    p {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary-color);
-      font-weight: 500;
-      font-size: 1rem;
-    }
-  }
-}
-
 .signature {
   text-align: right;
   margin-top: 4rem;
@@ -272,10 +178,6 @@ export default {
   
   .about-content-wrapper {
     padding: 2rem;
-  }
-  
-  .personal-works {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 </style>

@@ -65,11 +65,7 @@ export default {
   },
   data() {
     return {
-      navItems: [
-        { name: this.$t('common.nav.home'), path: "/" },
-        { name: this.$t('common.nav.about'), path: "/about" },
-        { name: this.$t('common.nav.experience'), path: "/experience" }
-      ],
+      navItems: config.navItems,
       siteTitle: this.$t('common.siteTitle')
     }
   },
@@ -85,12 +81,7 @@ export default {
     currentLocale: {
       immediate: true,
       handler() {
-        // 更新菜单项
-        this.navItems = [
-          { name: this.$t('common.nav.home'), path: "/" },
-          { name: this.$t('common.nav.about'), path: "/about" },
-          { name: this.$t('common.nav.experience'), path: "/experience" }
-        ]
+        // 只更新标题，不再覆盖导航项
         this.siteTitle = this.$t('common.siteTitle')
         // 更新标题
         document.title = this.getPageTitle(this.$route)
