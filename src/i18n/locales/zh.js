@@ -11,7 +11,7 @@ export default {
       sounds: "留声"
     },
     footer: {
-      quote: "热爱生活的每一天，尽情体验生命的美好",
+      quote: "感谢你来看我的世界观，我的小说，我的动漫，我的游戏",
       copyright: "保留所有权利"
     },
     actions: {
@@ -28,7 +28,7 @@ export default {
     }
   },
   home: {
-    subtitle: "生活是一段充满精彩瞬间的旅程，珍惜创造与发现的喜悦"
+    subtitle: "希望每个人都可以找到自己的理想并为之劳动"
   },
   about: {
     title: "关于我",

@@ -11,7 +11,7 @@ export default {
       sounds: "Sounds"
     },
     footer: {
-      quote: "Embrace each day with joy, live life to its fullest beauty",
+      quote: "Thank you for coming to see my worldview, my novels, my anime, my games",
       copyright: "All Rights Reserved"
     },
     actions: {
@@ -28,7 +28,7 @@ export default {
     }
   },
   home: {
-    subtitle: "Life is a beautiful journey filled with wonderful moments, cherish the joy of creation and discovery"
+    subtitle: "Hope everyone can find their own ideals and work for them"
   },
   about: {
     title: "About Me",
