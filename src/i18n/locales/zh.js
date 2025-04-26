@@ -10,6 +10,10 @@ export default {
       photographs: "摄影",
       sounds: "留声"
     },
+    search: {
+      placeholder: "搜索作品（标题或描述）...",
+      noResults: "没有找到匹配的作品"
+    },
     footer: {
       quote: "感谢你来看我的世界观，我的小说，我的动漫，我的游戏",
       copyright: "保留所有权利"

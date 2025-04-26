@@ -12,6 +12,20 @@
       <div class="decorative-line"></div>
     </div>
     
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <input 
+          v-model="searchTerm" 
+          type="text" 
+          :placeholder="$t('common.search.placeholder')" 
+          class="search-input"
+        />
+        <div class="search-icon">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+    </div>
+    
     <div class="sort-controls">
       <span class="sort-title">{{ $t('common.sort.title') }}:</span>
       <button 
@@ -29,7 +43,7 @@
     </div>
     
     <div class="projects-grid">
-      <div v-for="(project, index) in sortedProjects" 
+      <div v-for="(project, index) in filteredProjects" 
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
@@ -43,6 +57,9 @@
           </div>
           <div class="explore-text">{{ $t("common.actions.explore") }}</div>
         </div>
+      </div>
+      <div v-if="filteredProjects.length === 0" class="no-results">
+        {{ $t('common.search.noResults') }}
       </div>
     </div>
   </div>
@@ -62,7 +79,8 @@ export default {
     return {
       siteTitle: this.$t('common.siteTitle'),
       projects: config.projects,
-      sortBy: 'pride' // 默认按自豪度排序
+      sortBy: 'pride', // 默认按自豪度排序
+      searchTerm: ''
     }
   },
   computed: {
@@ -83,6 +101,18 @@ export default {
         })
       }
       return this.projects
+    },
+    filteredProjects() {
+      if (!this.searchTerm.trim()) {
+        return this.sortedProjects
+      }
+      
+      const searchTermLower = this.searchTerm.toLowerCase()
+      return this.sortedProjects.filter(project => {
+        const title = project.titleKey[this.currentLocale].toLowerCase()
+        const description = project.descriptionKey[this.currentLocale].toLowerCase()
+        return title.includes(searchTermLower) || description.includes(searchTermLower)
+      })
     }
   },
   watch: {
@@ -189,6 +219,50 @@ export default {
   }
 }
 
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  
+  .search-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--primary-color);
+    background-color: transparent;
+    transition: all 0.3s ease;
+    
+    &::placeholder {
+      color: var(--secondary-color);
+      opacity: 0.7;
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    }
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    opacity: 0.7;
+  }
+}
+
 .sort-controls {
   display: flex;
   justify-content: center;
@@ -229,6 +303,15 @@ export default {
   justify-content: center;
   gap: 2.5rem;
   padding: 0 0.5rem;
+  
+  .no-results {
+    font-family: 'Lora', serif;
+    color: var(--secondary-color);
+    text-align: center;
+    width: 100%;
+    padding: 2rem;
+    font-style: italic;
+  }
 }
 
 .project-card {
@@ -366,6 +449,14 @@ export default {
     
     .site-title {
       font-size: 2.5rem;
+    }
+  }
+  
+  .search-container {
+    padding: 0 1rem;
+    
+    .search-input-wrapper {
+      max-width: 100%;
     }
   }
   

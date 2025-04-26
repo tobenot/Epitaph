@@ -10,6 +10,10 @@ export default {
       photographs: "Photography",
       sounds: "Sounds"
     },
+    search: {
+      placeholder: "Search works (title or description)...",
+      noResults: "No matching works found"
+    },
     footer: {
       quote: "Thank you for coming to see my worldview, my novels, my anime, my games",
       copyright: "All Rights Reserved"
