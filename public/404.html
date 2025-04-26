@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // 提取当前 URL 路径部分
+    const path = window.location.pathname.split('/Epitaph')[1] || '/';
+    // 创建重定向 URL，将路径部分添加到 hash 中
+    const redirectURL = '/Epitaph/#' + path;
+    // 执行重定向
+    window.location.replace(redirectURL);
+  </script>
+</head>
+<body>
+  <h1>页面重定向中...</h1>
+  <p>如果你没有被自动重定向，请<a href="/Epitaph/">点击这里</a>回到主页。</p>
+</body>
+</html> 
