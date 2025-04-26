@@ -38,7 +38,7 @@ export default {
             zh: "《不止于纸上的故事》",
             en: "Beyond Books"
           },
-          image: require('@/assets/images/bbw.png'),
+          image: require('@/assets/images/bbw.webp'),
           descriptionKey: {
             zh: "这是我最爱的作品，融合了AI大模型与传统角色扮演游戏(TRPG)的创新尝试。作品花了许多时间打磨细节，包括UI细节、剧本细节、游戏机制细节、音乐细节、美术细节等。是细糠！",
             en: "This is my favorite work, an innovative attempt combining AI large language models with traditional tabletop role-playing games (TRPG). The work spent a lot of time polishing details, including UI details, script details, game mechanics details, music details, and art details. It's a masterpiece!"
@@ -65,7 +65,7 @@ export default {
             zh: "《猎蝗人》",
             en: "Locust Hunter"
           },
-          image: require('@/assets/images/lh_header_schinese.jpg'),
+          image: require('@/assets/images/lh_header_schinese.webp'),
           descriptionKey: {
             zh: "这款太空射击游戏代表了我在传统游戏开发领域的能力，展示了我对游戏设计和美学的理解。包括无UI设计，以及对游戏机制、BOSS设计、音乐、美术的思考。它是基于传统品类设计的，没有像其他项目那样完全创新玩法，因此它非常好玩！",
             en: "This space shooter represents my capabilities in traditional game development, showcasing my understanding of game design and aesthetics. Including no UI design, and my thoughts on game mechanics, boss design, music, and art. It is designed based on traditional genres and does not completely innovate gameplay like other projects, making it very enjoyable!"
@@ -92,7 +92,7 @@ export default {
               zh: "《夜酱：沉默杀手》",
             en: "Night: Silent Killer"
           },
-          image: require('@/assets/images/nbsk_header.jpg'),
+          image: require('@/assets/images/nbsk_header.webp'),
           descriptionKey: {
             zh: "这是一款第三人称动作游戏，展示了我对游戏设计和叙事的理解。游戏以真实事件为背景，写出了抽象的剧情，精心设计了动作手感和场景布置，展现了独特的游戏风格和氛围营造。",
             en: "This is a third-person action game that showcases my understanding of game design and storytelling. The game is based on real events, writes abstract stories, carefully designs the action feel and scene layout, and demonstrates a unique game style and atmosphere creation."
@@ -119,7 +119,7 @@ export default {
             zh: "《万象魔法学院》(OMA)",
             en: "Omnivista Magic Academy (OMA)"
           },
-          image: require('@/assets/images/magic_academy.png'),
+          image: require('@/assets/images/magic_academy.webp'),
           descriptionKey: {
             zh: "【这个游戏还在开发中，现在还不能游玩，希望能尽快写在这里】这是我对AI与游戏结合的最新探索，融合了MUD文本游戏传统与现代AI技术，创造沉浸式魔法学院体验。",
             en: "【This game is still under development, and is not playable yet. I hope to write about it soon.】This is my latest exploration of combining AI with games, merging MUD text game traditions with modern AI technology to create an immersive magic academy experience."
@@ -146,7 +146,7 @@ export default {
             zh: "《与AI的睡前故事》",
             en: "Bedtime Stories with AI"
           },
-          image: require('@/assets/images/bedtime_stories.png'),
+          image: require('@/assets/images/bedtime_stories.webp'),
           descriptionKey: {
             zh: "这个工具是专用于与deepseek大模型进行互动的故事创作工具。支持使用模板剧本。",
             en: "This tool is specifically designed for interacting with the deepseek large language model, providing a story creation tool. It supports using preset scripts."
