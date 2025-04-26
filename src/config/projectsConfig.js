@@ -56,6 +56,20 @@ export default [
       link: "https://tobenot.top/Bedtime-Stories-with-AI/"
     },
     {
+      id: 23,
+      titleKey: {
+        zh: "异常情绪自检SOP",
+        en: "Abnormal Emotion Self-Check SOP"
+      },
+      image: require('@/assets/images/MoodCheckSOP.webp'),
+      descriptionKey: {
+        zh: "一个异常情绪自检工具。",
+        en: "An abnormal emotion self-check tool."
+      },
+      date: { year: 2025, month: 4 },
+      link: "https://tobenot.top/Mood-Check/"
+    },
+    {
       id: 4,
       titleKey: {
         zh: "夜酱：沉默杀手",
