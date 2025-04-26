@@ -342,17 +342,43 @@ export default {
       transform: translate(-50%, -50%);
       background-color: rgba(0, 0, 0, 0.7);
       color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 2px;
+      padding: 1rem 2rem;
+      border-radius: 8px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Lora', serif;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       z-index: 2;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        animation: borderAnimation 2s linear infinite;
+      }
+      
+      &::after {
+        animation-delay: -1s;
+      }
     }
     
     &:hover .explore-text {
       opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+      letter-spacing: 3px;
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 30px rgba(var(--accent-color-rgb), 0.3);
     }
   }
 
@@ -426,6 +452,34 @@ export default {
       font-style: italic;
       font-family: 'Lora', serif;
     }
+  }
+}
+
+@keyframes borderAnimation {
+  0% {
+    border-color: transparent;
+    border-top-color: var(--accent-color);
+    border-right-color: var(--accent-color);
+  }
+  25% {
+    border-color: transparent;
+    border-right-color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+  }
+  50% {
+    border-color: transparent;
+    border-bottom-color: var(--accent-color);
+    border-left-color: var(--accent-color);
+  }
+  75% {
+    border-color: transparent;
+    border-left-color: var(--accent-color);
+    border-top-color: var(--accent-color);
+  }
+  100% {
+    border-color: transparent;
+    border-top-color: var(--accent-color);
+    border-right-color: var(--accent-color);
   }
 }
 
