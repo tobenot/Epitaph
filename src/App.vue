@@ -8,27 +8,34 @@
           </router-link>
         </div>
         <nav>
-          <router-link v-for="item in navItems" :key="item.path" :to="item.path">
-            {{ $t(item.nameKey) }}
-          </router-link>
-          <a href="https://tobenot.top/" target="_blank" rel="noopener noreferrer" class="external-link">
-            <span>{{ $t('common.nav.blog') }}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          </a>
-          <div class="lang-switcher">
-            <button 
-              @click="changeLocale('zh')" 
-              :class="{ active: currentLocale === 'zh' }"
-              title="切换到中文">
-              中
-            </button>
-            <span>/</span>
-            <button 
-              @click="changeLocale('en')" 
-              :class="{ active: currentLocale === 'en' }"
-              title="Switch to English">
-              En
-            </button>
+          <div class="mobile-nav-toggle" @click="toggleMobileNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="nav-items" :class="{ 'active': mobileNavActive }">
+            <router-link v-for="item in navItems" :key="item.path" :to="item.path">
+              {{ $t(item.nameKey) }}
+            </router-link>
+            <a href="https://tobenot.top/" target="_blank" rel="noopener noreferrer" class="external-link">
+              <span>{{ $t('common.nav.blog') }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <div class="lang-switcher">
+              <button 
+                @click="changeLocale('zh')" 
+                :class="{ active: currentLocale === 'zh' }"
+                title="切换到中文">
+                中
+              </button>
+              <span>/</span>
+              <button 
+                @click="changeLocale('en')" 
+                :class="{ active: currentLocale === 'en' }"
+                title="Switch to English">
+                En
+              </button>
+            </div>
           </div>
         </nav>
       </div>
@@ -65,7 +72,8 @@ export default {
   },
   data() {
     return {
-      siteTitle: this.$t('common.siteTitle')
+      siteTitle: this.$t('common.siteTitle'),
+      mobileNavActive: false
     }
   },
   computed: {
@@ -79,6 +87,8 @@ export default {
   watch: {
     '$route'(to, from) {
       document.title = this.getPageTitle(to)
+      // 关闭移动导航
+      this.mobileNavActive = false
     },
     currentLocale: {
       immediate: true,
@@ -107,6 +117,9 @@ export default {
     changeLocale(locale) {
       this.$i18n.locale = locale
       setLocale(locale)
+    },
+    toggleMobileNav() {
+      this.mobileNavActive = !this.mobileNavActive
     }
   },
   mounted() {
@@ -205,50 +218,74 @@ header {
   nav {
     display: flex;
     align-items: center;
-
-    a {
-      color: var(--secondary-color);
-      text-decoration: none;
-      margin-left: 2rem;
-      font-family: 'Lora', serif;
-      font-weight: 400;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background-color: var(--accent-color);
-        transition: width 0.3s ease;
+    
+    .mobile-nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+      z-index: 1000;
+      
+      span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: all 0.3s ease;
       }
-
-      &:hover, &.router-link-active {
-        color: var(--primary-color);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      
+      a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        margin-left: 2rem;
+        font-family: 'Lora', serif;
+        font-weight: 400;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+        position: relative;
 
         &::after {
-          width: 100%;
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: var(--accent-color);
+          transition: width 0.3s ease;
+        }
+
+        &:hover, &.router-link-active {
+          color: var(--primary-color);
+
+          &::after {
+            width: 100%;
+          }
+        }
+
+        svg {
+          margin-left: 0.3rem;
+          vertical-align: middle;
         }
       }
 
-      svg {
-        margin-left: 0.3rem;
-        vertical-align: middle;
-      }
-    }
-
-    .external-link {
-      display: flex;
-      align-items: center;
-      color: var(--accent-color);
-      
-      &:hover {
-        color: var(--primary-color);
+      .external-link {
+        display: flex;
+        align-items: center;
+        color: var(--accent-color);
+        
+        &:hover {
+          color: var(--primary-color);
+        }
       }
     }
   }
@@ -363,6 +400,99 @@ img {
     color: var(--secondary-color);
     margin: 0 0.2rem;
     opacity: 0.6;
+  }
+}
+
+/* 响应式样式 */
+@media (max-width: 1024px) {
+  main {
+    margin: 1.5rem auto;
+  }
+  
+  .header-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 0;
+    
+    .logo .logo-text {
+      font-size: 1.5rem;
+    }
+    
+    nav {
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      
+      .nav-items {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background-color: var(--card-bg);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 2rem;
+        z-index: 999;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        
+        &.active {
+          right: 0;
+        }
+        
+        a {
+          margin: 1rem 0;
+          width: 100%;
+          text-align: left;
+          font-size: 1.1rem;
+          
+          &::after {
+            bottom: -2px;
+          }
+        }
+        
+        .lang-switcher {
+          margin: 1.5rem 0 0 0;
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  
+  main {
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+  
+  footer {
+    padding: 2rem 0;
+    
+    .footer-epitaph .quote {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  header .logo .logo-text {
+    font-size: 1.3rem;
+  }
+  
+  header nav .nav-items {
+    width: 80%;
+  }
+  
+  footer .footer-content {
+    padding: 0 1.5rem;
   }
 }
 </style>

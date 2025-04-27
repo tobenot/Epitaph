@@ -225,7 +225,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .gallery-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -410,14 +410,90 @@ export default {
   opacity: 0;
 }
 
-@media (max-width: 768px) {
+/* Responsive styles */
+@media (max-width: 1024px) {
   .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .epitaph-header {
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    .quote {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
   }
   
-  .lightbox-content {
-    max-width: 95%;
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .gallery-intro {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .gallery-image {
+    .metadata {
+      padding: 0.8rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      .image-date {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  .lightbox-image-container img {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+  
+  .lightbox-navigation button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .epitaph-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .filter-title {
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+    }
+    
+    .filter-buttons {
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      button {
+        margin: 0.25rem;
+      }
+    }
   }
 }
 </style> 

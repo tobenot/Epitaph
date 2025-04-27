@@ -172,12 +172,76 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .epitaph-header h1 {
-    font-size: 2.4rem;
+  .about-container {
+    padding: 1.5rem 1rem;
   }
   
-  .about-content-wrapper {
-    padding: 2rem;
+  .epitaph-header {
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    .quote {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+  
+  .about-content {
+    padding: 1.5rem;
+  }
+  
+  .about-section {
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .author-section {
+    flex-direction: column;
+    
+    .author-photo {
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+      
+      img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  }
+  
+  .contact-links {
+    flex-wrap: wrap;
+    
+    a {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .epitaph-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .about-content {
+    padding: 1.2rem;
+  }
+  
+  .author-section .author-photo img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .contact-links a {
+    flex: 0 0 calc(50% - 1rem);
   }
 }
 </style>

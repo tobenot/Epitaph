@@ -96,7 +96,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .sounds-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -205,13 +205,71 @@ export default {
   font-style: italic;
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
-  .sound-card {
-    padding: 1rem;
+  .sounds-container {
+    padding: 1.5rem 1rem;
   }
   
-  .sound-title {
-    font-size: 1.3rem;
+  .epitaph-header {
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    .quote {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+  
+  .sounds-intro {
+    padding: 1.5rem;
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .sounds-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .sound-card {
+    padding: 1.2rem;
+    
+    .sound-title {
+      font-size: 1.2rem;
+    }
+    
+    .sound-description {
+      font-size: 0.9rem;
+    }
+    
+    .sound-controls {
+      .play-button {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .sound-duration {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .sounds-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .epitaph-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .sound-card {
+    padding: 1rem;
   }
 }
 </style> 
