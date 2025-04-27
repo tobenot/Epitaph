@@ -29,6 +29,9 @@ export default {
       byPride: "By My Favor",
       byDate: "By Date",
       date: ""
+    },
+    pagination: {
+      page: "There's more!"
     }
   },
   home: {

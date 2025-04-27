@@ -51,7 +51,7 @@
 
           <div class="gallery-grid">
             <div 
-              v-for="item in currentGallery.items" 
+              v-for="item in paginatedGalleryItems" 
               :key="item.id" 
               class="gallery-item"
               @click="openLightbox(item)"
@@ -70,6 +70,12 @@
               </div>
             </div>
           </div>
+
+          <Pagination
+            :current-page="currentGalleryPage"
+            :total-pages="currentGalleryTotalPages"
+            @page-changed="handleGalleryPageChange"
+          />
         </div>
         <div v-else class="no-gallery">
           <template v-if="$route.path === '/paintings'">
@@ -110,9 +116,13 @@
 
 <script>
 import config from '@/config';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   name: 'GalleryView',
+  components: {
+    Pagination
+  },
   props: {
     defaultGalleryType: {
       type: String,
@@ -126,42 +136,67 @@ export default {
       lightbox: {
         visible: false,
         item: null
-      }
+      },
+      itemsPerPage: 15,
+      galleryPagination: {}
     };
   },
   computed: {
     currentGallery() {
       if (!this.activeGallery) return null;
       return this.galleries.find(gallery => gallery.id === this.activeGallery);
+    },
+    currentGalleryPage() {
+      return this.galleryPagination[this.activeGallery] || 1;
+    },
+    currentGalleryTotalPages() {
+      if (!this.currentGallery) return 0;
+      return Math.ceil(this.currentGallery.items.length / this.itemsPerPage);
+    },
+    paginatedGalleryItems() {
+      if (!this.currentGallery) return [];
+      const start = (this.currentGalleryPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.currentGallery.items.slice(start, end);
     }
   },
   created() {
-    // 如果提供了默认画廊类型，则设置为活跃类型
     if (this.defaultGalleryType && this.galleries.some(gallery => gallery.id === this.defaultGalleryType)) {
       this.activeGallery = this.defaultGalleryType;
     } 
-    // 否则设置默认显示的画廊
     else if (this.galleries.length > 0) {
       this.activeGallery = this.galleries[0].id;
     }
+    this.initializePagination();
   },
   watch: {
-    // 监听路由变化，确保在路由切换时更新当前显示的画廊
     $route(to, from) {
-      // 根据路由路径设置对应的画廊
       if (to.path === '/paintings' && this.galleries.some(gallery => gallery.id === 'paintings')) {
         this.activeGallery = 'paintings';
       } 
       else if (to.path === '/photographs' && this.galleries.some(gallery => gallery.id === 'photographs')) {
         this.activeGallery = 'photographs';
       }
-      // 如果是回到主画廊页面，使用默认设置
       else if (to.path === '/gallery' && this.galleries.length > 0) {
         this.activeGallery = this.galleries[0].id;
+      }
+      if (to.path !== from.path) {
+         this.initializePagination();
+      }
+    },
+    activeGallery(newGalleryId, oldGalleryId) {
+      if (newGalleryId !== oldGalleryId) {
       }
     }
   },
   methods: {
+    initializePagination() {
+        this.galleries.forEach(gallery => {
+            if (!(gallery.id in this.galleryPagination)) {
+                this.galleryPagination[gallery.id] = 1;
+            }
+        });
+    },
     formatDate(date) {
       if (!date) return '';
       let formatted = date.year.toString();
@@ -173,12 +208,18 @@ export default {
     openLightbox(item) {
       this.lightbox.item = item;
       this.lightbox.visible = true;
-      document.body.style.overflow = 'hidden'; // 防止背景滚动
+      document.body.style.overflow = 'hidden';
     },
     closeLightbox() {
       this.lightbox.visible = false;
       this.lightbox.item = null;
-      document.body.style.overflow = ''; // 恢复背景滚动
+      document.body.style.overflow = '';
+    },
+    handleGalleryPageChange(page) {
+      if (this.activeGallery) {
+          this.galleryPagination[this.activeGallery] = page;
+          window.scrollTo(0, 0);
+      }
     }
   }
 }

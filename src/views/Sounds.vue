@@ -6,7 +6,7 @@
     </div>
 
     <div class="sounds-grid">
-      <div class="sound-card" v-for="sound in sounds" :key="sound.id">
+      <div class="sound-card" v-for="sound in paginatedSounds" :key="sound.id">
         <div class="sound-info">
           <h2 class="sound-title">{{ sound.titleKey[$i18n.locale] || sound.titleKey.zh }}</h2>
           <div class="sound-metadata">
@@ -40,19 +40,41 @@
     <div v-if="sounds.length === 0" class="no-sounds">
       {{ $t('sounds.noSounds') }}
     </div>
+
+    <Pagination
+      :totalPages="totalPages"
+      :currentPage="currentPage"
+      @page-changed="handlePageChange"
+    ></Pagination>
   </div>
 </template>
 
 <script>
 import config from '@/config';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   name: 'SoundsView',
+  components: {
+    Pagination
+  },
   data() {
     return {
       sounds: config.sounds || [],
-      showLyrics: {}
+      showLyrics: {},
+      currentPage: 1,
+      itemsPerPage: 5
     };
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.sounds.length / this.itemsPerPage);
+    },
+    paginatedSounds() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.sounds.slice(start, end);
+    }
   },
   methods: {
     formatDate(date) {
@@ -65,6 +87,10 @@ export default {
     },
     toggleLyrics(soundId) {
       this.showLyrics[soundId] = !this.showLyrics[soundId];
+    },
+    handlePageChange(page) {
+      this.currentPage = page;
+      window.scrollTo(0, 0);
     }
   }
 }

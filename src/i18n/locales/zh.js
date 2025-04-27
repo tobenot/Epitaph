@@ -29,6 +29,9 @@ export default {
       byPride: "按本人喜好度",
       byDate: "按时间",
       date: ""
+    },
+    pagination: {
+      page: "还有呢！"
     }
   },
   home: {

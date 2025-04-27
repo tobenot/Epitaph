@@ -43,7 +43,7 @@
     </div>
     
     <div class="projects-grid">
-      <div v-for="(project, index) in filteredProjects" 
+      <div v-for="(project, index) in paginatedProjects" 
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
@@ -62,15 +62,25 @@
         {{ $t('common.search.noResults') }}
       </div>
     </div>
+    
+    <Pagination 
+      :totalPages="totalPages" 
+      :currentPage="currentPage" 
+      @page-changed="handlePageChange"
+    ></Pagination>
   </div>
 </template>
 
 <script>
 import config from '../config'
 import { useI18n } from 'vue-i18n'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   name: 'Home',
+  components: {
+    Pagination
+  },
   setup() {
     const { t, locale } = useI18n()
     return { t, locale }
@@ -80,7 +90,9 @@ export default {
       siteTitle: this.$t('common.siteTitle'),
       projects: config.projects,
       sortBy: 'pride', // 默认按自豪度排序
-      searchTerm: ''
+      searchTerm: '',
+      currentPage: 1,
+      itemsPerPage: 15
     }
   },
   computed: {
@@ -113,6 +125,14 @@ export default {
         const description = project.descriptionKey[this.currentLocale].toLowerCase()
         return title.includes(searchTermLower) || description.includes(searchTermLower)
       })
+    },
+    totalPages() {
+      return Math.ceil(this.filteredProjects.length / this.itemsPerPage);
+    },
+    paginatedProjects() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredProjects.slice(start, end);
     }
   },
   watch: {
@@ -121,11 +141,21 @@ export default {
       handler() {
         this.siteTitle = this.$t('common.siteTitle')
       }
+    },
+    searchTerm() {
+        this.currentPage = 1;
+    },
+    sortBy() {
+        this.currentPage = 1;
     }
   },
   methods: {
     openProjectLink(link) {
       window.open(link, '_blank')
+    },
+    handlePageChange(page) {
+      this.currentPage = page;
+      window.scrollTo(0, 0);
     }
   },
   mounted() {

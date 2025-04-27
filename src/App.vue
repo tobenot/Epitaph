@@ -9,7 +9,7 @@
         </div>
         <nav>
           <router-link v-for="item in navItems" :key="item.path" :to="item.path">
-            {{ item.name }}
+            {{ $t(item.nameKey) }}
           </router-link>
           <a href="https://tobenot.top/" target="_blank" rel="noopener noreferrer" class="external-link">
             <span>{{ $t('common.nav.blog') }}</span>
@@ -65,13 +65,15 @@ export default {
   },
   data() {
     return {
-      navItems: config.navItems,
       siteTitle: this.$t('common.siteTitle')
     }
   },
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    },
+    navItems() {
+      return config.navItems
     }
   },
   watch: {
