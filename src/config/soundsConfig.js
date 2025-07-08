@@ -75,7 +75,7 @@ export default [
     id: "s7",
     titleKey: { zh: "三角海v2", en: "The Delta Sea v2" },
     audioFile: require('@/assets/audio/the_delta_sea_v2.mp3'),
-    descriptionKey: { zh: "比上面的版本要热烈，歌词一样", en: "A more passionate than the above version, with the same lyrics },
+    descriptionKey: { zh: "比上面的版本要热烈，歌词一样", en: "A more passionate than the above version, with the same lyrics" },
     genre: { zh: "摇滚", en: "Rock"},
     date: { year: 2025, month: 3 },
     lyricsKey: {
