@@ -14,7 +14,7 @@
     
     <div class="about-content-wrapper">
       <div class="about-content animate-fade-in-up" style="animation-delay: 0.2s;">
-        <p>{{ about.contentKey[currentLocale] }}</p>
+        <div class="epitaph-text">{{ about.contentKey[currentLocale] }}</div>
       </div>
     </div>
     
@@ -157,6 +157,14 @@ export default {
   color: var(--secondary-color);
   position: relative;
   z-index: 1;
+}
+
+.epitaph-text {
+  white-space: pre-line;
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--secondary-color);
 }
 
 .signature {

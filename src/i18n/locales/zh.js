@@ -3,7 +3,7 @@ export default {
     siteTitle: "墓志铭 - tobenot的作品集",
     nav: {
       home: "首页",
-      about: "关于我",
+      about: "墓志铭",
       blog: "博客（思想集）",
       experience: "体验指南",
       paintings: "绘画",
@@ -38,8 +38,8 @@ export default {
     subtitle: "希望每个人都可以找到自己的理想并为之劳动"
   },
   about: {
-    title: "关于我",
-    subtitle: "活在当下，享受生活，同时创造美好的回忆",
+    title: "墓志铭",
+    subtitle: "数字时代的永恒印记",
     sectionTitle: "痕迹画廊",
     signature: "—— tobenot"
   },

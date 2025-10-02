@@ -3,7 +3,7 @@ export default {
     siteTitle: "Epitaph - tobenot's Works Collection",
     nav: {
       home: "Home",
-      about: "About",
+      about: "Epitaph",
       blog: "Blog (Thoughts Collection)",
       experience: "Experience Guide",
       paintings: "Paintings",
@@ -38,8 +38,8 @@ export default {
     subtitle: "Hope everyone can find their own ideals and work for them"
   },
   about: {
-    title: "About Me",
-    subtitle: "We don't live just to live, but to leave traces",
+    title: "Epitaph",
+    subtitle: "Eternal Imprint in the Digital Age",
     sectionTitle: "Traces Gallery",
     signature: "—— tobenot"
   },
