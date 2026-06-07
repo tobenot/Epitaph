@@ -12,7 +12,7 @@ export default {
     en: "A completed novel created as a gift, already animated with AI."
   },
   date: { year: 2023, month: 2 },
-  status: "playable",
+  status: "video",
   tags: [],
   longDescriptionKey: {
     zh: "",

@@ -12,7 +12,7 @@ export default {
     en: "Personal navigation site. A purely static navigation site with preset navigation links."
   },
   date: { year: 2025, month: 2 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

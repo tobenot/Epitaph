@@ -12,7 +12,7 @@ export default {
     en: "Online text-to-speech synthesis based on Microsoft Edge."
   },
   date: { year: 2024, month: 10 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

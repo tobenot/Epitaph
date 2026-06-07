@@ -12,7 +12,7 @@ export default {
     en: "An abnormal emotion self-check tool."
   },
   date: { year: 2025, month: 4 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

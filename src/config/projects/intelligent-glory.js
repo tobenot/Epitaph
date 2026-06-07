@@ -12,7 +12,7 @@ export default {
     en: "A PvP bullet comment interactive game, created because I liked the UE5 water plugin. Currently not playable."
   },
   date: { year: 2022, month: 5 },
-  status: "playable",
+  status: "unplayable",
   tags: [],
   longDescriptionKey: {
     zh: "",

@@ -12,7 +12,7 @@ export default {
     en: "A Deepseek LLM client for novel writers, screenplay authors, and human-AI relationship enthusiasts"
   },
   date: { year: 2025, month: 2 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

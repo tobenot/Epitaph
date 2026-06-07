@@ -12,7 +12,7 @@ export default {
     en: "Originally intended as a serious game about high school study methods and the origin of 'Heart World', but I'd rather just tell you directly."
   },
   date: { year: 2024, month: 7 },
-  status: "playable",
+  status: "reading",
   tags: [],
   longDescriptionKey: {
     zh: "",

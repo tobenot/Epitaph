@@ -12,7 +12,7 @@ export default {
     en: "Novel. A short story from 'Beyond Books'."
   },
   date: { year: 2021, month: 6 },
-  status: "playable",
+  status: "reading",
   tags: [],
   longDescriptionKey: {
     zh: "",

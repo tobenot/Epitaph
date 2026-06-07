@@ -12,7 +12,7 @@ export default {
     en: "AI-native open-world MUD 'Omnivista Magic Academy' ✨ Magical campus adventure world × Deepseek🐬 NPC dynamic narrative real-time CG × Infinite life simulation × Farming, fishing, gathering, treasure hunting 🔮Write magical adventures with friends!"
   },
   date: { year: 2025, month: 1 },
-  status: "playable",
+  status: "unplayable",
   tags: [],
   longDescriptionKey: {
     zh: "",

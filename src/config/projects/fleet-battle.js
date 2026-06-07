@@ -12,7 +12,7 @@ export default {
     en: "A bullet comment interactive game featuring battleship summoning combat. Earned 4k and five captains. Currently not playable."
   },
   date: { year: 2022, month: 4 },
-  status: "playable",
+  status: "unplayable",
   tags: [],
   longDescriptionKey: {
     zh: "",

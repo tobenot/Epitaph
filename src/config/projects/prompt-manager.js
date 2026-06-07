@@ -12,7 +12,7 @@ export default {
     en: "A lightweight browser-side prompt management tool that helps users create, edit, categorize and export prompt templates. Data is stored locally in the browser without the need for a backend server."
   },
   date: { year: 2025, month: 3 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

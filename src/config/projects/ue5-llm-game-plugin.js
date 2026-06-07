@@ -12,7 +12,7 @@ export default {
     en: "Used for graduation project, applicable to any game. Planned for use in a future major project."
   },
   date: { year: 2023, month: 12 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

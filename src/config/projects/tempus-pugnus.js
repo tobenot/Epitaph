@@ -12,7 +12,7 @@ export default {
     en: "Inspired by 'Resonant Weapons', a minimalist time management tool with floating window interface. Set time limits for tasks, track progress, and get reminders - helping you stay focused and productive."
   },
   date: { year: 2025, month: 1 },
-  status: "playable",
+  status: "tool",
   tags: [],
   longDescriptionKey: {
     zh: "",

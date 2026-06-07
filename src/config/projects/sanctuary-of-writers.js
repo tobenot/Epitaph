@@ -12,7 +12,7 @@ export default {
     en: "Blog, the main promoter of the 'Becoming Human' event."
   },
   date: { year: 2023, month: 11 },
-  status: "playable",
+  status: "reading",
   tags: [],
   longDescriptionKey: {
     zh: "",

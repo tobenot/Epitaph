@@ -12,7 +12,7 @@ export default {
     en: "A Stellaris-like interactive bullet comment game. Won second place for Best Bullet Comment Game on Bilibili. Currently not playable."
   },
   date: { year: 2022, month: 2 },
-  status: "playable",
+  status: "unplayable",
   tags: [],
   longDescriptionKey: {
     zh: "",
