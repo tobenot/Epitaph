@@ -60,8 +60,8 @@ const router = createRouter({
 
 router.afterEach((to) => {
   // Update meta tags for SEO
-  let title = "Epitaph | 墓志铭 - tobenot的作品与思想集"
-  let description = "希望每个人都可以找到自己的理想并为之劳动。tobenot的作品集、游戏、小说与画作。"
+  let title = "Epitaph | 墓志铭 - 萝北来信的作品与思想集"
+  let description = "希望每个人都可以找到自己的理想并为之劳动。萝北来信的作品集、游戏、小说与画作。（曾用名 tobenot）"
   
   if (to.name === 'Project') {
     const slug = to.params.slug

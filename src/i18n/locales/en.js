@@ -1,6 +1,6 @@
 export default {
   common: {
-    siteTitle: "Epitaph - tobenot's Works Collection",
+    siteTitle: "Epitaph - LuobeiLetters Works Collection",
     nav: {
       home: "Home",
       about: "Epitaph",
@@ -41,7 +41,7 @@ export default {
     title: "Epitaph",
     subtitle: "Eternal Imprint in the Digital Age",
     sectionTitle: "Traces Gallery (Digital Legacy)",
-    signature: "—— tobenot",
+    signature: "—— LuobeiLetters (formerly tobenot)",
     status: {
       private: "Private",
       archived: "Archived",

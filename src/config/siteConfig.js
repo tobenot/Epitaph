@@ -1,5 +1,5 @@
 export default {
-  siteTitle: "Epitaph | 墓志铭 - tobenot的作品与思想集",
+  siteTitle: "Epitaph | 墓志铭 - 萝北来信的作品与思想集",
   navItems: [
     { nameKey: "common.nav.home", path: "/" },
     { nameKey: "common.nav.paintings", path: "/paintings" },

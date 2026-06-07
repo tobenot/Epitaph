@@ -1,6 +1,6 @@
 export default {
   common: {
-    siteTitle: "墓志铭 - tobenot的作品集",
+    siteTitle: "墓志铭 - 萝北来信的作品集",
     nav: {
       home: "首页",
       about: "墓志铭",
@@ -41,7 +41,7 @@ export default {
     title: "墓志铭",
     subtitle: "数字时代的永恒印记",
     sectionTitle: "痕迹画廊 (数字遗产)",
-    signature: "—— tobenot",
+    signature: "—— 萝北来信（曾用名 tobenot）",
     status: {
       private: "私密保留",
       archived: "已归档",
