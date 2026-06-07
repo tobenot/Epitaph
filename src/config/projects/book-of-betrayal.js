@@ -1,6 +1,6 @@
 export default {
   id: "book-of-betrayal",
-  pride: 100, // 治愈了长达一年的感情变故，意义重大
+  pride: 102,
   slug: "book-of-betrayal",
   category: ["novel", "vrchat"],
   status: "released",
