@@ -1,6 +1,7 @@
 export default [
     {
       id: 12,
+      slug: "beyond-books",
       titleKey: {
         zh: "不止于纸上的故事",
         en: "Beyond Books"
@@ -21,6 +22,7 @@ export default [
     },
     {
       id: 11,
+      slug: "beyond-books-rules",
       titleKey: {
         zh: "不止于纸上的故事：鸿律篇",
         en: "Beyond Books: RULES"
@@ -41,6 +43,7 @@ export default [
     },
     {
       id: 2,
+      slug: "locust-hunter",
       titleKey: {
         zh: "猎蝗人",
         en: "Locust Hunter"
@@ -61,6 +64,7 @@ export default [
     },
     {
       id: 18,
+      slug: "bedtime-stories-with-ai",
       titleKey: {
         zh: "与AI的睡前故事",
         en: "Bedtime Stories with AI"
@@ -81,6 +85,7 @@ export default [
     },
     {
       id: 23,
+      slug: "abnormal-emotion-self-check",
       titleKey: {
         zh: "异常情绪自检SOP",
         en: "Abnormal Emotion Self-Check SOP"
@@ -101,6 +106,7 @@ export default [
     },
     {
       id: 4,
+      slug: "night-silent-killer",
       titleKey: {
         zh: "夜酱：沉默杀手",
         en: "Night: Silent Killer"
@@ -121,6 +127,7 @@ export default [
     },
     {
       id: 8,
+      slug: "brilliant-stars",
       titleKey: {
         zh: "璀璨群星",
         en: "Brilliant Stars"
@@ -141,6 +148,7 @@ export default [
     },
     {
       id: 3,
+      slug: "north-stars",
       titleKey: {
         zh: "极北之星",
         en: "North Stars"
@@ -161,6 +169,7 @@ export default [
     },
     {
       id: 7,
+      slug: "civilization-epic",
       titleKey: {
         zh: "文明史诗",
         en: "Civilization Epic"
@@ -181,6 +190,7 @@ export default [
     },
     {
       id: 14,
+      slug: "ue5-llm-game-plugin",
       titleKey: {
         zh: "UE5大模型游戏插件",
         en: "UE5 LLM Game Plugin"
@@ -201,6 +211,7 @@ export default [
     },
     {
       id: 17,
+      slug: "omnivista-magic-academy",
       titleKey: {
         zh: "万象魔法学院（OMA)",
         en: "Omnivista Magic Academy（OMA)"
@@ -221,6 +232,7 @@ export default [
     },
     {
       id: 20,
+      slug: "travel-compass",
       titleKey: {
         zh: "旅路罗盘",
         en: "Travel Compass"
@@ -241,6 +253,7 @@ export default [
     },
     {
       id: 9,
+      slug: "fleet-battle",
       titleKey: {
         zh: "舰队激斗",
         en: "Fleet Battle"
@@ -261,6 +274,7 @@ export default [
     },
     {
       id: 1,
+      slug: "sanctuary-of-writers",
       titleKey: {
         zh: "作家之屋",
         en: "Sanctuary Of Writers"
@@ -281,6 +295,7 @@ export default [
     },
     {
       id: 21,
+      slug: "tempus-pugnus",
       titleKey: {
         zh: "时间拳",
         en: "Tempus Pugnus"
@@ -301,6 +316,7 @@ export default [
     },
     {
       id: 6,
+      slug: "challengers-odyssey",
       titleKey: {
         zh: "挑战之旅",
         en: "Challenger's Odyssey"
@@ -321,6 +337,7 @@ export default [
     },
     {
       id: 10,
+      slug: "playground-tower-space-elevator",
       titleKey: {
         zh: "操场·高楼·太空电梯",
         en: "Playground, Tower, Space Elevator"
@@ -341,6 +358,7 @@ export default [
     },
     {
       id: 13,
+      slug: "online-text-to-speech",
       titleKey: {
         zh: "在线语音合成",
         en: "Online Text-to-Speech"
@@ -361,6 +379,7 @@ export default [
     },
     {
       id: 15,
+      slug: "beyond-books-disillusionment",
       titleKey: {
         zh: "不止于纸上的故事：幻灭篇",
         en: "Beyond Books: Disillusionment"
@@ -381,6 +400,7 @@ export default [
     },
     {
       id: 19,
+      slug: "prompt-manager",
       titleKey: {
         zh: "提示词管理器",
         en: "Prompt Manager"
@@ -401,6 +421,7 @@ export default [
     },
     {
       id: 5,
+      slug: "heart-world",
       titleKey: {
         zh: "心灵世界",
         en: "Heart World"
@@ -421,6 +442,7 @@ export default [
     },
     {
       id: 16,
+      slug: "intelligent-glory",
       titleKey: {
         zh: "智能荣光",
         en: "Intelligent Glory"

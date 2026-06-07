@@ -13,7 +13,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/project/:id',
+    path: '/project/:slug',
     name: 'Project',
     component: Project
   },
@@ -64,8 +64,8 @@ router.afterEach((to) => {
   let description = "希望每个人都可以找到自己的理想并为之劳动。tobenot的作品集、游戏、小说与画作。"
   
   if (to.name === 'Project') {
-    const id = parseInt(to.params.id)
-    const project = config.projects.find(p => p.id === id)
+    const slug = to.params.slug
+    const project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
     if (project) {
       // 英文环境可能拿不到准确判断，默认用中文做兜底
       title = `${project.titleKey.zh} | Epitaph`

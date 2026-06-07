@@ -47,7 +47,7 @@
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
-           @click="openProjectDetails(project.id)">
+           @click="openProjectDetails(project.slug)">
         <div class="card-frame">
           <img :src="project.image" :alt="project.titleKey[currentLocale]">
           <div class="project-info">
@@ -153,8 +153,8 @@ export default {
     }
   },
   methods: {
-    openProjectDetails(id) {
-      this.$router.push({ name: 'Project', params: { id: id } })
+    openProjectDetails(slug) {
+      this.$router.push({ name: 'Project', params: { slug: slug } })
     },
     handlePageChange(page) {
       this.currentPage = page;

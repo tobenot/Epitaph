@@ -78,8 +78,8 @@ export default {
     }
   },
   created() {
-    const id = parseInt(this.$route.params.id)
-    this.project = config.projects.find(p => p.id === id)
+    const slug = this.$route.params.slug
+    this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
   },
   methods: {
     openLink() {
