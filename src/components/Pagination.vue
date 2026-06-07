@@ -7,7 +7,14 @@
     >
       &lt;
     </button>
-    <span class="page-info">{{ $t('common.pagination.page', { currentPage, totalPages }) }}</span>
+    <button
+      v-for="page in totalPages"
+      :key="page"
+      @click="changePage(page)"
+      :class="['pagination-button', 'page-number', { active: page === currentPage }]"
+    >
+      {{ page }}
+    </button>
     <button 
       @click="changePage(currentPage + 1)" 
       :disabled="currentPage === totalPages"
@@ -56,7 +63,7 @@ export default {
   border: 1px solid var(--accent-color);
   color: var(--primary-color);
   padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
+  margin: 0 0.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 4px;
@@ -71,14 +78,13 @@ export default {
     opacity: 0.5;
     cursor: not-allowed;
   }
-}
 
-.page-info {
-  color: var(--secondary-color);
-  margin: 0 1rem;
-  font-size: 0.9rem;
+  &.page-number.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    cursor: default;
+  }
 }
-
-// 如果需要更复杂的页码显示（例如 ...），可以在这里扩展
 
 </style> 
