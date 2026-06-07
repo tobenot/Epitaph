@@ -446,16 +446,16 @@ export default {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    height: 119px;
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
-    position: relative;
 
     .title-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.5rem;
+      flex-shrink: 0;
       
       h3 {
         font-family: 'Playfair Display', serif;
@@ -489,17 +489,20 @@ export default {
       color: var(--secondary-color);
       line-height: 1.6;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      height: 150px;
+      flex: 1;
+      min-height: 0;
+      margin: 0;
     }
     
     .project-date {
-      position: absolute;
-      bottom: 0.5rem;
-      right: 0.5rem;
+      flex-shrink: 0;
+      align-self: flex-end;
+      margin-top: auto;
+      padding-top: 0.5rem;
       font-size: 0.8rem;
       color: var(--secondary-color);
       opacity: 0.7;
