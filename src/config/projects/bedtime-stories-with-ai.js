@@ -31,6 +31,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "web", url: "https://tobenot.top/Bedtime-Stories-with-AI/", textKey: { zh: "在线使用", en: "Use Online" } }
+    { type: "web", url: "https://ai.tobenot.top/", textKey: { zh: "在线使用", en: "Use Online" } }
   ]
 };

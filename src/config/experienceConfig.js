@@ -166,7 +166,7 @@ export default {
             ]
           },
           duration: "2-20h+",
-          link: "https://tobenot.top/Bedtime-Stories-with-AI/"
+          link: "https://ai.tobenot.top/"
         }
       ]
 }

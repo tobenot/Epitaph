@@ -11,7 +11,7 @@ while ((match = idRegex.exec(configContent)) !== null) {
   projectIds.push(match[1]);
 }
 
-const baseUrl = 'https://tobenot.top/Epitaph';
+const baseUrl = 'https://e.tobenot.top';
 const routes = [
   '/', 
   '/about', 

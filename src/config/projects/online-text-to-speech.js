@@ -24,6 +24,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "web", url: "https://tobenot.top/simple-tts-js/", textKey: { zh: "在线使用", en: "Use Online" } }
+    { type: "web", url: "https://tts.tobenot.top/", textKey: { zh: "在线使用", en: "Use Online" } }
   ]
 };

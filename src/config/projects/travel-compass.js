@@ -24,6 +24,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "web", url: "https://tobenot.top/travel-compass/", textKey: { zh: "访问导航站", en: "Visit Navigation Site" } }
+    { type: "web", url: "https://start.tobenot.top/", textKey: { zh: "访问导航站", en: "Visit Navigation Site" } }
   ]
 };
