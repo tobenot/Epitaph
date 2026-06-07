@@ -1,6 +1,6 @@
 export default {
   id: "beyond-books-dragon-dance",
-  pride: 90,
+  pride: 93,
   slug: "beyond-books-dragon-dance",
   category: "novel",
   status: "concept",
@@ -8,7 +8,7 @@ export default {
     zh: "不止于纸上的故事：舞龙篇",
     en: "Beyond Books: Dragon Dance"
   },
-  image: require('@/assets/images/bbw.webp'),
+  image: require('@/assets/images/bbdd.webp'),
   descriptionKey: {
     zh: "初稿阶段，五方异能者会战，力量与选择主题。",
     en: "Draft stage. A five-way esper battle, themed around power and choice."
