@@ -87,7 +87,8 @@ export default {
     guideTitle: "Recommended Experience Order",
     duration: "Estimated Time",
     instructions: "Instructions",
-    startExperience: "Start Experience"
+    startExperience: "Start Experience",
+    feedback: "Feedback & Contact"
   },
   gallery: {
     title: "Gallery",

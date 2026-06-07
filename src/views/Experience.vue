@@ -61,9 +61,9 @@
       <p>{{ experience.conclusionKey[currentLocale] }}</p>
       
       <div class="contact-feedback">
-        <a href="mailto:tobenot@tobenot.top" class="contact-button">
+        <a href="mailto:tobenot@qq.com" class="contact-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          {{ $t('experience.feedback') || '反馈与联系 / Feedback & Contact' }}
+          {{ $t('experience.feedback') }}
         </a>
       </div>
     </div>

@@ -87,7 +87,8 @@ export default {
     guideTitle: "推荐体验顺序",
     duration: "预计时间",
     instructions: "操作指引",
-    startExperience: "开始体验"
+    startExperience: "开始体验",
+    feedback: "反馈与联系"
   },
   gallery: {
     title: "画廊",
