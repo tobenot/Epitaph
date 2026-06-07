@@ -21,6 +21,24 @@
     <div class="signature animate-fade-in-up" style="animation-delay: 0.8s;">
       <p>{{ $t('about.signature') }}</p>
     </div>
+
+    <div class="traces-gallery animate-fade-in-up" style="animation-delay: 1s;" v-if="about.personalWorks && about.personalWorks.length">
+      <h2>{{ $t('about.sectionTitle') }}</h2>
+      <div class="decorative-line"></div>
+      
+      <div class="works-list">
+        <div class="work-item" v-for="(work, index) in about.personalWorks" :key="index">
+          <div class="work-header">
+            <h3>{{ work.titleKey[currentLocale] }}</h3>
+            <span :class="['status-badge', work.status]">{{ $t(`about.status.${work.status}`) }}</span>
+          </div>
+          <p>{{ work.descriptionKey[currentLocale] }}</p>
+          <a v-if="work.link" :href="work.link" target="_blank" rel="noopener noreferrer" class="work-link">
+            {{ $t('common.actions.viewProject') }}
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -170,12 +188,93 @@ export default {
 .signature {
   text-align: right;
   margin-top: 4rem;
+  margin-bottom: 4rem;
   
   p {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 1.5rem;
     color: var(--accent-color);
+  }
+}
+
+.traces-gallery {
+  margin-top: 4rem;
+  
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .decorative-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 0 auto 3rem;
+  }
+  
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .work-item {
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin: 0;
+      }
+      
+      .status-badge {
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-family: 'Lora', serif;
+        font-weight: bold;
+        
+        &.private { background: #ffebee; color: #d32f2f; }
+        &.archived { background: #e0e0e0; color: #424242; }
+        &.public { background: #e8f5e9; color: #2e7d32; }
+      }
+    }
+    
+    p {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--secondary-color);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    
+    .work-link {
+      display: inline-block;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-family: 'Lora', serif;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
   }
 }
 

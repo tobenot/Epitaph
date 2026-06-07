@@ -31,5 +31,27 @@ But no one can help me organize and write my works. So as I said at the beginnin
 
 The above was written by Mr. Jin, and Yu Qi here does not change a single word, because what I want to say is almost the same.`
   },
-  personalWorks: []
+  personalWorks: [
+    {
+      titleKey: { zh: "幕布云笔记", en: "MindMeister Notes" },
+      descriptionKey: { zh: "思想中心，包含了大纲、TODO与思考记录。", en: "Thought center containing outlines, TODOs, and records." },
+      status: "private" // private, archived, public
+    },
+    {
+      titleKey: { zh: "Flomo 笔记", en: "Flomo Notes" },
+      descriptionKey: { zh: "碎片的灵感与日常思绪。", en: "Fragmented inspirations and daily thoughts." },
+      status: "private"
+    },
+    {
+      titleKey: { zh: "手机及电脑「熔炉」", en: "Phone & Computer 'Furnaces'" },
+      descriptionKey: { zh: "每一代设备的数据备份，从未删除的数字废墟与宝藏。", en: "Data backups from every generation of devices, undeleted digital ruins and treasures." },
+      status: "archived"
+    },
+    {
+      titleKey: { zh: "开源代码库", en: "Open Source Repositories" },
+      descriptionKey: { zh: "公开的实验项目与工具集。", en: "Public experimental projects and toolsets." },
+      status: "public",
+      link: "https://github.com/tobenot"
+    }
+  ]
 }

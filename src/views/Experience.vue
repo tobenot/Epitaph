@@ -59,6 +59,13 @@
     
     <div class="experience-conclusion animate-fade-in-up" style="animation-delay: 0.8s;">
       <p>{{ experience.conclusionKey[currentLocale] }}</p>
+      
+      <div class="contact-feedback">
+        <a href="mailto:tobenot@tobenot.top" class="contact-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          {{ $t('experience.feedback') || '反馈与联系 / Feedback & Contact' }}
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -376,6 +383,34 @@ export default {
     line-height: 1.9;
     color: var(--secondary-color);
     text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-feedback {
+    text-align: center;
+    
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: var(--card-bg);
+      color: var(--primary-color);
+      border: 1px solid var(--accent-color);
+      border-radius: 4px;
+      padding: 0.8rem 2rem;
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: var(--accent-color);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 }
 

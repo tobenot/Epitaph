@@ -40,11 +40,24 @@ export default {
   about: {
     title: "墓志铭",
     subtitle: "数字时代的永恒印记",
-    sectionTitle: "痕迹画廊",
-    signature: "—— tobenot"
+    sectionTitle: "痕迹画廊 (数字遗产)",
+    signature: "—— tobenot",
+    status: {
+      private: "私密保留",
+      archived: "已归档",
+      public: "公开可见"
+    }
   },
   project: {
-    aboutWork: "关于此作品"
+    aboutWork: "关于此作品",
+    tags: "标签",
+    status: {
+      playable: "可玩",
+      unplayable: "不可玩",
+      video: "视频",
+      tool: "工具",
+      reading: "阅读"
+    }
   },
   experience: {
     title: "体验指南",

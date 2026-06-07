@@ -127,6 +127,9 @@ export default {
     this.$nextTick(() => {
       this.siteTitle = this.$t('common.siteTitle')
       document.title = this.getPageTitle(this.$route)
+      
+      // Notify prerenderer that rendering is complete
+      document.dispatchEvent(new Event('custom-render-trigger'))
     })
   }
 }

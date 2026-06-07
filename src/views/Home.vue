@@ -21,7 +21,7 @@
           class="search-input"
         />
         <div class="search-icon">
-          <i class="fas fa-search"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
       </div>
     </div>
@@ -47,11 +47,14 @@
            :key="project.id" 
            class="project-card animate-fade-in-up" 
            :style="{ animationDelay: `${index * 0.1}s` }"
-           @click="openProjectLink(project.link)">
+           @click="openProjectDetails(project.id)">
         <div class="card-frame">
           <img :src="project.image" :alt="project.titleKey[currentLocale]">
           <div class="project-info">
-            <h3>{{ project.titleKey[currentLocale] }}</h3>
+            <div class="title-row">
+              <h3>{{ project.titleKey[currentLocale] }}</h3>
+              <span v-if="project.status" :class="['status-badge', project.status]" :title="$t(`project.status.${project.status}`)"></span>
+            </div>
             <p>{{ project.descriptionKey[currentLocale] }}</p>
             <div class="project-date">{{ $t('common.sort.date') }} {{ project.date.year }}/{{ project.date.month }}</div>
           </div>
@@ -150,8 +153,8 @@ export default {
     }
   },
   methods: {
-    openProjectLink(link) {
-      window.open(link, '_blank')
+    openProjectDetails(id) {
+      this.$router.push({ name: 'Project', params: { id: id } })
     },
     handlePageChange(page) {
       this.currentPage = page;
@@ -348,8 +351,8 @@ export default {
   position: relative;
   perspective: 1000px;
   cursor: pointer;
-  width: 420px;
-  height: 420px;
+  width: 500px;
+  height: 400px;
   
   .card-frame {
     background-color: var(--card-bg);
@@ -423,7 +426,7 @@ export default {
 
   img {
     width: 100%;
-    height: 200px;
+    height: 281px;
     object-fit: cover;
     transition: all 0.5s ease;
     filter: grayscale(30%);
@@ -437,26 +440,47 @@ export default {
   }
 
   .project-info {
-    padding: 1.5rem;
+    padding: 1.2rem;
     transition: all 0.3s ease;
     background-color: var(--card-bg);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 120px;
+    height: 119px;
     overflow: hidden;
     position: relative;
 
-    h3 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 0.8rem;
-      color: var(--primary-color);
-      font-size: 1.4rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: 40px;
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      
+      h3 {
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 0;
+        color: var(--primary-color);
+        font-size: 1.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .status-badge {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+        margin-left: 0.5rem;
+        
+        &.playable { background: #4caf50; }
+        &.unplayable { background: #f44336; }
+        &.video { background: #2196f3; }
+        &.tool { background: #9c27b0; }
+        &.reading { background: #ff9800; }
+      }
     }
 
     p {

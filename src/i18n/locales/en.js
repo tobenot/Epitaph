@@ -40,11 +40,24 @@ export default {
   about: {
     title: "Epitaph",
     subtitle: "Eternal Imprint in the Digital Age",
-    sectionTitle: "Traces Gallery",
-    signature: "—— tobenot"
+    sectionTitle: "Traces Gallery (Digital Legacy)",
+    signature: "—— tobenot",
+    status: {
+      private: "Private",
+      archived: "Archived",
+      public: "Public"
+    }
   },
   project: {
-    aboutWork: "About This Work"
+    aboutWork: "关于此作品",
+    tags: "Tags",
+    status: {
+      playable: "Playable",
+      unplayable: "Unplayable",
+      video: "Video",
+      tool: "Tool",
+      reading: "Reading"
+    }
   },
   experience: {
     title: "Experience Guide",

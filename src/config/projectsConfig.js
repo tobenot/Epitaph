@@ -11,6 +11,12 @@ export default [
         en: "LLM-powered TRPG game, web-based."
       },
       date: { year: 2024, month: 4 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.itch.io/beyond-books"
     },
     {
@@ -25,6 +31,12 @@ export default [
         en: "A completed novel created as a gift, already animated with AI."
       },
       date: { year: 2023, month: 2 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://www.bilibili.com/video/BV1xPFNe1E8T/"
     },
     {
@@ -39,6 +51,12 @@ export default [
         en: "A third-person level-based space shooter. Sophomore year project, created with a musician and external modeling support."
       },
       date: { year: 2022, month: 4 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://store.steampowered.com/app/3008350/"
     },
     {
@@ -53,6 +71,12 @@ export default [
         en: "A Deepseek LLM client for novel writers, screenplay authors, and human-AI relationship enthusiasts"
       },
       date: { year: 2025, month: 2 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/Bedtime-Stories-with-AI/"
     },
     {
@@ -67,6 +91,12 @@ export default [
         en: "An abnormal emotion self-check tool."
       },
       date: { year: 2025, month: 4 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/Mood-Check/"
     },
     {
@@ -81,6 +111,12 @@ export default [
         en: "A third-person action game, created in freshman year with a musician and external modeling support."
       },
       date: { year: 2021, month: 4 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/"
     },
     {
@@ -95,6 +131,12 @@ export default [
         en: "A Stellaris-like interactive bullet comment game. Won second place for Best Bullet Comment Game on Bilibili. Currently not playable."
       },
       date: { year: 2022, month: 2 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://www.bilibili.com/video/BV1c5411D7Qb/"
     },
     {
@@ -109,6 +151,12 @@ export default [
         en: "Debut work. Created in 2018 during high school with several classmates. All planning. Started in 2015 and continued intermittently."
       },
       date: { year: 2015, month: 2 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://store.steampowered.com/app/843050/North_Stars/"
     },
     {
@@ -123,6 +171,12 @@ export default [
         en: "An AI-powered civilization development game with interactive bullet comments."
       },
       date: { year: 2024, month: 10 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://play-live.bilibili.com/details/1729301917890"
     },
     {
@@ -137,6 +191,12 @@ export default [
         en: "Used for graduation project, applicable to any game. Planned for use in a future major project."
       },
       date: { year: 2023, month: 12 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://github.com/tobenot/TobenotLLMGameplay"
     },
     {
@@ -151,6 +211,12 @@ export default [
         en: "AI-native open-world MUD 'Omnivista Magic Academy' ✨ Magical campus adventure world × Deepseek🐬 NPC dynamic narrative real-time CG × Infinite life simulation × Farming, fishing, gathering, treasure hunting 🔮Write magical adventures with friends!"
       },
       date: { year: 2025, month: 1 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "http://xhslink.com/a/eKWmczIAd6e5"
     },
     {
@@ -165,6 +231,12 @@ export default [
         en: "Personal navigation site. A purely static navigation site with preset navigation links."
       },
       date: { year: 2025, month: 2 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/travel-compass/"
     },
     {
@@ -179,6 +251,12 @@ export default [
         en: "A bullet comment interactive game featuring battleship summoning combat. Earned 4k and five captains. Currently not playable."
       },
       date: { year: 2022, month: 4 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://www.bilibili.com/video/BV1k34y1e7Ew/"
     },
     {
@@ -193,6 +271,12 @@ export default [
         en: "Blog, the main promoter of the 'Becoming Human' event."
       },
       date: { year: 2023, month: 11 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/"
     },
     {
@@ -207,6 +291,12 @@ export default [
         en: "Inspired by 'Resonant Weapons', a minimalist time management tool with floating window interface. Set time limits for tasks, track progress, and get reminders - helping you stay focused and productive."
       },
       date: { year: 2025, month: 1 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://github.com/tobenot/TempusPugnus"
     },
     {
@@ -221,6 +311,12 @@ export default [
         en: "Graduation project, ARPG + LLM AI game, solo production. Not recommended for play."
       },
       date: { year: 2024, month: 5 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://store.steampowered.com/app/2778690/Challengers_Odyssey/"
     },
     {
@@ -235,6 +331,12 @@ export default [
         en: "Novel. A short story from 'Beyond Books'."
       },
       date: { year: 2021, month: 6 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://www.bilibili.com/read/cv11529157/"
     },
     {
@@ -249,6 +351,12 @@ export default [
         en: "Online text-to-speech synthesis based on Microsoft Edge."
       },
       date: { year: 2024, month: 10 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/simple-tts-js/"
     },
     {
@@ -263,6 +371,12 @@ export default [
         en: "Originally intended as a serious game about high school study methods and the origin of 'Heart World', but I'd rather just tell you directly."
       },
       date: { year: 2024, month: 7 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/Beyond-Books-Disillusionment/"
     },
     {
@@ -277,6 +391,12 @@ export default [
         en: "A lightweight browser-side prompt management tool that helps users create, edit, categorize and export prompt templates. Data is stored locally in the browser without the need for a backend server."
       },
       date: { year: 2025, month: 3 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://tobenot.top/prompt-manager/"
     },
     {
@@ -291,6 +411,12 @@ export default [
         en: "First-person hack and slash game, created after college entrance exam and in freshman year. Intended as a masterpiece but didn't turn out well. Hope to remake it. Not recommended for play."
       },
       date: { year: 2020, month: 8 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://store.steampowered.com/app/1415580/Heart_World/"
     },
     {
@@ -305,6 +431,12 @@ export default [
         en: "A PvP bullet comment interactive game, created because I liked the UE5 water plugin. Currently not playable."
       },
       date: { year: 2022, month: 5 },
+      status: "playable", // playable, unplayable, video, tool, reading
+      tags: [],
+      longDescriptionKey: {
+        zh: "",
+        en: ""
+      },
       link: "https://www.bilibili.com/video/BV1o34y1h7Pu/"
     }
   ]

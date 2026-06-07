@@ -2,8 +2,9 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "vue-cli-service build",
-    "deploy": "vue-cli-service build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^3.2.13",

@@ -21,9 +21,20 @@
       
       <div class="project-details animate-fade-in-up" style="animation-delay: 0.2s;">
         <div class="details-card">
-          <h2>{{ $t('project.aboutWork') }}</h2>
-          <p>{{ project.descriptionKey[currentLocale] }}</p>
-          <a :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link">
+          <div class="title-with-status">
+            <h2>{{ $t('project.aboutWork') }}</h2>
+            <span v-if="project.status" :class="['status-badge', project.status]">
+              {{ $t(`project.status.${project.status}`) }}
+            </span>
+          </div>
+          
+          <div class="tags" v-if="project.tags && project.tags.length">
+            <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+          </div>
+
+          <p class="description">{{ hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale] }}</p>
+
+          <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link">
             <span>{{ $t('common.actions.viewProject') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
@@ -58,6 +69,12 @@ export default {
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    },
+    hasLongDescription() {
+      return this.project && 
+             this.project.longDescriptionKey && 
+             this.project.longDescriptionKey[this.currentLocale] && 
+             this.project.longDescriptionKey[this.currentLocale].trim() !== '';
     }
   },
   created() {
@@ -223,30 +240,67 @@ export default {
   box-shadow: 0 5px 15px var(--shadow-color);
   border: 1px solid rgba(0, 0, 0, 0.05);
   
-  h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--primary-color);
+  .title-with-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    position: relative;
     
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 50px;
-      height: 1px;
-      background-color: var(--accent-color);
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 0;
+      font-size: 1.8rem;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 50px;
+        height: 1px;
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  .status-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    
+    &.playable { background: #e6f4ea; color: #2e7d32; }
+    &.unplayable { background: #fce4e4; color: #c62828; }
+    &.video { background: #e3f2fd; color: #1565c0; }
+    &.tool { background: #f3e5f5; color: #4527a0; }
+    &.reading { background: #fff8e1; color: #6a1b9a; }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    
+    .tag {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--secondary-color);
     }
   }
   
-  p {
+  p.description {
     font-family: 'Lora', serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--secondary-color);
     margin-bottom: 2rem;
+    white-space: pre-wrap;
   }
 }
 
