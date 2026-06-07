@@ -8,7 +8,7 @@ export default {
     zh: "不止于纸上的故事：银月篇",
     en: "Beyond Books: Silver Moon"
   },
-  image: require('@/assets/images/bbw.webp'),
+  image: require('@/assets/images/bbs.webp'),
   descriptionKey: {
     zh: "定稿小说（约2万字），信息差、谎言、异能者会战悬疑故事。",
     en: "Finalized novel (~20k words). A suspense story about information gaps, lies, and esper battles."

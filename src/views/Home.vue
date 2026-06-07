@@ -120,7 +120,12 @@ export default {
       // 先过滤分类
       let filteredByCategory = this.projects;
       if (this.currentCategory !== 'all') {
-        filteredByCategory = this.projects.filter(p => p.category === this.currentCategory);
+        filteredByCategory = this.projects.filter(p => {
+          if (Array.isArray(p.category)) {
+            return p.category.includes(this.currentCategory);
+          }
+          return p.category === this.currentCategory;
+        });
       }
 
       if (this.sortBy === 'pride') {
