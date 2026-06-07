@@ -352,7 +352,7 @@ export default {
   perspective: 1000px;
   cursor: pointer;
   width: 500px;
-  height: 400px;
+  height: 460px;
   
   .card-frame {
     background-color: var(--card-bg);
@@ -489,7 +489,7 @@ export default {
       color: var(--secondary-color);
       line-height: 1.6;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
