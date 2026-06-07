@@ -13,10 +13,7 @@
     
     <div class="project-content">
       <div class="project-image-wrapper animate-fade-in-up">
-        <img :src="project.image" :alt="project.titleKey[currentLocale]" class="project-image" @click="openLink">
-        <div class="image-overlay">
-          <span>{{ $t('common.actions.click') }}</span>
-        </div>
+        <img :src="project.image" :alt="project.titleKey[currentLocale]" class="project-image">
       </div>
       
       <div class="project-details animate-fade-in-up" style="animation-delay: 0.2s;">
@@ -127,13 +124,6 @@ export default {
   created() {
     const slug = this.$route.params.slug
     this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
-  },
-  methods: {
-    openLink() {
-      if (this.project && this.project.link) {
-        window.open(this.project.link, '_blank')
-      }
-    }
   }
 }
 </script>
@@ -222,56 +212,18 @@ export default {
 }
 
 .project-image-wrapper {
-  position: relative;
   overflow: hidden;
   border-radius: 4px;
   box-shadow: 0 10px 25px var(--shadow-color);
-  cursor: pointer;
   width: 100%;
   max-width: 750px;
-  
-  &:hover {
-    .project-image {
-      transform: scale(1.05);
-      filter: grayscale(0%);
-    }
-    
-    .image-overlay {
-      opacity: 1;
-    }
-  }
 }
 
 .project-image {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  transition: all 0.5s ease;
-  filter: grayscale(20%);
   display: block;
-}
-
-.image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  
-  span {
-    color: white;
-    font-family: 'Lora', serif;
-    font-size: 1.2rem;
-    padding: 0.5rem 1.5rem;
-    border: 1px solid white;
-    border-radius: 2px;
-  }
 }
 
 .project-details {
