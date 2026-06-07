@@ -51,7 +51,29 @@ export default {
   project: {
     aboutWork: "关于此作品",
     tags: "标签",
+    category: {
+      all: "全部",
+      game: "独立游戏",
+      novel: "小说与世界观",
+      vrchat: "VRChat 创作",
+      tool: "工具与实验",
+      video: "视频/播客"
+    },
+    metadata: {
+      engine: "引擎",
+      platform: "平台",
+      scale: "体量",
+      roles: "参与角色"
+    },
+    developerNotes: "开发者手记",
+    achievements: "里程碑与数据",
     status: {
+      released: "已发布",
+      development: "开发中",
+      archived: "已归档",
+      concept: "概念/草稿",
+      private: "私密",
+      // 保留旧版兼容
       playable: "可玩",
       unplayable: "不可玩",
       video: "视频",

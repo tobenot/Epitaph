@@ -2,6 +2,8 @@ export default {
   id: 13,
   pride: 15,
   slug: "online-text-to-speech",
+  category: "tool",
+  status: "released",
   titleKey: {
     zh: "在线语音合成",
     en: "Online Text-to-Speech"
@@ -12,11 +14,16 @@ export default {
     en: "Online text-to-speech synthesis based on Microsoft Edge."
   },
   date: { year: 2024, month: 10 },
-  status: "tool",
-  tags: [],
+  genres: ["语音合成", "工具"],
+  themes: ["TTS"],
+  engine: "Web",
+  platform: ["Web"],
+  tags: ["自用工具", "微软Edge"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://tobenot.top/simple-tts-js/"
+  links: [
+    { type: "web", url: "https://tobenot.top/simple-tts-js/", textKey: { zh: "在线使用", en: "Use Online" } }
+  ]
 };

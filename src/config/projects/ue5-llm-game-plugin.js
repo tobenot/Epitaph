@@ -2,6 +2,8 @@ export default {
   id: 14,
   pride: 55,
   slug: "ue5-llm-game-plugin",
+  category: "tool",
+  status: "released",
   titleKey: {
     zh: "UE5大模型游戏插件",
     en: "UE5 LLM Game Plugin"
@@ -12,11 +14,16 @@ export default {
     en: "Used for graduation project, applicable to any game. Planned for use in a future major project."
   },
   date: { year: 2023, month: 12 },
-  status: "tool",
-  tags: [],
+  genres: ["游戏引擎插件", "AI"],
+  themes: ["LLM集成"],
+  engine: "虚幻引擎 5",
+  platform: ["PC"],
+  tags: ["UE5", "开源插件"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://github.com/tobenot/TobenotLLMGameplay"
+  links: [
+    { type: "github", url: "https://github.com/tobenot/TobenotLLMGameplay", textKey: { zh: "GitHub 源码", en: "GitHub Source" } }
+  ]
 };

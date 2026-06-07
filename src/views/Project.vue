@@ -28,13 +28,57 @@
             </span>
           </div>
           
+          <!-- Achievements Section -->
+          <div class="achievements-section" v-if="project.achievements && project.achievements.length">
+            <h3>{{ $t('project.achievements') }}</h3>
+            <ul>
+              <li v-for="(ach, index) in project.achievements" :key="index">
+                {{ typeof ach === 'object' ? ach[currentLocale] : ach }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Metadata Grid -->
+          <div class="metadata-grid" v-if="hasMetadata">
+            <div class="metadata-item" v-if="project.engine">
+              <span class="meta-label">{{ $t('project.metadata.engine') }}:</span>
+              <span class="meta-value">{{ project.engine }}</span>
+            </div>
+            <div class="metadata-item" v-if="project.platform && project.platform.length">
+              <span class="meta-label">{{ $t('project.metadata.platform') }}:</span>
+              <span class="meta-value">{{ project.platform.join(', ') }}</span>
+            </div>
+            <div class="metadata-item" v-if="project.scale">
+              <span class="meta-label">{{ $t('project.metadata.scale') }}:</span>
+              <span class="meta-value">{{ typeof project.scale === 'object' ? project.scale[currentLocale] : project.scale }}</span>
+            </div>
+            <div class="metadata-item" v-if="project.roles">
+              <span class="meta-label">{{ $t('project.metadata.roles') }}:</span>
+              <span class="meta-value">{{ typeof project.roles === 'object' ? project.roles[currentLocale] : project.roles }}</span>
+            </div>
+          </div>
+          
           <div class="tags" v-if="project.tags && project.tags.length">
             <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
           </div>
 
           <p class="description">{{ hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale] }}</p>
 
-          <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link">
+          <!-- Developer Notes -->
+          <div class="developer-notes" v-if="project.developerNotesKey && project.developerNotesKey[currentLocale]">
+            <h4>{{ $t('project.developerNotes') }}</h4>
+            <blockquote>{{ project.developerNotesKey[currentLocale] }}</blockquote>
+          </div>
+
+          <!-- Multi-links support -->
+          <div class="project-links" v-if="project.links && project.links.length">
+            <a v-for="(link, index) in project.links" :key="index" :href="link.url" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span>{{ link.textKey ? link.textKey[currentLocale] : $t('common.actions.viewProject') }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+          <!-- Fallback to legacy single link -->
+          <a v-else-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link">
             <span>{{ $t('common.actions.viewProject') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
@@ -75,6 +119,9 @@ export default {
              this.project.longDescriptionKey && 
              this.project.longDescriptionKey[this.currentLocale] && 
              this.project.longDescriptionKey[this.currentLocale].trim() !== '';
+    },
+    hasMetadata() {
+      return this.project && (this.project.engine || (this.project.platform && this.project.platform.length) || this.project.scale || this.project.roles);
     }
   },
   created() {
@@ -272,11 +319,103 @@ export default {
     font-family: 'Lora', serif;
     font-weight: bold;
     
+    /* New Status */
+    &.released { background: #e6f4ea; color: #2e7d32; }
+    &.development { background: #e3f2fd; color: #1565c0; }
+    &.archived { background: #f5f5f5; color: #616161; }
+    &.concept { background: #fff8e1; color: #f57f17; }
+    &.private { background: #fce4e4; color: #c62828; }
+
+    /* Legacy Status */
     &.playable { background: #e6f4ea; color: #2e7d32; }
     &.unplayable { background: #fce4e4; color: #c62828; }
     &.video { background: #e3f2fd; color: #1565c0; }
     &.tool { background: #f3e5f5; color: #4527a0; }
     &.reading { background: #fff8e1; color: #6a1b9a; }
+  }
+
+  .achievements-section {
+    margin-bottom: 1.5rem;
+    background: rgba(var(--accent-color-rgb), 0.05);
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 0 4px 4px 0;
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      li {
+        font-family: 'Lora', serif;
+        font-size: 0.95rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.3rem;
+      }
+    }
+  }
+
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+
+    .metadata-item {
+      display: flex;
+      flex-direction: column;
+
+      .meta-label {
+        font-size: 0.8rem;
+        color: var(--secondary-color);
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .meta-value {
+        font-family: 'Lora', serif;
+        font-size: 1rem;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .developer-notes {
+    margin-bottom: 2rem;
+    
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 1rem 1.5rem;
+      background: #f9f9f9;
+      border-left: 3px solid #ccc;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: #555;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .tags {

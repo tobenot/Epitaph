@@ -2,6 +2,8 @@ export default {
   id: 20,
   pride: 45,
   slug: "travel-compass",
+  category: "tool",
+  status: "released",
   titleKey: {
     zh: "旅路罗盘",
     en: "Travel Compass"
@@ -12,11 +14,16 @@ export default {
     en: "Personal navigation site. A purely static navigation site with preset navigation links."
   },
   date: { year: 2025, month: 2 },
-  status: "tool",
-  tags: [],
+  genres: ["导航站", "工具"],
+  themes: ["效率", "整理"],
+  engine: "Web",
+  platform: ["Web"],
+  tags: ["静态网站", "自用工具"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://tobenot.top/travel-compass/"
+  links: [
+    { type: "web", url: "https://tobenot.top/travel-compass/", textKey: { zh: "访问导航站", en: "Visit Navigation Site" } }
+  ]
 };

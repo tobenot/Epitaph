@@ -2,6 +2,8 @@ export default {
   id: 19,
   pride: 5,
   slug: "prompt-manager",
+  category: "tool",
+  status: "released",
   titleKey: {
     zh: "提示词管理器",
     en: "Prompt Manager"
@@ -12,11 +14,16 @@ export default {
     en: "A lightweight browser-side prompt management tool that helps users create, edit, categorize and export prompt templates. Data is stored locally in the browser without the need for a backend server."
   },
   date: { year: 2025, month: 3 },
-  status: "tool",
-  tags: [],
+  genres: ["AI工具", "效率工具"],
+  themes: ["提示词", "本地存储"],
+  engine: "Web",
+  platform: ["Web"],
+  tags: ["自用工具", "轻量级"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://tobenot.top/prompt-manager/"
+  links: [
+    { type: "web", url: "https://tobenot.top/prompt-manager/", textKey: { zh: "在线使用", en: "Use Online" } }
+  ]
 };

@@ -49,9 +49,31 @@ export default {
     }
   },
   project: {
-    aboutWork: "关于此作品",
+    aboutWork: "About This Work",
     tags: "Tags",
+    category: {
+      all: "All",
+      game: "Indie Games",
+      novel: "Novels & Worldview",
+      vrchat: "VRChat Creations",
+      tool: "Tools & Experiments",
+      video: "Videos / Podcasts"
+    },
+    metadata: {
+      engine: "Engine",
+      platform: "Platform",
+      scale: "Scale",
+      roles: "Roles"
+    },
+    developerNotes: "Developer Notes",
+    achievements: "Milestones & Stats",
     status: {
+      released: "Released",
+      development: "In Development",
+      archived: "Archived",
+      concept: "Concept / Draft",
+      private: "Private",
+      // Legacy compatibility
       playable: "Playable",
       unplayable: "Unplayable",
       video: "Video",

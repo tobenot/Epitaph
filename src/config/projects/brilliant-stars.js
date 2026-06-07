@@ -2,6 +2,8 @@ export default {
   id: 8,
   pride: 70,
   slug: "brilliant-stars",
+  category: "game",
+  status: "archived",
   titleKey: {
     zh: "璀璨群星",
     en: "Brilliant Stars"
@@ -12,11 +14,24 @@ export default {
     en: "A Stellaris-like interactive bullet comment game. Won second place for Best Bullet Comment Game on Bilibili. Currently not playable."
   },
   date: { year: 2022, month: 2 },
-  status: "unplayable",
-  tags: [],
+  genres: ["弹幕互动", "策略"],
+  themes: ["太空"],
+  engine: "虚幻引擎 4.26",
+  platform: ["PC"],
+  achievements: [
+    { zh: "B站最佳弹幕游戏二等奖", en: "Bilibili Best Bullet Comment Game 2nd Prize" },
+    { zh: "建立了最初的独立游戏粉丝群体", en: "Established the initial indie game fan base" }
+  ],
+  developerNotesKey: {
+    zh: "类似Stellaris的弹幕互动游戏，在弹幕互动游戏火热期间推出。获Bilibili弹幕游戏二等奖。直播流水收入三四百。在当时的一堆恰烂钱的弹幕互动游戏里面被大家评价是一股清流。建立了最初的独立游戏粉丝群体。",
+    en: "A Stellaris-like interactive bullet comment game released during the genre's boom. Won 2nd prize on Bilibili. Stream revenue was around 300-400 RMB. Praised as a breath of fresh air among cash-grab games at the time. Established my initial indie game fan base."
+  },
+  tags: ["弹幕互动", "类群星"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://www.bilibili.com/video/BV1c5411D7Qb/"
+  links: [
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1c5411D7Qb/", textKey: { zh: "B站观看视频", en: "Watch Video on Bilibili" } }
+  ]
 };

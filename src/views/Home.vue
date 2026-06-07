@@ -25,6 +25,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <button 
+        v-for="cat in categories" 
+        :key="cat"
+        @click="currentCategory = cat"
+        :class="['category-tab', { active: currentCategory === cat }]"
+      >
+        {{ $t(`project.category.${cat}`) }}
+      </button>
+    </div>
     
     <div class="sort-controls">
       <span class="sort-title">{{ $t('common.sort.title') }}:</span>
@@ -94,6 +106,8 @@ export default {
       projects: config.projects,
       sortBy: 'pride', // 默认按自豪度排序
       searchTerm: '',
+      currentCategory: 'all',
+      categories: ['all', 'game', 'novel', 'vrchat', 'tool', 'video'],
       currentPage: 1,
       itemsPerPage: 15
     }
@@ -103,19 +117,25 @@ export default {
       return this.$i18n.locale
     },
     sortedProjects() {
+      // 先过滤分类
+      let filteredByCategory = this.projects;
+      if (this.currentCategory !== 'all') {
+        filteredByCategory = this.projects.filter(p => p.category === this.currentCategory);
+      }
+
       if (this.sortBy === 'pride') {
         // 按照配置文件中的原始顺序（自豪度排序）
-        return [...this.projects]
+        return [...filteredByCategory]
       } else if (this.sortBy === 'date') {
         // 按时间排序（最新的在前面）
-        return [...this.projects].sort((a, b) => {
+        return [...filteredByCategory].sort((a, b) => {
           if (a.date.year !== b.date.year) {
             return b.date.year - a.date.year
           }
           return b.date.month - a.date.month
         })
       }
-      return this.projects
+      return filteredByCategory
     },
     filteredProjects() {
       if (!this.searchTerm.trim()) {
@@ -146,6 +166,9 @@ export default {
       }
     },
     searchTerm() {
+        this.currentPage = 1;
+    },
+    currentCategory() {
         this.currentPage = 1;
     },
     sortBy() {
@@ -293,6 +316,36 @@ export default {
     transform: translateY(-50%);
     color: var(--accent-color);
     opacity: 0.7;
+  }
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  .category-tab {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    font-size: 0.95rem;
+
+    &:hover {
+      background-color: rgba(var(--accent-color-rgb), 0.1);
+    }
+
+    &.active {
+      background-color: var(--accent-color);
+      color: white;
+      box-shadow: 0 2px 8px rgba(var(--accent-color-rgb), 0.3);
+    }
   }
 }
 
@@ -475,6 +528,14 @@ export default {
         flex-shrink: 0;
         margin-left: 0.5rem;
         
+        /* New Status */
+        &.released { background: #4caf50; }
+        &.development { background: #2196f3; }
+        &.archived { background: #9e9e9e; }
+        &.concept { background: #ff9800; }
+        &.private { background: #f44336; }
+
+        /* Legacy Status */
         &.playable { background: #4caf50; }
         &.unplayable { background: #f44336; }
         &.video { background: #2196f3; }

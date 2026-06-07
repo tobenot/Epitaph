@@ -2,6 +2,8 @@ export default {
   id: 21,
   pride: 30,
   slug: "tempus-pugnus",
+  category: "tool",
+  status: "released",
   titleKey: {
     zh: "时间拳",
     en: "Tempus Pugnus"
@@ -12,11 +14,16 @@ export default {
     en: "Inspired by 'Resonant Weapons', a minimalist time management tool with floating window interface. Set time limits for tasks, track progress, and get reminders - helping you stay focused and productive."
   },
   date: { year: 2025, month: 1 },
-  status: "tool",
-  tags: [],
+  genres: ["时间管理", "效率工具"],
+  themes: ["专注", "极简"],
+  engine: "Web",
+  platform: ["Web"],
+  tags: ["自用工具", "开源"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  link: "https://github.com/tobenot/TempusPugnus"
+  links: [
+    { type: "github", url: "https://github.com/tobenot/TempusPugnus", textKey: { zh: "GitHub 源码", en: "GitHub Source" } }
+  ]
 };
