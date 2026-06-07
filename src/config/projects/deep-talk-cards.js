@@ -8,19 +8,19 @@ export default {
     zh: "Deep Talk Cards 话题世界",
     en: "Deep Talk Cards"
   },
-  image: require('@/assets/images/teacat.webp'), // 使用一个占位图，后续可替换
+  image: require('@/assets/images/vrc_deep_talk_cards.webp'),
   descriptionKey: {
-    zh: "纯真心话卡牌社交世界，原本是给一对情侣朋友的生日礼物。目前依然火热，日活四五百。",
-    en: "A pure deep-talk card social world, originally a birthday gift for a couple. Still very popular with 400-500 DAU."
+    zh: "真心话不冒险。四类话题卡片，806 个问题，支持 EN / 日语 / 韩语 / 简繁中文。",
+    en: "All the deep talk, none of the dares. Four decks, 806 questions, in EN / JP / KR / SC / TC."
   },
-  date: { year: 2024, month: 1 }, // 假设时间，可自行调整
+  date: { year: 2026, month: 2 },
   genres: ["社交", "卡牌", "多语言"],
   themes: ["真心话", "情感连接"],
   engine: "Unity (VRChat)",
   platform: ["PCVR", "Quest"],
   scale: {
-    zh: "支持 EN、日语、韩语、简繁中文",
-    en: "Supports EN, JP, KR, SC, TC"
+    zh: "806 个问题 · EN / 日语 / 韩语 / 简繁中文",
+    en: "806 questions · EN / JP / KR / SC / TC"
   },
   achievements: [
     { zh: "总访问量 90,000+ 次", en: "90,000+ Total Visits" },
@@ -33,8 +33,8 @@ export default {
   },
   tags: ["VRChat", "社交", "卡牌"],
   longDescriptionKey: {
-    zh: "",
-    en: ""
+    zh: "［EN · 日本語 · 한국어 · 简繁中文］真心话不冒险。话题分为四类卡片：闲聊、过往、思辨、亲密。适合想找到共鸣的朋友、凭空起不来话题的 i 人、想增进感情的情侣。共 806 个问题，非中文语系为 AI 翻译。",
+    en: "［EN · 日本語 · 한국어 · 简繁中文］All the deep talk, none of the dares. Four decks: Ice-breakers, Stories, Perspectives, and Intimacy. For friends seeking real connection, introverts who need a spark, and couples looking to grow closer. 806 questions total. Non-Chinese languages translated by AI."
   },
   links: [
     { type: "vrchat", url: "https://vrchat.com/home/world/wrld_785bc7ab-da62-4192-a8fe-830a3849467a/info", textKey: { zh: "VRChat 访问", en: "Visit in VRChat" } }

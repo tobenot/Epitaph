@@ -8,12 +8,12 @@ export default {
     zh: "Aftergrass 残响草地",
     en: "Aftergrass"
   },
-  image: require('@/assets/images/teacat.webp'),
+  image: require('@/assets/images/vrc_aftergrass.webp'),
   descriptionKey: {
-    zh: "VRChat 处女作，艺术向冥想/纪念世界。",
-    en: "VRChat debut, an art-oriented meditation/memorial world."
+    zh: "纯白天空下，无垠的草地会看见你。走远一点，你会看到一些不该看到的东西。",
+    en: "Under a heaven washed in white, the boundless fields will catch sight of you. Stray but a step beyond, and your eyes will fall upon what they should never have known."
   },
-  date: { year: 2023, month: 10 },
+  date: { year: 2025, month: 10 },
   genres: ["艺术", "冥想", "纪念"],
   themes: ["平静", "回忆"],
   engine: "Unity (VRChat)",
@@ -27,8 +27,8 @@ export default {
   },
   tags: ["VRChat", "艺术"],
   longDescriptionKey: {
-    zh: "",
-    en: ""
+    zh: "VRChat 处女作，艺术向冥想/纪念世界。纯白天空下，无垠的草地会看见你。走远一点，你会看到一些不该看到的东西。",
+    en: "VRChat debut, an art-oriented meditation/memorial world. Under a heaven washed in white, the boundless fields will catch sight of you. Stray but a step beyond, and your eyes will fall upon what they should never have known."
   },
   links: [
     { type: "vrchat", url: "https://vrchat.com/home/world/wrld_472d0b1a-a8da-4525-9c4b-f29f90ec6a2b/info", textKey: { zh: "VRChat 访问", en: "Visit in VRChat" } }
