@@ -215,8 +215,8 @@ export default {
 
 .project-content {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
@@ -227,7 +227,8 @@ export default {
   border-radius: 4px;
   box-shadow: 0 10px 25px var(--shadow-color);
   cursor: pointer;
-  width: 550px;
+  width: 100%;
+  max-width: 750px;
   
   &:hover {
     .project-image {
@@ -274,10 +275,8 @@ export default {
 }
 
 .project-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 550px;
+  width: 100%;
+  max-width: 750px;
 }
 
 .details-card {

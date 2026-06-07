@@ -384,10 +384,9 @@ export default {
 }
 
 .projects-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
   padding: 0 0.5rem;
   
   .no-results {
@@ -404,8 +403,8 @@ export default {
   position: relative;
   perspective: 1000px;
   cursor: pointer;
-  width: 500px;
-  height: 460px;
+  width: 100%;
+  height: 100%;
   
   .card-frame {
     background-color: var(--card-bg);
@@ -479,7 +478,7 @@ export default {
 
   img {
     width: 100%;
-    height: 281px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     transition: all 0.5s ease;
     filter: grayscale(30%);
@@ -601,20 +600,6 @@ export default {
   }
 }
 
-@media (min-width: 1500px) {
-  .projects-grid {
-    max-width: 1460px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 1100px) {
-  .projects-grid {
-    max-width: 990px;
-    margin: 0 auto;
-  }
-}
-
 @media (max-width: 768px) {
   .epitaph-header {
     padding: 1rem 0;
@@ -645,8 +630,9 @@ export default {
   }
   
   .projects-grid {
-    max-width: 320px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
   }
 }
 </style>

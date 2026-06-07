@@ -29,5 +29,7 @@ export default {
     zh: "",
     en: ""
   },
-  links: []
+  links: [
+    { type: "blog", url: "https://tobenot.top/p/story-bb-dragon-dance/", textKey: { zh: "博客阅读（初稿）", en: "Read Draft on Blog" } }
+  ]
 };

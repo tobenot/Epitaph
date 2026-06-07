@@ -26,8 +26,8 @@ export default {
     { zh: "清华 Agentland 游戏大赛银奖", en: "Tsinghua Agentland Game Competition Silver Award" }
   ],
   developerNotesKey: {
-    zh: "这是我最爱的作品，融合了AI大模型与传统角色扮演游戏(TRPG)的创新尝试。作品花了许多时间打磨细节，包括UI细节、剧本细节、游戏机制细节、音乐细节、美术细节等。是细糠！给现实的朋友们玩大家都觉得很惊艳，同行看了也有点害怕。但这品类没玩家，感觉在打空气。受挫之后我转入网页独立开发，后面入坑 VRChat 结果遭遇连环情感变故，在情感问题中瘫痪了八个月。",
-    en: "This is my favorite work, an innovative attempt combining AI large language models with traditional tabletop role-playing games (TRPG). The work spent a lot of time polishing details, including UI details, script details, game mechanics details, music details, and art details. It's a masterpiece! Friends who played it were amazed, and peers were a bit intimidated. But this genre has no players, it feels like punching air. After this setback, I turned to web indie development, then fell into VRChat, which led to a series of emotional upheavals, paralyzing me for eight months."
+    zh: "这是我最爱的作品，融合了AI大模型与传统角色扮演游戏(TRPG)的创新尝试。作品花了许多时间打磨细节，包括UI、剧本、游戏机制、音乐、美术等。身边朋友试玩反馈较好，部分同行认为它在探索 AI 与 TRPG 结合的新范式。但该品类当时几乎没有玩家，市场反馈有限。受挫之后转入网页独立开发，后面入坑 VRChat；因个人原因停滞约八个月。",
+    en: "This is my favorite work, an innovative attempt combining AI large language models with traditional tabletop role-playing games (TRPG). Spent a lot of time polishing UI, script, mechanics, music, and art. Friends who tried it responded well; some peers saw it as exploring a new paradigm for AI + TRPG. But the genre had almost no audience at the time, with limited market feedback. After this setback, I turned to web indie development, then VRChat; development paused for about eight months for personal reasons."
   },
   tags: ["LLM", "AI大世界范式Ⅰ"],
   longDescriptionKey: {

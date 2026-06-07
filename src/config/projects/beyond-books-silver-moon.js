@@ -21,8 +21,8 @@ export default {
     en: "Approx. 20,000 words"
   },
   developerNotesKey: {
-    zh: "小说的读者都是个位数。发布在微信公众号，个人博客。担心发到其他平台被吃版权（那些主流小说平台只要发上去他们就算是他们的，你就不能在其他地方再发）。因为这是主要的世界观核心作品，想干干净净的。发公众号可以获得版权所以发公众号。",
-    en: "The novel has single-digit readers. Published on WeChat Official Account and personal blog. Worried about losing copyright on mainstream platforms. Since this is the core worldview work, I want to keep it clean."
+    zh: "小说的读者都是个位数。发布在微信公众号和个人博客。",
+    en: "The novel has single-digit readers. Published on WeChat Official Account and personal blog."
   },
   tags: ["小说", "世界观核心"],
   longDescriptionKey: {
@@ -30,6 +30,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "blog", url: "https://tobenot.top/", textKey: { zh: "博客阅读", en: "Read on Blog" } }
+    { type: "blog", url: "https://tobenot.top/p/story-bb-silvermoon-director-cut/", textKey: { zh: "博客阅读", en: "Read on Blog" } }
   ]
 };

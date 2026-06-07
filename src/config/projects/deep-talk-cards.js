@@ -37,6 +37,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "vrchat", url: "https://vrchat.com/home/world/wrld_...", textKey: { zh: "VRChat 访问", en: "Visit in VRChat" } }
+    { type: "vrchat", url: "https://vrchat.com/home/world/wrld_785bc7ab-da62-4192-a8fe-830a3849467a/info", textKey: { zh: "VRChat 访问", en: "Visit in VRChat" } }
   ]
 };

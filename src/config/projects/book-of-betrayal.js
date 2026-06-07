@@ -3,15 +3,15 @@ export default {
   pride: 100, // 治愈了长达一年的感情变故，意义重大
   slug: "book-of-betrayal",
   category: "novel",
-  status: "private",
+  status: "released",
   titleKey: {
     zh: "背叛书",
     en: "Book of Betrayal"
   },
   image: require('@/assets/images/teacat.webp'),
   descriptionKey: {
-    zh: "记录情感变故问题的纪实小说，7万字。这治愈了萝北长达一年的感情变故。",
-    en: "A 70,000-word documentary novel recording emotional upheavals. It healed a year-long emotional trauma."
+    zh: "记录情感变故问题的纪实小说，7万字。已在 VRChat 公开。",
+    en: "A 70,000-word documentary novel recording emotional upheavals. Now publicly available on VRChat."
   },
   date: { year: 2024, month: 12 },
   genres: ["纪实小说", "心理", "情感"],
@@ -24,13 +24,15 @@ export default {
     { zh: "数十个读者仔细读完，反馈极深", en: "Dozens of readers finished it with deep feedback" }
   ],
   developerNotesKey: {
-    zh: "记录情感变故问题的纪实小说，7万字，未正式公开，还在进行本地化翻译中，有几个读者反馈，数十个读者仔细读完了。有众多负面反馈。正面反馈也很深。很多人说这个不该发布，我作为受害者兼加害者会被网暴的。审稿之后发现评级来到了18。所以也无法公开发布了。这里面写到的当事人都看了，并且承认了文本的真实性。这治愈了萝北长达一年的感情变故，发布渠道也不重要了。",
-    en: "A 70,000-word documentary novel recording emotional upheavals. Not officially public yet, undergoing localization. Received deep feedback (both negative and positive). Rated 18+. The involved parties read it and acknowledged its authenticity. It healed my year-long trauma, so the publishing channel doesn't matter anymore."
+    zh: "记录情感变故问题的纪实小说，7万字，已在 VRChat 公开。有多个读者反馈，数十个读者仔细读完了。有众多负面反馈，正面反馈也很深。相关读者已阅读并有过反馈。这治愈了萝北长达一年的感情变故。",
+    en: "A 70,000-word documentary novel recording emotional upheavals, now publicly available on VRChat. Several readers left feedback; dozens read it through to the end. There was substantial negative feedback and equally deep positive feedback. Readers close to the story read it and responded. It healed Luobei's year-long emotional upheaval."
   },
   tags: ["纪实", "18+"],
   longDescriptionKey: {
     zh: "",
     en: ""
   },
-  links: []
+  links: [
+    { type: "vrchat", url: "https://vrchat.com/home/world/wrld_acff8904-fb49-44b8-8351-caf50883c8e5/info", textKey: { zh: "VRChat 阅读", en: "Read on VRChat" } }
+  ]
 };
