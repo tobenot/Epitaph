@@ -6,13 +6,11 @@
     <script type="text/javascript">
       // 兼容 GitHub Pages 的 SPA 重定向脚本
       var l = window.location;
-      var basePath = l.pathname.startsWith('/Epitaph/') ? '/Epitaph/' : '/';
-      var pathSegmentsToKeep = basePath === '/' ? 0 : 1;
       
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
         (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );
