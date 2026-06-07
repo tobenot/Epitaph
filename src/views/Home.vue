@@ -55,10 +55,9 @@
     </div>
     
     <div class="projects-grid">
-      <div v-for="(project, index) in paginatedProjects" 
+      <div v-for="project in paginatedProjects" 
            :key="project.id" 
-           class="project-card animate-fade-in-up" 
-           :style="{ animationDelay: `${index * 0.1}s` }"
+           class="project-card"
            @click="openProjectDetails(project.slug)">
         <div class="card-frame">
           <img :src="project.image" :alt="project.titleKey[currentLocale]">
