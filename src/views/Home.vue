@@ -205,7 +205,8 @@ export default {
       searchTerm: '',
       sortBy: 'pride', // 默认按自豪度排序
       currentPage: 1,
-      itemsPerPage: 15
+      itemsPerPage: 15,
+      savedScrollY: 0
     }
   },
   computed: {
@@ -287,6 +288,14 @@ export default {
       this.currentPage = page;
       window.scrollTo(0, 0);
     }
+  },
+  activated() {
+    this.$nextTick(() => {
+      window.scrollTo(0, this.savedScrollY)
+    })
+  },
+  deactivated() {
+    this.savedScrollY = window.scrollY
   },
   mounted() {
     this.$nextTick(() => {
