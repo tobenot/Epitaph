@@ -83,11 +83,7 @@ export default {
   },
   experience: {
     title: "体验指南",
-    subtitle: "按照精心设计的路径，体验我的创作历程",
-    guideTitle: "推荐体验顺序",
-    duration: "预计时间",
-    instructions: "操作指引",
-    startExperience: "开始体验",
+    subtitle: "多维度的创作切片，选择属于你的体验路线",
     feedback: "反馈与联系"
   },
   gallery: {

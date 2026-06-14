@@ -83,11 +83,7 @@ export default {
   },
   experience: {
     title: "Experience Guide",
-    subtitle: "Follow a carefully designed path to experience my creative journey",
-    guideTitle: "Recommended Experience Order",
-    duration: "Estimated Time",
-    instructions: "Instructions",
-    startExperience: "Start Experience",
+    subtitle: "Multi-dimensional creative slices, choose your own experience route",
     feedback: "Feedback & Contact"
   },
   gallery: {
