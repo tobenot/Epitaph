@@ -35,7 +35,11 @@ export default {
     }
   },
   home: {
-    subtitle: "希望每个人都可以找到自己的理想并为之劳动"
+    subtitle: "希望每个人都可以找到自己的理想并为之劳动",
+    viewMode: {
+      pathway: "探索路线",
+      all: "全部作品"
+    }
   },
   about: {
     title: "墓志铭",

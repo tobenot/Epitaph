@@ -5,7 +5,6 @@ export default {
     { nameKey: "common.nav.paintings", path: "/paintings" },
     { nameKey: "common.nav.photographs", path: "/photographs" },
     { nameKey: "common.nav.sounds", path: "/sounds" },
-    { nameKey: "common.nav.about", path: "/about" },
-    { nameKey: "common.nav.experience", path: "/experience" }
+    { nameKey: "common.nav.about", path: "/about" }
   ]
 } 

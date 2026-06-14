@@ -35,7 +35,11 @@ export default {
     }
   },
   home: {
-    subtitle: "Hope everyone can find their own ideals and work for them"
+    subtitle: "Hope everyone can find their own ideals and work for them",
+    viewMode: {
+      pathway: "Explore Routes",
+      all: "All Projects"
+    }
   },
   about: {
     title: "Epitaph",
