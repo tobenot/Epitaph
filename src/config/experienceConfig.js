@@ -24,15 +24,6 @@ export default {
             zh: "这是了解我的思想和最新动态的最佳起点。在这里，我分享日常、哲学、创作相关的思考。",
             en: "This is the best starting point to understand my thoughts and latest updates. Here, I share my thoughts on daily life, philosophy, and creation."
           }
-        },
-        {
-          route: "/about",
-          titleKey: { zh: "墓志铭 (数字遗产)", en: "Epitaph (Digital Legacy)" },
-          image: require('@/assets/images/teacat.webp'),
-          descriptionKey: {
-            zh: "这就是你当前所在的网站。如果你还没看过“关于”页面，不妨去看看我的终极理念。",
-            en: "This is the website you are currently on. If you haven't seen the 'About' page, you might want to check out my ultimate philosophy."
-          }
         }
       ]
     },
