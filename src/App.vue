@@ -159,6 +159,10 @@ export default {
   padding: 0;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: 'Playfair Display', 'Times New Roman', serif;
   line-height: 1.6;

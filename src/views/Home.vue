@@ -114,7 +114,7 @@
           <p>{{ $t('home.conclusion') }}</p>
           
           <div class="contact-feedback">
-            <a href="mailto:tobenot@qq.com" class="contact-button">
+            <a href="https://tobenot.top/contact/" target="_blank" rel="noopener noreferrer" class="contact-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
               {{ $t('experience.feedback') }}
             </a>
@@ -445,7 +445,7 @@ export default {
 
 .pathways-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -458,11 +458,11 @@ export default {
   align-items: flex-start;
   gap: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 10px var(--shadow-color);
+  min-height: 7.5rem;
   
   &:hover {
-    transform: translateY(-3px);
     box-shadow: 0 8px 20px var(--shadow-color);
     border-color: rgba(var(--accent-color-rgb), 0.3);
   }
@@ -471,16 +471,19 @@ export default {
     border-color: var(--accent-color);
     background-color: rgba(var(--accent-color-rgb), 0.05);
     box-shadow: 0 5px 15px rgba(var(--accent-color-rgb), 0.15);
-    transform: translateY(-2px);
   }
   
   .pathway-icon {
     font-size: 2.5rem;
     line-height: 1;
     color: var(--primary-color);
+    flex-shrink: 0;
   }
   
   .pathway-info {
+    flex: 1;
+    min-width: 0;
+    
     h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -492,6 +495,11 @@ export default {
       color: var(--secondary-color);
       margin: 0;
       line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(0.95rem * 1.5 * 3);
     }
   }
 }
@@ -722,10 +730,12 @@ export default {
 }
 
 @media (max-width: 1200px) {
+  .pathways-grid,
   .experience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 900px) {
+  .pathways-grid,
   .experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
