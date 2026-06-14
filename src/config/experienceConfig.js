@@ -28,6 +28,72 @@ export default {
       ]
     },
     {
+      id: "vrchat",
+      titleKey: { zh: "VRChat世界", en: "VRChat Worlds" },
+      descriptionKey: {
+        zh: "我在 VRChat 中构建的社交、阅读与实验性空间。",
+        en: "Social, reading, and experimental spaces I've built in VRChat."
+      },
+      steps: [
+        {
+          slug: "deep-talk-cards",
+          titleKey: { zh: "Deep Talk Cards 话题世界", en: "Deep Talk Cards" },
+          image: require('@/assets/images/vrc_deep_talk_cards.webp'),
+          descriptionKey: {
+            zh: "真心话不冒险。四类话题卡片，806 个问题，支持多种语言。适合朋友寻找真实连结，或情侣加深了解。",
+            en: "All the deep talk, none of the dares. Four decks, 806 questions. For friends seeking real connection, or couples looking to grow closer."
+          }
+        },
+        {
+          slug: "book-of-betrayal",
+          titleKey: { zh: "背叛书", en: "Book of Betrayal" },
+          image: require('@/assets/images/vrc_book_of_betrayal.webp'),
+          descriptionKey: {
+            zh: "在 VRChat 中沉浸式阅读纪实悬疑小说。「不要找砂糖」，体会单元剧中的人性与背叛。",
+            en: "Immersive reading of a suspense novel in VRChat. \"Don't Look for Sugar\", experience humanity and betrayal."
+          }
+        }
+      ]
+    },
+    {
+      id: "ai",
+      titleKey: { zh: "AI探索", en: "AI Exploration" },
+      descriptionKey: {
+        zh: "体验我利用大语言模型开发的互动体验与创作工具。",
+        en: "Experience interactive experiences and creation tools I developed using LLMs."
+      },
+      steps: [
+        {
+          slug: "bedtime-stories-with-ai",
+          titleKey: { zh: "与AI的睡前故事", en: "Bedtime Stories with AI" },
+          image: require('@/assets/images/bedtime_stories.webp'),
+          descriptionKey: {
+            zh: "这个工具是专用于与 deepseek 大模型进行互动的故事创作工具。支持使用模板剧本。",
+            en: "This tool is specifically designed for interacting with the deepseek LLM for story creation. Supports preset scripts."
+          }
+        }
+      ]
+    },
+    {
+      id: "reading",
+      titleKey: { zh: "小说", en: "Stories & Reading" },
+      descriptionKey: {
+        zh: "沉下心来，阅读我构建的文字宇宙与故事。",
+        en: "Calm your mind and read the text universes and stories I've built."
+      },
+      steps: [
+        {
+          slug: "beyond-books-silver-moon",
+          titleKey: { zh: "不止于纸上的故事：银月篇", en: "Beyond Books: Silver Moon" },
+          image: require('@/assets/images/bbs.webp'),
+          descriptionKey: {
+            zh: "定稿小说（约2万字），一个关于信息差、谎言和异能者会战的悬疑故事。",
+            en: "Finalized novel (~20k words). A suspense story about information gaps, lies, and esper battles."
+          }
+        }
+      ]
+    },
+    {
       id: "games",
       titleKey: { zh: "独立游戏体验", en: "Indie Games" },
       descriptionKey: {
@@ -60,72 +126,6 @@ export default {
           descriptionKey: {
             zh: "【开发中】这是我对AI与游戏结合的最新探索，融合了MUD文本游戏传统与现代AI技术，创造沉浸式魔法学院体验。",
             en: "【In Development】My latest exploration combining AI and games, merging MUD traditions with modern AI for an immersive magic academy experience."
-          }
-        }
-      ]
-    },
-    {
-      id: "vrchat",
-      titleKey: { zh: "VRChat 虚拟世界", en: "VRChat Worlds" },
-      descriptionKey: {
-        zh: "我在 VRChat 中构建的社交、阅读与实验性空间。",
-        en: "Social, reading, and experimental spaces I've built in VRChat."
-      },
-      steps: [
-        {
-          slug: "deep-talk-cards",
-          titleKey: { zh: "Deep Talk Cards 话题世界", en: "Deep Talk Cards" },
-          image: require('@/assets/images/vrc_deep_talk_cards.webp'),
-          descriptionKey: {
-            zh: "真心话不冒险。四类话题卡片，806 个问题，支持多种语言。适合朋友寻找真实连结，或情侣加深了解。",
-            en: "All the deep talk, none of the dares. Four decks, 806 questions. For friends seeking real connection, or couples looking to grow closer."
-          }
-        },
-        {
-          slug: "book-of-betrayal",
-          titleKey: { zh: "背叛书", en: "Book of Betrayal" },
-          image: require('@/assets/images/vrc_book_of_betrayal.webp'),
-          descriptionKey: {
-            zh: "在 VRChat 中沉浸式阅读纪实悬疑小说。「不要找砂糖」，体会单元剧中的人性与背叛。",
-            en: "Immersive reading of a suspense novel in VRChat. \"Don't Look for Sugar\", experience humanity and betrayal."
-          }
-        }
-      ]
-    },
-    {
-      id: "reading",
-      titleKey: { zh: "小说与阅读", en: "Stories & Reading" },
-      descriptionKey: {
-        zh: "沉下心来，阅读我构建的文字宇宙与故事。",
-        en: "Calm your mind and read the text universes and stories I've built."
-      },
-      steps: [
-        {
-          slug: "beyond-books-silver-moon",
-          titleKey: { zh: "不止于纸上的故事：银月篇", en: "Beyond Books: Silver Moon" },
-          image: require('@/assets/images/bbs.webp'),
-          descriptionKey: {
-            zh: "定稿小说（约2万字），一个关于信息差、谎言和异能者会战的悬疑故事。",
-            en: "Finalized novel (~20k words). A suspense story about information gaps, lies, and esper battles."
-          }
-        }
-      ]
-    },
-    {
-      id: "ai",
-      titleKey: { zh: "AI 应用实验", en: "AI Experiments" },
-      descriptionKey: {
-        zh: "体验我利用大语言模型开发的互动体验与创作工具。",
-        en: "Experience interactive experiences and creation tools I developed using LLMs."
-      },
-      steps: [
-        {
-          slug: "bedtime-stories-with-ai",
-          titleKey: { zh: "与AI的睡前故事", en: "Bedtime Stories with AI" },
-          image: require('@/assets/images/bedtime_stories.webp'),
-          descriptionKey: {
-            zh: "这个工具是专用于与 deepseek 大模型进行互动的故事创作工具。支持使用模板剧本。",
-            en: "This tool is specifically designed for interacting with the deepseek LLM for story creation. Supports preset scripts."
           }
         }
       ]

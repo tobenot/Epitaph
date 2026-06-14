@@ -14,11 +14,11 @@
     
     <!-- View Mode Toggle -->
     <div class="view-mode-toggle">
-      <button :class="['mode-button', { active: viewMode === 'pathway' }]" @click="viewMode = 'pathway'">
-        {{ $t('home.viewMode.pathway') }}
-      </button>
       <button :class="['mode-button', { active: viewMode === 'all' }]" @click="viewMode = 'all'">
         {{ $t('home.viewMode.all') }}
+      </button>
+      <button :class="['mode-button', { active: viewMode === 'pathway' }]" @click="viewMode = 'pathway'">
+        {{ $t('home.viewMode.pathway') }}
       </button>
     </div>
 
@@ -184,7 +184,7 @@ export default {
   data() {
     return {
       siteTitle: this.$t('common.siteTitle'),
-      viewMode: 'pathway', // 'pathway' or 'all'
+      viewMode: 'all', // 'all' or 'pathway'
       experience: config.experience,
       activePathwayId: '',
       projects: config.projects,
