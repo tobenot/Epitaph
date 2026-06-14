@@ -84,6 +84,7 @@ export default {
     status: {
       released: "已发布",
       development: "开发中",
+      halted: "停工",
       archived: "已归档",
       concept: "概念/草稿",
       private: "私密",

@@ -84,6 +84,7 @@ export default {
     status: {
       released: "Released",
       development: "In Development",
+      halted: "On Hold",
       archived: "Archived",
       concept: "Concept / Draft",
       private: "Private",

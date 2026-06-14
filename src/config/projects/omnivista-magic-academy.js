@@ -3,24 +3,28 @@ export default {
   pride: 50,
   slug: "omnivista-magic-academy",
   category: "ai",
-  status: "development",
+  status: "halted",
   titleKey: {
     zh: "万象魔法学院（OMA)",
     en: "Omnivista Magic Academy（OMA)"
   },
   image: require('@/assets/images/magic_academy.webp'),
   descriptionKey: {
-    zh: "AI原生开放世界mud《万象魔法学院》 ✨ 魔法校园冒险世界 × Deepseek🐬 NPC动态叙事实时CG × 无限人生模拟 × 种田钓鱼采集探宝 🔮与挚友书写魔法奇旅！",
-    en: "AI-native open-world MUD 'Omnivista Magic Academy' ✨ Magical campus adventure world × Deepseek🐬 NPC dynamic narrative real-time CG × Infinite life simulation × Farming, fishing, gathering, treasure hunting 🔮Write magical adventures with friends!"
+    zh: "AI原生开放世界 MUD，魔法校园冒险与 LLM 动态叙事。项目目前处于停工状态。",
+    en: "AI-native open-world MUD with magical campus adventure and LLM dynamic narrative. Currently on hold."
   },
   date: { year: 2025, month: 1 },
   genres: ["MUD", "开放世界", "LLM", "角色扮演"],
   themes: ["魔法校园", "冒险", "人生模拟"],
   engine: "Node.js",
   platform: ["Web"],
+  scale: {
+    zh: "停工",
+    en: "On Hold"
+  },
   developerNotesKey: {
-    zh: "小红书上有零星关注度，没有继续推进。正在用MUD框架Evennia重制。",
-    en: "Had sporadic attention on Xiaohongshu, but didn't push forward. Currently remaking it with the MUD framework Evennia."
+    zh: "项目目前处于停工状态。曾用 MUD 框架 Evennia 尝试重制，小红书上有零星关注度，暂未继续推进。",
+    en: "The project is currently on hold. A remake was attempted with the MUD framework Evennia. It received sporadic attention on Xiaohongshu, but development has not resumed."
   },
   tags: ["LLM", "AI大世界范式Ⅱ"],
   longDescriptionKey: {

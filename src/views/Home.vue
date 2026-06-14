@@ -619,16 +619,21 @@ export default {
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.5rem;
   
   h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
+    line-height: 1.35;
     color: var(--primary-color);
     margin: 0;
-    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   
   .status-badge {
@@ -637,10 +642,11 @@ export default {
     border-radius: 50%;
     display: inline-block;
     flex-shrink: 0;
-    margin-left: 0.5rem;
+    margin-top: 0.45rem;
     
     &.released { background: #4caf50; }
     &.development { background: #2196f3; }
+    &.halted { background: #ff9800; }
     &.archived { background: #9e9e9e; }
     &.concept { background: #ff9800; }
     &.private { background: #f44336; }

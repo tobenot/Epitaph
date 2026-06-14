@@ -1,5 +1,12 @@
 <template>
   <div class="project-container" v-if="project">
+    <div class="back-link-top">
+      <router-link to="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        {{ $t('common.actions.back') }}
+      </router-link>
+    </div>
+
     <div class="project-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
@@ -133,6 +140,33 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  position: relative;
+}
+
+.back-link-top {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  z-index: 1;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+
+    svg {
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
 }
 
 .project-header {
@@ -273,6 +307,7 @@ export default {
     /* New Status */
     &.released { background: #e6f4ea; color: #2e7d32; }
     &.development { background: #e3f2fd; color: #1565c0; }
+    &.halted { background: #fff3e0; color: #e65100; }
     &.archived { background: #f5f5f5; color: #616161; }
     &.concept { background: #fff8e1; color: #f57f17; }
     &.private { background: #fce4e4; color: #c62828; }
@@ -439,6 +474,13 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .back-link-top {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+
   .project-image-wrapper,
   .project-details {
     width: 100%;
