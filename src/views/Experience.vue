@@ -1,6 +1,6 @@
 <template>
   <div class="experience-container">
-    <div class="epitaph-header animate-fade-in-up">
+    <div class="epitaph-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
         <div class="frame-corner top-right"></div>
@@ -12,12 +12,12 @@
       <p class="quote">{{ $t('experience.subtitle') }}</p>
     </div>
     
-    <div class="experience-intro animate-fade-in-up" style="animation-delay: 0.2s;">
+    <div class="experience-intro">
       <p>{{ experience.introKey[currentLocale] }}</p>
     </div>
     
     <!-- Pathways Selector -->
-    <div class="pathways-selector animate-fade-in-up" style="animation-delay: 0.3s;">
+    <div class="pathways-selector">
       <div class="pathways-grid">
         <div v-for="pathway in experience.pathways" 
              :key="pathway.id"
@@ -67,7 +67,7 @@
         </div>
       </div>
     
-    <div class="experience-conclusion animate-fade-in-up" style="animation-delay: 0.5s;">
+    <div class="experience-conclusion">
       <p>{{ experience.conclusionKey[currentLocale] }}</p>
       
       <div class="contact-feedback">

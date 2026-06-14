@@ -1,6 +1,6 @@
 <template>
   <div class="project-container" v-if="project">
-    <div class="project-header animate-fade-in-up">
+    <div class="project-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
         <div class="frame-corner top-right"></div>
@@ -12,11 +12,11 @@
     </div>
     
     <div class="project-content">
-      <div class="project-image-wrapper animate-fade-in-up">
+      <div class="project-image-wrapper">
         <img :src="project.image" :alt="project.titleKey[currentLocale]" class="project-image">
       </div>
       
-      <div class="project-details animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="project-details">
         <div class="details-card">
           <div class="title-with-status">
             <h2>{{ $t('project.aboutWork') }}</h2>
@@ -83,7 +83,7 @@
       </div>
     </div>
     
-    <div class="back-link animate-fade-in-up" style="animation-delay: 0.3s;">
+    <div class="back-link">
       <router-link to="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         {{ $t('common.actions.back') }}

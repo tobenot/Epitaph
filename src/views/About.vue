@@ -1,6 +1,6 @@
 <template>
   <div class="about-container">
-    <div class="epitaph-header animate-fade-in-up">
+    <div class="epitaph-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
         <div class="frame-corner top-right"></div>
@@ -13,16 +13,16 @@
     </div>
     
     <div class="about-content-wrapper">
-      <div class="about-content animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="about-content">
         <div class="epitaph-text">{{ about.contentKey[currentLocale] }}</div>
       </div>
     </div>
     
-    <div class="signature animate-fade-in-up" style="animation-delay: 0.8s;">
+    <div class="signature">
       <p>{{ $t('about.signature') }}</p>
     </div>
 
-    <div class="traces-gallery animate-fade-in-up" style="animation-delay: 1s;" v-if="about.personalWorks && about.personalWorks.length">
+    <div class="traces-gallery" v-if="about.personalWorks && about.personalWorks.length">
       <h2>{{ $t('about.sectionTitle') }}</h2>
       <div class="decorative-line"></div>
       

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="epitaph-header animate-fade-in-up">
+    <div class="epitaph-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
         <div class="frame-corner top-right"></div>

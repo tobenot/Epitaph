@@ -39,8 +39,7 @@
 
     <!-- 画廊内容 -->
     <div class="gallery-content">
-      <transition name="fade" mode="out-in">
-        <div v-if="currentGallery" :key="$route.path + '-' + activeGallery" class="current-gallery">
+      <div v-if="currentGallery" :key="$route.path + '-' + activeGallery" class="current-gallery">
           <!-- 仅在总画廊页面显示子画廊标题 -->
           <h2 class="gallery-title" v-if="$route.path === '/gallery'">
             {{ currentGallery.titleKey[$i18n.locale] || currentGallery.titleKey.zh }}
@@ -77,7 +76,7 @@
             @page-changed="handleGalleryPageChange"
           />
         </div>
-        <div v-else class="no-gallery">
+      <div v-else class="no-gallery">
           <template v-if="$route.path === '/paintings'">
             {{ $t('paintings.noPaintings') }}
           </template>
@@ -88,7 +87,6 @@
             {{ $t('gallery.noGallery') }}
           </template>
         </div>
-      </transition>
     </div>
 
     <!-- 灯箱 -->
@@ -400,14 +398,6 @@ export default {
 
 .lightbox-medium, .lightbox-location {
   margin-left: 1rem;
-}
-
-/* Transitions */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 
 /* Responsive styles */

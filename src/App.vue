@@ -42,9 +42,7 @@
     </header>
 
     <main>
-      <transition name="fade" mode="out-in">
-        <router-view/>
-      </transition>
+      <router-view/>
     </main>
 
     <footer>
@@ -344,30 +342,6 @@ h1, h2, h3 {
 img {
   max-width: 100%;
   height: auto;
-}
-
-// 添加页面过渡动画
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-// 添加全局动画类
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
 }
 
 .lang-switcher {
