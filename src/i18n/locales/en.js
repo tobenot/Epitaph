@@ -36,10 +36,8 @@ export default {
   },
   home: {
     subtitle: "Hope everyone can find their own ideals and work for them",
-    viewMode: {
-      pathway: "Explore Routes",
-      all: "All Projects"
-    }
+    intro: "Welcome to my works experience guide. Because of my wide range of interests, I have prepared portals for different fields here. Please choose the experience route that best suits your interests.",
+    conclusion: "Thank you for taking the time to experience my works. Whichever route you chose, I hope this journey has given you insight into my creative philosophy. If you have any thoughts or feedback, please feel free to share them with me."
   },
   about: {
     title: "Epitaph",
@@ -61,7 +59,17 @@ export default {
       novel: "Novels & Worldview",
       vrchat: "VRChat Creations",
       tool: "Tools & Experiments",
-      video: "Videos / Podcasts"
+      video: "Videos / Podcasts",
+      blog: "Know the Author"
+    },
+    categoryDesc: {
+      all: "Browse all works and explore at your own pace.",
+      game: "Experience the indie games I've made, from traditional action shooters to cutting-edge AI TRPGs.",
+      novel: "Calm your mind and read the text universes and stories I've built.",
+      vrchat: "Social, reading, and experimental spaces I've built in VRChat.",
+      tool: "Experience practical web tools I developed to solve actual needs.",
+      video: "Sharing my creative process and thoughts through videos and podcasts.",
+      blog: "If you want to know who I am, how I think, and what traces I've left behind."
     },
     metadata: {
       engine: "Engine",

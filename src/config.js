@@ -4,7 +4,6 @@ import projectsConfig from './config/projectsConfig';
 import galleriesConfig from './config/galleriesConfig';
 import soundsConfig from './config/soundsConfig';
 import aboutConfig from './config/aboutConfig';
-import experienceConfig from './config/experienceConfig';
 
 // 合并并导出所有配置
 export default {
@@ -12,6 +11,5 @@ export default {
   projects: projectsConfig,
   galleries: galleriesConfig,
   sounds: soundsConfig,
-  about: aboutConfig,
-  experience: experienceConfig
+  about: aboutConfig
 }
