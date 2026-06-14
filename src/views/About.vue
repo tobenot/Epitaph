@@ -91,7 +91,7 @@ export default {
       width: 30px;
       height: 30px;
       border-color: var(--accent-color);
-      opacity: 0.5;
+      opacity: 0.8;
       
       &.top-left {
         top: 0;

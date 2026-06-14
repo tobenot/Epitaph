@@ -115,7 +115,7 @@ export default {
 
 .page-description {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--secondary-color);
 }
 
 .sounds-grid {
@@ -201,7 +201,7 @@ export default {
 .no-sounds {
   text-align: center;
   margin-top: 3rem;
-  color: #666;
+  color: var(--secondary-color);
   font-style: italic;
 }
 

@@ -173,14 +173,11 @@ body::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-    repeating-radial-gradient(var(--texture-color) 0, var(--texture-color) 0.5px, transparent 0.5px, transparent 25%),
-    linear-gradient(rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
-  background-size: 50px 50px, 50px 50px, 300px 300px, 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='marble'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='4' result='noise'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23marble)'/%3E%3C/svg%3E");
+  background-size: cover;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.8;
+  mix-blend-mode: multiply;
 }
 
 #app {

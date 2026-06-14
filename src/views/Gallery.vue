@@ -244,7 +244,7 @@ export default {
 
 .page-description {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--secondary-color);
 }
 
 .gallery-nav {
@@ -283,7 +283,7 @@ export default {
 .gallery-description {
   font-size: 1rem;
   margin-bottom: 2rem;
-  color: #666;
+  color: var(--secondary-color);
 }
 
 .gallery-grid {
