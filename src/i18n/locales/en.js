@@ -55,18 +55,20 @@ export default {
     tags: "Tags",
     category: {
       all: "All",
-      game: "Indie Games",
-      novel: "Novels & Worldview",
       vrchat: "VRChat Creations",
+      novel: "Novels & Worldview",
+      ai: "AI-Native Games",
+      game: "Indie Games",
       tool: "Tools & Experiments",
       video: "Videos / Podcasts",
       blog: "Know the Author"
     },
     categoryDesc: {
       all: "Browse all works and explore at your own pace.",
-      game: "Experience the indie games I've made, from traditional action shooters to cutting-edge AI TRPGs.",
-      novel: "Calm your mind and read the text universes and stories I've built.",
       vrchat: "Social, reading, and experimental spaces I've built in VRChat.",
+      novel: "Calm your mind and read the text universes and stories I've built.",
+      ai: "Interactive experiences combining LLM with game mechanics.",
+      game: "Traditional indie games, including action shooters.",
       tool: "Experience practical web tools I developed to solve actual needs.",
       video: "Sharing my creative process and thoughts through videos and podcasts.",
       blog: "If you want to know who I am, how I think, and what traces I've left behind."

@@ -2,7 +2,7 @@ export default {
   id: 17,
   pride: 50,
   slug: "omnivista-magic-academy",
-  category: "game",
+  category: "ai",
   status: "development",
   titleKey: {
     zh: "万象魔法学院（OMA)",

@@ -2,7 +2,7 @@ export default {
   id: 12,
   pride: 100,
   slug: "beyond-books",
-  category: "game",
+  category: "ai",
   status: "development",
   titleKey: {
     zh: "不止于纸上的故事",
