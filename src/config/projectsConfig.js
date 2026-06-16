@@ -10,7 +10,7 @@ files.keys().forEach(key => {
   }
 });
 
-// 按自豪度 (pride) 降序排序，pride 越大越靠前
+// pride 越大越靠前；步长 1024（2^10），插入时 (上+下)>>1。见 scripts/pride-sort.js
 projectsConfig.sort((a, b) => {
   const prideA = a.pride || 0;
   const prideB = b.pride || 0;
