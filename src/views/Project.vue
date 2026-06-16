@@ -1,7 +1,7 @@
 <template>
   <div class="project-container" v-if="project">
     <div class="back-link-top">
-      <router-link to="/">
+      <router-link to="/" class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         {{ $t('common.actions.back') }}
       </router-link>
@@ -265,24 +265,34 @@ export default {
   top: 5.5rem;
   right: 1.5rem;
   z-index: 100;
+}
 
-  a {
-    display: inline-flex;
-    align-items: center;
-    font-family: 'Lora', serif;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    white-space: nowrap;
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-    svg {
-      margin-right: 0.5rem;
-      flex-shrink: 0;
-    }
+  svg {
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
 
-    &:hover {
-      color: var(--accent-color);
-    }
+  &:hover {
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-color);
   }
 }
 
