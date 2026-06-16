@@ -88,8 +88,8 @@
                  :key="project.id" 
                  class="experience-card"
                  @click="openProjectDetails(project.slug)">
-              <div class="card-image" v-if="project.image">
-                <img :src="project.image" :alt="project.titleKey[currentLocale]">
+              <div class="card-image" v-if="getProjectImage(project)">
+                <img :src="getProjectImage(project)" :alt="project.titleKey[currentLocale]">
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
               </div>
               <div class="card-content">
@@ -152,8 +152,8 @@
                  :key="project.id" 
                  class="experience-card"
                  @click="openProjectDetails(project.slug)">
-              <div class="card-image" v-if="project.image">
-                <img :src="project.image" :alt="project.titleKey[currentLocale]">
+              <div class="card-image" v-if="getProjectImage(project)">
+                <img :src="getProjectImage(project)" :alt="project.titleKey[currentLocale]">
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
               </div>
               <div class="card-content">
@@ -187,6 +187,7 @@
 import config from '../config'
 import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
+import { fetchBilibiliCover } from '@/utils/bilibili'
 
 export default {
   name: 'Home',
@@ -207,7 +208,8 @@ export default {
       sortBy: 'pride', // 默认按自豪度排序
       currentPage: 1,
       itemsPerPage: 15,
-      savedScrollY: 0
+      savedScrollY: 0,
+      bilibiliCovers: {}
     }
   },
   computed: {
@@ -288,6 +290,12 @@ export default {
     handlePageChange(page) {
       this.currentPage = page;
       window.scrollTo(0, 0);
+    },
+    getProjectImage(project) {
+      if (project.bilibiliVideoId) {
+        return this.bilibiliCovers[project.id] || project.image || null
+      }
+      return project.image || null
     }
   },
   activated() {
@@ -301,6 +309,13 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.siteTitle = this.$t('common.siteTitle')
+    })
+    const needFetch = this.projects.filter(p => p.bilibiliVideoId)
+    needFetch.forEach(async p => {
+      try {
+        const url = await fetchBilibiliCover(p.bilibiliVideoId)
+        this.bilibiliCovers = { ...this.bilibiliCovers, [p.id]: url }
+      } catch {}
     })
   }
 }

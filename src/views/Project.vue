@@ -19,8 +19,8 @@
     </div>
     
     <div class="project-content">
-      <div class="project-image-wrapper">
-        <img :src="project.image" :alt="project.titleKey[currentLocale]" class="project-image">
+      <div class="project-image-wrapper" v-if="projectImage">
+        <img :src="projectImage" :alt="project.titleKey[currentLocale]" class="project-image">
       </div>
       
       <div class="project-details">
@@ -102,6 +102,7 @@
 <script>
 import config from '../config'
 import { useI18n } from 'vue-i18n'
+import { fetchBilibiliCover } from '@/utils/bilibili'
 
 export default {
   name: 'Project',
@@ -111,7 +112,8 @@ export default {
   },
   data() {
     return {
-      project: null
+      project: null,
+      bilibiliCoverUrl: null
     }
   },
   computed: {
@@ -126,11 +128,22 @@ export default {
     },
     hasMetadata() {
       return this.project && (this.project.engine || (this.project.platform && this.project.platform.length) || this.project.scale || this.project.roles);
+    },
+    projectImage() {
+      if (this.project?.bilibiliVideoId) {
+        return this.bilibiliCoverUrl || this.project.image || null
+      }
+      return this.project?.image || null
     }
   },
-  created() {
+  async created() {
     const slug = this.$route.params.slug
     this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
+    if (this.project?.bilibiliVideoId) {
+      try {
+        this.bilibiliCoverUrl = await fetchBilibiliCover(this.project.bilibiliVideoId)
+      } catch {}
+    }
   }
 }
 </script>
