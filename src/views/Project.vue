@@ -133,7 +133,7 @@
 <script>
 import config from '../config'
 import { useI18n } from 'vue-i18n'
-import { fetchBilibiliCover } from '@/utils/bilibili'
+import { getBilibiliCover, getProjectBilibiliCover } from '@/utils/bilibili'
 import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
 import { resolveTagFilter } from '@/utils/tagFacets'
@@ -148,8 +148,6 @@ export default {
   data() {
     return {
       project: null,
-      bilibiliCoverUrl: null,
-      seriesCovers: {},
       tagFacets
     }
   },
@@ -184,37 +182,17 @@ export default {
       );
     },
     projectImage() {
-      if (this.project?.bilibiliVideoId) {
-        return this.bilibiliCoverUrl || this.project.image || null
-      }
-      return this.project?.image || null
+      return getProjectBilibiliCover(this.project)
     }
   },
   methods: {
     formatDate,
-    async loadProject(slug) {
+    loadProject(slug) {
       this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
-      this.bilibiliCoverUrl = null
-      if (this.project?.bilibiliVideoId) {
-        try {
-          this.bilibiliCoverUrl = await fetchBilibiliCover(this.project.bilibiliVideoId)
-        } catch {}
-      }
-      this.fetchSeriesCovers()
-    },
-    fetchSeriesCovers() {
-      if (!this.seriesMembers.length) return
-      this.seriesMembers.forEach(async item => {
-        if (!item.bilibiliVideoId || this.seriesCovers[item.id]) return
-        try {
-          const url = await fetchBilibiliCover(item.bilibiliVideoId)
-          this.seriesCovers = { ...this.seriesCovers, [item.id]: url }
-        } catch {}
-      })
     },
     getSeriesImage(item) {
       if (item.bilibiliVideoId) {
-        return this.seriesCovers[item.id] || item.image || null
+        return getBilibiliCover(item.bilibiliVideoId) || item.image || null
       }
       return item.image || null
     },

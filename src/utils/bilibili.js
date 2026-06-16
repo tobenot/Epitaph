@@ -1,7 +1,11 @@
-export async function fetchBilibiliCover(bvid) {
-  const res = await fetch(`https://api.bilibili.com/x/web-interface/view?bvid=${bvid}`)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const json = await res.json()
-  if (json.code !== 0) throw new Error(`Bilibili code ${json.code}`)
-  return json.data.pic
+import covers from '@/data/bilibili-covers.json'
+
+export function getBilibiliCover(bvid) {
+	if (!bvid) return null
+	return covers[bvid] || null
+}
+
+export function getProjectBilibiliCover(project) {
+	if (!project?.bilibiliVideoId) return project?.image || null
+	return getBilibiliCover(project.bilibiliVideoId) || project.image || null
 }

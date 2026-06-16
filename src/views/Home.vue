@@ -194,7 +194,7 @@ import config from '../config'
 import tagFacets from '../config/tagFacets'
 import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
-import { fetchBilibiliCover } from '@/utils/bilibili'
+import { getProjectBilibiliCover } from '@/utils/bilibili'
 import { formatDate, compareDateDesc } from '@/utils/date'
 import {
   buildFacetCounts,
@@ -244,7 +244,6 @@ export default {
       currentPage: 1,
       itemsPerPage: 15,
       savedScrollY: 0,
-      bilibiliCovers: {},
       searchDebounceTimer: null
     }
   },
@@ -486,10 +485,7 @@ export default {
       });
     },
     getProjectImage(project) {
-      if (project.bilibiliVideoId) {
-        return this.bilibiliCovers[project.id] || project.image || null
-      }
-      return project.image || null
+      return getProjectBilibiliCover(project)
     }
   },
   activated() {
@@ -503,13 +499,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.siteTitle = this.$t('common.siteTitle')
-    })
-    const needFetch = this.projects.filter(p => p.bilibiliVideoId)
-    needFetch.forEach(async p => {
-      try {
-        const url = await fetchBilibiliCover(p.bilibiliVideoId)
-        this.bilibiliCovers = { ...this.bilibiliCovers, [p.id]: url }
-      } catch {}
     })
   }
 }

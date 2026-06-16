@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
+const bilibiliCoversPath = path.join(__dirname, '../src/data/bilibili-covers.json');
+let bilibiliCovers = {};
+if (fs.existsSync(bilibiliCoversPath)) {
+  try {
+    bilibiliCovers = JSON.parse(fs.readFileSync(bilibiliCoversPath, 'utf8'));
+  } catch {}
+}
+
 // 1. 读取 dist/index.html 作为模板
 const templatePath = path.join(__dirname, '../dist/index.html');
 if (!fs.existsSync(templatePath)) {
@@ -79,11 +87,9 @@ allProjectFiles.forEach(filePath => {
         ogImage = imageMatch[2];
       }
     } else {
-      // 检查是否有 B站 视频 ID
       const bvMatch = content.match(/bilibiliVideoId:\s*['"]([^'"]+)['"]/);
-      if (bvMatch) {
-        // 如果有 B站视频，暂时没法同步获取封面，用默认图
-        // (获取B站封面需要发网络请求，在打包脚本里做会比较慢)
+      if (bvMatch && bilibiliCovers[bvMatch[1]]) {
+        ogImage = bilibiliCovers[bvMatch[1]];
       }
     }
 

@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
-    "prebuild": "node scripts/generate-sitemap.js",
+    "prebuild": "node scripts/generate-sitemap.js && node scripts/fetch-bilibili-covers.js",
+    "fetch-bilibili-covers": "node scripts/fetch-bilibili-covers.js",
     "build": "vue-cli-service build",
     "postbuild": "node scripts/generate-og-pages.js",
     "deploy": "npm run build && gh-pages -d dist"
