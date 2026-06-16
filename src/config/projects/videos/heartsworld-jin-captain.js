@@ -14,6 +14,7 @@ export default {
     zh: "心灵世界宇宙原创动画短片。",
     en: "Original animated short set in the Heart World universe."
   },
+  date: { year: 2025, month: 10 },
   genres: ["OC动画", "原创"],
   themes: ["心灵世界", "原创角色"],
   developerNotesKey: {

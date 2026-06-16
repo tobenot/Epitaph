@@ -14,6 +14,7 @@ export default {
     zh: "从450到668，从倒数第二到全省1200名。2020广东理科。方法论、框架论、记忆宫殿，在绝境中把一切变成资源。",
     en: "From 450 to 668, from near-last to top 1200 in the province. Guangdong Science 2020. Methodology, frameworks, memory palace — turning everything into a resource from the brink."
   },
+  date: { year: 2026, month: 2 },
   genres: ["励志", "高三逆袭"],
   themes: ["方法论", "逆袭", "高考", "人生故事"],
   achievements: [

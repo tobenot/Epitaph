@@ -9,6 +9,7 @@ export default {
     en: "Multiplayer FPS (Pure C++)"
   },
   bilibiliVideoId: "BV1Ge4y1a7WC",
+  date: { year: 2022, month: 9 },
   descriptionKey: {
     zh: "联机FPS游戏，游戏逻辑用C++手写。",
     en: "Multiplayer FPS game with all game logic written in pure C++."

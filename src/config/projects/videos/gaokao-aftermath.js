@@ -14,6 +14,7 @@ export default {
     zh: "高考结束后这90天是人生最重要的战略留白期。16个世界不教但你需要知道的问题。",
     en: "The 90 days after Gaokao are your most important strategic blank space. 16 questions the world won't teach you but you need to know."
   },
+  date: { year: 2025, month: 6 },
   genres: ["人生规划", "高考后"],
   themes: ["成长", "人生选择", "迷茫"],
   developerNotesKey: {

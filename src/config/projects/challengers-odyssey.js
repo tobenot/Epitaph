@@ -2,6 +2,7 @@ export default {
   id: 6,
   pride: 25,
   slug: "challengers-odyssey",
+  portfolioKind: "study",
   category: "game",
   status: "released",
   titleKey: {

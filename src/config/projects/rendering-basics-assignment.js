@@ -2,6 +2,7 @@ export default {
   id: "rendering-basics-assignment",
   pride: 42,
   slug: "rendering-basics-assignment",
+  portfolioKind: "study",
   category: "game",
   status: "released",
   titleKey: {
@@ -9,6 +10,7 @@ export default {
     en: "Pure C++ Rendering Basics — Game Assignment"
   },
   bilibiliVideoId: "BV1CP411V7J4",
+  date: { year: 2022, month: 9 },
   descriptionKey: {
     zh: "课程作业小解谜游戏。地形手刻，植被手刷，模型手放，交互逻辑自己写。",
     en: "Course assignment puzzle game. Terrain sculpted by hand, foliage painted by hand, models placed by hand, interaction logic self-written."

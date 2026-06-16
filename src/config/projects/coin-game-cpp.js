@@ -2,6 +2,7 @@ export default {
   id: "coin-game-cpp",
   pride: 42,
   slug: "coin-game-cpp",
+  portfolioKind: "study",
   category: "game",
   status: "released",
   titleKey: {
@@ -9,6 +10,7 @@ export default {
     en: "Pure C++ Coin Mini Game"
   },
   bilibiliVideoId: "BV1BF411N7id",
+  date: { year: 2022, month: 7 },
   descriptionKey: {
     zh: "课程作业小游戏。规则简单，难度高。纯C++。",
     en: "Course assignment mini game. Simple rules, high difficulty. Pure C++."

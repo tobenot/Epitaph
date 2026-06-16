@@ -2,6 +2,7 @@ export default {
   id: "skeletal-animation-assignment",
   pride: 45,
   slug: "skeletal-animation-assignment",
+  portfolioKind: "study",
   category: "game",
   status: "released",
   titleKey: {
@@ -9,6 +10,7 @@ export default {
     en: "Pure C++ Skeletal Animation — Game Assignment"
   },
   bilibiliVideoId: "BV1yG4y1a7mD",
+  date: { year: 2022, month: 8 },
   descriptionKey: {
     zh: "课程作业。neta鬼泣5和FF14 5.0CG。未使用Timeline/Sequence，动作部分自制。",
     en: "Course assignment. References Devil May Cry 5 and FF14 5.0 CG. No Timeline or Sequence used — all animations self-made."

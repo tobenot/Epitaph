@@ -14,6 +14,7 @@ export default {
     zh: "高考完后到出分前全部投入志愿填报的亲身经验整理。",
     en: "Personal experience notes on Gaokao application — compiled during the wait between exam and results."
   },
+  date: { year: 2022, month: 6 },
   genres: ["实用指南", "志愿填报"],
   themes: ["高考", "志愿", "经验分享"],
   developerNotesKey: {
