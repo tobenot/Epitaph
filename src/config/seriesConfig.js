@@ -9,6 +9,7 @@ export default {
 			en: "An original series centered on novels, with each chapter sharing one worldview. Also includes a web interactive edition and trailers — tabletop RPG is one way the stories are presented."
 		},
 		slugs: [
+			"playground-tower-space-elevator",
 			"beyond-books-silver-moon",
 			"beyond-books-dragon-dance",
 			"beyond-books-rules",
