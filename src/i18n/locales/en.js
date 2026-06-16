@@ -35,7 +35,11 @@ export default {
       page: "There's more!"
     },
     filter: {
-      showStudy: "Study"
+      showStudy: "Study",
+      onlyComplete: "Complete Only",
+      byTechnology: "Tech Stack",
+      activeTag: "Active Tag",
+      clearAll: "Clear All"
     }
   },
   home: {
@@ -78,6 +82,7 @@ export default {
       blog: "If you want to know who I am, how I think, and what traces I've left behind."
     },
     metadata: {
+      date: "Date",
       engine: "Engine",
       platform: "Platform",
       scale: "Scale",
@@ -87,6 +92,9 @@ export default {
     achievements: "Milestones & Stats",
     series: "In This Series",
     seriesCurrent: "Current",
+    statusBadge: {
+      complete: "Playable"
+    },
     portfolioKind: {
       study: "Study"
     },

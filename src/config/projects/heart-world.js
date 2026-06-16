@@ -4,6 +4,7 @@ export default {
   slug: "heart-world",
   series: "heartsworld",
   category: "game",
+  completeness: "partial",
   status: "released",
   titleKey: {
     zh: "心灵世界",

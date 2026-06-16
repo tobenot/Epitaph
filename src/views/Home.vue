@@ -67,6 +67,33 @@
             <div class="decorative-line"></div>
           </div>
           
+          <!-- Tag Facets Selector -->
+          <div class="facets-selector">
+            <div class="facets-header">
+              <span class="facets-title">{{ $t('common.filter.byTechnology') }}:</span>
+            </div>
+            <div class="facets-list">
+              <button 
+                v-for="facet in tagFacets" 
+                :key="facet.id"
+                class="facet-button"
+                :class="{ active: activeFacetId === facet.id }"
+                @click="handleFacetClick(facet.id)"
+                v-show="getFacetCount(facet.id) > 0"
+              >
+                {{ facet.label }} <span class="count">({{ getFacetCount(facet.id) }})</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Tag (from URL) -->
+          <div class="active-tag-indicator" v-if="activeTag || activeFacetId">
+            <span>{{ $t('common.filter.activeTag') }}:</span>
+            <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
+            <span class="tag-chip" v-if="activeFacetId">{{ tagFacets.find(f => f.id === activeFacetId)?.label || activeFacetId }}</span>
+            <button class="clear-button" @click="clearFilters">{{ $t('common.filter.clearAll') }}</button>
+          </div>
+          
           <div class="sort-controls">
             <span class="sort-title">{{ $t('common.sort.title') }}:</span>
             <button 
@@ -82,6 +109,12 @@
               {{ $t('common.sort.byDate') }}
             </button>
             <button 
+              @click="onlyComplete = !onlyComplete" 
+              :class="{ active: onlyComplete }"
+              class="sort-button study-toggle">
+              {{ $t('common.filter.onlyComplete') }}
+            </button>
+            <button 
               @click="showStudy = !showStudy" 
               :class="{ active: showStudy }"
               class="sort-button study-toggle">
@@ -95,8 +128,9 @@
                 <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
               </div>
               <div v-else
-                   class="experience-card"
+                   :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
                    @click="openProjectDetails(item.slug)">
+                <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
                 <div class="card-image" v-if="getProjectImage(item)">
                   <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
                   <div class="explore-text">{{ $t('common.actions.explore') }}</div>
@@ -106,10 +140,14 @@
                     <h3>{{ item.titleKey[currentLocale] }}</h3>
                     <div class="card-badges">
                       <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                      <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                      <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
                     </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
+                  <div class="card-tags" v-if="item.tags && item.tags.length">
+                    <span v-for="tag in item.tags.slice(0, 3)" :key="tag" class="small-tag">{{ tag }}</span>
+                    <span v-if="item.tags.length > 3" class="small-tag more-tag">...</span>
+                  </div>
                   <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
               </div>
@@ -143,6 +181,14 @@
             <h2>{{ $t('common.search.placeholder').replace('...', '') }}</h2>
             <div class="decorative-line"></div>
           </div>
+
+          <!-- Active Tag (from URL) in search mode -->
+          <div class="active-tag-indicator" v-if="activeTag || activeFacetId" style="justify-content: center; margin-bottom: 2rem;">
+            <span>{{ $t('common.filter.activeTag') }}:</span>
+            <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
+            <span class="tag-chip" v-if="activeFacetId">{{ tagFacets.find(f => f.id === activeFacetId)?.label || activeFacetId }}</span>
+            <button class="clear-button" @click="clearFilters">{{ $t('common.filter.clearAll') }}</button>
+          </div>
           
           <div class="sort-controls">
             <span class="sort-title">{{ $t('common.sort.title') }}:</span>
@@ -159,6 +205,12 @@
               {{ $t('common.sort.byDate') }}
             </button>
             <button 
+              @click="onlyComplete = !onlyComplete" 
+              :class="{ active: onlyComplete }"
+              class="sort-button study-toggle">
+              {{ $t('common.filter.onlyComplete') }}
+            </button>
+            <button 
               @click="showStudy = !showStudy" 
               :class="{ active: showStudy }"
               class="sort-button study-toggle">
@@ -172,8 +224,9 @@
                 <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
               </div>
               <div v-else
-                   class="experience-card"
+                   :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
                    @click="openProjectDetails(item.slug)">
+                <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
                 <div class="card-image" v-if="getProjectImage(item)">
                   <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
                   <div class="explore-text">{{ $t('common.actions.explore') }}</div>
@@ -183,10 +236,14 @@
                     <h3>{{ item.titleKey[currentLocale] }}</h3>
                     <div class="card-badges">
                       <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                      <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                      <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
                     </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
+                  <div class="card-tags" v-if="item.tags && item.tags.length">
+                    <span v-for="tag in item.tags.slice(0, 3)" :key="tag" class="small-tag">{{ tag }}</span>
+                    <span v-if="item.tags.length > 3" class="small-tag more-tag">...</span>
+                  </div>
                   <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
               </div>
@@ -211,6 +268,7 @@
 
 <script>
 import config from '../config'
+import tagFacets from '../config/tagFacets'
 import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
 import { fetchBilibiliCover } from '@/utils/bilibili'
@@ -229,11 +287,15 @@ export default {
     return {
       siteTitle: this.$t('common.siteTitle'),
       projects: config.projects,
+      tagFacets,
       activeCategoryId: 'all',
+      activeFacetId: null,
+      activeTag: null,
       categories: ['all', 'vrchat', 'novel', 'ai', 'game', 'tool', 'video', 'blog'],
       searchTerm: '',
       sortBy: 'pride',
       showStudy: false,
+      onlyComplete: true,
       currentPage: 1,
       itemsPerPage: 15,
       savedScrollY: 0,
@@ -245,10 +307,11 @@ export default {
       return this.$i18n.locale
     },
     sortedProjects() {
-      let filteredByCategory = this.projects;
-      // 只有在没有搜索的时候，才通过分类过滤
-      if (!this.searchTerm.trim() && this.activeCategoryId && this.activeCategoryId !== 'all') {
-        filteredByCategory = this.projects.filter(p => {
+      let filtered = this.projects;
+
+      // Filter by category
+      if (this.activeCategoryId && this.activeCategoryId !== 'all') {
+        filtered = filtered.filter(p => {
           if (Array.isArray(p.category)) {
             return p.category.includes(this.activeCategoryId);
           }
@@ -256,18 +319,41 @@ export default {
         });
       }
 
+      // Filter by active facet
+      if (this.activeFacetId) {
+        const facet = this.tagFacets.find(f => f.id === this.activeFacetId);
+        if (facet) {
+          filtered = filtered.filter(p => {
+            if (!p.tags) return false;
+            return p.tags.some(tag => facet.match.some(m => tag.includes(m) || m.includes(tag)));
+          });
+        }
+      }
+
+      // Filter by active tag (from URL query)
+      if (this.activeTag) {
+        filtered = filtered.filter(p => {
+          if (!p.tags) return false;
+          return p.tags.some(tag => tag === this.activeTag);
+        });
+      }
+
       if (!this.showStudy) {
-        filteredByCategory = filteredByCategory.filter(p => p.portfolioKind !== 'study');
+        filtered = filtered.filter(p => p.portfolioKind !== 'study');
+      }
+
+      if (this.onlyComplete) {
+        filtered = filtered.filter(p => this.isComplete(p));
       }
 
       if (this.sortBy === 'pride') {
-        return [...filteredByCategory].sort((a, b) => (b.pride || 0) - (a.pride || 0));
+        return [...filtered].sort((a, b) => (b.pride || 0) - (a.pride || 0));
       } else if (this.sortBy === 'date') {
-        const dated = [...filteredByCategory].filter(p => p.date).sort((a, b) => compareDateDesc(a.date, b.date))
-        const undated = [...filteredByCategory].filter(p => !p.date).sort((a, b) => (b.pride || 0) - (a.pride || 0))
+        const dated = [...filtered].filter(p => p.date).sort((a, b) => compareDateDesc(a.date, b.date))
+        const undated = [...filtered].filter(p => !p.date).sort((a, b) => (b.pride || 0) - (a.pride || 0))
         return [...dated, ...undated]
       }
-      return filteredByCategory
+      return filtered
     },
     filteredProjects() {
       if (!this.searchTerm.trim()) {
@@ -278,7 +364,14 @@ export default {
       return this.sortedProjects.filter(project => {
         const title = project.titleKey[this.currentLocale].toLowerCase()
         const description = project.descriptionKey[this.currentLocale].toLowerCase()
-        return title.includes(searchTermLower) || description.includes(searchTermLower)
+        const tagsMatch = project.tags && project.tags.some(tag => tag.toLowerCase().includes(searchTermLower))
+        const engineMatch = project.engine && project.engine.toLowerCase().includes(searchTermLower)
+        const genresMatch = project.genres && project.genres.some(g => g.toLowerCase().includes(searchTermLower))
+        const themesMatch = project.themes && project.themes.some(t => t.toLowerCase().includes(searchTermLower))
+        
+        return title.includes(searchTermLower) || 
+               description.includes(searchTermLower) || 
+               tagsMatch || engineMatch || genresMatch || themesMatch
       })
     },
     totalPages() {
@@ -323,9 +416,60 @@ export default {
     },
     showStudy() {
       this.currentPage = 1;
+    },
+    onlyComplete() {
+      this.currentPage = 1;
+    },
+    '$route.query': {
+      immediate: true,
+      handler(query) {
+        if (query.facet) {
+          this.activeFacetId = query.facet;
+          this.activeTag = null;
+          this.searchTerm = '';
+        } else if (query.tag) {
+          this.activeTag = query.tag;
+          this.activeFacetId = null;
+          this.searchTerm = '';
+        } else {
+          this.activeFacetId = null;
+          this.activeTag = null;
+        }
+      }
     }
   },
   methods: {
+    getFacetCount(facetId) {
+      const facet = this.tagFacets.find(f => f.id === facetId);
+      if (!facet) return 0;
+      return this.projects.filter(p => {
+        if (!p.tags) return false;
+        return p.tags.some(tag => facet.match.some(m => tag.includes(m) || m.includes(tag)));
+      }).length;
+    },
+    clearFilters() {
+      this.searchTerm = '';
+      this.activeFacetId = null;
+      this.activeTag = null;
+      this.activeCategoryId = 'all';
+      this.$router.push({ path: '/' });
+    },
+    handleFacetClick(facetId) {
+      if (this.activeFacetId === facetId) {
+        this.activeFacetId = null;
+        this.$router.push({ path: '/' });
+      } else {
+        this.activeFacetId = facetId;
+        this.$router.push({ path: '/', query: { facet: facetId } });
+      }
+      this.currentPage = 1;
+    },
+    isComplete(project) {
+      if (project.completeness === 'partial') return false;
+      if (project.completeness === 'complete') return true;
+      return project.status === 'released';
+    },
+    formatDate,
     openProjectDetails(slug) {
       this.$router.push({ name: 'Project', params: { slug: slug } })
     },
@@ -585,6 +729,98 @@ export default {
   }
 }
 
+.facets-selector {
+  margin-bottom: 2rem;
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px var(--shadow-color);
+
+  .facets-header {
+    margin-bottom: 1rem;
+    
+    .facets-title {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+  }
+
+  .facets-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    
+    .facet-button {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid transparent;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-family: 'Lora', serif;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      .count {
+        opacity: 0.6;
+        font-size: 0.8rem;
+        margin-left: 0.2rem;
+      }
+      
+      &:hover {
+        background: rgba(var(--accent-color-rgb), 0.1);
+        border-color: rgba(var(--accent-color-rgb), 0.3);
+      }
+      
+      &.active {
+        background: var(--accent-color);
+        color: white;
+        border-color: var(--accent-color);
+        
+        .count {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}
+
+.active-tag-indicator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-family: 'Lora', serif;
+  color: var(--secondary-color);
+  
+  .tag-chip {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .clear-button {
+    background: transparent;
+    border: none;
+    color: #e53935;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    padding: 0;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
 .sort-controls {
   display: flex;
   justify-content: center;
@@ -640,12 +876,51 @@ export default {
   flex-direction: column;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  border-left: 4px solid transparent;
   
+  &.is-complete {
+    border-left-color: var(--accent-color);
+  }
+
+  &.is-incomplete {
+    opacity: 0.75;
+    
+    .card-image img {
+      filter: grayscale(40%);
+      transition: filter 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 1;
+      .card-image img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px var(--shadow-color);
     .explore-text { opacity: 1; }
   }
+}
+
+.corner-ribbon {
+  position: absolute;
+  top: 12px;
+  right: -28px;
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 2.5rem;
+  font-size: 0.7rem;
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  pointer-events: none;
 }
 
 .card-image {
@@ -727,25 +1002,25 @@ export default {
     }
     
     .status-badge {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    flex-shrink: 0;
-    margin-top: 0.45rem;
-    
-    &.released { background: #4caf50; }
-    &.development { background: #2196f3; }
-    &.halted { background: #ff9800; }
-    &.archived { background: #9e9e9e; }
-    &.concept { background: #ff9800; }
-    &.private { background: #f44336; }
-    &.playable { background: #4caf50; }
-    &.unplayable { background: #f44336; }
-    &.video { background: #2196f3; }
-    &.tool { background: #9c27b0; }
-    &.reading { background: #ff9800; }
-  }
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-family: 'Lora', serif;
+      line-height: 1.2;
+      white-space: nowrap;
+      
+      &.released { background: #e6f4ea; color: #2e7d32; }
+      &.development { background: #e3f2fd; color: #1565c0; }
+      &.halted { background: #fff3e0; color: #e65100; }
+      &.archived { background: #f5f5f5; color: #616161; }
+      &.concept { background: #fff8e1; color: #f57f17; }
+      &.private { background: #fce4e4; color: #c62828; }
+      &.playable { background: #e6f4ea; color: #2e7d32; }
+      &.unplayable { background: #fce4e4; color: #c62828; }
+      &.video { background: #e3f2fd; color: #1565c0; }
+      &.tool { background: #f3e5f5; color: #4527a0; }
+      &.reading { background: #fff8e1; color: #6a1b9a; }
+    }
 }
 
 .card-desc {
@@ -759,6 +1034,31 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  
+  .small-tag {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Lora', serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    
+    &.more-tag {
+      background: transparent;
+      padding: 0.1rem 0.2rem;
+    }
+  }
 }
 
 .project-date {

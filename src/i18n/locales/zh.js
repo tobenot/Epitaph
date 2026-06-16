@@ -35,7 +35,11 @@ export default {
       page: "还有呢！"
     },
     filter: {
-      showStudy: "习作"
+      showStudy: "习作",
+      onlyComplete: "只看完整",
+      byTechnology: "技术栈",
+      activeTag: "当前标签",
+      clearAll: "清除全部"
     }
   },
   home: {
@@ -78,6 +82,7 @@ export default {
       blog: "如果你想了解我是谁、我怎么思考、以及我留下了什么痕迹。"
     },
     metadata: {
+      date: "日期",
       engine: "引擎",
       platform: "平台",
       scale: "体量",
@@ -87,6 +92,9 @@ export default {
     achievements: "里程碑与数据",
     series: "同系列作品",
     seriesCurrent: "当前",
+    statusBadge: {
+      complete: "可体验"
+    },
     portfolioKind: {
       study: "习作"
     },
