@@ -13,6 +13,7 @@ export default {
     zh: "Game Jam 合作游戏。水獭岛格斗大赛：冠军要负责管理小岛，亚军才能免费躺平。想办法故意输掉比赛！",
     en: "Game Jam collab. Otter Island Fighting Championship: the winner has to manage the island while the runner-up gets free residency. Try to lose on purpose!"
   },
+  date: { year: 2023, month: 7, day: 9 },
   genres: ["格斗", "Game Jam"],
   themes: ["反套路", "水獭岛"],
   developerNotesKey: {
