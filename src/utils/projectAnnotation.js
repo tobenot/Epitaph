@@ -1,4 +1,4 @@
-import { isHighCompleteness } from './portfolio'
+import { isExperienceable, isHighCompleteness } from './portfolio'
 
 const SILENT_CARD_STATUSES = new Set(['released'])
 
@@ -10,6 +10,9 @@ export function getCardAnnotationParts(project) {
 	const status = project.status
 	if (status && !isSilentCardStatus(status, project)) {
 		parts.push(`status.${status}`)
+	}
+	if (isExperienceable(project)) {
+		parts.push('experienceable.yes')
 	}
 	return parts
 }

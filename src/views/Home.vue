@@ -135,7 +135,6 @@
             <div v-else
                  :class="['experience-card', getCardFrameClass(item)]"
                  @click="openProjectDetails(item.slug)">
-              <div class="corner-ribbon" v-if="isExperienceable(item)">{{ $t('project.statusBadge.experienceable') }}</div>
               <div class="card-image" v-if="getProjectImage(item)">
                 <img
                   :src="getProjectImage(item)"
@@ -214,7 +213,6 @@ import {
 } from '@/utils/homeFilters'
 import {
   getPortfolioFilterKind,
-  isExperienceable,
   isHighCompleteness,
   PORTFOLIO_FILTER_KINDS
 } from '@/utils/portfolio'
@@ -247,7 +245,7 @@ export default {
       portfolioFilterKinds: PORTFOLIO_FILTER_KINDS,
       activePortfolioKinds: ['complete'],
       currentPage: 1,
-      itemsPerPage: 15,
+      itemsPerPage: 16,
       savedScrollY: 0,
       searchDebounceTimer: null
     }
@@ -473,7 +471,6 @@ export default {
       this.currentPage = 1
     },
     isHighCompleteness,
-    isExperienceable,
     formatDate,
     openProjectDetails(slug) {
       this.$router.push({ name: 'Project', params: { slug: slug } })
@@ -945,23 +942,6 @@ export default {
     box-shadow: 0 10px 25px var(--shadow-color);
     .explore-text { opacity: 1; }
   }
-}
-
-.corner-ribbon {
-  position: absolute;
-  top: 12px;
-  right: -28px;
-  background: var(--accent-color);
-  color: white;
-  padding: 0.2rem 2.5rem;
-  font-size: 0.7rem;
-  font-family: 'Lora', serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  transform: rotate(45deg);
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  pointer-events: none;
 }
 
 .card-image {

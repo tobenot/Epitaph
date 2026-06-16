@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: "novel",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事：银月篇",
     en: "Beyond Books: Silver Moon"

@@ -124,7 +124,7 @@ completeness: "low"
 ```javascript
 status: "archived",
 experienceable: false
-// → 完成度高，无「可体验」角标
+// → 完成度高，页脚无「可体验」
 ```
 
 ### 开发中但可体验（不止于纸上跑团）
@@ -132,7 +132,7 @@ experienceable: false
 ```javascript
 status: "development",
 experienceable: true
-// → 进行中，有「可体验」角标
+// → 进行中，页脚「可体验」
 ```
 
 ---
@@ -144,11 +144,11 @@ experienceable: true
 | 维度 | 字段 / 函数 | 作用 |
 |------|-------------|------|
 | 完成度高筛选 | `isHighCompleteness()` | 首页「完成度高」按钮、卡片 accent 左边框 |
-| 可体验角标 | `experienceable` + `isExperienceable()` | 角标「可体验」，与完成度无关 |
+| 可体验注脚 | `experienceable` + `isExperienceable()` | 卡片页脚「· 可体验」，不遮挡头图 |
 | 习作装帧 | `portfolioKind: "study"` | 褐灰色左边框、浅底色、页脚「习作」 |
 
 - **完成度高 ≠ 可体验**。例：璀璨群星做完但入口失效 → `experienceable: false`；不止于纸上跑团仍在开发 → `experienceable: true`。
-- **可体验**须手写 `experienceable: true`；不写则默认无角标。明确不可体验时写 `experienceable: false`（详情页会显示「暂不可体验」）。
+- **可体验**须手写 `experienceable: true`；不写则默认无注脚。明确不可体验时写 `experienceable: false`（详情页会显示「暂不可体验」）。
 - 习作卡片不用 accent 色条，改用褐灰装帧，与完成作品区分。
 - 详情页 metadata：写了 `experienceable` 时显示体验入口；`status` 仍显示原始状态文案。
 
@@ -156,9 +156,9 @@ experienceable: true
 
 | 值 | 效果 |
 |----|------|
-| `true` | 卡片角标「可体验」 |
-| `false` | 无角标；详情页显示「暂不可体验」 |
-| 不写 | 无角标；详情页不显示体验入口行 |
+| `true` | 页脚注脚「可体验」 |
+| `false` | 无注脚；详情页显示「暂不可体验」 |
+| 不写 | 无注脚；详情页不显示体验入口行 |
 
 ---
 

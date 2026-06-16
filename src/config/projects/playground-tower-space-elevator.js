@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: "novel",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "操场·高楼·太空电梯",
     en: "Playground, Tower, Space Elevator"
