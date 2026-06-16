@@ -35,6 +35,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "steam", url: "https://store.steampowered.com/app/1415580/Heart_World/", textKey: { zh: "Steam 商店", en: "Steam Store" } }
+    { type: "steam", url: "https://store.steampowered.com/app/1415580/Heart_World/", textKey: { zh: "Steam 商店", en: "Steam Store" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1wp4y1B7bb/", textKey: { zh: "官方宣传片", en: "Official Trailer" } }
   ]
 };

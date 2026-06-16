@@ -33,6 +33,9 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://www.bilibili.com/video/BV1k34y1e7Ew/", textKey: { zh: "B站观看视频", en: "Watch Video on Bilibili" } }
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1k34y1e7Ew/", textKey: { zh: "六道激光一穿五", en: "Six Lasers, One Shot Through Five" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV123411P7kz/", textKey: { zh: "v4 冲撞与烟花录播", en: "v4 Clash & Fireworks Recording" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1A54y1Z7rb/", textKey: { zh: "500个不崩优化实录", en: "Optimized from 20 to 500 Without Crash" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1tt4y1x7Vi/", textKey: { zh: "v6.4 连崩两次实录", en: "v6.4 Double Crash Recording" } }
   ]
 };

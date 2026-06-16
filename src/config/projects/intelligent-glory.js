@@ -28,6 +28,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://www.bilibili.com/video/BV1o34y1h7Pu/", textKey: { zh: "B站观看视频", en: "Watch Video on Bilibili" } }
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1o34y1h7Pu/", textKey: { zh: "反杀局集锦", en: "Comeback Highlights" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1uF41177C6/", textKey: { zh: "UE5水体介绍", en: "UE5 Water Plugin Showcase" } }
   ]
 };

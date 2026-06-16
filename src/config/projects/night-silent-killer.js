@@ -40,6 +40,8 @@ export default {
     en: ""
   },
   links: [
-    { type: "steam", url: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/", textKey: { zh: "Steam 商店", en: "Steam Store" } }
+    { type: "steam", url: "https://store.steampowered.com/app/1494180/Night_Silent_Killer/", textKey: { zh: "Steam 商店", en: "Steam Store" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1vV411W7c6/", textKey: { zh: "首发宣传片", en: "Launch Trailer" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1xr4y1T7xX/", textKey: { zh: "先遣宣传片", en: "Pre-launch Trailer" } }
   ]
 };

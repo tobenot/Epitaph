@@ -36,6 +36,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "steam", url: "https://store.steampowered.com/app/843050/North_Stars/", textKey: { zh: "Steam 商店", en: "Steam Store" } }
+    { type: "steam", url: "https://store.steampowered.com/app/843050/North_Stars/", textKey: { zh: "Steam 商店", en: "Steam Store" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1Q54y1W7e2/", textKey: { zh: "后期宣传片", en: "Late Promo Video" } }
   ]
 };

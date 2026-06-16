@@ -26,6 +26,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://www.bilibili.com/video/BV1c1QZBbExF/", textKey: { zh: "Demo 流程视频", en: "Demo Playthrough" } }
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1c1QZBbExF/", textKey: { zh: "Demo 流程视频", en: "Demo Playthrough" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1QTwiz3E7H/", textKey: { zh: "旧开头 CG（萝北生日）", en: "Old Opening CG (Luobei's Birthday)" } }
   ]
 };

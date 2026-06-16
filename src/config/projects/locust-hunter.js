@@ -40,6 +40,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "steam", url: "https://store.steampowered.com/app/3008350/", textKey: { zh: "Steam 商店", en: "Steam Store" } }
+    { type: "steam", url: "https://store.steampowered.com/app/3008350/", textKey: { zh: "Steam 商店", en: "Steam Store" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1Ga411S7ge/", textKey: { zh: "实机演示视频", en: "Gameplay Demo" } }
   ]
 };
