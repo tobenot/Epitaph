@@ -12,9 +12,26 @@
       <p class="quote">{{ $t('about.subtitle') }}</p>
     </div>
     
-    <div class="about-content-wrapper">
-      <div class="about-content">
-        <div class="epitaph-text">{{ about.contentKey[currentLocale] }}</div>
+    <div class="papers-stack">
+      <div 
+        v-for="(ver, index) in about.versions" 
+        :key="ver.id"
+        class="paper-card"
+        :style="getCardStyle(index)"
+        @click="handleCardClick(index)"
+      >
+        <div class="paper-meta">
+          <span class="version-date">{{ ver.date }}</span>
+          <span class="version-author">{{ ver.author[currentLocale] }}</span>
+        </div>
+        <h2 class="version-title" v-if="ver.title">{{ ver.title[currentLocale] }}</h2>
+        <div class="about-content">
+          <div class="epitaph-text">{{ ver.contentKey[currentLocale] }}</div>
+        </div>
+        <div class="flip-hint" v-if="index === currentIndex">
+          <span>{{ currentLocale === 'zh' ? '点击纸张翻阅下一版' : 'Click to flip to next version' }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </div>
       </div>
     </div>
     
@@ -54,12 +71,49 @@ export default {
   },
   data() {
     return {
-      about: config.about
+      about: config.about,
+      currentIndex: 0
     }
   },
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    }
+  },
+  methods: {
+    getCardStyle(index) {
+      if (!this.about.versions) return {};
+      const total = this.about.versions.length;
+      let diff = index - this.currentIndex;
+      if (diff < 0) diff += total;
+      
+      if (diff === 0) {
+        return {
+          transform: 'translateY(0) rotate(0deg) scale(1)',
+          zIndex: 10,
+          opacity: 1,
+          pointerEvents: 'auto'
+        }
+      }
+      
+      const rotations = [2, -2, 3, -3, 1];
+      const rot = rotations[index % rotations.length];
+      
+      return {
+        transform: `translateY(${diff * 12}px) translateX(${diff * 6}px) rotate(${rot}deg) scale(${1 - diff * 0.02})`,
+        zIndex: 10 - diff,
+        opacity: 1 - (diff * 0.15),
+        pointerEvents: 'auto',
+        cursor: 'pointer'
+      }
+    },
+    handleCardClick(index) {
+      if (!this.about.versions) return;
+      if (this.currentIndex === index) {
+        this.currentIndex = (this.currentIndex + 1) % this.about.versions.length;
+      } else {
+        this.currentIndex = index;
+      }
     }
   }
 }
@@ -147,14 +201,25 @@ export default {
   }
 }
 
-.about-content-wrapper {
+.papers-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 4rem;
+  perspective: 1000px;
+}
+
+.paper-card {
+  grid-column: 1;
+  grid-row: 1;
   background-color: var(--card-bg);
   border-radius: 4px;
   padding: 2.5rem;
-  box-shadow: 0 5px 15px var(--shadow-color);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  margin-bottom: 4rem;
   position: relative;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: center center;
   
   &::before {
     content: '"';
@@ -166,6 +231,55 @@ export default {
     color: rgba(0, 0, 0, 0.05);
     line-height: 0;
   }
+}
+
+.paper-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: var(--accent-color);
+  font-size: 0.95rem;
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  padding-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.version-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.flip-hint {
+  text-align: right;
+  margin-top: 2rem;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  
+  svg {
+    animation: bounce-x 2s infinite;
+  }
+}
+
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
 }
 
 .about-content {
@@ -294,7 +408,7 @@ export default {
     }
   }
   
-  .about-content {
+  .paper-card {
     padding: 1.5rem;
   }
   
@@ -338,7 +452,7 @@ export default {
     font-size: 1.8rem;
   }
   
-  .about-content {
+  .paper-card {
     padding: 1.2rem;
   }
   
