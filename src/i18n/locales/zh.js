@@ -13,7 +13,8 @@ export default {
     },
     search: {
       placeholder: "搜索作品（标题、描述、标签…）",
-      noResults: "没有找到匹配的作品"
+      noResults: "没有找到匹配的作品",
+      resultsTitle: "搜索结果"
     },
     footer: {
       quote: "感谢你来看我的世界观，我的小说，我的动漫，我的游戏",
@@ -38,7 +39,9 @@ export default {
       showStudy: "习作",
       onlyComplete: "只看完整",
       byTechnology: "技术栈",
-      activeTag: "当前标签",
+      activeTag: "当前筛选",
+      activeCategory: "分类",
+      clearTags: "清除标签筛选",
       clearAll: "清除全部"
     }
   },

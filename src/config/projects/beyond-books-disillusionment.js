@@ -23,7 +23,7 @@ export default {
     zh: "本来想做严肃游戏，讲高中学习方法和心灵世界起源的，但是我还不如直接跟你讲。",
     en: "Originally intended as a serious game about high school study methods and the origin of 'Heart World', but I'd rather just tell you directly."
   },
-  tags: ["世界观核心"],
+  tags: ["不止于纸上"],
   longDescriptionKey: {
     zh: "",
     en: ""

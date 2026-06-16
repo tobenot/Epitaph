@@ -27,251 +27,165 @@
         </div>
       </div>
 
-      <!-- Show normal guide if not searching -->
-      <template v-if="!searchTerm.trim()">
-        <div class="experience-intro">
-          <p>{{ $t('home.intro') }}</p>
-        </div>
-        
-        <!-- Pathways Selector (Categories) -->
-        <div class="pathways-selector">
-          <div class="pathways-grid">
-            <div v-for="cat in categories" 
-                 :key="cat"
-                 class="pathway-card"
-                 :class="{ active: activeCategoryId === cat }"
-                 @click="activeCategoryId = cat; currentPage = 1">
-              <div class="pathway-icon">
-                <svg v-if="cat === 'all'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                <svg v-else-if="cat === 'blog'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <svg v-else-if="cat === 'vrchat'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 0 0 2 12c0 2 1.5 3 3 3h1.5a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 0 3 0 1.5 1.5 0 0 1 1.5-1.5H19c1.5 0 3-1 3-3z"></path></svg>
-                <svg v-else-if="cat === 'novel'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                <svg v-else-if="cat === 'ai'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
-                <svg v-else-if="cat === 'game'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4"></path><path d="M8 10v4"></path><circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle></svg>
-                <svg v-else-if="cat === 'tool'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-                <svg v-else-if="cat === 'video'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-                <svg v-else xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-              </div>
-              <div class="pathway-info">
-                <h3>{{ $t(`project.category.${cat}`) }}</h3>
-                <p>{{ $t(`project.categoryDesc.${cat}`) }}</p>
-              </div>
+      <div class="experience-intro" v-if="!hasActiveSearch">
+        <p>{{ $t('home.intro') }}</p>
+      </div>
+
+      <div class="pathways-selector" :class="{ compact: hasActiveSearch }">
+        <div class="pathways-grid">
+          <div v-for="cat in categories"
+               :key="cat"
+               class="pathway-card"
+               :class="{ active: activeCategoryId === cat }"
+               @click="handleCategoryClick(cat)">
+            <div class="pathway-icon">
+              <svg v-if="cat === 'all'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <svg v-else-if="cat === 'blog'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <svg v-else-if="cat === 'vrchat'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 0 0 2 12c0 2 1.5 3 3 3h1.5a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 0 3 0 1.5 1.5 0 0 1 1.5-1.5H19c1.5 0 3-1 3-3z"></path></svg>
+              <svg v-else-if="cat === 'novel'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <svg v-else-if="cat === 'ai'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+              <svg v-else-if="cat === 'game'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4"></path><path d="M8 10v4"></path><circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle></svg>
+              <svg v-else-if="cat === 'tool'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+              <svg v-else-if="cat === 'video'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+            <div class="pathway-info">
+              <h3>{{ $t(`project.category.${cat}`) }}</h3>
+              <p v-if="!hasActiveSearch">{{ $t(`project.categoryDesc.${cat}`) }}</p>
             </div>
           </div>
         </div>
-        
-        <!-- Active Pathway Content -->
-        <div class="experience-section" v-if="activeCategoryId">
-          <div class="section-header">
-            <h2>{{ $t(`project.category.${activeCategoryId}`) }}</h2>
-            <div class="decorative-line"></div>
+      </div>
+
+      <div class="experience-section" v-if="activeCategoryId">
+        <div class="section-header">
+          <h2>{{ sectionTitle }}</h2>
+          <div class="decorative-line"></div>
+        </div>
+
+        <div class="facets-selector">
+          <div class="facets-header">
+            <span class="facets-title">{{ $t('common.filter.byTechnology') }}:</span>
           </div>
-          
-          <!-- Tag Facets Selector -->
-          <div class="facets-selector">
-            <div class="facets-header">
-              <span class="facets-title">{{ $t('common.filter.byTechnology') }}:</span>
+          <div class="facets-list">
+            <button
+              v-for="facet in tagFacets"
+              :key="facet.id"
+              class="facet-button"
+              :class="{ active: activeFacetId === facet.id }"
+              @click="handleFacetClick(facet.id)"
+              v-show="facetCounts[facet.id] > 0"
+            >
+              {{ facet.label }} <span class="count">({{ facetCounts[facet.id] }})</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="active-tag-indicator" v-if="hasActiveFilters">
+          <span>{{ $t('common.filter.activeTag') }}:</span>
+          <span class="tag-chip" v-if="activeCategoryId !== 'all'">{{ $t(`project.category.${activeCategoryId}`) }}</span>
+          <span class="tag-chip" v-if="activeFacetId">{{ activeFacetLabel }}</span>
+          <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
+          <span class="tag-chip" v-if="hasActiveSearch">{{ searchTerm.trim() }}</span>
+          <button
+            v-if="activeFacetId || activeTag || hasActiveSearch"
+            class="clear-button"
+            @click="clearTagFilters"
+          >{{ $t('common.filter.clearTags') }}</button>
+          <button
+            v-if="hasActiveFilters"
+            class="clear-button"
+            @click="clearAllFilters"
+          >{{ $t('common.filter.clearAll') }}</button>
+        </div>
+
+        <div class="sort-controls">
+          <span class="sort-title">{{ $t('common.sort.title') }}:</span>
+          <button
+            @click="sortBy = 'pride'"
+            :class="{ active: sortBy === 'pride' }"
+            class="sort-button">
+            {{ $t('common.sort.byPride') }}
+          </button>
+          <button
+            @click="sortBy = 'date'"
+            :class="{ active: sortBy === 'date' }"
+            class="sort-button">
+            {{ $t('common.sort.byDate') }}
+          </button>
+          <button
+            @click="onlyComplete = !onlyComplete"
+            :class="{ active: onlyComplete }"
+            class="sort-button study-toggle">
+            {{ $t('common.filter.onlyComplete') }}
+          </button>
+          <button
+            @click="showStudy = !showStudy"
+            :class="{ active: showStudy }"
+            class="sort-button study-toggle">
+            {{ $t('common.filter.showStudy') }}
+          </button>
+        </div>
+
+        <div class="experience-grid">
+          <template v-for="item in displayProjects" :key="item.id">
+            <div v-if="item.isDivider" class="date-divider-row">
+              <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
             </div>
-            <div class="facets-list">
-              <button 
-                v-for="facet in tagFacets" 
-                :key="facet.id"
-                class="facet-button"
-                :class="{ active: activeFacetId === facet.id }"
-                @click="handleFacetClick(facet.id)"
-                v-show="facetCounts[facet.id] > 0"
-              >
-                {{ facet.label }} <span class="count">({{ facetCounts[facet.id] }})</span>
-              </button>
+            <div v-else
+                 :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
+                 @click="openProjectDetails(item.slug)">
+              <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
+              <div class="card-image" v-if="getProjectImage(item)">
+                <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
+                <div class="explore-text">{{ $t('common.actions.explore') }}</div>
+              </div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3>{{ item.titleKey[currentLocale] }}</h3>
+                  <div class="card-badges">
+                    <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
+                    <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
+                  </div>
+                </div>
+                <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
+                <div class="card-tags" v-if="getDisplayTags(item).length">
+                  <span
+                    v-for="tag in getDisplayTags(item)"
+                    :key="tag"
+                    class="small-tag clickable"
+                    @click.stop="handleCardTagClick(tag)"
+                  >{{ tag }}</span>
+                  <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
+                </div>
+                <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
+              </div>
             </div>
-          </div>
-
-          <!-- Active Tag (from URL) -->
-          <div class="active-tag-indicator" v-if="activeTag || activeFacetId">
-            <span>{{ $t('common.filter.activeTag') }}:</span>
-            <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
-            <span class="tag-chip" v-if="activeFacetId">{{ tagFacets.find(f => f.id === activeFacetId)?.label || activeFacetId }}</span>
-            <button class="clear-button" @click="clearFilters">{{ $t('common.filter.clearAll') }}</button>
-          </div>
-          
-          <div class="sort-controls">
-            <span class="sort-title">{{ $t('common.sort.title') }}:</span>
-            <button 
-              @click="sortBy = 'pride'" 
-              :class="{ active: sortBy === 'pride' }"
-              class="sort-button">
-              {{ $t('common.sort.byPride') }}
-            </button>
-            <button 
-              @click="sortBy = 'date'" 
-              :class="{ active: sortBy === 'date' }"
-              class="sort-button">
-              {{ $t('common.sort.byDate') }}
-            </button>
-            <button 
-              @click="onlyComplete = !onlyComplete" 
-              :class="{ active: onlyComplete }"
-              class="sort-button study-toggle">
-              {{ $t('common.filter.onlyComplete') }}
-            </button>
-            <button 
-              @click="showStudy = !showStudy" 
-              :class="{ active: showStudy }"
-              class="sort-button study-toggle">
-              {{ $t('common.filter.showStudy') }}
-            </button>
-          </div>
-          
-          <div class="experience-grid">
-            <template v-for="item in displayProjects" :key="item.id">
-              <div v-if="item.isDivider" class="date-divider-row">
-                <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
-              </div>
-              <div v-else
-                   :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
-                   @click="openProjectDetails(item.slug)">
-                <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
-                <div class="card-image" v-if="getProjectImage(item)">
-                  <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
-                  <div class="explore-text">{{ $t('common.actions.explore') }}</div>
-                </div>
-                <div class="card-content">
-                  <div class="card-header">
-                    <h3>{{ item.titleKey[currentLocale] }}</h3>
-                    <div class="card-badges">
-                      <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                      <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
-                    </div>
-                  </div>
-                  <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="card-tags" v-if="getDisplayTags(item).length">
-                    <span
-                      v-for="tag in getDisplayTags(item)"
-                      :key="tag"
-                      class="small-tag clickable"
-                      @click.stop="handleCardTagClick(tag)"
-                    >{{ tag }}</span>
-                    <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
-                  </div>
-                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
-                </div>
-              </div>
-            </template>
-          </div>
-          
-          <Pagination 
-            v-if="totalPages > 1"
-            :totalPages="totalPages" 
-            :currentPage="currentPage" 
-            @page-changed="handlePageChange"
-          ></Pagination>
+          </template>
         </div>
-        
-        <div class="experience-conclusion">
-          <p>{{ $t('home.conclusion') }}</p>
-          
-          <div class="contact-feedback">
-            <a href="https://tobenot.top/contact/" target="_blank" rel="noopener noreferrer" class="contact-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              {{ $t('experience.feedback') }}
-            </a>
-          </div>
-        </div>
-      </template>
 
-      <!-- Show search results -->
-      <template v-else>
-        <div class="experience-section">
-          <div class="section-header">
-            <h2>{{ $t('common.search.placeholder').replace('...', '') }}</h2>
-            <div class="decorative-line"></div>
-          </div>
-
-          <!-- Active Tag (from URL) in search mode -->
-          <div class="active-tag-indicator" v-if="activeTag || activeFacetId" style="justify-content: center; margin-bottom: 2rem;">
-            <span>{{ $t('common.filter.activeTag') }}:</span>
-            <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
-            <span class="tag-chip" v-if="activeFacetId">{{ tagFacets.find(f => f.id === activeFacetId)?.label || activeFacetId }}</span>
-            <button class="clear-button" @click="clearFilters">{{ $t('common.filter.clearAll') }}</button>
-          </div>
-          
-          <div class="sort-controls">
-            <span class="sort-title">{{ $t('common.sort.title') }}:</span>
-            <button 
-              @click="sortBy = 'pride'" 
-              :class="{ active: sortBy === 'pride' }"
-              class="sort-button">
-              {{ $t('common.sort.byPride') }}
-            </button>
-            <button 
-              @click="sortBy = 'date'" 
-              :class="{ active: sortBy === 'date' }"
-              class="sort-button">
-              {{ $t('common.sort.byDate') }}
-            </button>
-            <button 
-              @click="onlyComplete = !onlyComplete" 
-              :class="{ active: onlyComplete }"
-              class="sort-button study-toggle">
-              {{ $t('common.filter.onlyComplete') }}
-            </button>
-            <button 
-              @click="showStudy = !showStudy" 
-              :class="{ active: showStudy }"
-              class="sort-button study-toggle">
-              {{ $t('common.filter.showStudy') }}
-            </button>
-          </div>
-          
-          <div class="experience-grid">
-            <template v-for="item in displayProjects" :key="item.id">
-              <div v-if="item.isDivider" class="date-divider-row">
-                <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
-              </div>
-              <div v-else
-                   :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
-                   @click="openProjectDetails(item.slug)">
-                <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
-                <div class="card-image" v-if="getProjectImage(item)">
-                  <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
-                  <div class="explore-text">{{ $t('common.actions.explore') }}</div>
-                </div>
-                <div class="card-content">
-                  <div class="card-header">
-                    <h3>{{ item.titleKey[currentLocale] }}</h3>
-                    <div class="card-badges">
-                      <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                      <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
-                    </div>
-                  </div>
-                  <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="card-tags" v-if="getDisplayTags(item).length">
-                    <span
-                      v-for="tag in getDisplayTags(item)"
-                      :key="tag"
-                      class="small-tag clickable"
-                      @click.stop="handleCardTagClick(tag)"
-                    >{{ tag }}</span>
-                    <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
-                  </div>
-                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
-                </div>
-              </div>
-            </template>
-          </div>
-          
-          <div v-if="filteredProjects.length === 0" class="no-results">
-            {{ $t('common.search.noResults') }}
-          </div>
-          
-          <Pagination 
-            v-if="totalPages > 1"
-            :totalPages="totalPages" 
-            :currentPage="currentPage" 
-            @page-changed="handlePageChange"
-          ></Pagination>
+        <div v-if="filteredProjects.length === 0" class="no-results">
+          {{ $t('common.search.noResults') }}
         </div>
-      </template>
+
+        <Pagination
+          v-if="totalPages > 1"
+          :totalPages="totalPages"
+          :currentPage="currentPage"
+          @page-changed="handlePageChange"
+        ></Pagination>
+      </div>
+
+      <div class="experience-conclusion" v-if="!hasActiveSearch">
+        <p>{{ $t('home.conclusion') }}</p>
+
+        <div class="contact-feedback">
+          <a href="https://tobenot.top/contact/" target="_blank" rel="noopener noreferrer" class="contact-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            {{ $t('experience.feedback') }}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -289,6 +203,12 @@ import {
   projectMatchesFacet,
   resolveTagFilter
 } from '@/utils/tagFacets'
+import {
+  buildHomeQuery,
+  homeQueriesEqual,
+  parseHomeQuery,
+  projectMatchesCategory
+} from '@/utils/homeFilters'
 
 export default {
   name: 'Home',
@@ -315,24 +235,43 @@ export default {
       currentPage: 1,
       itemsPerPage: 15,
       savedScrollY: 0,
-      bilibiliCovers: {}
+      bilibiliCovers: {},
+      searchDebounceTimer: null
     }
   },
   computed: {
     currentLocale() {
       return this.$i18n.locale
     },
+    hasActiveSearch() {
+      return !!this.searchTerm.trim()
+    },
+    hasActiveFilters() {
+      return this.activeCategoryId !== 'all' ||
+        !!this.activeFacetId ||
+        !!this.activeTag ||
+        this.hasActiveSearch
+    },
+    sectionTitle() {
+      if (this.hasActiveSearch) return this.$t('common.search.resultsTitle')
+      return this.$t(`project.category.${this.activeCategoryId}`)
+    },
+    activeFacetLabel() {
+      const facet = this.tagFacets.find(f => f.id === this.activeFacetId)
+      return facet?.label || this.activeFacetId
+    },
+    categoryProjects() {
+      if (!this.activeCategoryId || this.activeCategoryId === 'all') {
+        return this.projects
+      }
+      return this.projects.filter(p => projectMatchesCategory(p, this.activeCategoryId))
+    },
     sortedProjects() {
       let filtered = this.projects;
 
       // Filter by category
       if (this.activeCategoryId && this.activeCategoryId !== 'all') {
-        filtered = filtered.filter(p => {
-          if (Array.isArray(p.category)) {
-            return p.category.includes(this.activeCategoryId);
-          }
-          return p.category === this.activeCategoryId;
-        });
+        filtered = filtered.filter(p => projectMatchesCategory(p, this.activeCategoryId));
       }
 
       // Filter by active facet
@@ -411,7 +350,7 @@ export default {
       return result
     },
     facetCounts() {
-      return buildFacetCounts(this.projects, this.tagFacets)
+      return buildFacetCounts(this.categoryProjects, this.tagFacets)
     }
   },
   watch: {
@@ -422,7 +361,11 @@ export default {
       }
     },
     searchTerm() {
-      this.currentPage = 1;
+      this.currentPage = 1
+      clearTimeout(this.searchDebounceTimer)
+      this.searchDebounceTimer = setTimeout(() => {
+        this.syncRouteFromState(true)
+      }, 400)
     },
     activeCategoryId() {
       this.currentPage = 1;
@@ -439,50 +382,75 @@ export default {
     '$route.query': {
       immediate: true,
       handler(query) {
-        if (query.facet) {
-          this.activeFacetId = query.facet;
-          this.activeTag = null;
-          this.searchTerm = '';
-        } else if (query.tag) {
-          this.activeTag = query.tag;
-          this.activeFacetId = null;
-          this.searchTerm = '';
-        } else {
-          this.activeFacetId = null;
-          this.activeTag = null;
+        const parsed = parseHomeQuery(query, this.categories)
+        this.activeCategoryId = parsed.category
+        this.activeFacetId = parsed.facet
+        this.activeTag = parsed.tag
+        if (parsed.search !== this.searchTerm) {
+          clearTimeout(this.searchDebounceTimer)
+          this.searchTerm = parsed.search
         }
       }
     }
   },
   methods: {
+    syncRouteFromState(replace = false) {
+      const nextQuery = buildHomeQuery({
+        category: this.activeCategoryId,
+        facet: this.activeFacetId,
+        tag: this.activeTag,
+        q: this.searchTerm
+      })
+      if (homeQueriesEqual(this.$route.query, nextQuery)) return
+      const navigate = replace ? this.$router.replace : this.$router.push
+      navigate.call(this.$router, { path: '/', query: nextQuery })
+    },
+    navigateHome(overrides = {}) {
+      const category = overrides.category !== undefined ? overrides.category : this.activeCategoryId
+      let facet = overrides.facet !== undefined ? overrides.facet : this.activeFacetId
+      let tag = overrides.tag !== undefined ? overrides.tag : this.activeTag
+      const q = overrides.q !== undefined ? overrides.q : this.searchTerm
+
+      if (overrides.facet !== undefined) {
+        facet = overrides.facet
+        tag = null
+      } else if (overrides.tag !== undefined) {
+        tag = overrides.tag
+        facet = null
+      }
+
+      const nextQuery = buildHomeQuery({ category, facet, tag, q })
+      if (homeQueriesEqual(this.$route.query, nextQuery)) return
+      this.$router.push({ path: '/', query: nextQuery })
+    },
     getDisplayTags(project) {
       return prioritizeTagsForDisplay(project, this.tagFacets, this.activeFacetId)
     },
     handleCardTagClick(tag) {
       const filter = resolveTagFilter(tag, this.tagFacets)
       if (filter.type === 'facet') {
-        this.$router.push({ path: '/', query: { facet: filter.id } })
+        this.navigateHome({ facet: filter.id, tag: null })
       } else {
-        this.$router.push({ path: '/', query: { tag: filter.value } })
+        this.navigateHome({ facet: null, tag: filter.value })
       }
       this.currentPage = 1
     },
-    clearFilters() {
-      this.searchTerm = '';
-      this.activeFacetId = null;
-      this.activeTag = null;
-      this.activeCategoryId = 'all';
-      this.$router.push({ path: '/' });
+    handleCategoryClick(categoryId) {
+      this.navigateHome({ category: categoryId })
+      this.currentPage = 1
+    },
+    clearTagFilters() {
+      this.navigateHome({ facet: null, tag: null, q: '' })
+      this.currentPage = 1
+    },
+    clearAllFilters() {
+      this.navigateHome({ category: 'all', facet: null, tag: null, q: '' })
+      this.currentPage = 1
     },
     handleFacetClick(facetId) {
-      if (this.activeFacetId === facetId) {
-        this.activeFacetId = null;
-        this.$router.push({ path: '/' });
-      } else {
-        this.activeFacetId = facetId;
-        this.$router.push({ path: '/', query: { facet: facetId } });
-      }
-      this.currentPage = 1;
+      const nextFacet = this.activeFacetId === facetId ? null : facetId
+      this.navigateHome({ facet: nextFacet, tag: null })
+      this.currentPage = 1
     },
     isComplete(project) {
       if (project.completeness === 'partial') return false;
@@ -663,6 +631,19 @@ export default {
 
 .pathways-selector {
   margin-bottom: 3rem;
+
+  &.compact {
+    margin-bottom: 1.5rem;
+
+    .pathway-card {
+      min-height: 4rem;
+      padding: 1rem;
+    }
+
+    .pathway-info p {
+      display: none;
+    }
+  }
 }
 
 .pathways-grid {

@@ -13,7 +13,8 @@ export default {
     },
     search: {
       placeholder: "Search works (title, description, tags…)",
-      noResults: "No matching works found"
+      noResults: "No matching works found",
+      resultsTitle: "Search Results"
     },
     footer: {
       quote: "Thank you for coming to see my worldview, my novels, my anime, my games",
@@ -38,8 +39,10 @@ export default {
       showStudy: "Study",
       onlyComplete: "Complete Only",
       byTechnology: "Tech Stack",
-      activeTag: "Active Tag",
-      clearAll: "Clear All"
+      activeTag: "Active Filters",
+      activeCategory: "Category",
+      clearTags: "Clear tag filters",
+      clearAll: "Clear all"
     }
   },
   home: {

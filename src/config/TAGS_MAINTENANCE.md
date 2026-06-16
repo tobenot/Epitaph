@@ -120,3 +120,28 @@ export default [
 2. `tags` 只写 0–3 个短词；细节放描述
 3. 若需要新 Facet，改 `tagFacets.js` 的 `match`，不必改 `utils`
 4. 本地打开首页，确认对应 Facet 计数 +1
+
+---
+
+## 7. URL 筛选参数
+
+首页筛选状态同步到 URL，可分享、可刷新保持：
+
+| 参数 | 示例 | 说明 |
+|------|------|------|
+| `category` | `game` | 分类 pathway，为 `all` 时不写入 URL |
+| `facet` | `ue5` | 技术栈 Facet id |
+| `tag` | `纪实` | 精确标签筛选（与 facet 互斥） |
+| `q` | `联机` | 搜索关键词 |
+
+示例：`/?category=game&facet=ue5&q=射击`
+
+相关代码：`src/utils/homeFilters.js`
+
+- `buildHomeQuery` — 状态 → URL query
+- `parseHomeQuery` — URL query → 状态
+
+清除操作：
+
+- **清除标签筛选**：去掉 facet / tag / 搜索，保留 category
+- **清除全部**：回到首页默认（全部作品）

@@ -144,6 +144,7 @@ import { fetchBilibiliCover } from '@/utils/bilibili'
 import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
 import { resolveTagFilter } from '@/utils/tagFacets'
+import { buildHomeQuery } from '@/utils/homeFilters'
 
 export default {
   name: 'Project',
@@ -218,11 +219,14 @@ export default {
     },
     handleTagClick(tag) {
       const filter = resolveTagFilter(tag, this.tagFacets)
-      if (filter.type === 'facet') {
-        this.$router.push({ path: '/', query: { facet: filter.id } })
-      } else {
-        this.$router.push({ path: '/', query: { tag: filter.value } })
-      }
+      const category = this.project.category
+      const categoryId = Array.isArray(category) ? category[0] : category
+      const query = buildHomeQuery({
+        category: categoryId,
+        facet: filter.type === 'facet' ? filter.id : null,
+        tag: filter.type === 'tag' ? filter.value : null
+      })
+      this.$router.push({ path: '/', query })
     },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
