@@ -2,13 +2,14 @@ export default {
   id: 12,
   pride: 100,
   slug: "beyond-books",
+  series: "beyond-books",
   category: "ai",
   status: "development",
   titleKey: {
     zh: "不止于纸上的故事",
     en: "Beyond Books"
   },
-  image: require('@/assets/images/bbw.webp'),
+  image: "https://img.itch.zone/aW1nLzE5MTA3NzA3LnBuZw==/original/ZfJpCb.png",
   descriptionKey: {
     zh: "大模型跑团游戏，网页端。",
     en: "LLM-powered TRPG game, web-based."
@@ -31,8 +32,8 @@ export default {
   },
   tags: ["LLM", "AI大世界范式Ⅰ"],
   longDescriptionKey: {
-    zh: "",
-    en: ""
+    zh: "银月寺是一座现代化异能者保留地，有大学、风力发电机，也有各方势力觊觎的神器【折射】。玩家扮演保安队长罗伯特，异能「苍穹缝隙」——停止时间。\n\n游戏融合了 DND/COC 跑团、语 C 与剧本杀，是一款 AI 驱动的互动式视觉小说。通过自由输入对话和行动推进剧情，AI 实时理解并回应每个决定，多个 AI 角色同时在线，彼此之间也会互动。\n\n**玩法特色**\n- **深度角色扮演**：不是选是/否，可以用自己的方式处理每个局面\n- **超能力战斗**：时停、念动力、概念神等异能，复杂的战斗环境与动态规则\n- **实时 CG**：根据玩家行动即时生成油画风格 CG\n- **建议系统**：总有话可说，灵感来了尽情即兴\n\n**势力与角色**\n- 银月寺守护者：罗伯特（可游玩，时停异能）、诺顿（关键时刻超靠谱）、珂茵（射出光箭并瞬移）\n- 贝利斯集团：以图尔斯（操控钢铁）、斯图尔特（火焰+钢铁羽翼）为首的雇佣兵组织，目标是夺取【折射】\n- 罪恶猎手：反异能者组织，合法持枪，在保留地周围巡逻\n- 神秘强者琼：住在森林深处，银月篇最强战力，没有之一",
+    en: "Silver Moon Temple is a modern esper reserve — home to a university, wind turbines, and a relic coveted by every faction: the energy entity [Refraction]. You play Robert, head guard and esper with the ability to stop time.\n\nThe game blends DND/COC tabletop RPG, character roleplay, and murder-mystery interactive fiction. You freely type dialogue and actions; the AI interprets every decision in real time, with multiple AI characters online simultaneously — interacting with each other, not just you.\n\n**Gameplay**\n- **Deep roleplay**: not yes/no choices — handle every situation your own way\n- **Superpower combat**: time stop, telekinesis, concept deities, and more; dynamic battle environments\n- **Real-time CG**: oil-painting style images generated live from your actions\n- **Suggestion system**: always something to say; improvise whenever inspiration strikes\n\n**Factions & Characters**\n- Silver Moon Guardians: Robert (playable, time stop), Norton (clutch when it counts), Coyne (fires light arrows and teleports to them)\n- Beilis Group: mercenaries led by Tuls (steel manipulation) and Stuart (fire + iron wings), targeting [Refraction]\n- Crime Hunters: anti-esper organization with legal firearms, patrolling the reserve perimeter\n- Joan (forest depths): the single strongest combatant in the Silver Moon arc, bar none"
   },
   links: [
     { type: "itch", url: "https://tobenot.itch.io/beyond-books", textKey: { zh: "itch.io 游玩", en: "Play on itch.io" } },

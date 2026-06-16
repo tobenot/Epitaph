@@ -8,7 +8,7 @@ export default {
     zh: "梦境漫游者",
     en: "Dream Wanderer"
   },
-  bilibiliVideoId: "BV1JRG2zLEJs",
+  image: "https://img.itch.zone/aW1nLzIzNDc4MTM0LnBuZw==/original/d3qKyA.png",
   descriptionKey: {
     zh: "公元两万年后，机械飞升的人类后裔通过梦境进入灵界探险。虚幻引擎5类幸存者游戏，已有首个demo，目标上Steam。停工。",
     en: "Year 20000+: mechanically ascended human descendants enter the spirit realm through dreaming. UE5 survivors-like game, first demo done, targeting Steam. Archived."
@@ -28,6 +28,8 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://www.bilibili.com/video/BV1JRG2zLEJs/", textKey: { zh: "世界观PV", en: "World Lore PV" } }
+    { type: "itch", url: "https://tobenot.itch.io/dreamwalkers-demo", textKey: { zh: "itch.io 下载 Demo", en: "Download Demo on itch.io" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1JRG2zLEJs/", textKey: { zh: "世界观PV", en: "World Lore PV" } },
+    { type: "download", url: "https://pan.baidu.com/s/1PAqQLrJmgxOTvPSbZWZRuA?pwd=2000", textKey: { zh: "Demo 下载（提取码 2000）", en: "Demo Download (code: 2000)" } }
   ]
 };
