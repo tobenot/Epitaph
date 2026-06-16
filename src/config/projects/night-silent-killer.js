@@ -4,6 +4,7 @@ export default {
   slug: "night-silent-killer",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "夜酱：沉默杀手",
     en: "Night: Silent Killer"

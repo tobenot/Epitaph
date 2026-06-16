@@ -4,6 +4,7 @@ export default {
   slug: "north-stars",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "极北之星",
     en: "North Stars"

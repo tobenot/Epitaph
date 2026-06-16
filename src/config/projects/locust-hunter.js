@@ -4,6 +4,7 @@ export default {
   slug: "locust-hunter",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "猎蝗人",
     en: "Locust Hunter"

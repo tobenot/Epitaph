@@ -5,6 +5,7 @@ export default {
   portfolioKind: "study",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "挑战之旅",
     en: "Challenger's Odyssey"

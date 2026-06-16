@@ -5,7 +5,7 @@ export default {
   series: "heartsworld",
   category: "game",
   completeness: "partial",
-  experienceable: false,
+  experienceable: true,
   status: "released",
   titleKey: {
     zh: "心灵世界",
