@@ -1,4 +1,4 @@
-const files = require.context('./projects', false, /\.js$/);
+const files = require.context('./projects', true, /\.js$/);
 
 const projectsConfig = [];
 
