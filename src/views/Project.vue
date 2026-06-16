@@ -66,7 +66,7 @@
             <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
           </div>
 
-          <p class="description">{{ hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale] }}</p>
+          <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
 
           <!-- Developer Notes -->
           <div class="developer-notes" v-if="project.developerNotesKey && project.developerNotesKey[currentLocale]">
