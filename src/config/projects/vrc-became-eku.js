@@ -13,7 +13,6 @@ export default {
     zh: "Eku 二创鬼畜，neta 奥本海默。无厘头搞笑风格。",
     en: "An Eku fan edit parody, referencing Oppenheimer. Pure nonsense comedy."
   },
-  date: { year: 2025 },
   genres: ["二创", "鬼畜"],
   themes: ["搞笑", "无厘头", "VRChat"],
   developerNotesKey: {

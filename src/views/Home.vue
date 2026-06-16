@@ -84,23 +84,27 @@
           </div>
           
           <div class="experience-grid">
-            <div v-for="project in paginatedProjects" 
-                 :key="project.id" 
-                 class="experience-card"
-                 @click="openProjectDetails(project.slug)">
-              <div class="card-image" v-if="getProjectImage(project)">
-                <img :src="getProjectImage(project)" :alt="project.titleKey[currentLocale]">
-                <div class="explore-text">{{ $t('common.actions.explore') }}</div>
+            <template v-for="item in displayProjects" :key="item.id">
+              <div v-if="item.isDivider" class="date-divider-row">
+                <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
               </div>
-              <div class="card-content">
-                <div class="card-header">
-                  <h3>{{ project.titleKey[currentLocale] }}</h3>
-                  <span v-if="project.status" :class="['status-badge', project.status]" :title="$t(`project.status.${project.status}`)"></span>
+              <div v-else
+                   class="experience-card"
+                   @click="openProjectDetails(item.slug)">
+                <div class="card-image" v-if="getProjectImage(item)">
+                  <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
+                  <div class="explore-text">{{ $t('common.actions.explore') }}</div>
                 </div>
-                <p class="card-desc">{{ project.descriptionKey[currentLocale] }}</p>
-                <div class="project-date" v-if="project.date">{{ $t('common.sort.date') }} {{ project.date.year }}/{{ project.date.month }}</div>
+                <div class="card-content">
+                  <div class="card-header">
+                    <h3>{{ item.titleKey[currentLocale] }}</h3>
+                    <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                  </div>
+                  <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
+                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ item.date.year }}/{{ item.date.month }}</div>
+                </div>
               </div>
-            </div>
+            </template>
           </div>
           
           <Pagination 
@@ -148,23 +152,27 @@
           </div>
           
           <div class="experience-grid">
-            <div v-for="project in paginatedProjects" 
-                 :key="project.id" 
-                 class="experience-card"
-                 @click="openProjectDetails(project.slug)">
-              <div class="card-image" v-if="getProjectImage(project)">
-                <img :src="getProjectImage(project)" :alt="project.titleKey[currentLocale]">
-                <div class="explore-text">{{ $t('common.actions.explore') }}</div>
+            <template v-for="item in displayProjects" :key="item.id">
+              <div v-if="item.isDivider" class="date-divider-row">
+                <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
               </div>
-              <div class="card-content">
-                <div class="card-header">
-                  <h3>{{ project.titleKey[currentLocale] }}</h3>
-                  <span v-if="project.status" :class="['status-badge', project.status]" :title="$t(`project.status.${project.status}`)"></span>
+              <div v-else
+                   class="experience-card"
+                   @click="openProjectDetails(item.slug)">
+                <div class="card-image" v-if="getProjectImage(item)">
+                  <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
+                  <div class="explore-text">{{ $t('common.actions.explore') }}</div>
                 </div>
-                <p class="card-desc">{{ project.descriptionKey[currentLocale] }}</p>
-                <div class="project-date" v-if="project.date">{{ $t('common.sort.date') }} {{ project.date.year }}/{{ project.date.month }}</div>
+                <div class="card-content">
+                  <div class="card-header">
+                    <h3>{{ item.titleKey[currentLocale] }}</h3>
+                    <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                  </div>
+                  <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
+                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ item.date.year }}/{{ item.date.month }}</div>
+                </div>
               </div>
-            </div>
+            </template>
           </div>
           
           <div v-if="filteredProjects.length === 0" class="no-results">
@@ -231,17 +239,12 @@ export default {
       if (this.sortBy === 'pride') {
         return [...filteredByCategory].sort((a, b) => (b.pride || 0) - (a.pride || 0));
       } else if (this.sortBy === 'date') {
-        return [...filteredByCategory].sort((a, b) => {
-          const yearA = a.date ? a.date.year : 0;
-          const yearB = b.date ? b.date.year : 0;
-          const monthA = a.date ? a.date.month : 0;
-          const monthB = b.date ? b.date.month : 0;
-          
-          if (yearA !== yearB) {
-            return yearB - yearA;
-          }
-          return monthB - monthA;
+        const dated = [...filteredByCategory].filter(p => p.date).sort((a, b) => {
+          if (a.date.year !== b.date.year) return b.date.year - a.date.year
+          return (b.date.month || 0) - (a.date.month || 0)
         })
+        const undated = [...filteredByCategory].filter(p => !p.date).sort((a, b) => (b.pride || 0) - (a.pride || 0))
+        return [...dated, ...undated]
       }
       return filteredByCategory
     },
@@ -264,6 +267,21 @@ export default {
       const start = (this.currentPage - 1) * this.itemsPerPage;
       const end = start + this.itemsPerPage;
       return this.filteredProjects.slice(start, end);
+    },
+    displayProjects() {
+      if (this.sortBy !== 'date') return this.paginatedProjects
+      const allItems = this.filteredProjects
+      const firstUndatedIdx = allItems.findIndex(p => !p.date)
+      if (firstUndatedIdx <= 0) return this.paginatedProjects
+      const start = (this.currentPage - 1) * this.itemsPerPage
+      const result = []
+      for (let i = 0; i < this.paginatedProjects.length; i++) {
+        if (start + i === firstUndatedIdx) {
+          result.push({ isDivider: true, id: '__date-divider__' })
+        }
+        result.push(this.paginatedProjects[i])
+      }
+      return result
     }
   },
   watch: {
@@ -575,6 +593,17 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
+}
+
+.date-divider-row {
+  grid-column: 1 / -1;
+  padding: 0.75rem 0 0.25rem;
+  border-top: 1px solid var(--accent-color);
+  opacity: 0.55;
+  font-family: 'Lora', serif;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  letter-spacing: 0.05em;
 }
 
 .experience-card {
