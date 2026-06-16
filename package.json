@@ -4,6 +4,7 @@
     "serve": "vue-cli-service serve",
     "prebuild": "node scripts/generate-sitemap.js",
     "build": "vue-cli-service build",
+    "postbuild": "node scripts/generate-og-pages.js",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
