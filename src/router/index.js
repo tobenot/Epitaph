@@ -90,6 +90,7 @@ export function updatePageMeta(to) {
   setMetaContent('meta[name="description"]', 'name', 'description', description)
   setMetaContent('meta[property="og:title"]', 'property', 'og:title', title)
   setMetaContent('meta[property="og:description"]', 'property', 'og:description', description)
+  setMetaContent('meta[property="og:site_name"]', 'property', 'og:site_name', 'Epitaph')
 }
 
 const router = createRouter({
