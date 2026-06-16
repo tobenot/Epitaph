@@ -27,9 +27,14 @@
         <div class="details-card">
           <div class="title-with-status">
             <h2>{{ $t('project.aboutWork') }}</h2>
-            <span v-if="project.status" :class="['status-badge', project.status]">
-              {{ $t(`project.status.${project.status}`) }}
-            </span>
+            <div class="badges">
+              <span v-if="project.portfolioKind" :class="['kind-badge', project.portfolioKind]">
+                {{ $t(`project.portfolioKind.${project.portfolioKind}`) }}
+              </span>
+              <span v-if="project.status" :class="['status-badge', project.status]">
+                {{ $t(`project.status.${project.status}`) }}
+              </span>
+            </div>
           </div>
           
           <!-- Achievements Section -->
@@ -368,6 +373,7 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1.5rem;
+    gap: 1rem;
     
     h2 {
       font-family: 'Playfair Display', serif;
@@ -384,6 +390,27 @@ export default {
         width: 50px;
         height: 1px;
         background-color: var(--accent-color);
+      }
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .kind-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: 'Lora', serif;
+      font-weight: bold;
+
+      &.study {
+        background: #ede7f6;
+        color: #5e35b1;
       }
     }
   }

@@ -46,6 +46,51 @@ const routes = [
 ]
 
 import config from '../config'
+import i18n from '../i18n'
+import aboutConfig from '../config/aboutConfig'
+
+function pickLocalized(keyObj, locale) {
+  return keyObj[locale] || keyObj.zh
+}
+
+function setMetaContent(selector, attr, attrValue, content) {
+  let el = document.querySelector(selector)
+  if (!el) {
+    el = document.createElement('meta')
+    if (attr === 'name') {
+      el.name = attrValue
+    } else {
+      el.setAttribute(attr, attrValue)
+    }
+    document.head.appendChild(el)
+  }
+  el.content = content
+}
+
+export function updatePageMeta(to) {
+  const locale = i18n.global.locale.value
+  const t = i18n.global.t
+
+  let title = `${t('common.siteTitle')} | Epitaph`
+  let description = t('common.siteDescription')
+
+  if (to.name === 'Project') {
+    const slug = to.params.slug
+    const project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
+    if (project) {
+      title = `${pickLocalized(project.titleKey, locale)} | Epitaph`
+      description = pickLocalized(project.descriptionKey, locale)
+    }
+  } else if (to.name === 'About') {
+    title = `${t('about.title')} | Epitaph`
+    description = pickLocalized(aboutConfig.contentKey, locale).split('\n')[0]
+  }
+
+  document.title = title
+  setMetaContent('meta[name="description"]', 'name', 'description', description)
+  setMetaContent('meta[property="og:title"]', 'property', 'og:title', title)
+  setMetaContent('meta[property="og:description"]', 'property', 'og:description', description)
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -58,52 +103,6 @@ const router = createRouter({
   }
 })
 
-router.afterEach((to) => {
-  // Update meta tags for SEO
-  let title = "Epitaph | 墓志铭 - 萝北来信的作品与思想集"
-  let description = "希望每个人都可以找到自己的理想并为之劳动。萝北来信的作品集、游戏、小说与画作。（曾用名 tobenot）"
-  
-  if (to.name === 'Project') {
-    const slug = to.params.slug
-    const project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
-    if (project) {
-      // 英文环境可能拿不到准确判断，默认用中文做兜底
-      title = `${project.titleKey.zh} | Epitaph`
-      description = project.descriptionKey.zh
-    }
-  } else if (to.name === 'About') {
-    title = "墓志铭 | Epitaph"
-    description = "如果我完成了我的全部作品，那么我已经完成了我的使命。"
-  }
-  
-  // Set title
-  document.title = title
-  
-  // Set or update description
-  let metaDesc = document.querySelector('meta[name="description"]')
-  if (!metaDesc) {
-    metaDesc = document.createElement('meta')
-    metaDesc.name = 'description'
-    document.head.appendChild(metaDesc)
-  }
-  metaDesc.content = description
-
-  // Set or update Open Graph tags
-  let ogTitle = document.querySelector('meta[property="og:title"]')
-  if (!ogTitle) {
-    ogTitle = document.createElement('meta')
-    ogTitle.setAttribute('property', 'og:title')
-    document.head.appendChild(ogTitle)
-  }
-  ogTitle.content = title
-
-  let ogDesc = document.querySelector('meta[property="og:description"]')
-  if (!ogDesc) {
-    ogDesc = document.createElement('meta')
-    ogDesc.setAttribute('property', 'og:description')
-    document.head.appendChild(ogDesc)
-  }
-  ogDesc.content = description
-})
+router.afterEach(updatePageMeta)
 
 export default router

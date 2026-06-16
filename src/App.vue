@@ -65,6 +65,7 @@
 import config from './config'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from './i18n'
+import { updatePageMeta } from './router'
 
 export default {
   name: 'App',
@@ -87,35 +88,19 @@ export default {
     }
   },
   watch: {
-    '$route'(to, from) {
-      document.title = this.getPageTitle(to)
-      // 关闭移动导航
+    '$route'(to) {
+      updatePageMeta(to)
       this.mobileNavActive = false
     },
     currentLocale: {
       immediate: true,
       handler() {
-        // 只更新标题，不再覆盖导航项
         this.siteTitle = this.$t('common.siteTitle')
-        // 更新标题
-        document.title = this.getPageTitle(this.$route)
+        updatePageMeta(this.$route)
       }
     }
   },
   methods: {
-    getPageTitle(route) {
-      const baseTitle = this.$t('common.siteTitle')
-      if (route.name === 'Home') {
-        return baseTitle
-      } else if (route.name === 'Project') {
-        const projectId = parseInt(route.params.id)
-        const project = config.projects.find(p => p.id === projectId)
-        return project ? `${project.titleKey[this.currentLocale]} | ${baseTitle}` : baseTitle
-      } else if (route.name === 'About') {
-        return `${this.$t('about.title')} | ${baseTitle}`
-      }
-      return baseTitle
-    },
     changeLocale(locale) {
       this.$i18n.locale = locale
       setLocale(locale)
@@ -125,12 +110,9 @@ export default {
     }
   },
   mounted() {
-    // 确保在组件挂载完成后更新标题
     this.$nextTick(() => {
       this.siteTitle = this.$t('common.siteTitle')
-      document.title = this.getPageTitle(this.$route)
-      
-      // Notify prerenderer that rendering is complete
+      updatePageMeta(this.$route)
       document.dispatchEvent(new Event('custom-render-trigger'))
     })
   }

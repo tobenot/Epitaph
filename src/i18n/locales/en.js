@@ -1,6 +1,7 @@
 export default {
   common: {
     siteTitle: "Epitaph - LuobeiLetters Works Collection",
+    siteDescription: "Hope everyone can find their own ideals and work for them. LuobeiLetters' portfolio of games, novels, and artwork. (formerly tobenot)",
     nav: {
       home: "Home",
       about: "Epitaph",
@@ -32,6 +33,9 @@ export default {
     },
     pagination: {
       page: "There's more!"
+    },
+    filter: {
+      showStudy: "Study"
     }
   },
   home: {
@@ -83,6 +87,9 @@ export default {
     achievements: "Milestones & Stats",
     series: "In This Series",
     seriesCurrent: "Current",
+    portfolioKind: {
+      study: "Study"
+    },
     status: {
       released: "Released",
       development: "In Development",

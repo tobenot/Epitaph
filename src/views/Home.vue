@@ -81,6 +81,12 @@
               class="sort-button">
               {{ $t('common.sort.byDate') }}
             </button>
+            <button 
+              @click="showStudy = !showStudy" 
+              :class="{ active: showStudy }"
+              class="sort-button study-toggle">
+              {{ $t('common.filter.showStudy') }}
+            </button>
           </div>
           
           <div class="experience-grid">
@@ -98,10 +104,13 @@
                 <div class="card-content">
                   <div class="card-header">
                     <h3>{{ item.titleKey[currentLocale] }}</h3>
-                    <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                    <div class="card-badges">
+                      <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
+                      <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                    </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ item.date.year }}/{{ item.date.month }}</div>
+                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
               </div>
             </template>
@@ -149,6 +158,12 @@
               class="sort-button">
               {{ $t('common.sort.byDate') }}
             </button>
+            <button 
+              @click="showStudy = !showStudy" 
+              :class="{ active: showStudy }"
+              class="sort-button study-toggle">
+              {{ $t('common.filter.showStudy') }}
+            </button>
           </div>
           
           <div class="experience-grid">
@@ -166,10 +181,13 @@
                 <div class="card-content">
                   <div class="card-header">
                     <h3>{{ item.titleKey[currentLocale] }}</h3>
-                    <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                    <div class="card-badges">
+                      <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
+                      <span v-if="item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)"></span>
+                    </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ item.date.year }}/{{ item.date.month }}</div>
+                  <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
               </div>
             </template>
@@ -196,6 +214,7 @@ import config from '../config'
 import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
 import { fetchBilibiliCover } from '@/utils/bilibili'
+import { formatDate, compareDateDesc } from '@/utils/date'
 
 export default {
   name: 'Home',
@@ -213,7 +232,8 @@ export default {
       activeCategoryId: 'all',
       categories: ['all', 'vrchat', 'novel', 'ai', 'game', 'tool', 'video', 'blog'],
       searchTerm: '',
-      sortBy: 'pride', // 默认按自豪度排序
+      sortBy: 'pride',
+      showStudy: false,
       currentPage: 1,
       itemsPerPage: 15,
       savedScrollY: 0,
@@ -236,13 +256,14 @@ export default {
         });
       }
 
+      if (!this.showStudy) {
+        filteredByCategory = filteredByCategory.filter(p => p.portfolioKind !== 'study');
+      }
+
       if (this.sortBy === 'pride') {
         return [...filteredByCategory].sort((a, b) => (b.pride || 0) - (a.pride || 0));
       } else if (this.sortBy === 'date') {
-        const dated = [...filteredByCategory].filter(p => p.date).sort((a, b) => {
-          if (a.date.year !== b.date.year) return b.date.year - a.date.year
-          return (b.date.month || 0) - (a.date.month || 0)
-        })
+        const dated = [...filteredByCategory].filter(p => p.date).sort((a, b) => compareDateDesc(a.date, b.date))
         const undated = [...filteredByCategory].filter(p => !p.date).sort((a, b) => (b.pride || 0) - (a.pride || 0))
         return [...dated, ...undated]
       }
@@ -298,6 +319,9 @@ export default {
       this.currentPage = 1;
     },
     sortBy() {
+      this.currentPage = 1;
+    },
+    showStudy() {
       this.currentPage = 1;
     }
   },
@@ -659,28 +683,50 @@ export default {
   flex: 1;
 }
 
-.card-header {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
-  
-  h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    line-height: 1.35;
-    color: var(--primary-color);
-    margin: 0;
-    flex: 1;
-    min-width: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .status-badge {
+  .card-header {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      line-height: 1.35;
+      color: var(--primary-color);
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+    
+    .kind-badge {
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-family: 'Lora', serif;
+      line-height: 1.2;
+      white-space: nowrap;
+
+      &.study {
+        background: #ede7f6;
+        color: #5e35b1;
+      }
+    }
+    
+    .status-badge {
     width: 10px;
     height: 10px;
     border-radius: 50%;

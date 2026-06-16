@@ -1,6 +1,7 @@
 export default {
   common: {
     siteTitle: "墓志铭 - 萝北来信的作品集",
+    siteDescription: "希望每个人都可以找到自己的理想并为之劳动。萝北来信的作品集、游戏、小说与画作。（曾用名 tobenot）",
     nav: {
       home: "首页",
       about: "墓志铭",
@@ -32,6 +33,9 @@ export default {
     },
     pagination: {
       page: "还有呢！"
+    },
+    filter: {
+      showStudy: "习作"
     }
   },
   home: {
@@ -83,6 +87,9 @@ export default {
     achievements: "里程碑与数据",
     series: "同系列作品",
     seriesCurrent: "当前",
+    portfolioKind: {
+      study: "习作"
+    },
     status: {
       released: "已发布",
       development: "开发中",
