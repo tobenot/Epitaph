@@ -1,6 +1,6 @@
 export default {
   id: 13,
-  pride: 15,
+  pride: 58,
   slug: "online-text-to-speech",
   category: "tool",
   status: "released",

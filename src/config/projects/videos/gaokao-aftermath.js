@@ -1,6 +1,6 @@
 export default {
   id: "gaokao-aftermath",
-  pride: 99,
+  pride: 90,
   slug: "gaokao-aftermath",
   series: "gaokao",
   category: ["video", "blog"],

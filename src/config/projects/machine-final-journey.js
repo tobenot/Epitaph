@@ -1,6 +1,6 @@
 export default {
   id: "machine-final-journey",
-  pride: 60,
+  pride: 79,
   slug: "machine-final-journey",
   category: "game",
   status: "released",

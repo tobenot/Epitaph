@@ -1,6 +1,6 @@
 export default {
   id: 1,
-  pride: 35,
+  pride: 100,
   slug: "sanctuary-of-writers",
   category: "blog",
   status: "released",

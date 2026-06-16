@@ -1,6 +1,6 @@
 export default {
   id: 18,
-  pride: 85,
+  pride: 88,
   slug: "bedtime-stories-with-ai",
   category: "tool",
   status: "released",

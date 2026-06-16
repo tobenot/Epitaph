@@ -1,6 +1,6 @@
 export default {
   id: "papa-johns-revenge",
-  pride: 58,
+  pride: 78,
   slug: "papa-johns-revenge",
   category: "game",
   status: "released",

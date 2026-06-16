@@ -1,6 +1,6 @@
 export default {
   id: 20,
-  pride: 45,
+  pride: 65,
   slug: "travel-compass",
   category: "tool",
   status: "released",

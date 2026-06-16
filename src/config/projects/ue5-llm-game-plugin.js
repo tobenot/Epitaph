@@ -1,6 +1,6 @@
 export default {
   id: 14,
-  pride: 55,
+  pride: 74,
   slug: "ue5-llm-game-plugin",
   portfolioKind: "study",
   category: "tool",

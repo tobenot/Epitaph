@@ -1,6 +1,6 @@
 export default {
   id: "yeye-saviour",
-  pride: 36,
+  pride: 64,
   slug: "yeye-saviour",
   category: "game",
   status: "released",

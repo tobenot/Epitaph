@@ -1,6 +1,6 @@
 export default {
   id: "skeletal-animation-assignment",
-  pride: 45,
+  pride: 66,
   slug: "skeletal-animation-assignment",
   portfolioKind: "study",
   category: "game",

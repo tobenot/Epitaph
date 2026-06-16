@@ -1,6 +1,6 @@
 export default {
   id: "heartsworld-jin-captain",
-  pride: 52,
+  pride: 71,
   slug: "heartsworld-jin-captain",
   series: "heartsworld",
   category: ["video", "blog"],

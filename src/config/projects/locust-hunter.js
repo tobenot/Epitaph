@@ -1,6 +1,6 @@
 export default {
   id: 2,
-  pride: 90,
+  pride: 93,
   slug: "locust-hunter",
   category: "game",
   status: "released",

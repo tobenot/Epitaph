@@ -1,6 +1,6 @@
 export default {
   id: "rigged-champion",
-  pride: 45,
+  pride: 80,
   slug: "rigged-champion",
   category: "game",
   status: "released",

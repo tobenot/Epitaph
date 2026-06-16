@@ -1,6 +1,6 @@
 export default {
   id: 7,
-  pride: 60,
+  pride: 81,
   slug: "civilization-epic",
   category: "game",
   status: "released",

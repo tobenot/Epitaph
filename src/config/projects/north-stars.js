@@ -1,6 +1,6 @@
 export default {
   id: 3,
-  pride: 65,
+  pride: 82,
   slug: "north-stars",
   category: "game",
   status: "released",

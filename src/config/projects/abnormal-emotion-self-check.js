@@ -1,6 +1,6 @@
 export default {
   id: 23,
-  pride: 80,
+  pride: 72,
   slug: "abnormal-emotion-self-check",
   category: "tool",
   status: "released",

@@ -1,6 +1,6 @@
 export default {
   id: "command-combat",
-  pride: 3,
+  pride: 54,
   slug: "command-combat",
   category: "game",
   status: "released",

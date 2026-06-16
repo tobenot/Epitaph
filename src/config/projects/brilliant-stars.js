@@ -1,6 +1,6 @@
 export default {
   id: 8,
-  pride: 70,
+  pride: 84,
   slug: "brilliant-stars",
   category: "game",
   status: "archived",

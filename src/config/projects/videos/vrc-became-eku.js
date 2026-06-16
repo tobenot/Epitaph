@@ -1,6 +1,6 @@
 export default {
   id: "vrc-became-eku",
-  pride: 100,
+  pride: 91,
   slug: "vrc-became-eku",
   category: ["video", "vrchat"],
   status: "released",

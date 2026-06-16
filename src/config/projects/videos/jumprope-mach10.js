@@ -1,6 +1,6 @@
 export default {
   id: "jumprope-mach10",
-  pride: 30,
+  pride: 60,
   slug: "jumprope-mach10",
   category: "video",
   status: "released",

@@ -1,6 +1,6 @@
 export default {
   id: "xinghuiluo",
-  pride: 85,
+  pride: 87,
   slug: "xinghuiluo",
   series: "starfall",
   category: ["game", "novel"],
