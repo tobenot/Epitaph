@@ -524,7 +524,7 @@ export default {
     }
   }
   
-  p.description {
+  .description {
     font-family: 'Lora', serif;
     font-size: 1.1rem;
     line-height: 1.8;

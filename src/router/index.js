@@ -53,6 +53,20 @@ function pickLocalized(keyObj, locale) {
   return keyObj[locale] || keyObj.zh
 }
 
+function pickProjectMetaTitle(project, locale) {
+  if (project.metaTitleKey) {
+    return pickLocalized(project.metaTitleKey, locale)
+  }
+  return `${pickLocalized(project.titleKey, locale)} | Epitaph`
+}
+
+function pickProjectMetaDescription(project, locale) {
+  if (project.metaDescriptionKey) {
+    return pickLocalized(project.metaDescriptionKey, locale)
+  }
+  return pickLocalized(project.descriptionKey, locale)
+}
+
 function setMetaContent(selector, attr, attrValue, content) {
   let el = document.querySelector(selector)
   if (!el) {
@@ -78,8 +92,8 @@ export function updatePageMeta(to) {
     const slug = to.params.slug
     const project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
     if (project) {
-      title = `${pickLocalized(project.titleKey, locale)} | Epitaph`
-      description = pickLocalized(project.descriptionKey, locale)
+      title = pickProjectMetaTitle(project, locale)
+      description = pickProjectMetaDescription(project, locale)
     }
   } else if (to.name === 'About') {
     title = `${t('about.title')} | Epitaph`

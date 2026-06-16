@@ -4,6 +4,7 @@ export default {
   slug: "machine-final-journey",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "机器终末旅行",
     en: "Machine's Final Journey"

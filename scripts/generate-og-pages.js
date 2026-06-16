@@ -54,6 +54,12 @@ function copyOgImage(requirePath) {
   return true;
 }
 
+function extractLocalizedKey(content, keyName, locale = 'zh') {
+  const blockRegex = new RegExp(`${keyName}:\\s*\\{[\\s\\S]*?${locale}:\\s*['"]([^'"]+)['"]`);
+  const match = content.match(blockRegex);
+  return match ? match[1] : null;
+}
+
 const allProjectFiles = [
   ...getProjectFiles(projectsDir),
   ...getProjectFiles(videoProjectsDir)
@@ -74,20 +80,24 @@ allProjectFiles.forEach(filePath => {
     
     if (!slug) return; // 跳过没有标识符的项目
 
-    // 提取标题 (中文)
+    // 提取标题与描述（优先 meta*Key，回退 titleKey / descriptionKey）
+    const defaultDescription = '希望每个人都可以找到自己的理想并为之劳动。萝北来信的作品集、游戏、小说与画作。';
+    const metaTitleZh = extractLocalizedKey(content, 'metaTitleKey');
+    const titleZh = extractLocalizedKey(content, 'titleKey');
     let title = 'Epitaph';
-    const titleZhMatch = content.match(/zh:\s*['"]([^'"]+)['"]/);
-    if (titleZhMatch) {
-      title = `${titleZhMatch[1]} | Epitaph`;
+    if (metaTitleZh) {
+      title = metaTitleZh;
+    } else if (titleZh) {
+      title = `${titleZh} | Epitaph`;
     }
 
-    // 提取描述 (中文)
-    let description = '希望每个人都可以找到自己的理想并为之劳动。萝北来信的作品集、游戏、小说与画作。';
-    // 简单匹配 descriptionKey 下的 zh
-    const descRegex = /descriptionKey:\s*\{[\s\S]*?zh:\s*['"]([^'"]+)['"]/;
-    const descMatch = content.match(descRegex);
-    if (descMatch) {
-      description = descMatch[1];
+    const metaDescZh = extractLocalizedKey(content, 'metaDescriptionKey');
+    const descZh = extractLocalizedKey(content, 'descriptionKey');
+    let description = defaultDescription;
+    if (metaDescZh) {
+      description = metaDescZh;
+    } else if (descZh) {
+      description = descZh;
     }
 
     // 提取图片
