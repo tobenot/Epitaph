@@ -52,6 +52,7 @@
 <script>
 import config from '@/config';
 import Pagination from '@/components/Pagination.vue';
+import { formatDate } from '@/utils/date';
 
 export default {
   name: 'SoundsView',
@@ -77,14 +78,7 @@ export default {
     }
   },
   methods: {
-    formatDate(date) {
-      if (!date) return '';
-      let formatted = date.year.toString();
-      if (date.month) {
-        formatted += '.' + date.month.toString().padStart(2, '0');
-      }
-      return formatted;
-    },
+    formatDate,
     toggleLyrics(soundId) {
       this.showLyrics[soundId] = !this.showLyrics[soundId];
     },

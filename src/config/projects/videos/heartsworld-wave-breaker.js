@@ -14,7 +14,7 @@ export default {
     zh: "心灵世界 tulpa 动画短片。导演/分镜：Deepseek-V4-pro，画面生成：Seedance 2.0。战斗爽！",
     en: "Heart World tulpa animated short. Directing/storyboard: Deepseek-V4-pro. Animation: Seedance 2.0. Pure action fun!"
   },
-  date: { year: 2026, month: 5 },
+  date: { year: 2026, month: 5, day: 3 },
   genres: ["OC动画", "AI动画"],
   themes: ["心灵世界", "tulpa", "战斗"],
   developerNotesKey: {

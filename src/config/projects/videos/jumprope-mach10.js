@@ -13,7 +13,7 @@ export default {
     zh: "随手做的热点视频，279.7万播放。不是我的主要方向。",
     en: "A casual trending video. 2.797M views. Not my main direction."
   },
-  date: { year: 2022, month: 2 },
+  date: { year: 2022, month: 2, day: 14 },
   genres: ["热点", "搞笑"],
   themes: ["物理", "脑洞"],
   achievements: [

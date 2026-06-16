@@ -13,7 +13,7 @@ export default {
     zh: "黑暗致郁视觉小说，已有20分钟demo。送主角进星铭世界。百合，兽耳娘，BE。",
     en: "Dark visual novel, 20-minute demo available. Sends the protagonist into the Xingming world. Yuri, animal ears, bad ending."
   },
-  date: { year: 2026, month: 3 },
+  date: { year: 2026, month: 3, day: 24 },
   genres: ["视觉小说", "黑暗致郁"],
   themes: ["百合", "虚拟亲密关系", "兽耳娘", "BE"],
   developerNotesKey: {

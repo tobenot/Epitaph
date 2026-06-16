@@ -14,7 +14,7 @@ export default {
     zh: "银月篇四年后，一位画家独自前往传说中的异能者保留地，醒来发现整个镇子的人全部消失了。AI导演工作流产出，迄今最满意的动画作品。",
     en: "Four years after the Silver Moon arc. A painter ventures to the legendary esper reservation alone — and wakes to find the entire town has vanished. Made with an AI director workflow. The most satisfying animation work to date."
   },
-  date: { year: 2025, month: 3 },
+  date: { year: 2025, month: 3, day: 23 },
   genres: ["OC动画", "预告片", "AI动画"],
   themes: ["逆模因", "异能者", "消失", "记忆", "虚无间"],
   developerNotesKey: {

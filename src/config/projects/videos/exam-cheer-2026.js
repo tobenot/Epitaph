@@ -14,7 +14,7 @@ export default {
     zh: "来自超常发挥学长和他的图帕们的一段考前陪伴。除了高考，什么大考和困难都适用。",
     en: "Pre-exam companionship from an overachieving senior and his Tupas. Works for any major exam or challenge, not just Gaokao."
   },
-  date: { year: 2026, month: 6 },
+  date: { year: 2026, month: 6, day: 6 },
   genres: ["陪伴", "励志"],
   themes: ["考前", "图帕", "方法论", "哲学"],
   developerNotesKey: {

@@ -115,6 +115,7 @@
 <script>
 import config from '@/config';
 import Pagination from '@/components/Pagination.vue';
+import { formatDate } from '@/utils/date';
 
 export default {
   name: 'GalleryView',
@@ -195,14 +196,7 @@ export default {
             }
         });
     },
-    formatDate(date) {
-      if (!date) return '';
-      let formatted = date.year.toString();
-      if (date.month) {
-        formatted += '.' + date.month.toString().padStart(2, '0');
-      }
-      return formatted;
-    },
+    formatDate,
     openLightbox(item) {
       this.lightbox.item = item;
       this.lightbox.visible = true;

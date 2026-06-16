@@ -13,7 +13,7 @@ export default {
     zh: "模型展示视频，纯可爱向。1万播放。",
     en: "A model showcase video. Pure cuteness. 10k views."
   },
-  date: { year: 2025, month: 10 },
+  date: { year: 2025, month: 10, day: 12 },
   genres: ["模型展示", "VRChat日常"],
   themes: ["可爱", "VRChat"],
   achievements: [

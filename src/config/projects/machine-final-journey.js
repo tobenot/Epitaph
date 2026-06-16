@@ -9,7 +9,7 @@ export default {
     en: "Machine's Final Journey"
   },
   bilibiliVideoId: "BV1xcXxYXEaw",
-  date: { year: 2024 },
+  date: { year: 2025, month: 3, day: 23 },
   descriptionKey: {
     zh: "以自由组装为核心机制的解谜+3D平台游戏。操作机器人收集并搭配功能各异的组件，发挥脑洞通关。7位应届生于腾讯IEG开普勒计划历时1个月开发完成，荣获Minigame银奖。",
     en: "A puzzle + 3D platformer built around free assembly. Control a robot, collect and combine components with different functions, and use your creativity to clear levels. Built in one month by 7 new graduates in Tencent IEG's Kepler Program. Won the Minigame Silver Award."

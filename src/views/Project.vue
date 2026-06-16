@@ -49,6 +49,10 @@
 
           <!-- Metadata Grid -->
           <div class="metadata-grid" v-if="hasMetadata">
+            <div class="metadata-item" v-if="project.date">
+              <span class="meta-label">{{ $t('project.metadata.date') }}:</span>
+              <span class="meta-value">{{ formatDate(project.date) }}</span>
+            </div>
             <div class="metadata-item" v-if="project.engine">
               <span class="meta-label">{{ $t('project.metadata.engine') }}:</span>
               <span class="meta-value">{{ project.engine }}</span>
@@ -68,7 +72,9 @@
           </div>
           
           <div class="tags" v-if="project.tags && project.tags.length">
-            <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+            <span class="tag" v-for="tag in project.tags" :key="tag" @click="handleTagClick(tag)" style="cursor: pointer;" :title="`查看包含 ${tag} 的项目`">
+              {{ tag }}
+            </span>
           </div>
 
           <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
@@ -131,6 +137,8 @@
 import config from '../config'
 import { useI18n } from 'vue-i18n'
 import { fetchBilibiliCover } from '@/utils/bilibili'
+import { formatDate } from '@/utils/date'
+import tagFacets from '@/config/tagFacets'
 
 export default {
   name: 'Project',
@@ -142,7 +150,8 @@ export default {
     return {
       project: null,
       bilibiliCoverUrl: null,
-      seriesCovers: {}
+      seriesCovers: {},
+      tagFacets
     }
   },
   computed: {
@@ -165,7 +174,7 @@ export default {
              this.project.longDescriptionKey[this.currentLocale].trim() !== '';
     },
     hasMetadata() {
-      return this.project && (this.project.engine || (this.project.platform && this.project.platform.length) || this.project.scale || this.project.roles);
+      return this.project && (this.project.date || this.project.engine || (this.project.platform && this.project.platform.length) || this.project.scale || this.project.roles);
     },
     projectImage() {
       if (this.project?.bilibiliVideoId) {
@@ -175,6 +184,7 @@ export default {
     }
   },
   methods: {
+    formatDate,
     async loadProject(slug) {
       this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
       this.bilibiliCoverUrl = null
@@ -200,6 +210,15 @@ export default {
         return this.seriesCovers[item.id] || item.image || null
       }
       return item.image || null
+    },
+    handleTagClick(tag) {
+      // 检查 tag 是否在 facets 中
+      const matchedFacet = this.tagFacets.find(f => f.match.some(m => tag.includes(m) || m.includes(tag)))
+      if (matchedFacet) {
+        this.$router.push({ path: '/', query: { facet: matchedFacet.id } })
+      } else {
+        this.$router.push({ path: '/', query: { tag } })
+      }
     },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
@@ -534,6 +553,13 @@ export default {
       border-radius: 20px;
       font-size: 0.8rem;
       color: var(--secondary-color);
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-2px);
+      }
     }
   }
   
