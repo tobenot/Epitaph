@@ -5,7 +5,9 @@ const projectsConfig = [];
 files.keys().forEach(key => {
   // 获取导出默认值
   const project = files(key).default || files(key);
-  projectsConfig.push(project);
+  if (!project.hidden) {
+    projectsConfig.push(project);
+  }
 });
 
 // 按自豪度 (pride) 降序排序，pride 越大越靠前
