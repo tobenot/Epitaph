@@ -19,7 +19,7 @@ export default {
     zh: "和其他人一起在 Game Jam 上做的游戏。反套路格斗游戏：比赛冠军要负责管理水獭岛（每天干不完的杂活），亚军才能永久免费居住。想办法故意输！附赠1-bit迷你游戏。",
     en: "Made with others at a Game Jam. Anti-convention fighting game: the champion has to manage Otter Island (endless chores), while the runner-up gets permanent free residency. Your goal: intentionally lose! 1-bit mini game included."
   },
-  tags: ["Game Jam", "合作", "反套路"],
+  tags: ["Game Jam"],
   longDescriptionKey: {
     zh: "",
     en: ""

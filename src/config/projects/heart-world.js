@@ -31,7 +31,6 @@ export default {
     zh: "2020年上架，第一人称砍杀，做了半年的不成熟游戏，1刀售价，销量185。中位游玩时长7分钟。全游戏流程1小时。",
     en: "Released in 2020, a first-person hack-and-slash. An immature game made in half a year, priced at $1, sold 185 copies. Median playtime 7 minutes. Full playthrough about 1 hour."
   },
-  tags: ["自由砍杀破坏", "组件化敌人"],
   longDescriptionKey: {
     zh: "",
     en: ""

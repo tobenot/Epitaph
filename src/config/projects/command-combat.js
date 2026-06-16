@@ -20,7 +20,6 @@ export default {
     zh: "两小时做的试作品。有距离系统、指令克制、搓招连击等机制，支持连续挑战3个强度不同的敌人。浏览器即玩，无需安装。",
     en: "A two-hour prototype. Features a distance system, command countering, combo inputs, and three enemies of escalating difficulty. Playable in-browser, no install needed."
   },
-  tags: ["速成", "浏览器"],
   longDescriptionKey: {
     zh: "",
     en: ""

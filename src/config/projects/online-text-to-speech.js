@@ -18,7 +18,7 @@ export default {
   themes: ["TTS"],
   engine: "Web",
   platform: ["Web"],
-  tags: ["自用工具", "微软Edge"],
+  tags: ["自用工具"],
   longDescriptionKey: {
     zh: "",
     en: ""

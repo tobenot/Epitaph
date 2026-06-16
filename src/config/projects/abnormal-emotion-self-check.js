@@ -18,7 +18,7 @@ export default {
   themes: ["情绪管理", "心理健康"],
   engine: "Web",
   platform: ["Web"],
-  tags: ["自用工具", "心理"],
+  tags: ["自用工具"],
   longDescriptionKey: {
     zh: "",
     en: ""

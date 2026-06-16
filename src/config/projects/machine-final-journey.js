@@ -24,7 +24,6 @@ export default {
     zh: "腾讯IEG开普勒计划作品，7人应届生团队，1个月完成。核心玩法是自由组装机器人组件，脑洞解谜。",
     en: "Tencent IEG Kepler Program project. 7-person new-grad team, completed in one month. Core mechanic: freely assemble robot components to solve puzzles."
   },
-  tags: ["腾讯", "应届生", "组装"],
   longDescriptionKey: {
     zh: "",
     en: ""

@@ -12,7 +12,7 @@ export default {
       sounds: "留声"
     },
     search: {
-      placeholder: "搜索作品（标题或描述）...",
+      placeholder: "搜索作品（标题、描述、标签…）",
       noResults: "没有找到匹配的作品"
     },
     footer: {
@@ -61,6 +61,7 @@ export default {
   project: {
     aboutWork: "关于此作品",
     tags: "标签",
+    filterByTag: "查看包含 {tag} 的作品",
     category: {
       all: "全部",
       vrchat: "VRChat 创作",

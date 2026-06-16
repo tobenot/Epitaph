@@ -25,7 +25,7 @@ export default {
     zh: "处女作，艺术向冥想/纪念世界。我觉得做的挺好的，但感觉留存没做好，总访问量四百次。",
     en: "Debut work, an art-oriented meditation/memorial world. I think it's well-made, but retention wasn't great. Total visits around 400."
   },
-  tags: ["VRChat", "艺术"],
+  tags: ["VRChat"],
   longDescriptionKey: {
     zh: "VRChat 处女作，艺术向冥想/纪念世界。纯白天空下，无垠的草地会看见你。走远一点，你会看到一些不该看到的东西。",
     en: "VRChat debut, an art-oriented meditation/memorial world. Under a heaven washed in white, the boundless fields will catch sight of you. Stray but a step beyond, and your eyes will fall upon what they should never have known."

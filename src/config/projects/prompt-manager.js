@@ -18,7 +18,7 @@ export default {
   themes: ["提示词", "本地存储"],
   engine: "Web",
   platform: ["Web"],
-  tags: ["自用工具", "轻量级"],
+  tags: ["自用工具"],
   longDescriptionKey: {
     zh: "",
     en: ""

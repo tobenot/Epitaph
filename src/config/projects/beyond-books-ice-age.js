@@ -21,7 +21,7 @@ export default {
     zh: "不止于纸上的故事系列新篇。末世生存恋爱为主，但感兴趣的内容都会做。世界观特色：熵减炮打破了热力学第二定律，物质自发趋向有序，冰晶废土独特世界感。",
     en: "A new arc in the Beyond Books series. Primarily apocalyptic survival romance, but open to wherever interest leads. World hook: the entropy-reduction cannon breaks the second law of thermodynamics — matter spontaneously becomes more ordered, creating a uniquely crystalline wasteland."
   },
-  tags: ["不止于纸上", "末世", "恋爱"],
+  tags: ["不止于纸上"],
   longDescriptionKey: {
     zh: "",
     en: ""

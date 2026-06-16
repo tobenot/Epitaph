@@ -22,7 +22,7 @@ export default {
     zh: "对战的弹幕互动游戏，因为觉得UE5那个水体插件很好看就做了。目前不可玩。",
     en: "A PvP bullet comment interactive game, created because I liked the UE5 water plugin. Currently not playable."
   },
-  tags: ["UE5水体插件"],
+  tags: ["UE5"],
   longDescriptionKey: {
     zh: "",
     en: ""

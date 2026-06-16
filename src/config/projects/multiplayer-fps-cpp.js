@@ -22,7 +22,7 @@ export default {
     zh: "联机FPS，用C++写了游戏逻辑。",
     en: "Multiplayer FPS with game logic written in C++."
   },
-  tags: ["C++", "FPS", "联机"],
+  tags: ["C++", "联机"],
   longDescriptionKey: {
     zh: "",
     en: ""

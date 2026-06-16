@@ -23,7 +23,7 @@ export default {
     zh: "《渲染基础》课程游戏制作作业。地形手刻，植被手刷，模型手放，交互自己写。纯C++。",
     en: "Game assignment for the Rendering Basics course. Terrain, foliage, and model placement all done manually. Interactions self-coded in pure C++."
   },
-  tags: ["C++", "课程作业", "解谜"],
+  tags: ["C++", "课程作业"],
   longDescriptionKey: {
     zh: "",
     en: ""

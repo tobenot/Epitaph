@@ -18,7 +18,7 @@ export default {
   themes: ["效率", "整理"],
   engine: "Web",
   platform: ["Web"],
-  tags: ["静态网站", "自用工具"],
+  tags: ["自用工具"],
   longDescriptionKey: {
     zh: "",
     en: ""

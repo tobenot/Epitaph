@@ -25,7 +25,7 @@ export default {
     zh: "LLM客户端网页工具，自用，小火一阵子，几百人使用过了，被朋友评价为这应该收钱我还给人免费用。",
     en: "LLM client web tool, for personal use. Got somewhat popular for a while, used by hundreds of people. Friends commented that I should charge for this instead of giving it away for free."
   },
-  tags: ["Deepseek", "LLM客户端"],
+  tags: ["LLM"],
   longDescriptionKey: {
     zh: "",
     en: ""

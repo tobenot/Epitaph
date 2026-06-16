@@ -21,7 +21,7 @@ export default {
     zh: "心灵世界系列原创动画。",
     en: "Original animation from the Heart World series."
   },
-  tags: ["OC动画", "心灵世界", "AI动画"],
+  tags: ["心灵世界", "AI动画"],
   longDescriptionKey: {
     zh: "",
     en: ""

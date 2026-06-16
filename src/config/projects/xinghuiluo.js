@@ -20,7 +20,7 @@ export default {
     zh: "黑暗致郁视觉小说，demo主要内容是送主角进星铭世界。故事主旨是不要在网上找虚拟亲密关系。录屏时HDR忘关了，待有空重录。想试玩加杂谈群。背叛书之前做的，两周只做了四话，觉得成本太高，才转去写背叛书。自豪度排在背叛书之后。",
     en: "Dark visual novel. The 20-min demo centers on sending the protagonist into the Xingming world. Core theme: don't seek virtual intimacy online. HDR was accidentally left on during recording — will re-record when time allows. Join the chat group to play the demo. Started before Book of Betrayal; switched to that after finding the VN production cost too high (only 4 episodes in 2 weeks)."
   },
-  tags: ["视觉小说", "百合", "BE", "星铭世界"],
+  tags: ["视觉小说", "星铭世界"],
   longDescriptionKey: {
     zh: "",
     en: ""

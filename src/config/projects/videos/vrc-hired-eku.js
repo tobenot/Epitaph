@@ -23,7 +23,7 @@ export default {
     zh: "Eku 模型展示，纯可爱向，没想到能有1万播放。",
     en: "Eku model showcase, pure cuteness — didn't expect 10k views."
   },
-  tags: ["VRChat", "Eku", "模型展示"],
+  tags: ["VRChat"],
   longDescriptionKey: {
     zh: "",
     en: ""

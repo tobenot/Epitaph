@@ -23,7 +23,7 @@ export default {
     zh: "《骨骼动画》课程游戏制作作业。neta了鬼泣5和FF14 5.0 CG。未使用Timeline和Sequence，动作部分为自制。纯C++。",
     en: "Game assignment for the Skeletal Animation course. References Devil May Cry 5 and FF14 5.0 CG. No Timeline or Sequence used. All action sequences self-authored in pure C++."
   },
-  tags: ["C++", "课程作业", "骨骼动画", "鬼泣5"],
+  tags: ["C++", "课程作业"],
   longDescriptionKey: {
     zh: "",
     en: ""

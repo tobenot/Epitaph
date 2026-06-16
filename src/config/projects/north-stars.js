@@ -30,7 +30,7 @@ export default {
     zh: "steam处女作（2015-2018高中时期），网络联机的英雄射击。2018年免费上架，那个时候你随便发个独立游戏都能霸占steam首页一整天。在当时的朋友间广为流传说是佳作。",
     en: "Steam debut (2015-2018 high school era), an online hero shooter. Released for free in 2018, back when any indie game could dominate the Steam front page for a whole day. Widely praised as a masterpiece among friends at the time."
   },
-  tags: ["网络联机"],
+  tags: ["联机"],
   longDescriptionKey: {
     zh: "",
     en: ""

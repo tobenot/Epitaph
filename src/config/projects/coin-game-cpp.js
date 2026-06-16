@@ -23,7 +23,7 @@ export default {
     zh: "投币小游戏，规则简单难度高。纯C++课程作业。",
     en: "Coin mini game. Simple rules, high difficulty. Pure C++ course assignment."
   },
-  tags: ["C++", "课程作业", "小游戏"],
+  tags: ["C++", "课程作业"],
   longDescriptionKey: {
     zh: "",
     en: ""

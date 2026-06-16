@@ -20,7 +20,7 @@ export default {
     zh: "全球游戏制作节合作作品，主题 Lost and Found（丢失与找回）。品质相当不错的三关解谜平台游戏。",
     en: "Global Game Jam collab, theme: Lost and Found. A surprisingly polished three-level puzzle platformer."
   },
-  tags: ["Game Jam", "合作", "3D", "GGJ 2021"],
+  tags: ["Game Jam"],
   longDescriptionKey: {
     zh: "",
     en: ""

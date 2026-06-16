@@ -79,9 +79,9 @@
                 class="facet-button"
                 :class="{ active: activeFacetId === facet.id }"
                 @click="handleFacetClick(facet.id)"
-                v-show="getFacetCount(facet.id) > 0"
+                v-show="facetCounts[facet.id] > 0"
               >
-                {{ facet.label }} <span class="count">({{ getFacetCount(facet.id) }})</span>
+                {{ facet.label }} <span class="count">({{ facetCounts[facet.id] }})</span>
               </button>
             </div>
           </div>
@@ -144,9 +144,14 @@
                     </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="card-tags" v-if="item.tags && item.tags.length">
-                    <span v-for="tag in item.tags.slice(0, 3)" :key="tag" class="small-tag">{{ tag }}</span>
-                    <span v-if="item.tags.length > 3" class="small-tag more-tag">...</span>
+                  <div class="card-tags" v-if="getDisplayTags(item).length">
+                    <span
+                      v-for="tag in getDisplayTags(item)"
+                      :key="tag"
+                      class="small-tag clickable"
+                      @click.stop="handleCardTagClick(tag)"
+                    >{{ tag }}</span>
+                    <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
                   </div>
                   <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
@@ -240,9 +245,14 @@
                     </div>
                   </div>
                   <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
-                  <div class="card-tags" v-if="item.tags && item.tags.length">
-                    <span v-for="tag in item.tags.slice(0, 3)" :key="tag" class="small-tag">{{ tag }}</span>
-                    <span v-if="item.tags.length > 3" class="small-tag more-tag">...</span>
+                  <div class="card-tags" v-if="getDisplayTags(item).length">
+                    <span
+                      v-for="tag in getDisplayTags(item)"
+                      :key="tag"
+                      class="small-tag clickable"
+                      @click.stop="handleCardTagClick(tag)"
+                    >{{ tag }}</span>
+                    <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
                   </div>
                   <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
                 </div>
@@ -273,6 +283,12 @@ import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
 import { fetchBilibiliCover } from '@/utils/bilibili'
 import { formatDate, compareDateDesc } from '@/utils/date'
+import {
+  buildFacetCounts,
+  prioritizeTagsForDisplay,
+  projectMatchesFacet,
+  resolveTagFilter
+} from '@/utils/tagFacets'
 
 export default {
   name: 'Home',
@@ -323,10 +339,7 @@ export default {
       if (this.activeFacetId) {
         const facet = this.tagFacets.find(f => f.id === this.activeFacetId);
         if (facet) {
-          filtered = filtered.filter(p => {
-            if (!p.tags) return false;
-            return p.tags.some(tag => facet.match.some(m => tag.includes(m) || m.includes(tag)));
-          });
+          filtered = filtered.filter(p => projectMatchesFacet(p, facet));
         }
       }
 
@@ -396,6 +409,9 @@ export default {
         result.push(this.paginatedProjects[i])
       }
       return result
+    },
+    facetCounts() {
+      return buildFacetCounts(this.projects, this.tagFacets)
     }
   },
   watch: {
@@ -439,13 +455,17 @@ export default {
     }
   },
   methods: {
-    getFacetCount(facetId) {
-      const facet = this.tagFacets.find(f => f.id === facetId);
-      if (!facet) return 0;
-      return this.projects.filter(p => {
-        if (!p.tags) return false;
-        return p.tags.some(tag => facet.match.some(m => tag.includes(m) || m.includes(tag)));
-      }).length;
+    getDisplayTags(project) {
+      return prioritizeTagsForDisplay(project, this.tagFacets, this.activeFacetId)
+    },
+    handleCardTagClick(tag) {
+      const filter = resolveTagFilter(tag, this.tagFacets)
+      if (filter.type === 'facet') {
+        this.$router.push({ path: '/', query: { facet: filter.id } })
+      } else {
+        this.$router.push({ path: '/', query: { tag: filter.value } })
+      }
+      this.currentPage = 1
     },
     clearFilters() {
       this.searchTerm = '';
@@ -1053,10 +1073,21 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100px;
+
+    &.clickable {
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        background: rgba(var(--accent-color-rgb), 0.15);
+        color: var(--primary-color);
+      }
+    }
     
     &.more-tag {
       background: transparent;
       padding: 0.1rem 0.2rem;
+      cursor: default;
     }
   }
 }

@@ -12,7 +12,7 @@ export default {
       sounds: "Sounds"
     },
     search: {
-      placeholder: "Search works (title or description)...",
+      placeholder: "Search works (title, description, tags…)",
       noResults: "No matching works found"
     },
     footer: {
@@ -61,6 +61,7 @@ export default {
   project: {
     aboutWork: "About This Work",
     tags: "Tags",
+    filterByTag: "View works tagged with {tag}",
     category: {
       all: "All",
       vrchat: "VRChat Creations",

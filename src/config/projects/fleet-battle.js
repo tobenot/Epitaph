@@ -27,7 +27,7 @@ export default {
     zh: "战舰召唤弹幕互动战斗游戏，直播收入流水总共6k，七个人上舰。带来了大量玩家，以及50多个粉丝群群友，大家每日讨论游戏机制。弹幕互动品类降温后下架。当时品类红利期，头部弹幕互动游戏日流水可达3万，不少低完成度作品也能获得可观收入。本作是一次随品类热度的变现尝试，也带来了流量和大量玩家。品类冷却后，转向毕业设计、AI相关开发与网页开发。",
     en: "Battleship summoning interactive game. Brought in many players and 50+ fan group members who discussed mechanics daily. Taken down after the genre cooled off. During the genre boom, top titles could earn tens of thousands RMB per day, and even low-polish works saw strong revenue. This was an attempt to monetize during that window, which brought traffic and players. After the genre cooled, I moved on to my graduation project, AI development, and web dev."
   },
-  tags: ["弹幕互动", "恰饭尝试"],
+  tags: ["弹幕互动"],
   longDescriptionKey: {
     zh: "",
     en: ""

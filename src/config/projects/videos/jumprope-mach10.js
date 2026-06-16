@@ -23,7 +23,6 @@ export default {
     zh: "随手做的热点视频，不是我的主要方向。",
     en: "Casual trending video, not my main direction."
   },
-  tags: ["热点", "随手"],
   longDescriptionKey: {
     zh: "",
     en: ""

@@ -24,7 +24,7 @@ export default {
     zh: "已发布于同名B站专栏。可在下方链接阅读。",
     en: "Published in the Bilibili column of the same name. Can be read via the link below."
   },
-  tags: ["小说", "短篇"],
+  tags: ["小说"],
   longDescriptionKey: {
     zh: "",
     en: ""

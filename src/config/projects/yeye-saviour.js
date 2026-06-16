@@ -21,7 +21,7 @@ export default {
     zh: "GGJ 2019 深圳站合作作品，主题 Lost and Found。有独特的痴呆症机制：氧气耗尽时城市地图会扭曲变形，让人很难找到回家的路。随进度推进，体力更强的年轻家庭成员会接替爷爷出门探索。",
     en: "GGJ 2019 Shenzhen collab, theme: Lost and Found. Features a unique dementia mechanic — deplete your oxygen and the city map warps, making it hard to find your way home. As you progress, a younger family member takes over with greater range."
   },
-  tags: ["Game Jam", "合作", "GGJ 2019", "Android"],
+  tags: ["Game Jam"],
   longDescriptionKey: {
     zh: "",
     en: ""

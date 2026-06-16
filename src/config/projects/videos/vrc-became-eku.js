@@ -20,7 +20,7 @@ export default {
     zh: "Eku二创鬼畜，neta奥本海默，真的很无厘头和搞笑。",
     en: "Eku fan edit parody referencing Oppenheimer. Genuinely absurd and hilarious."
   },
-  tags: ["VRChat", "Eku", "鬼畜", "二创"],
+  tags: ["VRChat"],
   longDescriptionKey: {
     zh: "",
     en: ""

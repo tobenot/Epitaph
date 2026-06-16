@@ -19,7 +19,7 @@ export default {
   themes: ["LLM集成"],
   engine: "虚幻引擎 5",
   platform: ["PC"],
-  tags: ["UE5", "开源插件"],
+  tags: ["UE5", "开源"],
   longDescriptionKey: {
     zh: "",
     en: ""

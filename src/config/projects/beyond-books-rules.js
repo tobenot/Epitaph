@@ -25,7 +25,7 @@ export default {
     zh: "原文处于封存状态，将在同名公众号逐章发布。AI动画化已经暂停，已有的两集可在下方链接观看。",
     en: "The original text is sealed and will be published chapter by chapter on the WeChat Official Account. AI animation is paused, existing episodes can be watched via the link below."
   },
-  tags: ["小说", "AI动画", "世界观核心"],
+  tags: ["小说", "AI动画"],
   longDescriptionKey: {
     zh: "",
     en: ""

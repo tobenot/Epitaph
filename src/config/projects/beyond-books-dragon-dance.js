@@ -25,7 +25,7 @@ export default {
     zh: "小说的读者都是个位数。发布在微信公众号，个人博客。这是主要的世界观核心作品。",
     en: "The novel has single-digit readers. Published on WeChat Official Account and personal blog. This is a core worldview work."
   },
-  tags: ["小说", "世界观核心"],
+  tags: ["小说"],
   longDescriptionKey: {
     zh: "",
     en: ""

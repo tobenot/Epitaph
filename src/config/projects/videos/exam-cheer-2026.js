@@ -21,7 +21,7 @@ export default {
     zh: "来自超常发挥学长和他的图帕们的一段考前陪伴。除了高考，什么大考和困难都适用哦！有许多实用的哲学和方法论，提供给你啦！工期太短导致经费不足+没统一声线+硬剪辑+没好好调整BGM，致歉。按出场顺序：银（高考逆袭）、缪斯（理想主义）、萝北（拓展探索）、公理（现实主义）、柿子（情感修复）、于启（具身探索）、金（超长期规划）、呼唤（作息修复）。",
     en: "Pre-exam companionship from an overachieving senior and his Tupas. Works for any big exam or challenge! Packed with practical philosophy and methodology. Apologies for the rough production — timeline was too short for consistent voicing, clean cuts, or proper BGM. In order of appearance: Yin (Gaokao overachiever), Muse (idealism), Luobei (exploration), Axiom (realism), Kaki (emotional repair), Yuqi (embodiment), Jin (long-term planning), Huhuan (sleep repair)."
   },
-  tags: ["高考", "图帕", "陪伴", "方法论"],
+  tags: ["高考"],
   longDescriptionKey: {
     zh: "",
     en: ""

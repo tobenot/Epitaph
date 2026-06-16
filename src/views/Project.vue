@@ -72,9 +72,13 @@
           </div>
           
           <div class="tags" v-if="project.tags && project.tags.length">
-            <span class="tag" v-for="tag in project.tags" :key="tag" @click="handleTagClick(tag)" style="cursor: pointer;" :title="`查看包含 ${tag} 的项目`">
-              {{ tag }}
-            </span>
+            <span
+              class="tag"
+              v-for="tag in project.tags"
+              :key="tag"
+              @click="handleTagClick(tag)"
+              :title="$t('project.filterByTag', { tag })"
+            >{{ tag }}</span>
           </div>
 
           <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
@@ -139,6 +143,7 @@ import { useI18n } from 'vue-i18n'
 import { fetchBilibiliCover } from '@/utils/bilibili'
 import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
+import { resolveTagFilter } from '@/utils/tagFacets'
 
 export default {
   name: 'Project',
@@ -212,12 +217,11 @@ export default {
       return item.image || null
     },
     handleTagClick(tag) {
-      // 检查 tag 是否在 facets 中
-      const matchedFacet = this.tagFacets.find(f => f.match.some(m => tag.includes(m) || m.includes(tag)))
-      if (matchedFacet) {
-        this.$router.push({ path: '/', query: { facet: matchedFacet.id } })
+      const filter = resolveTagFilter(tag, this.tagFacets)
+      if (filter.type === 'facet') {
+        this.$router.push({ path: '/', query: { facet: filter.id } })
       } else {
-        this.$router.push({ path: '/', query: { tag } })
+        this.$router.push({ path: '/', query: { tag: filter.value } })
       }
     },
     getLinkIcon(type) {
@@ -553,6 +557,7 @@ export default {
       border-radius: 20px;
       font-size: 0.8rem;
       color: var(--secondary-color);
+      cursor: pointer;
       transition: all 0.2s ease;
       
       &:hover {

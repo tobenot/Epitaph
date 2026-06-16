@@ -21,7 +21,7 @@ export default {
     zh: "高考完后到出分前全部投入志愿填报的亲身经验，能帮一个是一个！",
     en: "Personal experience from diving into application prep right after the exam. Hoping to help as many people as possible."
   },
-  tags: ["高考", "志愿填报", "实用"],
+  tags: ["高考"],
   longDescriptionKey: {
     zh: "",
     en: ""

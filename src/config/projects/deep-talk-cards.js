@@ -31,7 +31,7 @@ export default {
     zh: "偶然之作，原本是给一对情侣朋友的生日礼物。纯真心话卡牌社交世界，支持多语言（EN、日语、韩语、简繁中文）Quest兼容。目前依然火热，日活四五百。虽然无人反馈，但不认识的人看见我也知道我是 Deep Talk Cards 的作者。",
     en: "An accidental creation, originally a birthday gift for a couple. A pure deep-talk card social world supporting multiple languages and Quest. Still popular with 400-500 DAU. Even strangers recognize me as the author of Deep Talk Cards."
   },
-  tags: ["VRChat", "社交", "卡牌"],
+  tags: ["VRChat"],
   longDescriptionKey: {
     zh: "［EN · 日本語 · 한국어 · 简繁中文］真心话不冒险。话题分为四类卡片：闲聊、过往、思辨、亲密。适合想找到共鸣的朋友、凭空起不来话题的 i 人、想增进感情的情侣。共 806 个问题，非中文语系为 AI 翻译。",
     en: "［EN · 日本語 · 한국어 · 简繁中文］All the deep talk, none of the dares. Four decks: Ice-breakers, Stories, Perspectives, and Intimacy. For friends seeking real connection, introverts who need a spark, and couples looking to grow closer. 806 questions total. Non-Chinese languages translated by AI."
