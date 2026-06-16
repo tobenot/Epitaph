@@ -4,6 +4,7 @@ export default {
   slug: "civilization-epic",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "文明史诗",
     en: "Civilization Epic"

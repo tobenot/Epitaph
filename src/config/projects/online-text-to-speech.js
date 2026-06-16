@@ -4,6 +4,7 @@ export default {
   slug: "online-text-to-speech",
   category: "tool",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "在线语音合成",
     en: "Online Text-to-Speech"

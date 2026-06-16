@@ -4,6 +4,7 @@ export default {
   slug: "rigged-champion",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "假赛拳王",
     en: "Rigged Champion"

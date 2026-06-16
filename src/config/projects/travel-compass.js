@@ -4,6 +4,7 @@ export default {
   slug: "travel-compass",
   category: "tool",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "旅路罗盘",
     en: "Travel Compass"

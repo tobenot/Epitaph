@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: "ai",
   status: "development",
+  experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事",
     en: "Beyond Books"

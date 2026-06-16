@@ -4,6 +4,7 @@ export default {
   slug: "bedtime-stories-with-ai",
   category: "tool",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "与AI的睡前故事",
     en: "Bedtime Stories with AI"

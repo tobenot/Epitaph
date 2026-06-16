@@ -4,6 +4,7 @@ export default {
   slug: "aftergrass",
   category: "vrchat",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "Aftergrass 残响草地",
     en: "Aftergrass"

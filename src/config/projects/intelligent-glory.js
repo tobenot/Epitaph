@@ -4,6 +4,7 @@ export default {
   slug: "intelligent-glory",
   category: "game",
   status: "archived",
+  experienceable: false,
   titleKey: {
     zh: "智能荣光",
     en: "Intelligent Glory"

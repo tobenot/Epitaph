@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: "novel",
   status: "concept",
+  experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事：舞龙篇",
     en: "Beyond Books: Dragon Dance"

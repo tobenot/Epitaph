@@ -6,6 +6,7 @@ export default {
   category: ["game", "novel"],
   status: "released",
   completeness: "high",
+  experienceable: true,
   titleKey: {
     zh: "星辉落：爱无归处",
     en: "Starfall: Love Unmoored"

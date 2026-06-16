@@ -4,6 +4,7 @@ export default {
   slug: "fleet-battle",
   category: "game",
   status: "archived",
+  experienceable: false,
   titleKey: {
     zh: "舰队激斗",
     en: "Fleet Battle"

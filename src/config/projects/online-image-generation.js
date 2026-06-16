@@ -3,7 +3,8 @@ export default {
 	pride: 12,
 	slug: "online-image-generation",
 	category: "tool",
-	status: "released",
+  status: "released",
+  experienceable: true,
 	titleKey: {
 		zh: "在线图片生成",
 		en: "Online Image Generation"

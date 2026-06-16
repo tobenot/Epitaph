@@ -4,6 +4,7 @@ export default {
   slug: "abnormal-emotion-self-check",
   category: "tool",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "异常情绪自检SOP",
     en: "Abnormal Emotion Self-Check SOP"

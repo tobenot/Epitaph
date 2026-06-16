@@ -5,6 +5,7 @@ export default {
   series: "starfall",
   category: ["novel", "vrchat"],
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "背叛书·上",
     en: "Book of Betrayals Pt.1"

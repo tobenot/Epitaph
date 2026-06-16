@@ -4,6 +4,7 @@ export default {
   slug: "brilliant-stars",
   category: "game",
   status: "archived",
+  experienceable: false,
   titleKey: {
     zh: "璀璨群星",
     en: "Brilliant Stars"

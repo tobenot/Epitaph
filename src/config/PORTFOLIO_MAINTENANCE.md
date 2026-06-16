@@ -119,12 +119,46 @@ completeness: "low"
 // → 进行中
 ```
 
+### 做完但暂不可体验（璀璨群星）
+
+```javascript
+status: "archived",
+experienceable: false
+// → 完成度高，无「可体验」角标
+```
+
+### 开发中但可体验（不止于纸上跑团）
+
+```javascript
+status: "development",
+experienceable: true
+// → 进行中，有「可体验」角标
+```
+
 ---
 
 ## 6. 与详情页、卡片样式的关系
 
-- 角标「可体验」、卡片高亮边框：由 `isHighCompleteness()` 决定，规则与「完成度高」筛选相同。
-- 详情页 `status` 徽章：仍显示 config 里的原始 `status` 文案（已归档、开发中等），与筛选分类独立。
+三个维度彼此独立：
+
+| 维度 | 字段 / 函数 | 作用 |
+|------|-------------|------|
+| 完成度高筛选 | `isHighCompleteness()` | 首页「完成度高」按钮、卡片 accent 左边框 |
+| 可体验角标 | `experienceable` + `isExperienceable()` | 角标「可体验」，与完成度无关 |
+| 习作装帧 | `portfolioKind: "study"` | 褐灰色左边框、浅底色、页脚「习作」 |
+
+- **完成度高 ≠ 可体验**。例：璀璨群星做完但入口失效 → `experienceable: false`；不止于纸上跑团仍在开发 → `experienceable: true`。
+- **可体验**须手写 `experienceable: true`；不写则默认无角标。明确不可体验时写 `experienceable: false`（详情页会显示「暂不可体验」）。
+- 习作卡片不用 accent 色条，改用褐灰装帧，与完成作品区分。
+- 详情页 metadata：写了 `experienceable` 时显示体验入口；`status` 仍显示原始状态文案。
+
+### `experienceable`（可选）
+
+| 值 | 效果 |
+|----|------|
+| `true` | 卡片角标「可体验」 |
+| `false` | 无角标；详情页显示「暂不可体验」 |
+| 不写 | 无角标；详情页不显示体验入口行 |
 
 ---
 
@@ -133,7 +167,8 @@ completeness: "low"
 1. 写 `status`（必填，详情页展示用）
 2. 课程作业 → 加 `portfolioKind: "study"`
 3. status 和实际完成度不一致 → 加 `completeness`
-4. 打开首页，切换三个按钮，确认归类符合预期
+4. 有可用体验入口 → 加 `experienceable: true`；做完但入口失效 → `experienceable: false`
+5. 打开首页，切换三个按钮，确认归类符合预期
 
 ---
 
@@ -141,8 +176,8 @@ completeness: "low"
 
 | 文件 | 作用 |
 |------|------|
-| `src/utils/portfolio.js` | 归类逻辑 |
-| `src/views/Home.vue` | 三个按钮 UI、列表过滤 |
+| `src/utils/portfolio.js` | 归类逻辑、`isExperienceable()` |
+| `src/views/Home.vue` | 三个按钮 UI、列表过滤、角标 |
 | `src/i18n/locales/zh.js` | 按钮文案（`common.filter.portfolioKinds`） |
 
 改规则只动 `portfolio.js`；改按钮文字只动 i18n。

@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: ["game", "ai"],
   status: "development",
+  experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事：冰河篇",
     en: "Beyond Books: Ice Age"

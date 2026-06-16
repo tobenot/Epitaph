@@ -4,6 +4,7 @@ export default {
   slug: "dream-wanderer",
   category: "game",
   status: "archived",
+  experienceable: true,
   titleKey: {
     zh: "梦境漫游者",
     en: "Dream Wanderer"

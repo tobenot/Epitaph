@@ -4,6 +4,7 @@ export default {
   slug: "deep-talk-cards",
   category: "vrchat",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "Deep Talk Cards 话题世界",
     en: "Deep Talk Cards"

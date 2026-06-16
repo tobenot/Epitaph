@@ -4,6 +4,7 @@ export default {
   slug: "command-combat",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "指令对决",
     en: "Command Combat"

@@ -4,6 +4,7 @@ export default {
   slug: "papa-johns-revenge",
   category: "game",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "骸骨船长的复仇",
     en: "Papa John's Revenge"

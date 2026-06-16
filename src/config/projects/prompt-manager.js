@@ -4,6 +4,7 @@ export default {
   slug: "prompt-manager",
   category: "tool",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "提示词管理器",
     en: "Prompt Manager"
