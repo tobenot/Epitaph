@@ -1,6 +1,6 @@
 export default {
   id: 11,
-  pride: 94,
+  pride: 93,
   slug: "beyond-books-rules",
   series: "beyond-books",
   category: "novel",

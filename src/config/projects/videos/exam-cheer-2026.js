@@ -3,7 +3,7 @@ export default {
   pride: 60,
   slug: "exam-cheer-2026",
   series: "gaokao",
-  category: "video",
+  category: ["video", "blog"],
   status: "released",
   experienceable: true,
   titleKey: {

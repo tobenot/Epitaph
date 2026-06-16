@@ -1,6 +1,6 @@
 export default {
   id: 12,
-  pride: 100,
+  pride: 99,
   slug: "beyond-books",
   series: "beyond-books",
   category: "ai",

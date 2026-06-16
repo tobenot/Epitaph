@@ -1,6 +1,6 @@
 export default {
   id: "multiplayer-fps-cpp",
-  pride: 55,
+  pride: 43,
   slug: "multiplayer-fps-cpp",
   category: "game",
   status: "released",

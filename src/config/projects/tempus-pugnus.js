@@ -1,6 +1,6 @@
 export default {
   id: 21,
-  pride: 30,
+  pride: 54,
   slug: "tempus-pugnus",
   category: "tool",
   status: "released",

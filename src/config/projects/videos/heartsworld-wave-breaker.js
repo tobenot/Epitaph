@@ -1,9 +1,9 @@
 export default {
   id: "heartsworld-wave-breaker",
-  pride: 58,
+  pride: 57,
   slug: "heartsworld-wave-breaker",
   series: "heartsworld",
-  category: "video",
+  category: ["video", "blog"],
   status: "released",
   experienceable: true,
   titleKey: {

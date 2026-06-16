@@ -1,6 +1,6 @@
 export default {
 	id: 24,
-	pride: 12,
+	pride: 79,
 	slug: "online-image-generation",
 	category: "tool",
   status: "released",

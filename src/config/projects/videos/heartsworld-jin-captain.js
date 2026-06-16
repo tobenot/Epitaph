@@ -3,7 +3,7 @@ export default {
   pride: 52,
   slug: "heartsworld-jin-captain",
   series: "heartsworld",
-  category: "video",
+  category: ["video", "blog"],
   status: "released",
   experienceable: true,
   titleKey: {

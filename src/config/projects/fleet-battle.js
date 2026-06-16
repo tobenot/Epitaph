@@ -1,6 +1,6 @@
 export default {
   id: 9,
-  pride: 40,
+  pride: 69,
   slug: "fleet-battle",
   category: "game",
   status: "archived",
