@@ -30,6 +30,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://www.bilibili.com/video/BV1xPFNe1E8T/", textKey: { zh: "B站观看动画", en: "Watch Animation on Bilibili" } }
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1xPFNe1E8T/", textKey: { zh: "动画 Ep1《作者世界》", en: "Animation Ep1: Author's World" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1pdAUe6Enb/", textKey: { zh: "动画 Ep2《时光机事故》", en: "Animation Ep2: Time Machine Accident" } }
   ]
 };
