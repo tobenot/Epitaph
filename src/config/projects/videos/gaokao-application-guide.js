@@ -5,6 +5,7 @@ export default {
   series: "gaokao",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "三分钟教会你填志愿【所有分段】",
     en: "How to Fill Gaokao Application in 3 Minutes [All Segments]"

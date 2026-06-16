@@ -5,6 +5,7 @@ export default {
   series: "heartsworld",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【心灵世界/tulpa小故事】破浪者",
     en: "[Heart World/Tulpa] Wave Breaker"

@@ -167,8 +167,9 @@ experienceable: true
 1. 写 `status`（必填，详情页展示用）
 2. 课程作业 → 加 `portfolioKind: "study"`
 3. status 和实际完成度不一致 → 加 `completeness`
-4. 有可用体验入口 → 加 `experienceable: true`；做完但入口失效 → `experienceable: false`
-5. 打开首页，切换三个按钮，确认归类符合预期
+4. 有可用体验入口（游玩 / 阅读 / 观看等）→ 加 `experienceable: true`；做完但入口失效 → `experienceable: false`
+5. 演示 PV、无实际入口的习作等 → 不写，保持无注脚
+6. 打开首页，切换三个按钮，确认归类符合预期
 
 ---
 
@@ -177,7 +178,7 @@ experienceable: true
 | 文件 | 作用 |
 |------|------|
 | `src/utils/portfolio.js` | 归类逻辑、`isExperienceable()` |
-| `src/views/Home.vue` | 三个按钮 UI、列表过滤、角标 |
+| `src/views/Home.vue` | 三个按钮 UI、列表过滤、页脚注脚 |
 | `src/i18n/locales/zh.js` | 按钮文案（`common.filter.portfolioKinds`） |
 
 改规则只动 `portfolio.js`；改按钮文字只动 i18n。

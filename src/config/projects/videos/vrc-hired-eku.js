@@ -4,6 +4,7 @@ export default {
   slug: "vrc-hired-eku",
   category: ["video", "vrchat"],
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【VRChat】我雇了一只Eku来盯着你",
     en: "[VRChat] I Hired an Eku to Watch You"

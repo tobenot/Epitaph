@@ -4,6 +4,7 @@ export default {
   slug: "jumprope-mach10",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "跳绳，但速度是10马赫",
     en: "Jump Rope at Mach 10"

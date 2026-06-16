@@ -5,6 +5,7 @@ export default {
   series: "gaokao",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "从二本到全省1200名，我高三一年的逆袭故事",
     en: "From Tier-2 to Top 1200 in the Province — My Senior Year Comeback"

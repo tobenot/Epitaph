@@ -5,6 +5,7 @@ export default {
   series: "beyond-books",
   category: ["video", "novel"],
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【OC动画】不止于纸上的故事：童年篇 预告",
     en: "[OC Animation] Beyond Books: Childhood Arc — Trailer"

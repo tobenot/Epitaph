@@ -4,6 +4,7 @@ export default {
   slug: "vrc-became-eku",
   category: ["video", "vrchat"],
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【VRChat】现在我成了Eku，免费鸡蛋的毁灭者",
     en: "[VRChat] Now I Am Eku, Destroyer of Free Eggs"

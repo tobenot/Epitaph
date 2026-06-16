@@ -5,6 +5,7 @@ export default {
   series: "gaokao",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【大考加油】来自超常发挥学长和他的图帕们的考前陪伴",
     en: "[Exam Cheer] Pre-Exam Companionship from an Overachieving Senior and His Tupas"

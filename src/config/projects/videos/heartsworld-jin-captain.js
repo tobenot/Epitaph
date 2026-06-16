@@ -5,6 +5,7 @@ export default {
   series: "heartsworld",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "【OC动画】心灵世界故事：金船长之死",
     en: "[OC Animation] Heart World Story: Death of Captain Jin"

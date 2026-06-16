@@ -5,6 +5,7 @@ export default {
   series: "gaokao",
   category: "video",
   status: "released",
+  experienceable: true,
   titleKey: {
     zh: "高考后日谈：16个人生终极拷问",
     en: "Post-Gaokao Talks: 16 Ultimate Life Questions"
