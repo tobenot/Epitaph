@@ -1,13 +1,13 @@
 export default {
-  id: "dream-wanderer",
+  id: "dreamwalkers",
   pride: 62,
-  slug: "dream-wanderer",
+  slug: "dreamwalkers",
   category: "game",
   status: "archived",
   experienceable: true,
   titleKey: {
     zh: "梦境漫游者",
-    en: "Dream Wanderer"
+    en: "Dreamwalkers"
   },
   image: "https://img.itch.zone/aW1nLzIzNDc4MTM0LnBuZw==/315x250%23c/d3qKyA.png",
   descriptionKey: {
