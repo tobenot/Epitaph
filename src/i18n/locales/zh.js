@@ -36,8 +36,12 @@ export default {
       page: "还有呢！"
     },
     filter: {
-      showStudy: "习作",
-      onlyComplete: "只看完整",
+      portfolioKind: "作品类型",
+      portfolioKinds: {
+        complete: "完成度高",
+        study: "习作",
+        ongoing: "进行中"
+      },
       byTechnology: "技术栈",
       activeTag: "当前筛选",
       activeCategory: "分类",

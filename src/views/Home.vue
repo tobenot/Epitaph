@@ -113,29 +113,29 @@
             class="sort-button">
             {{ $t('common.sort.byDate') }}
           </button>
+        </div>
+
+        <div class="sort-controls portfolio-kind-controls">
+          <span class="sort-title">{{ $t('common.filter.portfolioKind') }}:</span>
           <button
-            @click="onlyComplete = !onlyComplete"
-            :class="{ active: onlyComplete }"
-            class="sort-button study-toggle">
-            {{ $t('common.filter.onlyComplete') }}
-          </button>
-          <button
-            @click="showStudy = !showStudy"
-            :class="{ active: showStudy }"
-            class="sort-button study-toggle">
-            {{ $t('common.filter.showStudy') }}
+            v-for="kind in portfolioFilterKinds"
+            :key="kind"
+            @click="togglePortfolioKind(kind)"
+            :class="{ active: activePortfolioKinds.includes(kind) }"
+            class="sort-button">
+            {{ $t(`common.filter.portfolioKinds.${kind}`) }}
           </button>
         </div>
 
-        <div class="experience-grid">
+        <div class="experience-grid" ref="experienceGrid">
           <template v-for="item in displayProjects" :key="item.id">
             <div v-if="item.isDivider" class="date-divider-row">
               <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
             </div>
             <div v-else
-                 :class="['experience-card', { 'is-complete': isComplete(item), 'is-incomplete': !isComplete(item) }]"
+                 :class="['experience-card', { 'is-complete': isHighCompleteness(item), 'is-incomplete': !isHighCompleteness(item) }]"
                  @click="openProjectDetails(item.slug)">
-              <div class="corner-ribbon" v-if="isComplete(item)">{{ $t('project.statusBadge.complete') }}</div>
+              <div class="corner-ribbon" v-if="isHighCompleteness(item)">{{ $t('project.statusBadge.complete') }}</div>
               <div class="card-image" v-if="getProjectImage(item)">
                 <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
@@ -145,7 +145,7 @@
                   <h3>{{ item.titleKey[currentLocale] }}</h3>
                   <div class="card-badges">
                     <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                    <span v-if="!isComplete(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
+                      <span v-if="!isHighCompleteness(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
                   </div>
                 </div>
                 <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
@@ -209,6 +209,11 @@ import {
   parseHomeQuery,
   projectMatchesCategory
 } from '@/utils/homeFilters'
+import {
+  getPortfolioFilterKind,
+  isHighCompleteness,
+  PORTFOLIO_FILTER_KINDS
+} from '@/utils/portfolio'
 
 export default {
   name: 'Home',
@@ -230,8 +235,8 @@ export default {
       categories: ['all', 'vrchat', 'novel', 'ai', 'game', 'tool', 'video', 'blog'],
       searchTerm: '',
       sortBy: 'pride',
-      showStudy: false,
-      onlyComplete: true,
+      portfolioFilterKinds: PORTFOLIO_FILTER_KINDS,
+      activePortfolioKinds: ['complete'],
       currentPage: 1,
       itemsPerPage: 15,
       savedScrollY: 0,
@@ -290,12 +295,8 @@ export default {
         });
       }
 
-      if (!this.showStudy) {
-        filtered = filtered.filter(p => p.portfolioKind !== 'study');
-      }
-
-      if (this.onlyComplete) {
-        filtered = filtered.filter(p => this.isComplete(p));
+      if (this.activePortfolioKinds.length) {
+        filtered = filtered.filter(p => this.activePortfolioKinds.includes(getPortfolioFilterKind(p)))
       }
 
       if (this.sortBy === 'pride') {
@@ -373,10 +374,7 @@ export default {
     sortBy() {
       this.currentPage = 1;
     },
-    showStudy() {
-      this.currentPage = 1;
-    },
-    onlyComplete() {
+    activePortfolioKinds() {
       this.currentPage = 1;
     },
     '$route.query': {
@@ -447,23 +445,30 @@ export default {
       this.navigateHome({ category: 'all', facet: null, tag: null, q: '' })
       this.currentPage = 1
     },
+    togglePortfolioKind(kind) {
+      if (this.activePortfolioKinds.includes(kind)) {
+        if (this.activePortfolioKinds.length === 1) return
+        this.activePortfolioKinds = this.activePortfolioKinds.filter(k => k !== kind)
+      } else {
+        this.activePortfolioKinds = [...this.activePortfolioKinds, kind]
+      }
+      this.currentPage = 1
+    },
     handleFacetClick(facetId) {
       const nextFacet = this.activeFacetId === facetId ? null : facetId
       this.navigateHome({ facet: nextFacet, tag: null })
       this.currentPage = 1
     },
-    isComplete(project) {
-      if (project.completeness === 'partial') return false;
-      if (project.completeness === 'complete') return true;
-      return project.status === 'released';
-    },
+    isHighCompleteness,
     formatDate,
     openProjectDetails(slug) {
       this.$router.push({ name: 'Project', params: { slug: slug } })
     },
     handlePageChange(page) {
       this.currentPage = page;
-      window.scrollTo(0, 0);
+      this.$nextTick(() => {
+        this.$refs.experienceGrid?.scrollIntoView({ block: 'start' });
+      });
     },
     getProjectImage(project) {
       if (project.bilibiliVideoId) {
@@ -827,6 +832,12 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  &.portfolio-kind-controls {
+    margin-top: -1.5rem;
+  }
   
   .sort-title {
     font-family: 'Lora', serif;

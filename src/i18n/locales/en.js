@@ -36,8 +36,12 @@ export default {
       page: "There's more!"
     },
     filter: {
-      showStudy: "Study",
-      onlyComplete: "Complete Only",
+      portfolioKind: "Work Type",
+      portfolioKinds: {
+        complete: "High Completeness",
+        study: "Study",
+        ongoing: "In Progress"
+      },
       byTechnology: "Tech Stack",
       activeTag: "Active Filters",
       activeCategory: "Category",
