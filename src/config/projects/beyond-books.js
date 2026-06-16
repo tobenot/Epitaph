@@ -9,7 +9,7 @@ export default {
     zh: "不止于纸上的故事",
     en: "Beyond Books"
   },
-  image: "https://img.itch.zone/aW1nLzE5MTA3NzA3LnBuZw==/original/ZfJpCb.png",
+  image: "https://img.itch.zone/aW1nLzE5MTA3NzA3LnBuZw==/315x250%23c/ZfJpCb.png",
   descriptionKey: {
     zh: "原创小说系列。网页端以跑团形式呈现互动叙事，银月篇可游玩。",
     en: "Original novel series. The web edition presents interactive stories through a tabletop-RPG format; the Silver Moon arc is playable."

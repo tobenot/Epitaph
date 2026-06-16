@@ -8,7 +8,7 @@ export default {
     zh: "骸骨船长的复仇",
     en: "Papa John's Revenge"
   },
-  image: "https://img.itch.zone/aW1nLzUxMTA2MDkuanBn/original/jyaoNZ.jpg",
+  image: "https://img.itch.zone/aW1nLzUxMTA2MDkuanBn/315x250%23c/jyaoNZ.jpg",
   date: { year: 2021, month: 1 },
   descriptionKey: {
     zh: "帕帕·约翰船长无比想念自己的身体，决定复活自己，为之死复仇。GGJ 2021 合作解谜游戏，主题 Lost and Found（丢失与找回）。三关流程——从一颗头骨出发，收集骨头组回脊髓和完整骨架，解锁新能力后才能闯过最终关。",

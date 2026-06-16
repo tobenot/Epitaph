@@ -8,7 +8,7 @@ export default {
     zh: "指令对决",
     en: "Command Combat"
   },
-  image: "https://img.itch.zone/aW1nLzIzNTAwNzY3LmpwZWc=/original/RXexwa.jpeg",
+  image: "https://img.itch.zone/aW1nLzIzNTAwNzY3LmpwZWc=/315x250%23c/RXexwa.jpeg",
   descriptionKey: {
     zh: "策略性回合制文字格斗游戏。预判 AI 行动，在 5 秒内选择克制指令取得胜利。两小时速成试作。",
     en: "A strategic turn-based text fighter. Predict the AI's move and pick the right counter command within 5 seconds. A two-hour prototype."

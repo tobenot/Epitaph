@@ -8,7 +8,7 @@ export default {
     zh: "假赛拳王",
     en: "Rigged Champion"
   },
-  image: "https://img.itch.zone/aW1nLzE0MTM5Nzk4LnBuZw==/original/IGXOz4.png",
+  image: "https://img.itch.zone/aW1nLzE0MTM5Nzk4LnBuZw==/315x250%23c/IGXOz4.png",
   descriptionKey: {
     zh: "Game Jam 合作游戏。水獭岛格斗大赛：冠军要负责管理小岛，亚军才能免费躺平。想办法故意输掉比赛！",
     en: "Game Jam collab. Otter Island Fighting Championship: the winner has to manage the island while the runner-up gets free residency. Try to lose on purpose!"

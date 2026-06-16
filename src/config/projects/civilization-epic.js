@@ -8,7 +8,7 @@ export default {
     zh: "文明史诗",
     en: "Civilization Epic"
   },
-  image: "https://img.itch.zone/aW1nLzE5MjYyODAxLmpwZw==/original/nCEegG.jpg",
+  image: "https://img.itch.zone/aW1nLzE5MjYyODAxLmpwZw==/315x250%23c/nCEegG.jpg",
   descriptionKey: {
     zh: "一款弹幕互动联机的AI图文文明发展演化游戏。",
     en: "An AI-powered civilization development game with interactive bullet comments."
