@@ -33,6 +33,7 @@ export default {
     en: ""
   },
   links: [
-    { type: "bilibili", url: "https://play-live.bilibili.com/details/1729301917890", textKey: { zh: "B站直播间", en: "Bilibili Live Room" } }
+    { type: "bilibili", url: "https://play-live.bilibili.com/details/1729301917890", textKey: { zh: "B站直播间", en: "Bilibili Live Room" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1tzCoYREEX/", textKey: { zh: "游戏介绍视频", en: "Game Intro Video" } }
   ]
 };

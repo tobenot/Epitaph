@@ -35,6 +35,8 @@ export default {
     en: ""
   },
   links: [
-    { type: "steam", url: "https://store.steampowered.com/app/2778690/Challengers_Odyssey/", textKey: { zh: "Steam 商店", en: "Steam Store" } }
+    { type: "steam", url: "https://store.steampowered.com/app/2778690/Challengers_Odyssey/", textKey: { zh: "Steam 商店", en: "Steam Store" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1pkvye1EXL/", textKey: { zh: "毕设AI NPC演示", en: "Graduation Project AI NPC Demo" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1zH4y1Y76S/", textKey: { zh: "上Steam了！", en: "Now on Steam!" } }
   ]
 };

@@ -35,6 +35,9 @@ export default {
     en: ""
   },
   links: [
-    { type: "itch", url: "https://tobenot.itch.io/beyond-books", textKey: { zh: "itch.io 游玩", en: "Play on itch.io" } }
+    { type: "itch", url: "https://tobenot.itch.io/beyond-books", textKey: { zh: "itch.io 游玩", en: "Play on itch.io" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1ZVpJzREMW/", textKey: { zh: "2分钟简介", en: "2-min Intro" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1EnQhYHEFe/", textKey: { zh: "AI剧本杀基础介绍", en: "AI Murder Mystery Guide" } },
+    { type: "bilibili", url: "https://www.bilibili.com/video/BV1zhP4e3Eyw/", textKey: { zh: "战斗关解说", en: "Combat Stage Walkthrough" } }
   ]
 };
