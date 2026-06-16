@@ -47,7 +47,7 @@
         <div class="work-item" v-for="(work, index) in about.personalWorks" :key="index">
           <div class="work-header">
             <h3>{{ work.titleKey[currentLocale] }}</h3>
-            <span :class="['status-badge', work.status]">{{ $t(`about.status.${work.status}`) }}</span>
+            <span v-if="work.status" class="work-annotation">{{ $t(`about.status.${work.status}`) }}</span>
           </div>
           <p>{{ work.descriptionKey[currentLocale] }}</p>
           <a v-if="work.link" :href="work.link" target="_blank" rel="noopener noreferrer" class="work-link">
@@ -346,7 +346,8 @@ export default {
     .work-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
+      gap: 1rem;
       margin-bottom: 1rem;
       
       h3 {
@@ -356,16 +357,20 @@ export default {
         margin: 0;
       }
       
-      .status-badge {
-        padding: 0.2rem 0.6rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
+      .work-annotation {
+        flex-shrink: 0;
         font-family: 'Lora', serif;
-        font-weight: bold;
-        
-        &.private { background: #ffebee; color: #d32f2f; }
-        &.archived { background: #e0e0e0; color: #424242; }
-        &.public { background: #e8f5e9; color: #2e7d32; }
+        font-size: 0.8rem;
+        font-style: italic;
+        color: var(--secondary-color);
+        opacity: 0.75;
+        letter-spacing: 0.03em;
+
+        &::before {
+          content: '·';
+          margin-right: 0.35em;
+          opacity: 0.65;
+        }
       }
     }
     

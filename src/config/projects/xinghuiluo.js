@@ -9,6 +9,7 @@ export default {
     zh: "星辉落：爱无归处",
     en: "Starfall: Love Unmoored"
   },
+  image: "https://img.itch.zone/aW1nLzI2MDcxMzE0LnBuZw==/315x250%23c/D6aIAU.png",
   bilibiliVideoId: "BV1c1QZBbExF",
   descriptionKey: {
     zh: "互动叙事视觉小说，约 20 分钟 Demo。Voices 内心声音系统，单线叙事。试玩密码页：https://tobenot.top/Starfall-Love-Unmoored-Access/ ，密码 carrotletter。itch 包体约 180MB，首次加载较慢。",

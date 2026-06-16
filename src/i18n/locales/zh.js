@@ -94,7 +94,9 @@ export default {
       engine: "引擎",
       platform: "平台",
       scale: "体量",
-      roles: "参与角色"
+      roles: "参与角色",
+      status: "状态",
+      kind: "类型"
     },
     developerNotes: "开发者手记",
     achievements: "里程碑与数据",
@@ -111,7 +113,7 @@ export default {
       development: "开发中",
       halted: "停工",
       archived: "已归档",
-      concept: "概念/草稿",
+      concept: "草稿",
       private: "私密",
       // 保留旧版兼容
       playable: "可玩",

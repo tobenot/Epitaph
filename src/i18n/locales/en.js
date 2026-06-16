@@ -94,7 +94,9 @@ export default {
       engine: "Engine",
       platform: "Platform",
       scale: "Scale",
-      roles: "Roles"
+      roles: "Roles",
+      status: "Status",
+      kind: "Type"
     },
     developerNotes: "Developer Notes",
     achievements: "Milestones & Stats",
@@ -111,7 +113,7 @@ export default {
       development: "In Development",
       halted: "On Hold",
       archived: "Archived",
-      concept: "Concept / Draft",
+      concept: "Draft",
       private: "Private",
       // Legacy compatibility
       playable: "Playable",

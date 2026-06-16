@@ -173,7 +173,15 @@ export default {
              this.project.longDescriptionKey[this.currentLocale].trim() !== '';
     },
     hasMetadata() {
-      return this.project && (this.project.date || this.project.engine || (this.project.platform && this.project.platform.length) || this.project.scale || this.project.roles);
+      return this.project && (
+        this.project.portfolioKind === 'study' ||
+        this.project.status ||
+        this.project.date ||
+        this.project.engine ||
+        (this.project.platform && this.project.platform.length) ||
+        this.project.scale ||
+        this.project.roles
+      );
     },
     projectImage() {
       if (this.project?.bilibiliVideoId) {
@@ -461,6 +469,12 @@ export default {
         font-size: 1rem;
         color: var(--primary-color);
         font-weight: bold;
+
+        &.meta-annotation {
+          font-weight: normal;
+          font-style: italic;
+          color: var(--secondary-color);
+        }
       }
     }
   }

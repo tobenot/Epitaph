@@ -133,7 +133,7 @@
               <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
             </div>
             <div v-else
-                 :class="['experience-card', { 'is-complete': isHighCompleteness(item), 'is-incomplete': !isHighCompleteness(item) }]"
+                 :class="['experience-card', getCardFrameClass(item)]"
                  @click="openProjectDetails(item.slug)">
               <div class="corner-ribbon" v-if="isHighCompleteness(item)">{{ $t('project.statusBadge.complete') }}</div>
               <div class="card-image" v-if="getProjectImage(item)">
@@ -143,10 +143,6 @@
               <div class="card-content">
                 <div class="card-header">
                   <h3>{{ item.titleKey[currentLocale] }}</h3>
-                  <div class="card-badges">
-                    <span v-if="item.portfolioKind" :class="['kind-badge', item.portfolioKind]">{{ $t(`project.portfolioKind.${item.portfolioKind}`) }}</span>
-                      <span v-if="!isHighCompleteness(item) && item.status" :class="['status-badge', item.status]" :title="$t(`project.status.${item.status}`)">{{ $t(`project.status.${item.status}`) }}</span>
-                  </div>
                 </div>
                 <p class="card-desc">{{ item.descriptionKey[currentLocale] }}</p>
                 <div class="card-tags" v-if="getDisplayTags(item).length">
@@ -158,7 +154,10 @@
                   >{{ tag }}</span>
                   <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
                 </div>
-                <div class="project-date" v-if="item.date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</div>
+                <div class="card-footer" v-if="item.date || getCardAnnotationParts(item).length">
+                  <span v-if="item.date" class="card-footer-date">{{ $t('common.sort.date') }} {{ formatDate(item.date, { separator: '/' }) }}</span>
+                  <span v-if="getCardAnnotationParts(item).length" class="card-footer-note">{{ formatCardAnnotation(item) }}</span>
+                </div>
               </div>
             </div>
           </template>
@@ -214,6 +213,11 @@ import {
   isHighCompleteness,
   PORTFOLIO_FILTER_KINDS
 } from '@/utils/portfolio'
+import {
+  formatAnnotationParts,
+  getCardAnnotationParts,
+  getCardFrameClass
+} from '@/utils/projectAnnotation'
 
 export default {
   name: 'Home',
@@ -424,6 +428,11 @@ export default {
     getDisplayTags(project) {
       return prioritizeTagsForDisplay(project, this.tagFacets, this.activeFacetId)
     },
+    getCardAnnotationParts,
+    getCardFrameClass,
+    formatCardAnnotation(project) {
+      return formatAnnotationParts(getCardAnnotationParts(project), this.$t)
+    },
     handleCardTagClick(tag) {
       const filter = resolveTagFilter(tag, this.tagFacets)
       if (filter.type === 'facet') {
@@ -467,7 +476,13 @@ export default {
     handlePageChange(page) {
       this.currentPage = page;
       this.$nextTick(() => {
-        this.$refs.experienceGrid?.scrollIntoView({ block: 'start' });
+        const grid = this.$refs.experienceGrid;
+        if (grid) {
+          window.scrollTo({
+            top: grid.getBoundingClientRect().top + window.scrollY - 24,
+            behavior: 'smooth'
+          });
+        }
       });
     },
     getProjectImage(project) {
@@ -895,9 +910,24 @@ export default {
     border-left-color: var(--accent-color);
   }
 
+  &.is-study.is-complete {
+    border-left-width: 3px;
+    border-left-style: double;
+  }
+
+  &.is-incomplete.is-draft {
+    border-left-style: dashed;
+    border-left-color: rgba(var(--accent-color-rgb), 0.45);
+  }
+
+  &.is-incomplete.is-ongoing {
+    border-left-style: dashed;
+    border-left-color: var(--secondary-color);
+  }
+
   &.is-incomplete {
     opacity: 0.75;
-    
+
     .card-image img {
       filter: grayscale(40%);
       transition: filter 0.3s ease;
@@ -972,10 +1002,6 @@ export default {
 
   .card-header {
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.5rem;
     
     h3 {
       font-family: 'Playfair Display', serif;
@@ -983,57 +1009,12 @@ export default {
       line-height: 1.35;
       color: var(--primary-color);
       margin: 0;
-      flex: 1;
-      min-width: 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
-    .card-badges {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.35rem;
-      flex-shrink: 0;
-    }
-    
-    .kind-badge {
-      padding: 0.15rem 0.45rem;
-      border-radius: 3px;
-      font-size: 0.65rem;
-      font-family: 'Lora', serif;
-      line-height: 1.2;
-      white-space: nowrap;
-
-      &.study {
-        background: #ede7f6;
-        color: #5e35b1;
-      }
-    }
-    
-    .status-badge {
-      padding: 0.15rem 0.45rem;
-      border-radius: 3px;
-      font-size: 0.65rem;
-      font-family: 'Lora', serif;
-      line-height: 1.2;
-      white-space: nowrap;
-      
-      &.released { background: #e6f4ea; color: #2e7d32; }
-      &.development { background: #e3f2fd; color: #1565c0; }
-      &.halted { background: #fff3e0; color: #e65100; }
-      &.archived { background: #f5f5f5; color: #616161; }
-      &.concept { background: #fff8e1; color: #f57f17; }
-      &.private { background: #fce4e4; color: #c62828; }
-      &.playable { background: #e6f4ea; color: #2e7d32; }
-      &.unplayable { background: #fce4e4; color: #c62828; }
-      &.video { background: #e3f2fd; color: #1565c0; }
-      &.tool { background: #f3e5f5; color: #4527a0; }
-      &.reading { background: #fff8e1; color: #6a1b9a; }
-    }
-}
+  }
 
 .card-desc {
   font-family: 'Lora', serif;
@@ -1084,15 +1065,40 @@ export default {
   }
 }
 
-.project-date {
-  align-self: flex-end;
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  align-self: stretch;
   margin-top: auto;
   padding-top: 1rem;
   font-size: 0.8rem;
   color: var(--secondary-color);
-  opacity: 0.7;
+  opacity: 0.75;
   font-style: italic;
   font-family: 'Lora', serif;
+
+  .card-footer-date {
+    flex-shrink: 0;
+  }
+
+  .card-footer-note {
+    margin-left: auto;
+    text-align: right;
+    letter-spacing: 0.03em;
+
+    &::before {
+      content: '·';
+      margin-right: 0.35em;
+      opacity: 0.65;
+    }
+  }
+
+  .card-footer-date:empty + .card-footer-note::before,
+  .card-footer-note:first-child:last-child::before {
+    content: none;
+  }
 }
 
 .no-results {
