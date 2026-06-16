@@ -96,14 +96,19 @@ export default {
       scale: "体量",
       roles: "参与角色",
       status: "状态",
-      kind: "类型"
+      kind: "类型",
+      experienceable: "体验入口"
     },
     developerNotes: "开发者手记",
     achievements: "里程碑与数据",
     series: "同系列作品",
     seriesCurrent: "当前",
     statusBadge: {
-      complete: "可体验"
+      experienceable: "可体验"
+    },
+    experienceable: {
+      yes: "可体验",
+      no: "暂不可体验"
     },
     portfolioKind: {
       study: "习作"

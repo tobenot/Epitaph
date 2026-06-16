@@ -96,14 +96,19 @@ export default {
       scale: "Scale",
       roles: "Roles",
       status: "Status",
-      kind: "Type"
+      kind: "Type",
+      experienceable: "Access"
     },
     developerNotes: "Developer Notes",
     achievements: "Milestones & Stats",
     series: "In This Series",
     seriesCurrent: "Current",
     statusBadge: {
-      complete: "Playable"
+      experienceable: "Playable"
+    },
+    experienceable: {
+      yes: "Playable",
+      no: "Not playable"
     },
     portfolioKind: {
       study: "Study"

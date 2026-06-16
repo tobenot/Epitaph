@@ -20,7 +20,12 @@
     
     <div class="project-content">
       <div class="project-image-wrapper" v-if="projectImage">
-        <img :src="projectImage" :alt="project.titleKey[currentLocale]" class="project-image">
+        <img
+          :src="projectImage"
+          :alt="project.titleKey[currentLocale]"
+          class="project-image"
+          :referrerpolicy="project.bilibiliVideoId ? 'no-referrer' : undefined"
+        >
       </div>
       
       <div class="project-details">
@@ -41,6 +46,10 @@
 
           <!-- Metadata Grid -->
           <div class="metadata-grid" v-if="hasMetadata">
+            <div class="metadata-item" v-if="project.experienceable === true || project.experienceable === false">
+              <span class="meta-label">{{ $t('project.metadata.experienceable') }}:</span>
+              <span class="meta-value meta-annotation">{{ $t(project.experienceable ? 'project.experienceable.yes' : 'project.experienceable.no') }}</span>
+            </div>
             <div class="metadata-item" v-if="project.portfolioKind === 'study'">
               <span class="meta-label">{{ $t('project.metadata.kind') }}:</span>
               <span class="meta-value meta-annotation">{{ $t('project.portfolioKind.study') }}</span>
@@ -117,7 +126,11 @@
           :class="['series-card', { current: item.slug === project.slug }]"
         >
           <div class="series-card-image" v-if="getSeriesImage(item)">
-            <img :src="getSeriesImage(item)" :alt="item.titleKey[currentLocale]">
+            <img
+              :src="getSeriesImage(item)"
+              :alt="item.titleKey[currentLocale]"
+              :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
+            >
           </div>
           <div class="series-card-body">
             <h3>{{ item.titleKey[currentLocale] }}</h3>
@@ -172,6 +185,8 @@ export default {
     },
     hasMetadata() {
       return this.project && (
+        this.project.experienceable === true ||
+        this.project.experienceable === false ||
         this.project.portfolioKind === 'study' ||
         this.project.status ||
         this.project.date ||

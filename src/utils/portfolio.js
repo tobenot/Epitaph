@@ -5,6 +5,12 @@ export function isHighCompleteness(project) {
 	return false
 }
 
+export function isExperienceable(project) {
+	if (project.experienceable === true) return true
+	if (project.experienceable === false) return false
+	return false
+}
+
 export function getPortfolioFilterKind(project) {
 	if (project.portfolioKind === 'study') return 'study'
 	if (isHighCompleteness(project)) return 'complete'

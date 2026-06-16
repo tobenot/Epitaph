@@ -27,13 +27,14 @@ export function isDraftLikeProject(project) {
 }
 
 export function getCardFrameClass(project) {
+	const study = project.portfolioKind === 'study'
 	const complete = isHighCompleteness(project)
 	return {
-		'is-complete': complete,
-		'is-incomplete': !complete,
-		'is-study': project.portfolioKind === 'study',
-		'is-draft': !complete && isDraftLikeProject(project),
-		'is-ongoing': !complete && !isDraftLikeProject(project)
+		'is-study': study,
+		'is-complete': complete && !study,
+		'is-incomplete': !complete && !study,
+		'is-draft': !complete && !study && isDraftLikeProject(project),
+		'is-ongoing': !complete && !study && !isDraftLikeProject(project)
 	}
 }
 

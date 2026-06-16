@@ -135,9 +135,13 @@
             <div v-else
                  :class="['experience-card', getCardFrameClass(item)]"
                  @click="openProjectDetails(item.slug)">
-              <div class="corner-ribbon" v-if="isHighCompleteness(item)">{{ $t('project.statusBadge.complete') }}</div>
+              <div class="corner-ribbon" v-if="isExperienceable(item)">{{ $t('project.statusBadge.experienceable') }}</div>
               <div class="card-image" v-if="getProjectImage(item)">
-                <img :src="getProjectImage(item)" :alt="item.titleKey[currentLocale]">
+                <img
+                  :src="getProjectImage(item)"
+                  :alt="item.titleKey[currentLocale]"
+                  :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
+                >
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
               </div>
               <div class="card-content">
@@ -210,6 +214,7 @@ import {
 } from '@/utils/homeFilters'
 import {
   getPortfolioFilterKind,
+  isExperienceable,
   isHighCompleteness,
   PORTFOLIO_FILTER_KINDS
 } from '@/utils/portfolio'
@@ -468,6 +473,7 @@ export default {
       this.currentPage = 1
     },
     isHighCompleteness,
+    isExperienceable,
     formatDate,
     openProjectDetails(slug) {
       this.$router.push({ name: 'Project', params: { slug: slug } })
@@ -895,13 +901,17 @@ export default {
   position: relative;
   border-left: 4px solid transparent;
   
-  &.is-complete {
-    border-left-color: var(--accent-color);
+  &.is-study {
+    border-left: 3px solid #9e8e7e;
+    background-color: rgba(158, 142, 126, 0.05);
+
+    .card-content {
+      border-top: 1px dashed rgba(158, 142, 126, 0.25);
+    }
   }
 
-  &.is-study.is-complete {
-    border-left-width: 3px;
-    border-left-style: double;
+  &.is-complete {
+    border-left-color: var(--accent-color);
   }
 
   &.is-incomplete.is-draft {
