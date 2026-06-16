@@ -37,7 +37,19 @@ export default {
 
 维护脚本：`scripts/pride-sort.js`
 
+`pride` 数字只给排序用，不要靠它读名次。看顺序用 `list` / `find`。
+
 ```bash
+# 输出完整排序（名次、id、pride、中文标题）
+npm run pride-sort -- list
+
+# 只看前 20
+npm run pride-sort -- list 20
+
+# 按标题或 id 查当前名次
+npm run pride-sort -- find 逆袭
+npm run pride-sort -- find gaokao-comeback-story
+
 # 按当前顺序，用步长 1024 重新编号（会改全部项目）
 npm run pride-sort -- renumber
 
@@ -46,9 +58,14 @@ npm run pride-sort -- move-after <item-id> <anchor-id>
 
 # 一组项目依次紧跟 anchor 后
 npm run pride-sort -- move-group-after <anchor-id> <item-id> [item-id...]
+```
 
-# 查看当前前 N 名
-npm run pride-sort -- top 20
+`list` 输出示例：
+
+```
+ 1  book-of-betrayal           51200  背叛书·上
+ 2  gaokao-comeback-story      50176  从二本到全省1200名，我高三一年的逆袭故事
+ 3  sanctuary-of-writers       49152  作家之屋
 ```
 
 示例：

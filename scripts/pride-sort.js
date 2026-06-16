@@ -87,8 +87,39 @@ function moveGroupAfterAnchor(anchorId, ...itemIds) {
 }
 
 function printTop(n = 15) {
+	printList(n);
+}
+
+function printList(limit) {
 	const sorted = sortedProjects(loadProjects());
-	sorted.slice(0, n).forEach(p => console.log(p.pride, p.title));
+	const rows = limit ? sorted.slice(0, limit) : sorted;
+	const rankWidth = String(rows.length).length;
+	const idWidth = Math.max(...rows.map(p => p.id.length));
+	rows.forEach((p, i) => {
+		const rank = String(i + 1).padStart(rankWidth);
+		const id = p.id.padEnd(idWidth);
+		console.log(`${rank}  ${id}  ${p.pride}  ${p.title}`);
+	});
+	if (limit && sorted.length > limit) {
+		console.log(`... ${sorted.length - limit} more, run: npm run pride-sort -- list`);
+	}
+}
+
+function findProjects(query) {
+	const q = query.toLowerCase();
+	const sorted = sortedProjects(loadProjects());
+	const hits = sorted.filter(p =>
+		p.id.includes(q) || (p.title && p.title.toLowerCase().includes(q))
+	);
+	if (!hits.length) {
+		console.log(`no match: ${query}`);
+		process.exit(1);
+	}
+	const idWidth = Math.max(...hits.map(p => p.id.length));
+	hits.forEach(p => {
+		const rank = sorted.findIndex(x => x.id === p.id) + 1;
+		console.log(`${rank}  ${p.id.padEnd(idWidth)}  ${p.pride}  ${p.title}`);
+	});
 }
 
 const [,, cmd, ...args] = process.argv;
@@ -106,11 +137,19 @@ switch (cmd) {
 	case 'top':
 		printTop(+args[0] || 15);
 		break;
+	case 'list':
+		printList(args[0] ? +args[0] : 0);
+		break;
+	case 'find':
+		findProjects(args.join(' '));
+		break;
 	default:
 		console.log(`usage:
   node scripts/pride-sort.js renumber
+  node scripts/pride-sort.js list [n]          # 全排序，或前 n 项
+  node scripts/pride-sort.js find <关键词>      # 按标题/id 查名次
   node scripts/pride-sort.js move-after <item-id> <anchor-id>
   node scripts/pride-sort.js move-group-after <anchor-id> <item-id> [item-id...]
-  node scripts/pride-sort.js top [n]`);
+  node scripts/pride-sort.js top [n]           # 同 list [n]`);
 		process.exit(cmd ? 1 : 0);
 }
