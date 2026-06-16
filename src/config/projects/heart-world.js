@@ -1,6 +1,6 @@
 export default {
   id: 5,
-  pride: 55,
+  pride: 3072,
   slug: "heart-world",
   series: "heartsworld",
   category: "game",

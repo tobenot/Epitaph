@@ -1,6 +1,6 @@
 export default {
   id: "book-of-betrayal",
-  pride: 102,
+  pride: 51200,
   slug: "book-of-betrayal",
   series: "starfall",
   category: ["novel", "vrchat"],

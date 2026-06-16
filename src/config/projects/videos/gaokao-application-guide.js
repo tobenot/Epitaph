@@ -1,6 +1,6 @@
 export default {
   id: "gaokao-application-guide",
-  pride: 68,
+  pride: 16384,
   slug: "gaokao-application-guide",
   series: "gaokao",
   category: "video",

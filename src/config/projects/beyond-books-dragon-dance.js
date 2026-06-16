@@ -1,6 +1,6 @@
 export default {
   id: "beyond-books-dragon-dance",
-  pride: 95,
+  pride: 44032,
   slug: "beyond-books-dragon-dance",
   series: "beyond-books",
   category: "novel",

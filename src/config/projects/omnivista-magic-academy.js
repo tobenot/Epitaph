@@ -1,6 +1,6 @@
 export default {
   id: 17,
-  pride: 69,
+  pride: 17408,
   slug: "omnivista-magic-academy",
   category: "ai",
   status: "halted",

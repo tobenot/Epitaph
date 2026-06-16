@@ -1,6 +1,6 @@
 export default {
   id: "rendering-basics-assignment",
-  pride: 63,
+  pride: 11264,
   slug: "rendering-basics-assignment",
   portfolioKind: "study",
   category: "game",

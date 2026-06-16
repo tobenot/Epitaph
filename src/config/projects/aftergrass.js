@@ -1,6 +1,6 @@
 export default {
   id: "aftergrass",
-  pride: 89,
+  pride: 37888,
   slug: "aftergrass",
   category: "vrchat",
   status: "released",

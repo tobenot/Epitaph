@@ -1,6 +1,6 @@
 export default {
   id: "exam-cheer-2026",
-  pride: 75,
+  pride: 23552,
   slug: "exam-cheer-2026",
   series: "gaokao",
   category: ["video", "blog"],

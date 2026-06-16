@@ -1,6 +1,6 @@
 export default {
   id: "dreamwalkers",
-  pride: 77,
+  pride: 25600,
   slug: "dreamwalkers",
   category: "game",
   status: "archived",

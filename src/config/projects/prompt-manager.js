@@ -1,6 +1,6 @@
 export default {
   id: 19,
-  pride: 56,
+  pride: 4096,
   slug: "prompt-manager",
   category: "tool",
   status: "released",

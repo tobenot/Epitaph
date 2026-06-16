@@ -1,6 +1,6 @@
 export default {
   id: "coin-game-cpp",
-  pride: 61,
+  pride: 9216,
   slug: "coin-game-cpp",
   portfolioKind: "study",
   category: "game",

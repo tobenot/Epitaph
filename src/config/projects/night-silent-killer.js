@@ -1,6 +1,6 @@
 export default {
   id: 4,
-  pride: 85,
+  pride: 33792,
   slug: "night-silent-killer",
   category: "game",
   status: "released",

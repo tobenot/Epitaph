@@ -1,6 +1,6 @@
 export default {
   id: 16,
-  pride: 53,
+  pride: 1024,
   slug: "intelligent-glory",
   category: "game",
   status: "archived",

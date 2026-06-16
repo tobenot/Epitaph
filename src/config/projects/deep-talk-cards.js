@@ -1,6 +1,6 @@
 export default {
   id: "deep-talk-cards",
-  pride: 99,
+  pride: 48128,
   slug: "deep-talk-cards",
   category: "vrchat",
   status: "released",

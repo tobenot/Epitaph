@@ -1,6 +1,6 @@
 export default {
   id: 15,
-  pride: 57,
+  pride: 5120,
   slug: "beyond-books-disillusionment",
   series: "beyond-books",
   category: "novel",

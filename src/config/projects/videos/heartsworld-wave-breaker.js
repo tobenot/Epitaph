@@ -1,6 +1,6 @@
 export default {
   id: "heartsworld-wave-breaker",
-  pride: 76,
+  pride: 24576,
   slug: "heartsworld-wave-breaker",
   series: "heartsworld",
   category: ["video", "blog"],

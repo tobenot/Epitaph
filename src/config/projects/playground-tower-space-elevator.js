@@ -1,6 +1,6 @@
 export default {
   id: 10,
-  pride: 92,
+  pride: 40960,
   slug: "playground-tower-space-elevator",
   series: "beyond-books",
   category: "novel",

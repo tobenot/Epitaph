@@ -1,6 +1,6 @@
 export default {
   id: "beyond-books-childhood-trailer",
-  pride: 96,
+  pride: 45056,
   slug: "beyond-books-childhood-trailer",
   series: "beyond-books",
   category: ["video", "novel"],

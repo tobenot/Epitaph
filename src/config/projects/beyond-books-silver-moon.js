@@ -1,6 +1,6 @@
 export default {
   id: "beyond-books-silver-moon",
-  pride: 97,
+  pride: 46080,
   slug: "beyond-books-silver-moon",
   series: "beyond-books",
   category: "novel",

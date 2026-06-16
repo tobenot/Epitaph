@@ -1,6 +1,6 @@
 export default {
   id: 6,
-  pride: 59,
+  pride: 7168,
   slug: "challengers-odyssey",
   portfolioKind: "study",
   category: "game",
