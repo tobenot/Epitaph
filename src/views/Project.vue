@@ -27,14 +27,6 @@
         <div class="details-card">
           <div class="title-with-status">
             <h2>{{ $t('project.aboutWork') }}</h2>
-            <div class="badges">
-              <span v-if="project.portfolioKind" :class="['kind-badge', project.portfolioKind]">
-                {{ $t(`project.portfolioKind.${project.portfolioKind}`) }}
-              </span>
-              <span v-if="project.status" :class="['status-badge', project.status]">
-                {{ $t(`project.status.${project.status}`) }}
-              </span>
-            </div>
           </div>
           
           <!-- Achievements Section -->
@@ -49,6 +41,14 @@
 
           <!-- Metadata Grid -->
           <div class="metadata-grid" v-if="hasMetadata">
+            <div class="metadata-item" v-if="project.portfolioKind === 'study'">
+              <span class="meta-label">{{ $t('project.metadata.kind') }}:</span>
+              <span class="meta-value meta-annotation">{{ $t('project.portfolioKind.study') }}</span>
+            </div>
+            <div class="metadata-item" v-if="project.status">
+              <span class="meta-label">{{ $t('project.metadata.status') }}:</span>
+              <span class="meta-value meta-annotation">{{ $t(`project.status.${project.status}`) }}</span>
+            </div>
             <div class="metadata-item" v-if="project.date">
               <span class="meta-label">{{ $t('project.metadata.date') }}:</span>
               <span class="meta-value">{{ formatDate(project.date) }}</span>
@@ -126,13 +126,6 @@
           </div>
         </router-link>
       </div>
-    </div>
-    
-    <div class="back-link">
-      <router-link to="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        {{ $t('common.actions.back') }}
-      </router-link>
     </div>
   </div>
 </template>
@@ -267,10 +260,10 @@ export default {
 }
 
 .back-link-top {
-  position: absolute;
-  top: 2rem;
-  right: 1rem;
-  z-index: 1;
+  position: fixed;
+  top: 5.5rem;
+  right: 1.5rem;
+  z-index: 100;
 
   a {
     display: inline-flex;
@@ -396,11 +389,7 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.05);
   
   .title-with-status {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     margin-bottom: 1.5rem;
-    gap: 1rem;
     
     h2 {
       font-family: 'Playfair Display', serif;
@@ -419,50 +408,6 @@ export default {
         background-color: var(--accent-color);
       }
     }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
-
-    .kind-badge {
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-family: 'Lora', serif;
-      font-weight: bold;
-
-      &.study {
-        background: #ede7f6;
-        color: #5e35b1;
-      }
-    }
-  }
-
-  .status-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-family: 'Lora', serif;
-    font-weight: bold;
-    
-    /* New Status */
-    &.released { background: #e6f4ea; color: #2e7d32; }
-    &.development { background: #e3f2fd; color: #1565c0; }
-    &.halted { background: #fff3e0; color: #e65100; }
-    &.archived { background: #f5f5f5; color: #616161; }
-    &.concept { background: #fff8e1; color: #f57f17; }
-    &.private { background: #fce4e4; color: #c62828; }
-
-    /* Legacy Status */
-    &.playable { background: #e6f4ea; color: #2e7d32; }
-    &.unplayable { background: #fce4e4; color: #c62828; }
-    &.video { background: #e3f2fd; color: #1565c0; }
-    &.tool { background: #f3e5f5; color: #4527a0; }
-    &.reading { background: #fff8e1; color: #6a1b9a; }
   }
 
   .achievements-section {
@@ -719,34 +664,10 @@ export default {
   }
 }
 
-.back-link {
-  text-align: center;
-  margin-top: 2rem;
-  
-  a {
-    display: inline-flex;
-    align-items: center;
-    font-family: 'Lora', serif;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    
-    svg {
-      margin-right: 0.5rem;
-    }
-    
-    &:hover {
-      color: var(--accent-color);
-    }
-  }
-}
-
 @media (max-width: 768px) {
   .back-link-top {
-    position: static;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
+    top: 4.5rem;
+    right: 1rem;
   }
 
   .project-image-wrapper,
