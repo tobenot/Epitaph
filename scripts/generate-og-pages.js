@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const rootDir = path.join(__dirname, '..');
+const ogDistDir = path.join(rootDir, 'dist/img/og');
+
 const bilibiliCoversPath = path.join(__dirname, '../src/data/bilibili-covers.json');
 let bilibiliCovers = {};
 if (fs.existsSync(bilibiliCoversPath)) {
@@ -30,6 +33,25 @@ function getProjectFiles(dir) {
   return fs.readdirSync(dir)
     .filter(file => file.endsWith('.js'))
     .map(file => path.join(dir, file));
+}
+
+function resolveAssetImagePath(requirePath) {
+  const relative = requirePath.replace(/^@\/assets\//, 'src/assets/');
+  return path.join(rootDir, relative);
+}
+
+function copyOgImage(requirePath) {
+  const src = resolveAssetImagePath(requirePath);
+  const imgName = path.basename(requirePath);
+  if (!fs.existsSync(src)) {
+    console.warn(`OG image source not found: ${src}`);
+    return false;
+  }
+  if (!fs.existsSync(ogDistDir)) {
+    fs.mkdirSync(ogDistDir, { recursive: true });
+  }
+  fs.copyFileSync(src, path.join(ogDistDir, imgName));
+  return true;
 }
 
 const allProjectFiles = [
@@ -73,15 +95,10 @@ allProjectFiles.forEach(filePath => {
     const imageMatch = content.match(/image:\s*(?:require\(['"]([^'"]+)['"]\)|['"]([^'"]+)['"])/);
     if (imageMatch) {
       if (imageMatch[1]) {
-        // 本地图片 require('@/assets/images/...')
-        // 在打包后，图片会被放到 img/ 目录下，并且带有 hash。
-        // 为了简单起见，如果它使用了本地图片，我们这里暂时回退到默认图，
-        // 或者我们可以直接指向原始的 assets 路径（如果服务器支持）。
-        // 更完美的做法是在 vue.config.js 中配置，但这里我们先用一个简单的映射
         const imgName = path.basename(imageMatch[1]);
-        // 假设打包后的图片在 /img/ 目录下，虽然有 hash，但为了 og:image，我们可以直接把原图复制一份到 public
-        // 这里我们先用默认图兜底，如果需要精准，可以后续优化
-        ogImage = `${baseUrl}/img/og/${imgName}`; 
+        if (copyOgImage(imageMatch[1])) {
+          ogImage = `${baseUrl}/img/og/${imgName}`;
+        }
       } else if (imageMatch[2]) {
         // 外部图片链接
         ogImage = imageMatch[2];
