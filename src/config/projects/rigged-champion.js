@@ -5,7 +5,7 @@ export default {
   category: "game",
   status: "released",
   titleKey: {
-    zh: "倒霉冠军",
+    zh: "假赛拳王",
     en: "Rigged Champion"
   },
   image: "https://img.itch.zone/aW1nLzE0MTM5Nzk4LnBuZw==/original/IGXOz4.png",
