@@ -89,6 +89,29 @@
         </div>
       </div>
     </div>
+
+    <div class="series-section" v-if="seriesMembers.length > 1">
+      <h2>{{ $t('project.series') }}：{{ seriesMeta.titleKey[currentLocale] }}</h2>
+      <p class="series-desc" v-if="seriesMeta.descriptionKey">{{ seriesMeta.descriptionKey[currentLocale] }}</p>
+      <div class="decorative-line"></div>
+      <div class="series-list">
+        <router-link
+          v-for="item in seriesMembers"
+          :key="item.slug"
+          :to="{ name: 'Project', params: { slug: item.slug } }"
+          :class="['series-card', { current: item.slug === project.slug }]"
+        >
+          <div class="series-card-image" v-if="getSeriesImage(item)">
+            <img :src="getSeriesImage(item)" :alt="item.titleKey[currentLocale]">
+          </div>
+          <div class="series-card-body">
+            <h3>{{ item.titleKey[currentLocale] }}</h3>
+            <p>{{ item.descriptionKey[currentLocale] }}</p>
+            <span v-if="item.slug === project.slug" class="series-current">{{ $t('project.seriesCurrent') }}</span>
+          </div>
+        </router-link>
+      </div>
+    </div>
     
     <div class="back-link">
       <router-link to="/">
@@ -113,12 +136,22 @@ export default {
   data() {
     return {
       project: null,
-      bilibiliCoverUrl: null
+      bilibiliCoverUrl: null,
+      seriesCovers: {}
     }
   },
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    },
+    seriesMeta() {
+      if (!this.project?.series) return null
+      return config.series[this.project.series] || null
+    },
+    seriesMembers() {
+      if (!this.seriesMeta) return []
+      const bySlug = new Map(config.projects.map(p => [p.slug, p]))
+      return this.seriesMeta.slugs.map(slug => bySlug.get(slug)).filter(Boolean)
     },
     hasLongDescription() {
       return this.project && 
@@ -137,6 +170,32 @@ export default {
     }
   },
   methods: {
+    async loadProject(slug) {
+      this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
+      this.bilibiliCoverUrl = null
+      if (this.project?.bilibiliVideoId) {
+        try {
+          this.bilibiliCoverUrl = await fetchBilibiliCover(this.project.bilibiliVideoId)
+        } catch {}
+      }
+      this.fetchSeriesCovers()
+    },
+    fetchSeriesCovers() {
+      if (!this.seriesMembers.length) return
+      this.seriesMembers.forEach(async item => {
+        if (!item.bilibiliVideoId || this.seriesCovers[item.id]) return
+        try {
+          const url = await fetchBilibiliCover(item.bilibiliVideoId)
+          this.seriesCovers = { ...this.seriesCovers, [item.id]: url }
+        } catch {}
+      })
+    },
+    getSeriesImage(item) {
+      if (item.bilibiliVideoId) {
+        return this.seriesCovers[item.id] || item.image || null
+      }
+      return item.image || null
+    },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
       const icons = {
@@ -152,14 +211,17 @@ export default {
       return icons[type] || defaultIcon
     }
   },
-  async created() {
-    const slug = this.$route.params.slug
-    this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
-    if (this.project?.bilibiliVideoId) {
-      try {
-        this.bilibiliCoverUrl = await fetchBilibiliCover(this.project.bilibiliVideoId)
-      } catch {}
+  watch: {
+    '$route.params.slug': {
+      immediate: false,
+      handler(slug) {
+        this.loadProject(slug)
+        window.scrollTo(0, 0)
+      }
     }
+  },
+  created() {
+    this.loadProject(this.$route.params.slug)
   }
 }
 </script>
@@ -484,6 +546,114 @@ export default {
     background-color: var(--accent-color);
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.series-section {
+  max-width: 750px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .series-desc {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .decorative-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 0 auto 1.5rem;
+  }
+}
+
+.series-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.series-card {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 3px 10px var(--shadow-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: rgba(var(--accent-color-rgb), 0.4);
+    box-shadow: 0 6px 16px var(--shadow-color);
+  }
+
+  &.current {
+    border-color: var(--accent-color);
+    background-color: rgba(var(--accent-color-rgb), 0.05);
+  }
+}
+
+.series-card-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 68px;
+  border-radius: 4px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.series-card-body {
+  flex: 1;
+  min-width: 0;
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin: 0 0 0.4rem;
+    line-height: 1.35;
+  }
+
+  p {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--secondary-color);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .series-current {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: 'Lora', serif;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    letter-spacing: 0.05em;
   }
 }
 

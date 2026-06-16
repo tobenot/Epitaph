@@ -2,6 +2,7 @@ export default {
   id: "gaokao-aftermath",
   pride: 55,
   slug: "gaokao-aftermath",
+  series: "gaokao",
   category: "video",
   status: "released",
   titleKey: {

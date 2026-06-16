@@ -2,6 +2,7 @@ export default {
   id: "gaokao-comeback-story",
   pride: 65,
   slug: "gaokao-comeback-story",
+  series: "gaokao",
   category: "video",
   status: "released",
   titleKey: {

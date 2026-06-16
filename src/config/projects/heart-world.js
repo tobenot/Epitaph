@@ -2,6 +2,7 @@ export default {
   id: 5,
   pride: 4,
   slug: "heart-world",
+  series: "heartsworld",
   category: "game",
   status: "released",
   titleKey: {
@@ -15,7 +16,7 @@ export default {
   },
   date: { year: 2020, month: 8 },
   genres: ["第一人称砍杀"],
-  themes: ["心界探索"],
+  themes: ["心灵世界探索"],
   engine: "虚幻引擎 4.24",
   platform: ["PC"],
   scale: {

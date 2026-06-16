@@ -81,6 +81,8 @@ export default {
     },
     developerNotes: "开发者手记",
     achievements: "里程碑与数据",
+    series: "同系列作品",
+    seriesCurrent: "当前",
     status: {
       released: "已发布",
       development: "开发中",

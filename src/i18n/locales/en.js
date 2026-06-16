@@ -81,6 +81,8 @@ export default {
     },
     developerNotes: "Developer Notes",
     achievements: "Milestones & Stats",
+    series: "In This Series",
+    seriesCurrent: "Current",
     status: {
       released: "Released",
       development: "In Development",

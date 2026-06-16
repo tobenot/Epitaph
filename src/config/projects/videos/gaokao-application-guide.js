@@ -2,6 +2,7 @@ export default {
   id: "gaokao-application-guide",
   pride: 50,
   slug: "gaokao-application-guide",
+  series: "gaokao",
   category: "video",
   status: "released",
   titleKey: {

@@ -2,6 +2,7 @@ export default {
   id: "beyond-books-ice-age",
   pride: 48,
   slug: "beyond-books-ice-age",
+  series: "beyond-books",
   category: ["game", "ai"],
   status: "development",
   titleKey: {
