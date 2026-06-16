@@ -10,10 +10,10 @@ export default {
   },
   image: require('@/assets/images/lh_header_schinese.webp'),
   descriptionKey: {
-    zh: "第三人称关卡制清版太空射击游戏。大二的作品，我与音乐师制作，外援建模。",
-    en: "A third-person level-based space shooter. Sophomore year project, created with a musician and external modeling support."
+    zh: "第三人称关卡制清版太空射击游戏。2022年大二年级起开发，我与音乐师制作，外援建模。",
+    en: "A third-person level-based space shooter. Development started in sophomore year (2022), created with a musician and external modeling support."
   },
-  date: { year: 2022, month: 4 },
+  date: { year: 2024, month: 10, day: 21 },
   genres: ["太空射击", "第三人称射击", "清版射击"],
   themes: ["太空战斗"],
   engine: "虚幻引擎 4.26",

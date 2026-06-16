@@ -10,10 +10,10 @@ export default {
   },
   image: require('@/assets/images/nbsk_header.webp'),
   descriptionKey: {
-    zh: "第三人称动作游戏，大一下的作品，我与音乐师制作，外援建模。",
-    en: "A third-person action game, created in freshman year with a musician and external modeling support."
+    zh: "第三人称动作游戏，大一下学期开发，我与音乐师制作，外援建模。",
+    en: "A third-person action game, developed during freshman spring semester with a musician and external modeling support."
   },
-  date: { year: 2021, month: 4 },
+  date: { year: 2021, month: 7, day: 8 },
   genres: ["动作", "第三人称"],
   themes: ["冲蝗行动"],
   engine: "虚幻引擎 4.26",

@@ -11,10 +11,10 @@ export default {
   },
   image: require('@/assets/images/co_header.webp'),
   descriptionKey: {
-    zh: "毕设，ARPG+大模型AI游戏，单人制作。不推荐游玩。",
-    en: "Graduation project, ARPG + LLM AI game, solo production. Not recommended for play."
+    zh: "2024年本科毕设，ARPG+大模型AI游戏，单人制作。不推荐游玩。",
+    en: "2024 undergraduate graduation project, ARPG + LLM AI game, solo production. Not recommended for play."
   },
-  date: { year: 2024, month: 5 },
+  date: { year: 2024, month: 2, day: 9 },
   genres: ["ARPG", "AI"],
   themes: ["挑战"],
   engine: "虚幻引擎 5.3",

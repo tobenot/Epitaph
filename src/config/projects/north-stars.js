@@ -10,10 +10,10 @@ export default {
   },
   image: require('@/assets/images/ns_header.webp'),
   descriptionKey: {
-    zh: "处女作。2018年高二的作品，与几个同学们一起制作。全是策划。2015年开始断断续续做。",
-    en: "Debut work. Created in 2018 during high school with several classmates. All planning. Started in 2015 and continued intermittently."
+    zh: "处女作。2015年起断断续续开发，2018年高二与几个同学们一起制作，全是策划。",
+    en: "Debut work. Developed intermittently since 2015, created in 2018 during high school with several classmates. All planning."
   },
-  date: { year: 2015, month: 2 },
+  date: { year: 2018, month: 6, day: 27 },
   genres: ["FPS", "网络联机"],
   themes: ["竞技"],
   engine: "虚幻引擎 4.12",
