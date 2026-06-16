@@ -12,5 +12,6 @@ export default [
 	{ id: 'opensource', label: '开源', match: ['开源'] },
 	{ id: 'multiplayer', label: '联机', match: ['联机', '网络联机'] },
 	{ id: 'beyond-books', label: '不止于纸上', match: ['不止于纸上', '星铭世界'] },
+	{ id: 'starfall', label: '星辉落', match: ['星辉落'] },
 	{ id: 'visual-novel', label: '视觉小说', match: ['视觉小说'] }
 ]

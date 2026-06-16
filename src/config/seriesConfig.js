@@ -48,5 +48,19 @@ export default {
 			"gaokao-application-guide",
 			"gaokao-aftermath"
 		]
+	},
+	"starfall": {
+		titleKey: {
+			zh: "星辉落",
+			en: "Starfall"
+		},
+		descriptionKey: {
+			zh: "以萝北真实经历改编。视觉小说 Demo 为序章，后转入小说《背叛书》。",
+			en: "Adapted from Luobei's real experience. The VN demo is the prologue; development continued as the Book of Betrayal novel series."
+		},
+		slugs: [
+			"xinghuiluo",
+			"book-of-betrayal"
+		]
 	}
 };
