@@ -3,18 +3,30 @@ export default {
     {
       id: 'v2',
       date: '2026-06-17',
-      author: { zh: '于启 / 萝北', en: 'Yu Qi / Luobei' },
-      title: { zh: '新版墓志铭（撰写中）', en: 'New Epitaph (Drafting)' },
+      author: { zh: '萝北来信', en: 'LuobeiLetters' },
+      title: { zh: '萝北来信的墓志铭', en: "LuobeiLetters' Epitaph" },
+      signature: {
+        zh: '—— 萝北来信（曾用名 tobenot）',
+        en: '—— LuobeiLetters (formerly tobenot)'
+      },
       contentKey: {
-        zh: `（之前的版本太消极了，所以我决定重新写一版。正在撰写中...）`,
-        en: `(The previous version was too negative, so I decided to write a new one. Drafting in progress...)`
+        zh: `Un jour je serai de retour près de toi
+
+总有一天，我会回到你身边。`,
+        en: `Un jour je serai de retour près de toi
+
+One day I will return to your side.`
       }
     },
     {
       id: 'v1',
       date: '2025-03-31',
       author: { zh: '金同学', en: 'Mr. Jin' },
-      title: { zh: '第一版墓志铭', en: 'First Epitaph' },
+      signature: {
+        zh: '—— 金同学',
+        en: '—— Mr. Jin'
+      },
+      title: { zh: '金的墓志铭', en: "Jin's Epitaph" },
       contentKey: {
         zh: `如果我完成了我的全部作品，那么我已经完成了我的使命。如果我还有任何一份灵感没有变成创作，那我真为自己（或大家）感到可惜。
 

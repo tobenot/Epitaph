@@ -35,8 +35,8 @@
       </div>
     </div>
     
-    <div class="signature">
-      <p>{{ $t('about.signature') }}</p>
+    <div class="signature" v-if="currentVersion?.signature">
+      <p>{{ currentVersion.signature[currentLocale] }}</p>
     </div>
 
     <div class="traces-gallery" v-if="about.personalWorks && about.personalWorks.length">
@@ -78,6 +78,9 @@ export default {
   computed: {
     currentLocale() {
       return this.$i18n.locale
+    },
+    currentVersion() {
+      return this.about.versions?.[this.currentIndex] ?? null
     }
   },
   methods: {
