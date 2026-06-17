@@ -289,7 +289,8 @@ export default {
   }
 
   &:hover {
-    background-color: rgba(var(--accent-color-rgb), 0.1);
+    background-color: var(--accent-color);
+    color: white;
     border-color: var(--accent-color);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px var(--shadow-color);
