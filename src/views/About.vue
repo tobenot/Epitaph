@@ -255,15 +255,15 @@ export default {
         hueCore = 55 + Math.random() * 10;
       }
       s.flames.push({
-        x: s.w * (0.06 + Math.random() * 0.88),
-        baseY: s.h * (0.9 + Math.random() * 0.08),   // 锚在法文底部，向上舔
-        height: s.h * (0.55 + Math.random() * 0.55), // 火舌高度
-        width: s.w * (0.04 + Math.random() * 0.05) + 10,
+        x: s.w * (0.04 + Math.random() * 0.92),
+        baseY: s.h * (0.12 + Math.random() * 0.86),  // 铺满整片：每个字都在烧
+        height: s.h * (0.12 + Math.random() * 0.24), // 矮火舌，密布
+        width: s.w * (0.025 + Math.random() * 0.04) + 6,
         life: 1,
-        decay: 0.016 + Math.random() * 0.014,
+        decay: 0.006 + Math.random() * 0.006,        // 烧慢点：寿命更长
         hueOuter, hueMid, hueCore,
         wob: Math.random() * Math.PI * 2,
-        wobSpeed: 0.12 + Math.random() * 0.08,
+        wobSpeed: 0.035 + Math.random() * 0.03,      // 摆动变慢
         flick: Math.random() * Math.PI * 2
       });
     },
@@ -272,7 +272,7 @@ export default {
       const s = this.flameState;
       const ctx = s.ctx;
       const life = p.life;
-      const flick = 0.85 + Math.abs(Math.sin(p.flick)) * 0.15;
+      const flick = 0.92 + Math.abs(Math.sin(p.flick)) * 0.08;
       const reach = p.height * (0.5 + 0.5 * life) * flick;
       const w = p.width * (0.7 + 0.3 * life);
       const baseY = p.baseY;
@@ -365,10 +365,10 @@ export default {
       if (!s.ctx) return;
       if (!s.lastSpawn) s.lastSpawn = t;
       s.lastSpawn = t;
-      // 生成：每帧 2 条火舌 + 偶尔余烬
-      const spawnCount = 2;
+      // 生成：每帧 1 条火舌 + 偶尔余烬（铺满但不过载）
+      const spawnCount = 1;
       for (let i = 0; i < spawnCount; i++) this.spawnFlame();
-      if (Math.random() < 0.35) this.spawnEmber();
+      if (Math.random() < 0.25) this.spawnEmber();
 
       s.ctx.clearRect(0, 0, s.w, s.h);
 
@@ -377,7 +377,7 @@ export default {
       for (let i = s.flames.length - 1; i >= 0; i--) {
         const p = s.flames[i];
         p.wob += p.wobSpeed;
-        p.flick += 0.2;
+        p.flick += 0.07;   // 闪烁变慢
         p.life -= p.decay;
         if (p.life <= 0) { s.flames.splice(i, 1); continue; }
         this.drawTongue(p);
@@ -671,15 +671,16 @@ export default {
   font-size: clamp(2rem, 7vw, 4.5rem);
   line-height: 1.12;
   text-wrap: balance;
-  color: var(--accent-color);
+  color: #ffe9b8;
   filter: url(#epitaph-spray-roughen);
   text-shadow:
-    0 0 1px rgba(255, 230, 180, 0.85),
-    0 0 14px rgba(255, 150, 40, 0.45),
-    0 0 34px rgba(255, 90, 30, 0.28),
-    0 0 60px rgba(188, 169, 121, 0.18);
+    0 0 2px rgba(255, 245, 215, 0.95),
+    0 0 9px rgba(255, 185, 90, 0.7),
+    0 0 22px rgba(255, 130, 45, 0.5),
+    0 0 44px rgba(255, 90, 30, 0.32),
+    0 0 80px rgba(200, 110, 50, 0.22);
   padding: 0.2em 0.1em;
-  animation: epitaph-breathe 7s ease-in-out infinite;
+  animation: epitaph-shimmer 4.5s ease-in-out infinite;
 }
 
 .spray-translation {
@@ -692,9 +693,23 @@ export default {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes epitaph-breathe {
-  0%, 100% { opacity: 0.9; }
-  50%      { opacity: 1; }
+@keyframes epitaph-shimmer {
+  0%, 100% {
+    text-shadow:
+      0 0 2px rgba(255, 245, 215, 0.9),
+      0 0 9px rgba(255, 185, 90, 0.6),
+      0 0 22px rgba(255, 130, 45, 0.45),
+      0 0 44px rgba(255, 90, 30, 0.28),
+      0 0 80px rgba(200, 110, 50, 0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 3px rgba(255, 252, 230, 1),
+      0 0 16px rgba(255, 205, 110, 0.85),
+      0 0 34px rgba(255, 150, 55, 0.6),
+      0 0 66px rgba(255, 105, 35, 0.42),
+      0 0 110px rgba(220, 130, 60, 0.26);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
