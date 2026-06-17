@@ -6,39 +6,27 @@
     </div>
 
     <div class="sounds-grid">
-      <div class="sound-card" v-for="sound in paginatedSounds" :key="sound.id">
-        <div class="card-content">
-          <div class="card-header">
+      <router-link
+        v-for="sound in paginatedSounds"
+        :key="sound.id"
+        :to="`/sound/${sound.id}`"
+        class="sound-card"
+      >
+        <div class="card-body">
+          <div class="card-text">
             <h3>{{ sound.titleKey[$i18n.locale] || sound.titleKey.zh }}</h3>
-          </div>
-          <p class="card-desc">{{ sound.descriptionKey[$i18n.locale] || sound.descriptionKey.zh }}</p>
-          <div class="card-tags">
-            <span class="small-tag">{{ sound.genre[$i18n.locale] || sound.genre.zh }}</span>
-          </div>
-          <div class="card-footer" v-if="sound.date">
-            <span class="card-footer-date">{{ formatDate(sound.date) }}</span>
-          </div>
-        </div>
-
-        <div class="audio-player">
-          <audio
-            controls
-            :src="sound.audioFile"
-            class="audio-element"
-            controlsList="nodownload"
-          ></audio>
-
-          <div v-if="sound.lyricsKey" class="lyrics-toggle">
-            <button @click="toggleLyrics(sound.id)" class="lyrics-btn">
-              {{ showLyrics[sound.id] ? $t('sounds.hideLyrics') : $t('sounds.showLyrics') }}
-            </button>
-
-            <div v-if="showLyrics[sound.id]" class="lyrics-content">
-              <p>{{ sound.lyricsKey[$i18n.locale] || sound.lyricsKey.zh }}</p>
+            <p class="card-desc">{{ sound.descriptionKey[$i18n.locale] || sound.descriptionKey.zh }}</p>
+            <div class="card-tags">
+              <span class="small-tag">{{ sound.genre[$i18n.locale] || sound.genre.zh }}</span>
+              <span class="small-tag" v-if="sound.date">{{ formatDate(sound.date) }}</span>
             </div>
           </div>
+          <div class="card-cta">
+            <span class="cta-text">{{ $t('sounds.listen') }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </div>
         </div>
-      </div>
+      </router-link>
     </div>
 
     <div v-if="sounds.length === 0" class="no-sounds">
@@ -67,7 +55,6 @@ export default {
   data() {
     return {
       sounds: config.sounds || [],
-      showLyrics: {},
       currentPage: 1,
       itemsPerPage: 12
     };
@@ -84,9 +71,6 @@ export default {
   },
   methods: {
     formatDate,
-    toggleLyrics(soundId) {
-      this.showLyrics[soundId] = !this.showLyrics[soundId];
-    },
     handlePageChange(page) {
       this.currentPage = page;
       window.scrollTo(0, 0);
@@ -97,7 +81,7 @@ export default {
 
 <style scoped lang="scss">
 .sounds-container {
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -122,55 +106,58 @@ export default {
 
 .sounds-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
 .sound-card {
+  display: block;
+  text-decoration: none;
   background-color: var(--card-bg);
   border-radius: 8px;
   box-shadow: 0 5px 15px var(--shadow-color);
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px var(--shadow-color);
+    border-color: rgba(var(--accent-color-rgb), 0.4);
+
+    .card-cta {
+      color: var(--accent-color);
+    }
   }
 }
 
-.card-content {
-  padding: 1.5rem;
+.card-body {
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.5rem 1.6rem;
 }
 
-.card-header {
-  margin-bottom: 0.75rem;
+.card-text {
+  flex: 1;
+  min-width: 0;
 
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.35;
     color: var(--primary-color);
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin: 0 0 0.5rem;
   }
 }
 
 .card-desc {
   font-family: 'Lora', serif;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.6;
   color: var(--secondary-color);
-  margin: 0;
+  margin: 0 0 0.7rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -181,71 +168,35 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.75rem;
 
   .small-tag {
     background: rgba(0, 0, 0, 0.04);
     color: var(--secondary-color);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 0.1rem 0.5rem;
     border-radius: 4px;
     font-family: 'Lora', serif;
   }
 }
 
-.card-footer {
-  margin-top: auto;
-  padding-top: 0.75rem;
-  font-family: 'Lora', serif;
-  font-size: 0.75rem;
+.card-cta {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--secondary-color);
-  opacity: 0.7;
-}
+  transition: color 0.3s ease;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  padding-left: 1.2rem;
 
-.audio-player {
-  padding: 0 1rem 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding-top: 0.75rem;
-  margin: 0 1rem 1rem;
-}
-
-.audio-element {
-  width: 100%;
-  height: 32px;
-}
-
-.lyrics-toggle {
-  margin-top: 0.5rem;
-}
-
-.lyrics-btn {
-  background: none;
-  border: 1px solid var(--accent-color);
-  color: var(--secondary-color);
-  padding: 0.3rem 0.75rem;
-  border-radius: 4px;
-  font-family: 'Lora', serif;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background-color: rgba(var(--accent-color-rgb), 0.1);
+  .cta-text {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    white-space: nowrap;
   }
-}
-
-.lyrics-content {
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-radius: 4px;
-  white-space: pre-line;
-  line-height: 1.6;
-  font-family: 'Lora', serif;
-  font-size: 0.8rem;
-  color: var(--secondary-color);
-  max-height: 120px;
-  overflow-y: auto;
 }
 
 .no-sounds {
@@ -254,18 +205,6 @@ export default {
   color: var(--secondary-color);
   font-style: italic;
   font-family: 'Lora', serif;
-}
-
-@media (max-width: 1200px) {
-  .sounds-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
-  .sounds-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 768px) {

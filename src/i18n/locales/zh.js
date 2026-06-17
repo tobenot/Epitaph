@@ -151,8 +151,10 @@ export default {
   sounds: {
     title: "留声",
     description: "这里是我的声音创作空间，记录音乐与声音的点滴",
-    showLyrics: "显示歌词",
-    hideLyrics: "隐藏歌词",
+    backToList: "返回留声",
+    listen: "进入收听",
+    lyrics: "歌词",
+    noLyrics: "（无歌词）",
     noSounds: "暂无音频作品"
   }
 } 

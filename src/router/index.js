@@ -4,6 +4,7 @@ import Project from '../views/Project.vue'
 import About from '../views/About.vue'
 import Gallery from '../views/Gallery.vue'
 import Sounds from '../views/Sounds.vue'
+import Sound from '../views/Sound.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/sounds',
     name: 'Sounds',
     component: Sounds
+  },
+  {
+    path: '/sound/:id',
+    name: 'Sound',
+    component: Sound
   }
 ]
 
@@ -98,6 +104,12 @@ export function updatePageMeta(to) {
   } else if (to.name === 'About') {
     title = `${t('about.title')} | Epitaph`
     description = pickLocalized(aboutConfig.contentKey, locale).split('\n')[0]
+  } else if (to.name === 'Sound') {
+    const sound = config.sounds?.find(s => s.id === to.params.id)
+    if (sound) {
+      title = `${pickLocalized(sound.titleKey, locale)} | Epitaph`
+      description = pickLocalized(sound.descriptionKey, locale)
+    }
   }
 
   document.title = title

@@ -11,15 +11,25 @@ while ((match = idRegex.exec(configContent)) !== null) {
   projectIds.push(match[1]);
 }
 
+// 扫描留声配置里的音频 id（字符串），生成 /sound/<id> 详情页路由
+const soundsConfigPath = path.join(__dirname, '../src/config/soundsConfig.js');
+const soundsContent = fs.readFileSync(soundsConfigPath, 'utf8');
+const soundIdRegex = /id:\s*['"]([^'"]+)['"]/g;
+const soundIds = [];
+while ((match = soundIdRegex.exec(soundsContent)) !== null) {
+  soundIds.push(match[1]);
+}
+
 const baseUrl = 'https://e.tobenot.top';
 const routes = [
   '/',
   '/about',
   '/gallery',
-  '/paintings', 
-  '/photographs', 
+  '/paintings',
+  '/photographs',
   '/sounds',
-  ...projectIds.map(id => `/project/${id}`)
+  ...projectIds.map(id => `/project/${id}`),
+  ...soundIds.map(id => `/sound/${id}`)
 ];
 
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>

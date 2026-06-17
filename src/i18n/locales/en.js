@@ -151,8 +151,10 @@ export default {
   sounds: {
     title: "Sounds",
     description: "This is my sound creation space, recording music and sounds",
-    showLyrics: "Show Lyrics",
-    hideLyrics: "Hide Lyrics",
+    backToList: "Back to Sounds",
+    listen: "Listen",
+    lyrics: "Lyrics",
+    noLyrics: "(No lyrics)",
     noSounds: "No audio works available"
   }
 } 

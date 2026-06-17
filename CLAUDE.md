@@ -74,7 +74,11 @@ See `src/config/TAGS_MAINTENANCE.md` for the facet list and `src/config/PRIDE_SO
 
 Because this is an SPA on GitHub Pages, per-project OG previews are generated **statically at build time** by `generate-og-pages.js`, which regex-extracts slug/title/description/image from each project file and writes a `dist/project/<slug>/index.html` (cloned from the built `dist/index.html` with meta tags swapped). It copies local cover images into `dist/img/og/` and falls back to cached bilibili covers. The sitemap is similarly regenerated each build.
 
-### Bilibili covers
+### Sounds (留声)
+
+List page `/sounds` shows **preview cards only** — no `<audio>` elements, no progress bars (avoids loading all audio at once). Cards link to a detail page `/sound/:id` (`src/views/Sound.vue`) that renders the single track + full lyrics. This mirrors the `/project/:slug` pattern. The audio file (`audioFile: require(...)` in `soundsConfig.js`) is only fetched by the browser when the detail page's `<audio>` mounts — `require()` just resolves the URL at module load, it does not download.
+
+
 
 Setting `bilibiliVideoId: "BV..."` on a project pulls the cover from the B站 API at build time (cached in `src/data/bilibili-covers.json`, 200ms between requests, falls back to cached on failure). If a project already has a local `image`, do **not** also set `bilibiliVideoId` — the bilibili cover takes precedence at render time.
 
