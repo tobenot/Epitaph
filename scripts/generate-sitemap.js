@@ -13,10 +13,9 @@ while ((match = idRegex.exec(configContent)) !== null) {
 
 const baseUrl = 'https://e.tobenot.top';
 const routes = [
-  '/', 
-  '/about', 
-  '/experience', 
-  '/gallery', 
+  '/',
+  '/about',
+  '/gallery',
   '/paintings', 
   '/photographs', 
   '/sounds',
