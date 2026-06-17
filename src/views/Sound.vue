@@ -372,21 +372,17 @@ audio {
   align-items: center;
   cursor: pointer;
   touch-action: none;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.1);
-  }
+  /* 轨道本身可见的背景，28px 命中区 + 6px 视觉条 */
+  background:
+    linear-gradient(transparent 11px, rgba(0, 0, 0, 0.1) 11px, rgba(0, 0, 0, 0.1) 17px, transparent 17px);
+  background-repeat: no-repeat;
 }
 
 .seek-fill {
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   height: 6px;
   border-radius: 3px;
   background: var(--accent-color);
@@ -395,19 +391,21 @@ audio {
 
 .seek-thumb {
   position: absolute;
+  top: 50%;
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background: var(--accent-color);
   border: 2px solid var(--card-bg);
   box-shadow: 0 2px 6px var(--shadow-color);
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
   transition: transform 0.1s ease;
 }
 
-.seek-track:hover .seek-thumb {
-  transform: translateX(-50%) scale(1.15);
+.seek-track:hover .seek-thumb,
+.seek-track:active .seek-thumb {
+  transform: translate(-50%, -50%) scale(1.15);
 }
 
 .sound-desc {
