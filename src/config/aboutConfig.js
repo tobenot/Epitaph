@@ -3,6 +3,7 @@ export default {
     {
       id: 'v2',
       date: '2026-06-17',
+      display: 'spray',
       author: { zh: '萝北来信', en: 'LuobeiLetters' },
       title: { zh: '萝北来信的墓志铭', en: "LuobeiLetters' Epitaph" },
       signature: {

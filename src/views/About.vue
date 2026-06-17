@@ -1,5 +1,13 @@
 <template>
   <div class="about-container">
+    <svg class="spray-filter-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="epitaph-spray-roughen" x="-50%" y="-50%" width="200%" height="200%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+    </svg>
     <div class="epitaph-header">
       <div class="frame-decoration">
         <div class="frame-corner top-left"></div>
@@ -17,6 +25,7 @@
         v-for="(ver, index) in about.versions" 
         :key="ver.id"
         class="paper-card"
+        :class="{ 'paper-card--spray': ver.display === 'spray' }"
         :style="getCardStyle(index)"
         @click="handleCardClick(index)"
       >
@@ -25,7 +34,13 @@
           <span class="version-author">{{ ver.author[currentLocale] }}</span>
         </div>
         <h2 class="version-title" v-if="ver.title">{{ ver.title[currentLocale] }}</h2>
-        <div class="about-content">
+        <div class="about-content" v-if="ver.display === 'spray'">
+          <div class="epitaph-spray">
+            <p class="spray-line spray-french">{{ sprayParts(ver, currentLocale).french }}</p>
+            <p class="spray-line spray-translation">{{ sprayParts(ver, currentLocale).translation }}</p>
+          </div>
+        </div>
+        <div class="about-content" v-else>
           <div class="epitaph-text">{{ ver.contentKey[currentLocale] }}</div>
         </div>
         <div class="flip-hint" v-if="index === currentIndex">
@@ -84,6 +99,12 @@ export default {
     }
   },
   methods: {
+    sprayParts(ver, locale) {
+      // spray 变体按空行把「法语句」与「译文」拆成两块，分别排布
+      const raw = ver.contentKey?.[locale] || ''
+      const [french = '', ...rest] = raw.split(/\n\s*\n/)
+      return { french: french.trim(), translation: rest.join('\n\n').trim() }
+    },
     getCardStyle(index) {
       if (!this.about.versions) return {};
       const total = this.about.versions.length;
@@ -300,6 +321,86 @@ export default {
   font-size: 1.1rem;
   line-height: 1.9;
   color: var(--secondary-color);
+}
+
+/* —— 喷漆墓志铭变体（Disco Elysico 式地面涂鸦）—— */
+.spray-filter-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.paper-card--spray {
+  background-color: #1c1b18;
+  background-image:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.04), transparent 55%),
+    radial-gradient(circle at 72% 82%, rgba(0, 0, 0, 0.45), transparent 70%);
+  border-color: rgba(0, 0, 0, 0.5);
+  color: var(--light-text);
+
+  &::before {
+    content: none;
+  }
+
+  .paper-meta {
+    color: rgba(188, 169, 121, 0.72);
+    border-bottom-color: rgba(188, 169, 121, 0.18);
+  }
+
+  .version-title {
+    color: rgba(245, 245, 245, 0.82);
+  }
+}
+
+.epitaph-spray {
+  text-align: center;
+  padding: 1.2rem 0.5rem 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.spray-line {
+  margin: 0;
+}
+
+.spray-french {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  line-height: 1.12;
+  text-wrap: balance;
+  color: var(--accent-color);
+  filter: url(#epitaph-spray-roughen);
+  text-shadow:
+    0 0 1px rgba(188, 169, 121, 0.7),
+    0 0 12px rgba(188, 169, 121, 0.35),
+    0 0 30px rgba(188, 169, 121, 0.18);
+  padding: 0.2em 0.1em;
+  animation: epitaph-breathe 7s ease-in-out infinite;
+}
+
+.spray-translation {
+  margin-top: 1.6rem;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 3vw, 1.7rem);
+  letter-spacing: 0.14em;
+  color: rgba(245, 245, 245, 0.68);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes epitaph-breathe {
+  0%, 100% { opacity: 0.9; }
+  50%      { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spray-french {
+    animation: none;
+  }
 }
 
 .signature {
