@@ -156,6 +156,8 @@ export default {
     description: "This is my sound creation space, recording music and sounds",
     backToList: "Back to Sounds",
     listen: "Listen",
+    play: "Play",
+    pause: "Pause",
     lyrics: "Lyrics",
     noLyrics: "(No lyrics)",
     noSounds: "No audio works available"

@@ -156,6 +156,8 @@ export default {
     description: "这里是我的声音创作空间，记录音乐与声音的点滴",
     backToList: "返回留声",
     listen: "进入收听",
+    play: "播放",
+    pause: "暂停",
     lyrics: "歌词",
     noLyrics: "（无歌词）",
     noSounds: "暂无音频作品"
