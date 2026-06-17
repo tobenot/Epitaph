@@ -102,6 +102,8 @@ export default {
         flames: [],
         embers: [],
         ash: [],
+        textLines: [],
+        frames: 0,
         lastSpawn: 0,
         running: false,
         reduceMotion: false
@@ -130,10 +132,12 @@ export default {
   mounted() {
     this.flameState.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.addEventListener('visibilitychange', this.onVisibilityChange);
+    window.addEventListener('resize', this.onResize);
     if (this.sprayActive) this.$nextTick(this.startFlames);
   },
   beforeUnmount() {
     document.removeEventListener('visibilitychange', this.onVisibilityChange);
+    window.removeEventListener('resize', this.onResize);
     this.stopFlames();
   },
   methods: {
@@ -200,6 +204,10 @@ export default {
       s.running = true;
       this.resizeFlameCanvas();
       s.lastSpawn = 0;
+      // 字体加载完成后再测一次字形位置（首测可能落在 fallback 字体上）
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => { if (s.running) this.measureTextLines(); });
+      }
       const loop = (t) => {
         if (!s.running) return;
         this.tickFlames(t);
@@ -216,6 +224,7 @@ export default {
       if (s.ctx) s.ctx.clearRect(0, 0, s.w, s.h);
       s.flames = [];
       s.embers = [];
+      s.ash = [];
     },
     resizeFlameCanvas() {
       const s = this.flameState;
@@ -231,6 +240,34 @@ export default {
       canvas.style.width = s.w + 'px';
       canvas.style.height = s.h + 'px';
       s.ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      this.measureTextLines();
+    },
+    onResize() {
+      if (this.flameState.running) this.resizeFlameCanvas();
+    },
+    // 量取喷漆法文逐行的渲染矩形（相对画布），让火舌根部贴着字走，而非整片矩形随机
+    measureTextLines() {
+      const s = this.flameState;
+      const canvas = s.canvas;
+      if (!canvas) return;
+      const stageRect = canvas.getBoundingClientRect();
+      const frenchEl = canvas.parentElement && canvas.parentElement.querySelector('.spray-french');
+      if (!frenchEl) { s.textLines = []; return; }
+      const range = document.createRange();
+      range.selectNodeContents(frenchEl);
+      const rects = range.getClientRects();
+      const lines = [];
+      for (let i = 0; i < rects.length; i++) {
+        const r = rects[i];
+        if (r.width < 2 || r.height < 2) continue;
+        lines.push({
+          left: r.left - stageRect.left,
+          right: r.right - stageRect.left,
+          top: r.top - stageRect.top,
+          bottom: r.bottom - stageRect.top
+        });
+      }
+      s.textLines = lines;
     },
     spawnFlame() {
       const s = this.flameState;
@@ -254,10 +291,25 @@ export default {
         hueMid = 30 + Math.random() * 15;
         hueCore = 55 + Math.random() * 10;
       }
+      // 根部贴字：在量到的文字行里挑一点作火舌根，让火焰跟着字走
+      let x, baseY;
+      const lines = s.textLines;
+      if (lines && lines.length) {
+        const ln = lines[Math.floor(Math.random() * lines.length)];
+        x = ln.left + Math.random() * (ln.right - ln.left);
+        // 根部落在线条下半部，火舌由此向上舔
+        baseY = ln.bottom - Math.random() * (ln.bottom - ln.top) * 0.5;
+      } else {
+        x = s.w * (0.1 + Math.random() * 0.8);
+        baseY = s.h * 0.6;
+      }
+      // 高度上限 = 根到画布顶的距离，保证火舌绝不冲出画布顶（修「超框」）
+      const maxReach = Math.max(18, baseY - 3);
+      const wantHeight = s.h * (0.14 + Math.random() * 0.26);
       s.flames.push({
-        x: s.w * (0.04 + Math.random() * 0.92),
-        baseY: s.h * (0.12 + Math.random() * 0.86),  // 铺满整片：每个字都在烧
-        height: s.h * (0.12 + Math.random() * 0.24), // 矮火舌，密布
+        x,
+        baseY,
+        height: Math.min(wantHeight, maxReach),
         width: s.w * (0.025 + Math.random() * 0.04) + 6,
         life: 1,
         decay: 0.006 + Math.random() * 0.006,        // 烧慢点：寿命更长
@@ -310,20 +362,38 @@ export default {
         ctx.fill();
       }
     },
-    spawnEmber() {
+    // 从某条火舌根部溅出火星：上下火舌都喷，不再只聚底部
+    spawnEmberAt(x, y, hue) {
       const s = this.flameState;
       const hueRoll = Math.random();
-      const hue = hueRoll < 0.7 ? 38 + Math.random() * 20 : (hueRoll < 0.88 ? 320 + Math.random() * 30 : 190 + Math.random() * 30);
+      if (hue === undefined) {
+        hue = hueRoll < 0.7 ? 38 + Math.random() * 20 : (hueRoll < 0.88 ? 320 + Math.random() * 30 : 190 + Math.random() * 30);
+      }
       s.embers.push({
-        x: s.w * (0.1 + Math.random() * 0.8),
-        y: s.h * (0.7 + Math.random() * 0.2),
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: -(0.8 + Math.random() * 1.6),
+        x: x + (Math.random() - 0.5) * 4,
+        y: y + (Math.random() - 0.5) * 4,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: -(0.6 + Math.random() * 1.4),
         life: 1,
         decay: 0.004 + Math.random() * 0.006,
         size: 1 + Math.random() * 1.8,
         hue,
         flick: Math.random() * Math.PI * 2
+      });
+    },
+    // 从某条火舌根部飘落一点灰烬：让灰烬也跟着字走，而非只在底部
+    spawnAshAt(x, y) {
+      const s = this.flameState;
+      s.ash.push({
+        x,
+        y,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: 0.2 + Math.random() * 0.4,
+        life: 1,
+        decay: 0.003 + Math.random() * 0.004,
+        size: 1 + Math.random() * 2.2,
+        rot: Math.random() * Math.PI,
+        vrot: (Math.random() - 0.5) * 0.05
       });
     },
     burstAsh(n) {
@@ -365,10 +435,27 @@ export default {
       if (!s.ctx) return;
       if (!s.lastSpawn) s.lastSpawn = t;
       s.lastSpawn = t;
-      // 生成：每帧 1 条火舌 + 偶尔余烬（铺满但不过载）
+      s.frames++;
+      // 每隔一阵重测字形位置，吸收翻页过渡 / 布局变化
+      if (s.frames % 30 === 0) this.measureTextLines();
+      // 生成：每帧 1 条火舌（贴字，铺满但不过载）
       const spawnCount = 1;
       for (let i = 0; i < spawnCount; i++) this.spawnFlame();
-      if (Math.random() < 0.25) this.spawnEmber();
+
+      // 火舌溅火星 / 飘灰烬：每条火舌都有机会，上下都喷（修「上面没灰烬」）
+      if (s.flames.length) {
+        const emit = Math.min(s.flames.length, 2);
+        for (let i = 0; i < emit; i++) {
+          if (Math.random() < 0.5) {
+            const f = s.flames[(Math.random() * s.flames.length) | 0];
+            this.spawnEmberAt(f.x, f.baseY, f.hueMid);
+          }
+        }
+        if (Math.random() < 0.08) {
+          const f = s.flames[(Math.random() * s.flames.length) | 0];
+          this.spawnAshAt(f.x, f.baseY);
+        }
+      }
 
       s.ctx.clearRect(0, 0, s.w, s.h);
 
@@ -645,7 +732,8 @@ export default {
 
 .flame-stage {
   position: relative;
-  padding-top: clamp(1.5rem, 5vw, 3rem);
+  /* 顶部留足空间让火舌向上舔，不至于冲出卡片框 */
+  padding-top: clamp(3.5rem, 12vw, 7rem);
 }
 
 .flame-canvas {
