@@ -78,6 +78,12 @@ Because this is an SPA on GitHub Pages, per-project OG previews are generated **
 
 List page `/sounds` shows **preview cards only** — no `<audio>` elements, no progress bars (avoids loading all audio at once). Cards link to a detail page `/sound/:id` (`src/views/Sound.vue`) that renders the single track + full lyrics. This mirrors the `/project/:slug` pattern. The audio file (`audioFile: require(...)` in `soundsConfig.js`) is only fetched by the browser when the detail page's `<audio>` mounts — `require()` just resolves the URL at module load, it does not download.
 
+### Galleries (绘画 / 摄影)
+
+`/paintings`, `/photographs`, and the combined `/gallery` all render `Gallery.vue`, which reads `config.galleries` (array of `{ id, titleKey, descriptionKey, items[] }` from `galleriesConfig.js`). List cards are minimal (image + title + date); clicking a card routes to a real detail page — `/painting/:itemId` or `/photograph/:itemId` — both served by `GalleryItem.vue` (distinguished by route `meta.type`). The old lightbox was removed in favor of these routes, mirroring `/sound/:id`.
+
+
+
 
 
 Setting `bilibiliVideoId: "BV..."` on a project pulls the cover from the B站 API at build time (cached in `src/data/bilibili-covers.json`, 200ms between requests, falls back to cached on failure). If a project already has a local `image`, do **not** also set `bilibiliVideoId` — the bilibili cover takes precedence at render time.

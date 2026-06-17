@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import Gallery from '../views/Gallery.vue'
 import Sounds from '../views/Sounds.vue'
 import Sound from '../views/Sound.vue'
+import GalleryItem from '../views/GalleryItem.vue'
 
 const routes = [
   {
@@ -38,6 +39,18 @@ const routes = [
     name: 'Photographs',
     component: Gallery,
     props: { defaultGalleryType: 'photographs' }
+  },
+  {
+    path: '/painting/:itemId',
+    name: 'Painting',
+    component: GalleryItem,
+    meta: { type: 'paintings' }
+  },
+  {
+    path: '/photograph/:itemId',
+    name: 'Photograph',
+    component: GalleryItem,
+    meta: { type: 'photographs' }
   },
   {
     path: '/sounds',
@@ -109,6 +122,13 @@ export function updatePageMeta(to) {
     if (sound) {
       title = `${pickLocalized(sound.titleKey, locale)} | Epitaph`
       description = pickLocalized(sound.descriptionKey, locale)
+    }
+  } else if (to.name === 'Painting' || to.name === 'Photograph') {
+    const gallery = config.galleries?.find(g => g.id === to.meta?.type)
+    const item = gallery?.items.find(i => i.id === to.params.itemId)
+    if (item) {
+      title = `${pickLocalized(item.titleKey, locale)} | Epitaph`
+      description = pickLocalized(item.descriptionKey, locale)
     }
   }
 

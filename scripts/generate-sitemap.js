@@ -20,6 +20,21 @@ while ((match = soundIdRegex.exec(soundsContent)) !== null) {
   soundIds.push(match[1]);
 }
 
+// 扫描绘画/摄影配置里的作品 id，分别生成详情页路由。
+// 两个文件顶层各有一个画廊级 id（'paintings'/'photographs'），需排除。
+function collectGalleryItemIds(file) {
+  const content = fs.readFileSync(file, 'utf8');
+  const ids = [];
+  const re = /id:\s*['"]([^'"]+)['"]/g;
+  let m;
+  while ((m = re.exec(content)) !== null) {
+    if (m[1] !== 'paintings' && m[1] !== 'photographs') ids.push(m[1]);
+  }
+  return ids;
+}
+const paintingIds = collectGalleryItemIds(path.join(__dirname, '../src/config/paintingsConfig.js'));
+const photographIds = collectGalleryItemIds(path.join(__dirname, '../src/config/photographsConfig.js'));
+
 const baseUrl = 'https://e.tobenot.top';
 const routes = [
   '/',
@@ -29,7 +44,9 @@ const routes = [
   '/photographs',
   '/sounds',
   ...projectIds.map(id => `/project/${id}`),
-  ...soundIds.map(id => `/sound/${id}`)
+  ...soundIds.map(id => `/sound/${id}`),
+  ...paintingIds.map(id => `/painting/${id}`),
+  ...photographIds.map(id => `/photograph/${id}`)
 ];
 
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>

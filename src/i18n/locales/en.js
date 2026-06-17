@@ -136,17 +136,20 @@ export default {
   gallery: {
     title: "Gallery",
     description: "A collection of my paintings and photography works, capturing beautiful moments in life",
-    noGallery: "No gallery works available"
+    noGallery: "No gallery works available",
+    notFound: "Work not found"
   },
   paintings: {
     title: "Paintings",
     description: "A showcase of my painting creations, capturing the colors of the mind",
-    noPaintings: "No paintings available"
+    noPaintings: "No paintings available",
+    backToList: "Back to Paintings"
   },
   photographs: {
     title: "Photography",
     description: "Moments captured through the lens, freezing time and light",
-    noPhotographs: "No photographs available"
+    noPhotographs: "No photographs available",
+    backToList: "Back to Photography"
   },
   sounds: {
     title: "Sounds",

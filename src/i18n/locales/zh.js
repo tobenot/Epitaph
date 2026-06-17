@@ -136,17 +136,20 @@ export default {
   gallery: {
     title: "画廊",
     description: "这里收录了我的绘画作品和摄影作品，记录生活中的美好瞬间",
-    noGallery: "暂无画廊作品"
+    noGallery: "暂无画廊作品",
+    notFound: "未找到该作品"
   },
   paintings: {
     title: "绘画",
     description: "这里展示我的绘画创作，记录心灵的色彩",
-    noPaintings: "暂无绘画作品"
+    noPaintings: "暂无绘画作品",
+    backToList: "返回绘画"
   },
   photographs: {
     title: "摄影",
     description: "通过镜头捕捉的瞬间，定格时光与光影",
-    noPhotographs: "暂无摄影作品"
+    noPhotographs: "暂无摄影作品",
+    backToList: "返回摄影"
   },
   sounds: {
     title: "留声",

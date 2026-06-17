@@ -27,8 +27,8 @@
 
     <!-- 画廊分类导航 - 只在总画廊页面显示 -->
     <div class="gallery-nav" v-if="$route.path === '/gallery'">
-      <button 
-        v-for="gallery in galleries" 
+      <button
+        v-for="gallery in galleries"
         :key="gallery.id"
         :class="['gallery-nav-btn', { active: activeGallery === gallery.id }]"
         @click="activeGallery = gallery.id"
@@ -49,11 +49,11 @@
           </p>
 
           <div class="gallery-grid">
-            <div 
-              v-for="item in paginatedGalleryItems" 
-              :key="item.id" 
+            <router-link
+              v-for="item in paginatedGalleryItems"
+              :key="item.id"
+              :to="itemLink(item)"
               class="gallery-item"
-              @click="openLightbox(item)"
             >
               <div class="item-image-container">
                 <img :src="item.image" :alt="item.titleKey[$i18n.locale] || item.titleKey.zh" class="item-image" />
@@ -67,7 +67,7 @@
                   </span>
                 </p>
               </div>
-            </div>
+            </router-link>
           </div>
 
           <Pagination
@@ -87,27 +87,6 @@
             {{ $t('gallery.noGallery') }}
           </template>
         </div>
-    </div>
-
-    <!-- 灯箱 -->
-    <div v-if="lightbox.visible" class="lightbox" @click="closeLightbox">
-      <div class="lightbox-content" @click.stop>
-        <button class="lightbox-close" @click="closeLightbox">&times;</button>
-        <img :src="lightbox.item.image" :alt="lightbox.item.titleKey[$i18n.locale] || lightbox.item.titleKey.zh" class="lightbox-image" />
-        <div class="lightbox-details">
-          <h3 class="lightbox-title">{{ lightbox.item.titleKey[$i18n.locale] || lightbox.item.titleKey.zh }}</h3>
-          <p class="lightbox-description">{{ lightbox.item.descriptionKey[$i18n.locale] || lightbox.item.descriptionKey.zh }}</p>
-          <p class="lightbox-metadata">
-            <span v-if="lightbox.item.date">{{ formatDate(lightbox.item.date) }}</span>
-            <span v-if="lightbox.item.medium" class="lightbox-medium">
-              {{ lightbox.item.medium[$i18n.locale] || lightbox.item.medium.zh }}
-            </span>
-            <span v-if="lightbox.item.location" class="lightbox-location">
-              {{ lightbox.item.location[$i18n.locale] || lightbox.item.location.zh }}
-            </span>
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -132,10 +111,6 @@ export default {
     return {
       galleries: config.galleries || [],
       activeGallery: null,
-      lightbox: {
-        visible: false,
-        item: null
-      },
       itemsPerPage: 15,
       galleryPagination: {}
     };
@@ -162,7 +137,7 @@ export default {
   created() {
     if (this.defaultGalleryType && this.galleries.some(gallery => gallery.id === this.defaultGalleryType)) {
       this.activeGallery = this.defaultGalleryType;
-    } 
+    }
     else if (this.galleries.length > 0) {
       this.activeGallery = this.galleries[0].id;
     }
@@ -172,7 +147,7 @@ export default {
     $route(to, from) {
       if (to.path === '/paintings' && this.galleries.some(gallery => gallery.id === 'paintings')) {
         this.activeGallery = 'paintings';
-      } 
+      }
       else if (to.path === '/photographs' && this.galleries.some(gallery => gallery.id === 'photographs')) {
         this.activeGallery = 'photographs';
       }
@@ -181,10 +156,6 @@ export default {
       }
       if (to.path !== from.path) {
          this.initializePagination();
-      }
-    },
-    activeGallery(newGalleryId, oldGalleryId) {
-      if (newGalleryId !== oldGalleryId) {
       }
     }
   },
@@ -197,15 +168,11 @@ export default {
         });
     },
     formatDate,
-    openLightbox(item) {
-      this.lightbox.item = item;
-      this.lightbox.visible = true;
-      document.body.style.overflow = 'hidden';
-    },
-    closeLightbox() {
-      this.lightbox.visible = false;
-      this.lightbox.item = null;
-      document.body.style.overflow = '';
+    itemLink(item) {
+      // 绘画 → /painting/:id，摄影 → /photograph/:id
+      return this.activeGallery === 'photographs'
+        ? `/photograph/${item.id}`
+        : `/painting/${item.id}`;
     },
     handleGalleryPageChange(page) {
       if (this.activeGallery) {
@@ -285,7 +252,9 @@ export default {
 }
 
 .gallery-item {
-  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.3s ease;
 }
 
@@ -325,73 +294,12 @@ export default {
   margin-left: 0.5rem;
 }
 
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.lightbox-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.lightbox-image {
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-}
-
-.lightbox-details {
-  padding: 1.5rem;
-}
-
-.lightbox-title {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.lightbox-description {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.lightbox-metadata {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.lightbox-medium, .lightbox-location {
-  margin-left: 1rem;
+.no-gallery {
+  text-align: center;
+  color: var(--secondary-color);
+  font-style: italic;
+  font-family: 'Lora', serif;
+  margin-top: 2rem;
 }
 
 /* Responsive styles */
@@ -402,53 +310,13 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .epitaph-header {
-    h1 {
-      font-size: 2.2rem;
-    }
-    
-    .quote {
-      font-size: 1rem;
-      padding: 0 1rem;
-    }
+  .page-title {
+    font-size: 2.2rem;
   }
-  
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-  }
-  
-  .gallery-intro {
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    
-    p {
-      font-size: 1rem;
-    }
-  }
-  
-  .gallery-image {
-    .metadata {
-      padding: 0.8rem;
-      
-      h3 {
-        font-size: 1rem;
-      }
-      
-      .image-date {
-        font-size: 0.8rem;
-      }
-    }
-  }
-  
-  .lightbox-image-container img {
-    max-width: 90vw;
-    max-height: 80vh;
-  }
-  
-  .lightbox-navigation button {
-    width: 40px;
-    height: 40px;
   }
 }
 
@@ -456,28 +324,9 @@ export default {
   .gallery-grid {
     grid-template-columns: 1fr;
   }
-  
-  .epitaph-header h1 {
+
+  .page-title {
     font-size: 1.8rem;
   }
-  
-  .filter-controls {
-    flex-direction: column;
-    align-items: stretch;
-    
-    .filter-title {
-      margin-bottom: 0.5rem;
-      margin-right: 0;
-    }
-    
-    .filter-buttons {
-      flex-wrap: wrap;
-      justify-content: center;
-      
-      button {
-        margin: 0.25rem;
-      }
-    }
-  }
 }
-</style> 
+</style>
