@@ -36,6 +36,7 @@
         <h2 class="version-title" v-if="ver.title">{{ ver.title[currentLocale] }}</h2>
         <div class="about-content" v-if="ver.display === 'spray'">
           <div class="epitaph-spray">
+            <canvas ref="flameCanvas" class="flame-canvas"></canvas>
             <p class="spray-line spray-french">{{ sprayParts(ver, currentLocale).french }}</p>
             <p class="spray-line spray-translation">{{ sprayParts(ver, currentLocale).translation }}</p>
           </div>
@@ -87,7 +88,22 @@ export default {
   data() {
     return {
       about: config.about,
-      currentIndex: 0
+      currentIndex: 0,
+      // 火焰粒子引擎（仅喷漆墓志铭卡片为前景时运行）
+      flameState: {
+        rafId: null,
+        ctx: null,
+        canvas: null,
+        dpr: 1,
+        w: 0,
+        h: 0,
+        flames: [],
+        embers: [],
+        ash: [],
+        lastSpawn: 0,
+        running: false,
+        reduceMotion: false
+      }
     }
   },
   computed: {
@@ -96,7 +112,27 @@ export default {
     },
     currentVersion() {
       return this.about.versions?.[this.currentIndex] ?? null
+    },
+    // 当前是否是喷漆卡片位于前景（火焰仅在此时运行，省性能）
+    sprayActive() {
+      const v = this.about.versions?.[this.currentIndex]
+      return v?.display === 'spray'
     }
+  },
+  watch: {
+    sprayActive(active) {
+      if (active) this.startFlames();
+      else this.stopFlames();
+    }
+  },
+  mounted() {
+    this.flameState.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
+    if (this.sprayActive) this.$nextTick(this.startFlames);
+  },
+  beforeUnmount() {
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
+    this.stopFlames();
   },
   methods: {
     sprayParts(ver, locale) {
@@ -137,6 +173,206 @@ export default {
         this.currentIndex = (this.currentIndex + 1) % this.about.versions.length;
       } else {
         this.currentIndex = index;
+      }
+    },
+    // —— 火焰引擎 ——
+    onVisibilityChange() {
+      // 切回前台：来一波灰烬，像余烬被风吹散复燃
+      if (!document.hidden && this.sprayActive && !this.flameState.reduceMotion) {
+        this.burstAsh(28);
+      }
+      if (document.hidden) {
+        this.stopFlames();
+      } else if (this.sprayActive) {
+        this.startFlames();
+      }
+    },
+    startFlames() {
+      const s = this.flameState;
+      if (s.running || s.reduceMotion) return;
+      // v-for 内的 ref 是数组，取第一个（喷漆卡片唯一一个 canvas）
+      const canvas = (this.$refs.flameCanvas || [])[0];
+      if (!canvas) return;
+      s.canvas = canvas;
+      s.ctx = canvas.getContext('2d');
+      s.running = true;
+      this.resizeFlameCanvas();
+      s.lastSpawn = 0;
+      const loop = (t) => {
+        if (!s.running) return;
+        this.tickFlames(t);
+        s.rafId = requestAnimationFrame(loop);
+      };
+      s.rafId = requestAnimationFrame(loop);
+    },
+    stopFlames() {
+      const s = this.flameState;
+      s.running = false;
+      if (s.rafId) cancelAnimationFrame(s.rafId);
+      s.rafId = null;
+      // 清场
+      if (s.ctx) s.ctx.clearRect(0, 0, s.w, s.h);
+      s.flames = [];
+      s.embers = [];
+    },
+    resizeFlameCanvas() {
+      const s = this.flameState;
+      const canvas = s.canvas;
+      if (!canvas) return;
+      const host = canvas.parentElement;
+      const rect = host.getBoundingClientRect();
+      s.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      s.w = Math.max(1, rect.width);
+      s.h = Math.max(1, rect.height);
+      canvas.width = s.w * s.dpr;
+      canvas.height = s.h * s.dpr;
+      canvas.style.width = s.w + 'px';
+      canvas.style.height = s.h + 'px';
+      s.ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+    },
+    spawnFlame() {
+      const s = this.flameState;
+      // 彩色火焰：以金橙红为主，偶尔混入品红/紫/青色尖
+      const hueRoll = Math.random();
+      let hueBase;
+      if (hueRoll < 0.62) hueBase = 38 + Math.random() * 14;      // 金黄→橙
+      else if (hueRoll < 0.85) hueBase = 12 + Math.random() * 14; // 橙红→红
+      else if (hueRoll < 0.93) hueBase = 320 + Math.random() * 30;// 品红→紫
+      else hueBase = 180 + Math.random() * 30;                    // 青
+      s.flames.push({
+        x: s.w * (0.08 + Math.random() * 0.84),
+        y: s.h * (0.82 + Math.random() * 0.12),
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: -(0.7 + Math.random() * 1.4),
+        life: 1,
+        decay: 0.012 + Math.random() * 0.012,
+        size: 7 + Math.random() * 10,
+        hue: hueBase,
+        wob: Math.random() * Math.PI * 2
+      });
+    },
+    spawnEmber() {
+      const s = this.flameState;
+      const hueRoll = Math.random();
+      const hue = hueRoll < 0.7 ? 38 + Math.random() * 20 : (hueRoll < 0.88 ? 320 + Math.random() * 30 : 190 + Math.random() * 30);
+      s.embers.push({
+        x: s.w * (0.1 + Math.random() * 0.8),
+        y: s.h * (0.7 + Math.random() * 0.2),
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: -(0.8 + Math.random() * 1.6),
+        life: 1,
+        decay: 0.004 + Math.random() * 0.006,
+        size: 1 + Math.random() * 1.8,
+        hue,
+        flick: Math.random() * Math.PI * 2
+      });
+    },
+    burstAsh(n) {
+      const s = this.flameState;
+      if (!s.canvas) this.resizeFlameCanvas();
+      for (let i = 0; i < n; i++) {
+        s.ash.push({
+          x: s.w * (0.1 + Math.random() * 0.8),
+          y: s.h * (0.3 + Math.random() * 0.4),
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: -(0.2 + Math.random() * 0.6),
+          life: 1,
+          decay: 0.003 + Math.random() * 0.004,
+          size: 1 + Math.random() * 2.4,
+          rot: Math.random() * Math.PI,
+          vrot: (Math.random() - 0.5) * 0.05
+        });
+      }
+      // 灰烬需要持续渲染一小段时间；若未运行则起一个短循环
+      if (!s.running) this.runAshTail();
+    },
+    runAshTail() {
+      const s = this.flameState;
+      if (s.ash.length === 0) return;
+      let start = 0;
+      const tail = (t) => {
+        if (!start) start = t;
+        this.tickAsh(t);
+        if (s.ash.length > 0 && t - start < 4000) {
+          requestAnimationFrame(tail);
+        } else if (!s.running) {
+          if (s.ctx) s.ctx.clearRect(0, 0, s.w, s.h);
+        }
+      };
+      requestAnimationFrame(tail);
+    },
+    tickFlames(t) {
+      const s = this.flameState;
+      if (!s.ctx) return;
+      if (!s.lastSpawn) s.lastSpawn = t;
+      const dt = t - s.lastSpawn;
+      s.lastSpawn = t;
+      // 生成：每帧约 3 火舌 + 偶尔余烬
+      const spawnCount = 3;
+      for (let i = 0; i < spawnCount; i++) this.spawnFlame();
+      if (Math.random() < 0.4) this.spawnEmber();
+
+      s.ctx.clearRect(0, 0, s.w, s.h);
+      s.ctx.globalCompositeOperation = 'lighter';
+
+      // 火焰
+      for (let i = s.flames.length - 1; i >= 0; i--) {
+        const p = s.flames[i];
+        p.wob += 0.1;
+        p.x += p.vx + Math.sin(p.wob) * 0.4;
+        p.y += p.vy;
+        p.vy *= 0.99;
+        p.life -= p.decay;
+        if (p.life <= 0) { s.flames.splice(i, 1); continue; }
+        const r = Math.max(0.5, p.size * p.life);
+        const grd = s.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+        const a = p.life * 0.85;
+        // 核心：白热 → 该色相 → 暗边
+        grd.addColorStop(0, `hsla(${p.hue}, 100%, 92%, ${a})`);
+        grd.addColorStop(0.4, `hsla(${p.hue}, 100%, 60%, ${a * 0.8})`);
+        grd.addColorStop(1, `hsla(${p.hue}, 100%, 40%, 0)`);
+        s.ctx.fillStyle = grd;
+        s.ctx.beginPath();
+        s.ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        s.ctx.fill();
+      }
+
+      // 余烬
+      for (let i = s.embers.length - 1; i >= 0; i--) {
+        const e = s.embers[i];
+        e.flick += 0.2;
+        e.x += e.vx + Math.sin(e.flick) * 0.3;
+        e.y += e.vy;
+        e.life -= e.decay;
+        if (e.life <= 0 || e.y < -10) { s.embers.splice(i, 1); continue; }
+        const flick = 0.6 + Math.abs(Math.sin(e.flick)) * 0.4;
+        s.ctx.fillStyle = `hsla(${e.hue}, 100%, 75%, ${e.life * flick})`;
+        s.ctx.beginPath();
+        s.ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
+        s.ctx.fill();
+      }
+
+      s.ctx.globalCompositeOperation = 'source-over';
+      this.tickAsh(t);
+    },
+    tickAsh() {
+      const s = this.flameState;
+      if (!s.ctx || s.ash.length === 0) return;
+      for (let i = s.ash.length - 1; i >= 0; i--) {
+        const a = s.ash[i];
+        a.x += a.vx;
+        a.y += a.vy;
+        a.vy += 0.006; // 灰烬会缓缓下落
+        a.vx *= 0.99;
+        a.rot += a.vrot;
+        a.life -= a.decay;
+        if (a.life <= 0) { s.ash.splice(i, 1); continue; }
+        s.ctx.save();
+        s.ctx.translate(a.x, a.y);
+        s.ctx.rotate(a.rot);
+        s.ctx.fillStyle = `rgba(180, 170, 160, ${a.life * 0.7})`;
+        s.ctx.fillRect(-a.size, -a.size * 0.5, a.size * 2, a.size);
+        s.ctx.restore();
       }
     }
   }
@@ -360,8 +596,19 @@ export default {
   z-index: 1;
 }
 
+.flame-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .spray-line {
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .spray-french {
@@ -375,9 +622,10 @@ export default {
   color: var(--accent-color);
   filter: url(#epitaph-spray-roughen);
   text-shadow:
-    0 0 1px rgba(188, 169, 121, 0.7),
-    0 0 12px rgba(188, 169, 121, 0.35),
-    0 0 30px rgba(188, 169, 121, 0.18);
+    0 0 1px rgba(255, 230, 180, 0.85),
+    0 0 14px rgba(255, 150, 40, 0.45),
+    0 0 34px rgba(255, 90, 30, 0.28),
+    0 0 60px rgba(188, 169, 121, 0.18);
   padding: 0.2em 0.1em;
   animation: epitaph-breathe 7s ease-in-out infinite;
 }
