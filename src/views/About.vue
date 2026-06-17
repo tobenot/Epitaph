@@ -36,8 +36,10 @@
         <h2 class="version-title" v-if="ver.title">{{ ver.title[currentLocale] }}</h2>
         <div class="about-content" v-if="ver.display === 'spray'">
           <div class="epitaph-spray">
-            <canvas ref="flameCanvas" class="flame-canvas"></canvas>
-            <p class="spray-line spray-french">{{ sprayParts(ver, currentLocale).french }}</p>
+            <div class="flame-stage">
+              <canvas ref="flameCanvas" class="flame-canvas"></canvas>
+              <p class="spray-line spray-french">{{ sprayParts(ver, currentLocale).french }}</p>
+            </div>
             <p class="spray-line spray-translation">{{ sprayParts(ver, currentLocale).translation }}</p>
           </div>
         </div>
@@ -232,24 +234,81 @@ export default {
     },
     spawnFlame() {
       const s = this.flameState;
-      // 彩色火焰：以金橙红为主，偶尔混入品红/紫/青色尖
+      // 油画式火舌：以金橙红烈焰为主，偶尔混入品红/青/蓝白冷焰
       const hueRoll = Math.random();
-      let hueBase;
-      if (hueRoll < 0.62) hueBase = 38 + Math.random() * 14;      // 金黄→橙
-      else if (hueRoll < 0.85) hueBase = 12 + Math.random() * 14; // 橙红→红
-      else if (hueRoll < 0.93) hueBase = 320 + Math.random() * 30;// 品红→紫
-      else hueBase = 180 + Math.random() * 30;                    // 青
+      let hueOuter, hueMid, hueCore;
+      if (hueRoll < 0.6) {            // 经典金橙红烈焰
+        hueOuter = 8 + Math.random() * 10;
+        hueMid = 28 + Math.random() * 10;
+        hueCore = 48 + Math.random() * 10;
+      } else if (hueRoll < 0.82) {    // 品红→紫
+        hueOuter = 330 + Math.random() * 20;
+        hueMid = 350 + Math.random() * 20;
+        hueCore = 40 + Math.random() * 15;
+      } else if (hueRoll < 0.93) {    // 青
+        hueOuter = 190 + Math.random() * 20;
+        hueMid = 175 + Math.random() * 20;
+        hueCore = 55 + Math.random() * 15;
+      } else {                        // 蓝白核心冷焰
+        hueOuter = 210 + Math.random() * 20;
+        hueMid = 30 + Math.random() * 15;
+        hueCore = 55 + Math.random() * 10;
+      }
       s.flames.push({
-        x: s.w * (0.08 + Math.random() * 0.84),
-        y: s.h * (0.82 + Math.random() * 0.12),
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: -(0.7 + Math.random() * 1.4),
+        x: s.w * (0.06 + Math.random() * 0.88),
+        baseY: s.h * (0.9 + Math.random() * 0.08),   // 锚在法文底部，向上舔
+        height: s.h * (0.55 + Math.random() * 0.55), // 火舌高度
+        width: s.w * (0.04 + Math.random() * 0.05) + 10,
         life: 1,
-        decay: 0.012 + Math.random() * 0.012,
-        size: 7 + Math.random() * 10,
-        hue: hueBase,
-        wob: Math.random() * Math.PI * 2
+        decay: 0.016 + Math.random() * 0.014,
+        hueOuter, hueMid, hueCore,
+        wob: Math.random() * Math.PI * 2,
+        wobSpeed: 0.12 + Math.random() * 0.08,
+        flick: Math.random() * Math.PI * 2
       });
+    },
+    // 单条火舌：三层 bezier 舌形（外红→中橙→核心黄白），source-over 叠色如油画颜料
+    drawTongue(p) {
+      const s = this.flameState;
+      const ctx = s.ctx;
+      const life = p.life;
+      const flick = 0.85 + Math.abs(Math.sin(p.flick)) * 0.15;
+      const reach = p.height * (0.5 + 0.5 * life) * flick;
+      const w = p.width * (0.7 + 0.3 * life);
+      const baseY = p.baseY;
+      const wob = Math.sin(p.wob) * w * 0.4;
+
+      const layers = [
+        { scale: 1.0,  hue: p.hueOuter, light: 44, alpha: 0.5  * life },
+        { scale: 0.62, hue: p.hueMid,   light: 56, alpha: 0.65 * life },
+        { scale: 0.32, hue: p.hueCore,  light: 82, alpha: 0.85 * life }
+      ];
+      for (const L of layers) {
+        const lw = w * L.scale;
+        const lr = reach * (0.62 + 0.38 * L.scale);
+        const lTipY = baseY - lr;
+        const lTipX = p.x + wob * (0.5 + 0.5 * L.scale);
+        ctx.beginPath();
+        ctx.moveTo(p.x - lw * 0.5, baseY);
+        ctx.bezierCurveTo(
+          p.x - lw * 0.8, baseY - lr * 0.32,
+          lTipX - lw * 0.12, lTipY + lr * 0.2,
+          lTipX, lTipY
+        );
+        ctx.bezierCurveTo(
+          lTipX + lw * 0.12, lTipY + lr * 0.2,
+          p.x + lw * 0.8, baseY - lr * 0.32,
+          p.x + lw * 0.5, baseY
+        );
+        ctx.closePath();
+        const grd = ctx.createLinearGradient(0, baseY, 0, lTipY);
+        const a = L.alpha;
+        grd.addColorStop(0,   `hsla(${L.hue}, 100%, ${Math.min(96, L.light + 14)}%, ${a})`);
+        grd.addColorStop(0.5, `hsla(${L.hue}, 100%, ${L.light}%, ${a})`);
+        grd.addColorStop(1,   `hsla(${L.hue - 6}, 100%, ${Math.max(32, L.light - 16)}%, ${a * 0.1})`);
+        ctx.fillStyle = grd;
+        ctx.fill();
+      }
     },
     spawnEmber() {
       const s = this.flameState;
@@ -305,39 +364,27 @@ export default {
       const s = this.flameState;
       if (!s.ctx) return;
       if (!s.lastSpawn) s.lastSpawn = t;
-      const dt = t - s.lastSpawn;
       s.lastSpawn = t;
-      // 生成：每帧约 3 火舌 + 偶尔余烬
-      const spawnCount = 3;
+      // 生成：每帧 2 条火舌 + 偶尔余烬
+      const spawnCount = 2;
       for (let i = 0; i < spawnCount; i++) this.spawnFlame();
-      if (Math.random() < 0.4) this.spawnEmber();
+      if (Math.random() < 0.35) this.spawnEmber();
 
       s.ctx.clearRect(0, 0, s.w, s.h);
-      s.ctx.globalCompositeOperation = 'lighter';
 
-      // 火焰
+      // 火舌：source-over 叠色，扁平油画感
+      s.ctx.globalCompositeOperation = 'source-over';
       for (let i = s.flames.length - 1; i >= 0; i--) {
         const p = s.flames[i];
-        p.wob += 0.1;
-        p.x += p.vx + Math.sin(p.wob) * 0.4;
-        p.y += p.vy;
-        p.vy *= 0.99;
+        p.wob += p.wobSpeed;
+        p.flick += 0.2;
         p.life -= p.decay;
         if (p.life <= 0) { s.flames.splice(i, 1); continue; }
-        const r = Math.max(0.5, p.size * p.life);
-        const grd = s.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-        const a = p.life * 0.85;
-        // 核心：白热 → 该色相 → 暗边
-        grd.addColorStop(0, `hsla(${p.hue}, 100%, 92%, ${a})`);
-        grd.addColorStop(0.4, `hsla(${p.hue}, 100%, 60%, ${a * 0.8})`);
-        grd.addColorStop(1, `hsla(${p.hue}, 100%, 40%, 0)`);
-        s.ctx.fillStyle = grd;
-        s.ctx.beginPath();
-        s.ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        s.ctx.fill();
+        this.drawTongue(p);
       }
 
-      // 余烬
+      // 余烬：保留 lighter 发光
+      s.ctx.globalCompositeOperation = 'lighter';
       for (let i = s.embers.length - 1; i >= 0; i--) {
         const e = s.embers[i];
         e.flick += 0.2;
@@ -594,6 +641,11 @@ export default {
   padding: 1.2rem 0.5rem 0.5rem;
   position: relative;
   z-index: 1;
+}
+
+.flame-stage {
+  position: relative;
+  padding-top: clamp(1.5rem, 5vw, 3rem);
 }
 
 .flame-canvas {
