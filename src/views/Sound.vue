@@ -366,16 +366,24 @@ audio {
 
 .seek-track {
   position: relative;
-  flex: 1 1 auto;
-  height: 28px;
-  display: flex;
-  align-items: center;
+  flex: 1 1 0%;
+  min-width: 0;
+  width: 100%;
+  height: 28px;        /* 命中区，好拖 */
   cursor: pointer;
   touch-action: none;
-  /* 轨道本身可见的背景，28px 命中区 + 6px 视觉条 */
-  background:
-    linear-gradient(transparent 11px, rgba(0, 0, 0, 0.1) 11px, rgba(0, 0, 0, 0.1) 17px, transparent 17px);
-  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
 }
 
 .seek-fill {
