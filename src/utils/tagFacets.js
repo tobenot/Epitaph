@@ -1,3 +1,11 @@
+import tagLabels from '@/config/tagLabels'
+
+export function localizedTag(tag, locale) {
+	const entry = tagLabels[tag]
+	if (!entry) return tag
+	return entry[locale] || entry.zh
+}
+
 export function tagMatchesRule(tag, rule) {
 	return tag.includes(rule) || rule.includes(tag)
 }

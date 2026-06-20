@@ -76,7 +76,7 @@
               @click="handleFacetClick(facet.id)"
               v-show="facetCounts[facet.id] > 0"
             >
-              {{ facet.label }} <span class="count">({{ facetCounts[facet.id] }})</span>
+              {{ localizedTag(facet.label) }} <span class="count">({{ facetCounts[facet.id] }})</span>
             </button>
           </div>
         </div>
@@ -85,7 +85,7 @@
           <span>{{ $t('common.filter.activeTag') }}:</span>
           <span class="tag-chip" v-if="activeCategoryId !== 'all'">{{ $t(`project.category.${activeCategoryId}`) }}</span>
           <span class="tag-chip" v-if="activeFacetId">{{ activeFacetLabel }}</span>
-          <span class="tag-chip" v-if="activeTag">{{ activeTag }}</span>
+          <span class="tag-chip" v-if="activeTag">{{ localizedTag(activeTag) }}</span>
           <span class="tag-chip" v-if="hasActiveSearch">{{ searchTerm.trim() }}</span>
           <button
             v-if="activeFacetId || activeTag || hasActiveSearch"
@@ -154,7 +154,7 @@
                     :key="tag"
                     class="small-tag clickable"
                     @click.stop="handleCardTagClick(tag)"
-                  >{{ tag }}</span>
+                  >{{ localizedTag(tag) }}</span>
                   <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
                 </div>
                 <div class="card-footer" v-if="item.date || getCardAnnotationParts(item).length">
@@ -203,7 +203,8 @@ import {
   buildFacetCounts,
   prioritizeTagsForDisplay,
   projectMatchesFacet,
-  resolveTagFilter
+  resolveTagFilter,
+  localizedTag
 } from '@/utils/tagFacets'
 import {
   buildHomeQuery,
@@ -269,7 +270,7 @@ export default {
     },
     activeFacetLabel() {
       const facet = this.tagFacets.find(f => f.id === this.activeFacetId)
-      return facet?.label || this.activeFacetId
+      return facet ? localizedTag(facet.label, this.$i18n.locale) : this.activeFacetId
     },
     categoryProjects() {
       if (!this.activeCategoryId || this.activeCategoryId === 'all') {
@@ -429,6 +430,9 @@ export default {
     },
     getDisplayTags(project) {
       return prioritizeTagsForDisplay(project, this.tagFacets, this.activeFacetId)
+    },
+    localizedTag(tag) {
+      return localizedTag(tag, this.$i18n.locale)
     },
     getCardAnnotationParts,
     getCardFrameClass,

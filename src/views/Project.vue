@@ -86,8 +86,8 @@
               v-for="tag in project.tags"
               :key="tag"
               @click="handleTagClick(tag)"
-              :title="$t('project.filterByTag', { tag })"
-            >{{ tag }}</span>
+              :title="$t('project.filterByTag', { tag: localizedTag(tag) })"
+            >{{ localizedTag(tag) }}</span>
           </div>
 
           <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
@@ -149,7 +149,7 @@ import { useI18n } from 'vue-i18n'
 import { getBilibiliCover, getProjectBilibiliCover } from '@/utils/bilibili'
 import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
-import { resolveTagFilter } from '@/utils/tagFacets'
+import { resolveTagFilter, localizedTag } from '@/utils/tagFacets'
 import { buildHomeQuery } from '@/utils/homeFilters'
 
 export default {
@@ -202,6 +202,9 @@ export default {
   },
   methods: {
     formatDate,
+    localizedTag(tag) {
+      return localizedTag(tag, this.$i18n.locale)
+    },
     loadProject(slug) {
       this.project = config.projects.find(p => p.slug === slug || p.id === parseInt(slug))
     },
