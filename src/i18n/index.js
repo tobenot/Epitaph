@@ -13,6 +13,12 @@ const getBrowserLanguage = () => {
 
 // 获取本地保存的语言设置或使用浏览器语言
 const getLocale = () => {
+  // ponytail: ?lang=en|zh 强制语言并持久化，用于分享给特定读者
+  const urlLang = new URLSearchParams(window.location.search).get('lang')
+  if (urlLang === 'en' || urlLang === 'zh') {
+    localStorage.setItem('locale', urlLang)
+    return urlLang
+  }
   const cachedLocale = localStorage.getItem('locale')
   if (cachedLocale) {
     return cachedLocale

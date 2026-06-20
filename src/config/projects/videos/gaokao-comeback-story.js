@@ -25,7 +25,7 @@ export default {
     zh: "从450到668，从倒数第二到全省1200名。终于有机会讲成一个完整的编年体故事。2020广东理科 | 语数英+理综。方法论中毒、框架论、记忆宫殿、想象中的存在。在绝境中把自己身上所有不像资源的东西都变成资源。比起方法论教程它更像人生故事，请保留你的个人判断。",
     en: "From 450 to 668, from near-last to provincial top 1200. Finally a chance to tell this as a complete chronological story. Guangdong Science 2020. Methodology addiction, frameworks, memory palace, imagined presences. Turning everything that didn't look like a resource into one, from rock bottom. More of a life story than a how-to guide — keep your own judgment."
   },
-  tags: ["高考"],
+  tags: ["VRChat", "高考"],
   longDescriptionKey: {
     zh: "",
     en: ""
