@@ -12,7 +12,7 @@ export default {
 			"playground-tower-space-elevator",
 			"beyond-books-silver-moon",
 			"beyond-books-dragon-dance",
-			"beyond-books-rules",
+			"beyond-books-rule",
 			"beyond-books-disillusionment",
 			"beyond-books-ice-age",
 			"beyond-books-childhood-trailer",

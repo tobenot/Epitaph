@@ -1,14 +1,14 @@
 export default {
   id: 11,
   pride: 43008,
-  slug: "beyond-books-rules",
+  slug: "beyond-books-rule",
   series: "beyond-books",
   category: "novel",
   status: "released",
   experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事：鸿律篇",
-    en: "Beyond Books: RULES"
+    en: "Beyond Books: RULE"
   },
   image: require('@/assets/images/bbr_title.webp'),
   descriptionKey: {
