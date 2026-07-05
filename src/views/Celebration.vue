@@ -262,53 +262,53 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 	max-width: 680px;
 	margin: 0 auto;
 	padding: 2rem 1.75rem 2.5rem;
-	background: rgba(10, 14, 20, 0.78);
+	background: #0c1118;
 	border: 3px solid var(--fair-slab-border);
 	box-shadow: var(--brutal-shadow);
 }
 
 .celebration-header {
 	text-align: center;
-	padding: 0 0 2rem;
-	border-bottom: 3px solid rgba(255, 200, 120, 0.12);
-	margin-bottom: 0.5rem;
+	padding: 1.5rem 1.25rem 2rem;
+	margin: -0.5rem -0.75rem 0.5rem;
+	background: #070a10;
+	border-bottom: 3px solid rgba(255, 200, 120, 0.18);
 
 	h1 {
 		font-family: "Playfair Display", serif;
 		font-size: clamp(1.75rem, 4vw, 2.5rem);
-		color: var(--fair-text);
+		color: #f2f6fa;
 		margin: 0 0 0.75rem;
 		letter-spacing: 0.02em;
-		text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
 	}
 
 	.celebration-period {
 		display: inline-block;
 		font-family: "Lora", serif;
 		font-size: 0.72rem;
-		color: var(--fair-accent);
+		color: #ffd89a;
 		margin-bottom: 0.85rem;
 		padding: 0.35rem 0.9rem;
-		border: 2px solid var(--fair-accent);
+		border: 2px solid #ffb347;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
-		background: rgba(8, 12, 18, 0.65);
+		background: #0a0e14;
 	}
 
 	.celebration-subtitle {
 		font-family: "Lora", serif;
-		font-size: 1.05rem;
-		color: var(--fair-accent);
+		font-size: 0.88rem;
+		color: rgba(200, 215, 230, 0.78);
 		margin: 0 0 1rem;
-		font-style: italic;
+		letter-spacing: 0.04em;
 	}
 
 	.celebration-description {
 		font-family: "Lora", serif;
 		font-size: 0.95rem;
 		line-height: 1.75;
-		color: var(--fair-muted);
+		color: rgba(220, 230, 240, 0.92);
 		margin: 1rem auto 0;
 		max-width: 36em;
 	}

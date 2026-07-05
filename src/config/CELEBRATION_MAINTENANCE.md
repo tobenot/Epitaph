@@ -1,6 +1,6 @@
 # 庆典游园维护指南 (Celebration / Garden Fair)
 
-限时或专题性的「游园会」页面：**一篇可排版的 Markdown 文章**，中间随意插入立绘与作品卡片。第一届为**第 82 届心界大会**；以后可并列多届，每届独立配置。
+限时或专题性的「游园会」页面：**一篇可排版的 Markdown 文章**，中间随意插入立绘与作品卡片。第一届为**黑石海滩游园会**（第 82 届心界大会专题）；以后可并列多届，每届独立配置。
 
 **本文档为庆典功能的维护参考**；配置字段名若有调整应同步改本文档。
 
@@ -22,7 +22,7 @@
 | 项 | 值 |
 |----|-----|
 | 路径 | `/celebration/:id` |
-| 第一届 id | `heart-world-conference-82` |
+| 第一届 id | `blackstone-beach-fair-82` |
 | 顶栏 | `siteConfig.navItems` 链到当前活跃届 |
 | 作品详情 | 仍用 `/project/:slug`；嵌入卡点击跳转作品页 |
 
@@ -63,7 +63,7 @@
 
 **背景图**
 
-- `theme.backgroundUrl`：指向 `public/` 下的 webp，如 `/img/celebrations/heart-world-conference-82/blackstone-beach.webp`
+- `theme.backgroundUrl`：指向 `public/` 下的 webp，如 `/img/celebrations/blackstone-beach-fair-82/blackstone-beach.webp`
 - 庆典页全宽全屏铺底，`fixed` 视差；无图时回退深色渐变
 - 进入庆典路由时隐藏全站纸纹背景（`body.celebration-active`）
 
@@ -90,8 +90,8 @@
 
 ```javascript
 export default {
-  "heart-world-conference-82": {
-    id: "heart-world-conference-82",
+  "blackstone-beach-fair-82": {
+    id: "blackstone-beach-fair-82",
     hidden: false,
     active: true,
 
@@ -102,7 +102,7 @@ export default {
     period: { start: "2025-09", end: "2026-03" },
     theme: {
       id: "blackstone-beach",
-      backgroundUrl: "/img/celebrations/heart-world-conference-82/blackstone-beach.webp"
+      backgroundUrl: "/img/celebrations/blackstone-beach-fair-82/blackstone-beach.webp"
     },
 
     characters: { /* §5.3 */ },
@@ -199,7 +199,7 @@ body: [
 
 若某 `slug` 出现在活跃届的 `body` 中（`type: "project"`），Project 详情页显示：
 
-> 参展于 [第 82 届心界大会](/celebration/heart-world-conference-82)
+> 参展于 [黑石海滩游园会](/celebration/blackstone-beach-fair-82)
 
 由庆典配置单向引用 slug 推导，不必给 project 加字段。
 
@@ -214,7 +214,7 @@ body: [
 
 ## 9. 顶栏与多届
 
-**第一届**：顶栏链 `/celebration/heart-world-conference-82`。
+**第一届**：顶栏链 `/celebration/blackstone-beach-fair-82`。
 
 **多届之后**（二选一）：
 
@@ -234,12 +234,12 @@ body: [
 
 ## 11. 第一届 checklist
 
-1. 定 `id`: `heart-world-conference-82`
+1. 定 `id`: `blackstone-beach-fair-82`
 2. 写页眉 `titleKey` / `subtitleKey` / `descriptionKey`
 3. 在 `characters` 登记角色，准备 **2:3 立绘** 素材路径
 4. 排 `body`：prose ↔ portrait ↔ project 交替
 5. 每个 `project.slug` 确认在 `projects` 中存在；需要的话写 `introKey`
-6. 本地打开 `/celebration/heart-world-conference-82` 检查排版（尤其立绘左/右浮动）
+6. 本地打开 `/celebration/blackstone-beach-fair-82` 检查排版（尤其立绘左/右浮动）
 
 ---
 

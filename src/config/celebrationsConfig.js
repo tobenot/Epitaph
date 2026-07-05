@@ -1,11 +1,11 @@
 export default {
-	"heart-world-conference-82": {
-		id: "heart-world-conference-82",
+	"blackstone-beach-fair-82": {
+		id: "blackstone-beach-fair-82",
 		hidden: false,
 		active: true,
 
-		titleKey: { zh: "第 82 届心界大会", en: "82nd Heart World Conference" },
-		subtitleKey: { zh: "黑石海滩游园会（占位）", en: "Blackstone Beach Garden Fair (placeholder)" },
+		titleKey: { zh: "黑石海滩游园会", en: "Blackstone Beach Garden Fair" },
+		subtitleKey: { zh: "来自第 82 届心界大会", en: "From the 82nd Heart World Conference" },
 		descriptionKey: {
 			zh: "心界世界观专题游园，沿黑石海滩自由阅读。",
 			en: "A Heart World themed garden fair along Blackstone Beach."
@@ -15,20 +15,20 @@ export default {
 
 		theme: {
 			id: "blackstone-beach",
-			backgroundUrl: "/img/celebrations/heart-world-conference-82/blackstone-beach.webp"
+			backgroundUrl: "/img/celebrations/blackstone-beach-fair-82/blackstone-beach.webp"
 		},
 
 		characters: {
 			luobei: {
 				nameKey: { zh: "萝北", en: "Luobei" },
 				roleKey: { zh: "参展者", en: "Exhibitor" }
-				// portrait: require("@/assets/celebrations/hw82/luobei.webp")
+				// portrait: require("@/assets/celebrations/bb82/luobei.webp")
 				// link: "https://example.com/luobei"
 			},
 			robert: {
 				nameKey: { zh: "罗伯特", en: "Robert" },
 				roleKey: { zh: "银月寺保安队长", en: "Silver Moon Head Guard" }
-				// portrait: require("@/assets/celebrations/hw82/robert.webp")
+				// portrait: require("@/assets/celebrations/bb82/robert.webp")
 			}
 		},
 

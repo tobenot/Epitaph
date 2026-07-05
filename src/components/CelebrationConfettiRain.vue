@@ -29,14 +29,17 @@ export default {
 	},
 	created() {
 		this.pieces = Array.from({ length: 36 }, (_, id) => {
-			const size = randomBetween(5, 11)
+			const isWide = Math.random() > 0.75
+			const width = isWide ? randomBetween(8, 14) : randomBetween(3, 6)
+			const height = isWide ? randomBetween(10, 16) : randomBetween(16, 32)
 			return {
 				id,
 				style: {
 					left: `${randomBetween(0, 100)}%`,
-					width: `${size}px`,
-					height: `${size}px`,
+					width: `${width}px`,
+					height: `${height}px`,
 					backgroundColor: pickColor(),
+					"--ribbon-spin": `${randomBetween(-35, 35)}deg`,
 					animationDuration: `${randomBetween(10, 20)}s`,
 					animationDelay: `${randomBetween(-20, 0)}s`,
 					opacity: randomBetween(0.35, 0.65).toFixed(2)
@@ -60,6 +63,7 @@ export default {
 	position: absolute;
 	top: -5vh;
 	display: block;
+	transform: rotate(var(--ribbon-spin, 0deg));
 	animation-name: confetti-fall;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
@@ -68,23 +72,23 @@ export default {
 
 @keyframes confetti-fall {
 	0% {
-		transform: translate3d(0, -5vh, 0) rotate(0deg);
+		transform: translate3d(0, -5vh, 0) rotate(var(--ribbon-spin, 0deg));
 	}
 
 	25% {
-		transform: translate3d(12px, 25vh, 0) rotate(180deg);
+		transform: translate3d(12px, 25vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 180deg));
 	}
 
 	50% {
-		transform: translate3d(-8px, 50vh, 0) rotate(360deg);
+		transform: translate3d(-8px, 50vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 360deg));
 	}
 
 	75% {
-		transform: translate3d(10px, 75vh, 0) rotate(540deg);
+		transform: translate3d(10px, 75vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 540deg));
 	}
 
 	100% {
-		transform: translate3d(-6px, 105vh, 0) rotate(720deg);
+		transform: translate3d(-6px, 105vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 720deg));
 	}
 }
 
