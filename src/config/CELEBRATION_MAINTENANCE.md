@@ -23,8 +23,9 @@
 |----|-----|
 | 路径 | `/celebration/:id` |
 | 第一届 id | `blackstone-beach-fair-82` |
-| 顶栏 | `siteConfig.navItems` 链到当前活跃届 |
-| 作品详情 | 仍用 `/project/:slug`；嵌入卡点击跳转作品页 |
+| 顶栏文案 | `common.nav.celebration`：庆典 / Celebration |
+| 顶栏链接 | `siteConfig.navItems` 链到当前活跃届 |
+| 作品详情 | 仍用 `/project/:slug`；嵌入卡跳转带 `?from=celebration&cid=<id>`，返回时恢复滚动（§7） |
 
 ---
 
@@ -203,18 +204,29 @@ body: [
 
 由庆典配置单向引用 slug 推导，不必给 project 加字段。
 
+**从庆典嵌入卡进入作品页**
+
+- 跳转前：`saveCelebrationScroll(id)` 写入 `sessionStorage`
+- URL：`/project/:slug?from=celebration&cid=<id>`
+- 作品页右上角「返回 {title}」链回 `/celebration/<id>?restore=1`
+- 庆典页 `restore=1` 时 `consumeCelebrationScroll(id)` 恢复滚动，并 `router.replace` 去掉 query
+- 路由 `scrollBehavior`：`restore=1` 时不先滚到顶部
+
+工具函数见 `src/utils/celebration.js`（`saveCelebrationScroll` / `consumeCelebrationScroll` / `buildCelebrationReturnRoute`）。
+
 ---
 
 ## 8. i18n
 
 - 庆典文案一律 `*Key: { zh, en }` 写在 `celebrationsConfig.js`
-- 顶栏：`common.nav.celebration`
+- 顶栏：`common.nav.celebration` → 中文「庆典」/ 英文 `Celebration`
+- 作品页返回：`project.backToCelebration` → 「返回 {title}」
 
 ---
 
 ## 9. 顶栏与多届
 
-**第一届**：顶栏链 `/celebration/blackstone-beach-fair-82`。
+**第一届**：顶栏文案「庆典」，链 `/celebration/blackstone-beach-fair-82`。
 
 **多届之后**（二选一）：
 

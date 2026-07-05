@@ -10,7 +10,7 @@ export default {
       paintings: "Paintings",
       photographs: "Photography",
       sounds: "Sounds",
-      celebration: "Heart World Conference"
+      celebration: "Celebration"
     },
     search: {
       placeholder: "Search works (title, description, tags…)",
@@ -105,6 +105,7 @@ export default {
     series: "In This Series",
     seriesCurrent: "Current",
     celebrationLink: "Exhibited at {title}",
+    backToCelebration: "Back to {title}",
     statusBadge: {
       experienceable: "Playable"
     },

@@ -10,7 +10,7 @@ export default {
       paintings: "绘画",
       photographs: "摄影",
       sounds: "留声",
-      celebration: "心界大会"
+      celebration: "庆典"
     },
     search: {
       placeholder: "搜索作品（标题、描述、标签…）",
@@ -105,6 +105,7 @@ export default {
     series: "同系列作品",
     seriesCurrent: "当前",
     celebrationLink: "参展于 {title}",
+    backToCelebration: "返回 {title}",
     statusBadge: {
       experienceable: "可体验"
     },
