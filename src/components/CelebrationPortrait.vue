@@ -140,17 +140,16 @@ export default {
 
 	&.align-left {
 		float: left;
-		margin-right: 1.5rem;
+		margin: 0.35rem 2.25rem 1.75rem 0;
 	}
 
 	&.align-right {
 		float: right;
-		margin-left: 1.5rem;
+		margin: 0.35rem 0 1.75rem 2.25rem;
 	}
 
 	&.align-center {
-		margin-left: auto;
-		margin-right: auto;
+		margin: 1rem auto 1.75rem;
 		clear: both;
 	}
 }
@@ -159,8 +158,7 @@ export default {
 	.celebration-portrait {
 		float: none !important;
 		width: min(180px, 70vw);
-		margin-left: auto;
-		margin-right: auto;
+		margin: 0 auto 1.75rem !important;
 	}
 }
 </style>

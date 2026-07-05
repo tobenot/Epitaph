@@ -1,3 +1,35 @@
+export function buildBodyFlowGroups(blocks) {
+	const groups = []
+	let plain = { type: "plain", items: [] }
+
+	function flushPlain() {
+		if (!plain.items.length) return
+		groups.push(plain)
+		plain = { type: "plain", items: [] }
+	}
+
+	for (const block of blocks) {
+		const isSidePortrait =
+			block.type === "portrait" && (block.align === "left" || block.align === "right")
+
+		if (isSidePortrait) {
+			flushPlain()
+			groups.push({ type: "aside", portrait: block, tail: [] })
+			continue
+		}
+
+		const last = groups[groups.length - 1]
+		if (last?.type === "aside") {
+			last.tail.push(block)
+		} else {
+			plain.items.push(block)
+		}
+	}
+
+	flushPlain()
+	return groups
+}
+
 export function getCelebrationById(id, celebrations) {
 	return celebrations?.[id] ?? null
 }

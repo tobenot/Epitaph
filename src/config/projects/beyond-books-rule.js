@@ -32,6 +32,7 @@ export default {
     en: ""
   },
   links: [
+    { type: "web", url: "https://tobenot.top/p/story-bb-rule/", textKey: { zh: "在线阅读", en: "Read Online" } },
     { type: "bilibili", url: "https://www.bilibili.com/video/BV1xPFNe1E8T/", textKey: { zh: "动画 Ep1《作者世界》", en: "Animation Ep1: Author's World" } },
     { type: "bilibili", url: "https://www.bilibili.com/video/BV1pdAUe6Enb/", textKey: { zh: "动画 Ep2《时光机事故》", en: "Animation Ep2: Time Machine Accident" } }
   ]

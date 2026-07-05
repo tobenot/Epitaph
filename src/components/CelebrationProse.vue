@@ -27,6 +27,7 @@ export default {
 	font-size: 1rem;
 	line-height: 1.85;
 	color: var(--fair-text);
+	overflow: visible;
 
 	:deep(h1),
 	:deep(h2),
@@ -35,6 +36,7 @@ export default {
 		color: var(--fair-text);
 		line-height: 1.35;
 		margin: 1.75rem 0 0.75rem;
+		clear: none;
 
 		&:first-child {
 			margin-top: 0;
@@ -59,6 +61,39 @@ export default {
 
 	:deep(p) {
 		margin: 0 0 1rem;
+	}
+
+	:deep(ul) {
+		margin: 0 0 1rem;
+		padding-left: 1.35rem;
+		list-style-type: "▪  ";
+		list-style-position: outside;
+	}
+
+	:deep(ul ul) {
+		margin: 0.45rem 0 0.15rem;
+		padding-left: 1.1rem;
+		border-left: 3px solid rgba(255, 200, 120, 0.35);
+		list-style-type: "–  ";
+	}
+
+	:deep(li) {
+		display: list-item;
+		margin-bottom: 0.55rem;
+		padding-left: 0.2rem;
+		line-height: 1.75;
+
+		&::marker {
+			color: var(--fair-accent);
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	:deep(ul ul li)::marker {
+		color: rgba(255, 200, 120, 0.75);
 	}
 
 	:deep(blockquote) {

@@ -22,29 +22,65 @@
 			</header>
 
 			<div class="celebration-body">
-				<template v-for="(block, index) in bodyBlocks" :key="index">
-					<CelebrationProse v-if="block.type === 'prose'" :text="block.text" />
+				<template v-for="(group, groupIndex) in bodyFlowGroups" :key="groupIndex">
+					<div
+						v-if="group.type === 'aside'"
+						class="celebration-aside-flow"
+						:class="group.portrait.align === 'right' ? 'aside-portrait-right' : 'aside-portrait-left'"
+					>
+						<CelebrationPortrait
+							:character="resolveCharacter(group.portrait.character)"
+							:align="group.portrait.align"
+							:link="group.portrait.link"
+							:locale="currentLocale"
+						/>
 
-					<CelebrationPortrait
-						v-else-if="block.type === 'portrait'"
-						:character="resolveCharacter(block.character)"
-						:align="block.align"
-						:link="block.link"
-						:locale="currentLocale"
-					/>
+						<div class="aside-content">
+							<template v-for="(block, blockIndex) in group.tail" :key="`${groupIndex}-${blockIndex}`">
+								<CelebrationProse v-if="block.type === 'prose'" :text="block.text" />
 
-					<CelebrationProjectEmbed
-						v-else-if="block.type === 'project' && resolveProject(block.slug)"
-						:project="resolveProject(block.slug)"
-						:intro="block.intro"
-						:align="block.align"
-						:locale="currentLocale"
-						@click="openProject"
-					/>
+								<CelebrationProjectEmbed
+									v-else-if="block.type === 'project' && resolveProject(block.slug)"
+									:project="resolveProject(block.slug)"
+									:intro="block.intro"
+									:align="block.align"
+									:locale="currentLocale"
+									@click="openProject"
+								/>
 
-					<p v-else-if="block.type === 'project'" class="missing-embed">
-						{{ missingBoothText(block.slug) }}
-					</p>
+								<p v-else-if="block.type === 'project'" class="missing-embed">
+									{{ missingBoothText(block.slug) }}
+								</p>
+							</template>
+						</div>
+					</div>
+
+					<template v-else>
+						<template v-for="(block, blockIndex) in group.items" :key="`${groupIndex}-${blockIndex}`">
+							<CelebrationProse v-if="block.type === 'prose'" :text="block.text" />
+
+							<CelebrationPortrait
+								v-else-if="block.type === 'portrait'"
+								:character="resolveCharacter(block.character)"
+								:align="block.align"
+								:link="block.link"
+								:locale="currentLocale"
+							/>
+
+							<CelebrationProjectEmbed
+								v-else-if="block.type === 'project' && resolveProject(block.slug)"
+								:project="resolveProject(block.slug)"
+								:intro="block.intro"
+								:align="block.align"
+								:locale="currentLocale"
+								@click="openProject"
+							/>
+
+							<p v-else-if="block.type === 'project'" class="missing-embed">
+								{{ missingBoothText(block.slug) }}
+							</p>
+						</template>
+					</template>
 				</template>
 			</div>
 		</article>
@@ -64,7 +100,7 @@ import CelebrationProse from "@/components/CelebrationProse.vue"
 import CelebrationPortrait from "@/components/CelebrationPortrait.vue"
 import CelebrationProjectEmbed from "@/components/CelebrationProjectEmbed.vue"
 import CelebrationConfettiRain from "@/components/CelebrationConfettiRain.vue"
-import { getCelebrationById, getCelebrationBody, pickLocalized, saveCelebrationScroll, consumeCelebrationScroll } from "@/utils/celebration"
+import { getCelebrationById, getCelebrationBody, buildBodyFlowGroups, pickLocalized, saveCelebrationScroll, consumeCelebrationScroll } from "@/utils/celebration"
 
 export default {
 	name: "Celebration",
@@ -86,6 +122,9 @@ export default {
 		},
 		bodyBlocks() {
 			return getCelebrationBody(this.celebration, this.currentLocale)
+		},
+		bodyFlowGroups() {
+			return buildBodyFlowGroups(this.bodyBlocks)
 		},
 		themeClass() {
 			const themeId = this.celebration?.theme?.id || "blackstone-beach"
@@ -351,6 +390,51 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 	}
 }
 
+.celebration-aside-flow {
+	display: grid;
+	gap: 0.35rem 2.25rem;
+	margin-bottom: 1rem;
+	align-items: start;
+
+	:deep(.celebration-portrait) {
+		float: none;
+		margin: 0;
+		width: 100%;
+	}
+
+	.aside-content {
+		min-width: 0;
+	}
+
+	&.aside-portrait-left {
+		grid-template-columns: min(200px, 42vw) 1fr;
+
+		:deep(.celebration-portrait) {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.aside-content {
+			grid-column: 2;
+			grid-row: 1;
+		}
+	}
+
+	&.aside-portrait-right {
+		grid-template-columns: 1fr min(200px, 42vw);
+
+		:deep(.celebration-portrait) {
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		.aside-content {
+			grid-column: 1;
+			grid-row: 1;
+		}
+	}
+}
+
 .missing-embed {
 	font-family: "Lora", serif;
 	font-size: 0.9rem;
@@ -395,6 +479,23 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 
 	.celebration-bg.has-image {
 		background-attachment: scroll;
+	}
+
+	.celebration-aside-flow {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+
+		:deep(.celebration-portrait) {
+			grid-column: 1 !important;
+			grid-row: 1 !important;
+			width: min(180px, 70vw);
+			margin: 0 auto !important;
+		}
+
+		.aside-content {
+			grid-column: 1 !important;
+			grid-row: 2 !important;
+		}
 	}
 }
 </style>

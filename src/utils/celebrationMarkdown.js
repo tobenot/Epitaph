@@ -13,12 +13,39 @@ function inlineMarkdown(text) {
 	return html
 }
 
+function listLevel(indent) {
+	return Math.floor(indent.length / 2)
+}
+
+function renderListItems(items) {
+	if (!items.length) return ""
+
+	let i = 0
+
+	function walk(expectedLevel) {
+		let chunk = "<ul>"
+		while (i < items.length && items[i].level === expectedLevel) {
+			chunk += `<li>${inlineMarkdown(items[i].text)}`
+			i++
+			if (i < items.length && items[i].level === expectedLevel + 1) {
+				chunk += walk(expectedLevel + 1)
+			}
+			chunk += "</li>"
+		}
+		chunk += "</ul>"
+		return chunk
+	}
+
+	return walk(items[0].level)
+}
+
 export function renderCelebrationMarkdown(text) {
 	if (!text) return ""
 
 	const lines = text.split("\n")
 	const html = []
 	let paragraph = []
+	let listItems = []
 
 	function flushParagraph() {
 		if (!paragraph.length) return
@@ -26,13 +53,36 @@ export function renderCelebrationMarkdown(text) {
 		paragraph = []
 	}
 
+	function flushList() {
+		if (!listItems.length) return
+		html.push(renderListItems(listItems))
+		listItems = []
+	}
+
+	function flushAll() {
+		flushParagraph()
+		flushList()
+	}
+
 	for (const line of lines) {
 		const trimmed = line.trim()
 
 		if (!trimmed) {
-			flushParagraph()
+			flushAll()
 			continue
 		}
+
+		const listMatch = line.match(/^(\s*)-\s+(.+)$/)
+		if (listMatch) {
+			flushParagraph()
+			listItems.push({
+				level: listLevel(listMatch[1]),
+				text: listMatch[2].trim()
+			})
+			continue
+		}
+
+		flushList()
 
 		if (trimmed.startsWith("### ")) {
 			flushParagraph()
@@ -61,6 +111,6 @@ export function renderCelebrationMarkdown(text) {
 		paragraph.push(trimmed)
 	}
 
-	flushParagraph()
+	flushAll()
 	return html.join("\n")
 }

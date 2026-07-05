@@ -184,10 +184,13 @@ export default {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	text-align: center;
+	align-items: center;
 }
 
 .card-header {
 	margin-bottom: 0.4rem;
+	width: 100%;
 
 	h3 {
 		font-family: "Playfair Display", serif;
@@ -216,21 +219,48 @@ export default {
 
 .embed-side {
 	font-size: 0.95rem;
+	text-align: center;
 
 	:deep(p:last-child) {
 		margin-bottom: 0;
 	}
 }
 
-.align-left {
+.align-left.has-intro,
+.align-right.has-intro {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+
 	.embed-card {
+		float: none;
+		flex-shrink: 0;
+		margin: 0;
+	}
+
+	.embed-side {
+		flex: 1;
+		min-width: 0;
+	}
+}
+
+.align-left.has-intro {
+	flex-direction: row;
+}
+
+.align-right.has-intro {
+	flex-direction: row-reverse;
+}
+
+.align-left {
+	&:not(.has-intro) .embed-card {
 		float: left;
 		margin: 0 1.25rem 0.5rem 0;
 	}
 }
 
 .align-right {
-	.embed-card {
+	&:not(.has-intro) .embed-card {
 		float: right;
 		margin: 0 0 0.5rem 1.25rem;
 	}
@@ -249,6 +279,12 @@ export default {
 }
 
 @media (max-width: 600px) {
+	.align-left.has-intro,
+	.align-right.has-intro {
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.embed-card {
 		float: none !important;
 		width: min(220px, 100%);
@@ -259,6 +295,7 @@ export default {
 	.embed-side {
 		clear: both;
 		padding-top: 0.75rem;
+		width: 100%;
 	}
 }
 </style>
