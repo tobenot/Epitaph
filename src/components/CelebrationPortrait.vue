@@ -74,11 +74,10 @@ export default {
 	.portrait-slot {
 		aspect-ratio: 2 / 3;
 		width: 100%;
-		border-radius: 8px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 200, 120, 0.35);
+		border: 2px solid rgba(255, 200, 120, 0.5);
 		background: rgba(10, 14, 20, 0.6);
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+		box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.45);
 
 		img {
 			width: 100%;

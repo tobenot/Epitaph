@@ -84,15 +84,14 @@ export default {
 
 .embed-card {
 	background-color: var(--card-bg);
-	border-radius: 8px;
-	box-shadow: 0 5px 15px var(--shadow-color);
+	box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
 	overflow: hidden;
-	border: 1px solid rgba(0, 0, 0, 0.05);
+	border: 2px solid rgba(0, 0, 0, 0.12);
 	display: flex;
 	flex-direction: column;
 	cursor: pointer;
-	transition: all 0.3s ease;
-	border-left: 4px solid transparent;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	border-left: 4px solid var(--accent-color);
 	width: 220px;
 
 	&.is-study {
@@ -136,8 +135,8 @@ export default {
 	}
 
 	&:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 10px 25px var(--shadow-color);
+		transform: translate(-2px, -2px);
+		box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
 
 		.explore-text {
 			opacity: 1;
@@ -164,12 +163,12 @@ export default {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background-color: rgba(0, 0, 0, 0.7);
+		background-color: rgba(0, 0, 0, 0.85);
 		color: white;
 		padding: 0.5rem 1rem;
-		border-radius: 6px;
+		border: 2px solid rgba(255, 255, 255, 0.3);
 		opacity: 0;
-		transition: opacity 0.3s ease;
+		transition: opacity 0.2s ease;
 		font-family: "Lora", serif;
 		font-size: 0.8rem;
 		letter-spacing: 1px;

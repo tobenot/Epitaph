@@ -273,7 +273,6 @@ export default {
 	font-style: italic;
 	padding: 0.75rem 1rem;
 	border: 1px dashed rgba(255, 200, 120, 0.3);
-	border-radius: 8px;
 	clear: both;
 }
 

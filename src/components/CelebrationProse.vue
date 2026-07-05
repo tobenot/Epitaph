@@ -61,11 +61,10 @@ export default {
 	:deep(blockquote) {
 		margin: 0 0 1rem;
 		padding: 0.75rem 1rem;
-		border-left: 3px solid var(--fair-accent);
+		border-left: 4px solid var(--fair-accent);
 		color: var(--fair-muted);
 		font-style: italic;
 		background: rgba(255, 255, 255, 0.03);
-		border-radius: 0 6px 6px 0;
 	}
 
 	:deep(a) {
