@@ -72,12 +72,31 @@ export default {
 	}
 
 	.portrait-slot {
+		position: relative;
 		aspect-ratio: 2 / 3;
 		width: 100%;
 		overflow: hidden;
-		border: 2px solid rgba(255, 200, 120, 0.5);
+		border: 3px solid rgba(255, 200, 120, 0.45);
 		background: rgba(10, 14, 20, 0.6);
-		box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.45);
+		box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 5px;
+			background: repeating-linear-gradient(
+				90deg,
+				#ff6b6b 0 16px,
+				#ffd93d 16px 32px,
+				#6bcb77 32px 48px,
+				#4d96ff 48px 64px
+			);
+			z-index: 1;
+			pointer-events: none;
+		}
 
 		img {
 			width: 100%;

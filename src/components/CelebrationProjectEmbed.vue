@@ -84,14 +84,14 @@ export default {
 
 .embed-card {
 	background-color: var(--card-bg);
-	box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
+	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.4);
 	overflow: hidden;
-	border: 2px solid rgba(0, 0, 0, 0.12);
+	border: 3px solid rgba(0, 0, 0, 0.15);
 	display: flex;
 	flex-direction: column;
 	cursor: pointer;
 	transition: transform 0.15s ease, box-shadow 0.15s ease;
-	border-left: 4px solid var(--accent-color);
+	border-left: 5px solid var(--accent-color);
 	width: 220px;
 
 	&.is-study {
@@ -135,8 +135,8 @@ export default {
 	}
 
 	&:hover {
-		transform: translate(-2px, -2px);
-		box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+		transform: translate(-3px, -3px);
+		box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.45);
 
 		.explore-text {
 			opacity: 1;
@@ -163,17 +163,19 @@ export default {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background-color: rgba(0, 0, 0, 0.85);
+		background-color: rgba(0, 0, 0, 0.88);
 		color: white;
 		padding: 0.5rem 1rem;
-		border: 2px solid rgba(255, 255, 255, 0.3);
+		border: 2px solid rgba(255, 200, 120, 0.45);
 		opacity: 0;
 		transition: opacity 0.2s ease;
 		font-family: "Lora", serif;
-		font-size: 0.8rem;
-		letter-spacing: 1px;
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
 		z-index: 2;
 		pointer-events: none;
+		box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
 	}
 }
 

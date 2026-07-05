@@ -47,6 +47,9 @@ export default {
 
 	:deep(h2) {
 		font-size: 1.35rem;
+		padding-left: 0.85rem;
+		border-left: 6px solid var(--fair-accent);
+		box-shadow: -3px 0 0 rgba(255, 107, 107, 0.35);
 	}
 
 	:deep(h3) {
@@ -61,10 +64,13 @@ export default {
 	:deep(blockquote) {
 		margin: 0 0 1rem;
 		padding: 0.75rem 1rem;
-		border-left: 4px solid var(--fair-accent);
+		border-left: 6px solid var(--fair-accent);
+		border-top: 1px solid rgba(255, 200, 120, 0.15);
+		border-bottom: 1px solid rgba(255, 200, 120, 0.15);
 		color: var(--fair-muted);
 		font-style: italic;
-		background: rgba(255, 255, 255, 0.03);
+		background: rgba(0, 0, 0, 0.22);
+		box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
 	}
 
 	:deep(a) {
