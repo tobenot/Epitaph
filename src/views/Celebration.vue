@@ -64,7 +64,7 @@ import CelebrationProse from "@/components/CelebrationProse.vue"
 import CelebrationPortrait from "@/components/CelebrationPortrait.vue"
 import CelebrationProjectEmbed from "@/components/CelebrationProjectEmbed.vue"
 import CelebrationConfettiRain from "@/components/CelebrationConfettiRain.vue"
-import { getCelebrationById, getCelebrationBody, pickLocalized } from "@/utils/celebration"
+import { getCelebrationById, getCelebrationBody, pickLocalized, saveCelebrationScroll, consumeCelebrationScroll } from "@/utils/celebration"
 
 export default {
 	name: "Celebration",
@@ -120,11 +120,21 @@ export default {
 	},
 	mounted() {
 		document.body.classList.add("celebration-active")
+		this.restoreScrollIfNeeded()
 	},
 	unmounted() {
 		document.body.classList.remove("celebration-active")
 	},
 	methods: {
+		restoreScrollIfNeeded() {
+			if (this.$route.query.restore !== "1") return
+			const y = consumeCelebrationScroll(this.celebrationId)
+			if (y == null) return
+			this.$nextTick(() => {
+				window.scrollTo(0, y)
+				this.$router.replace({ path: this.$route.path })
+			})
+		},
 		resolveCharacter(characterId) {
 			if (!characterId || !this.celebration?.characters) return null
 			return this.celebration.characters[characterId] || null
@@ -133,7 +143,12 @@ export default {
 			return config.projects.find((p) => p.slug === slug) || null
 		},
 		openProject(slug) {
-			this.$router.push({ name: "Project", params: { slug } })
+			saveCelebrationScroll(this.celebrationId)
+			this.$router.push({
+				name: "Project",
+				params: { slug },
+				query: { from: "celebration", cid: this.celebrationId }
+			})
 		},
 		missingBoothText(slug) {
 			return this.$t("celebration.missingBooth", { slug })

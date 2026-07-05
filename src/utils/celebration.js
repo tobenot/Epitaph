@@ -51,3 +51,27 @@ export function pickLocalized(keyObj, locale) {
 	if (!keyObj) return ""
 	return keyObj[locale] || keyObj.zh || ""
 }
+
+const SCROLL_KEY_PREFIX = "celebration-scroll:"
+
+export function saveCelebrationScroll(celebrationId) {
+	if (!celebrationId) return
+	sessionStorage.setItem(`${SCROLL_KEY_PREFIX}${celebrationId}`, String(window.scrollY))
+}
+
+export function consumeCelebrationScroll(celebrationId) {
+	if (!celebrationId) return null
+	const key = `${SCROLL_KEY_PREFIX}${celebrationId}`
+	const raw = sessionStorage.getItem(key)
+	if (raw == null) return null
+	sessionStorage.removeItem(key)
+	const y = Number(raw)
+	return Number.isFinite(y) ? y : null
+}
+
+export function buildCelebrationReturnRoute(celebrationId) {
+	return {
+		path: `/celebration/${celebrationId}`,
+		query: { restore: "1" }
+	}
+}

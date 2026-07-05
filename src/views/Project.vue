@@ -1,7 +1,15 @@
 <template>
   <div class="project-container" v-if="project">
     <div class="back-link-top">
-      <router-link to="/" class="back-button">
+      <router-link
+        v-if="celebrationReturnTo"
+        :to="celebrationReturnTo"
+        class="back-button"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        {{ $t('project.backToCelebration', { title: celebrationReturnTitle }) }}
+      </router-link>
+      <router-link v-else to="/" class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         {{ $t('common.actions.back') }}
       </router-link>
@@ -94,7 +102,7 @@
             <router-link
               v-for="item in celebrationLinks"
               :key="item.id"
-              :to="`/celebration/${item.id}`"
+              :to="celebrationLinkTo(item)"
               class="celebration-link"
             >
               {{ $t('project.celebrationLink', { title: celebrationTitle(item) }) }}
@@ -162,7 +170,7 @@ import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
 import { resolveTagFilter, localizedTag } from '@/utils/tagFacets'
 import { buildHomeQuery } from '@/utils/homeFilters'
-import { findCelebrationsForSlug, pickLocalized } from '@/utils/celebration'
+import { findCelebrationsForSlug, getCelebrationById, pickLocalized, buildCelebrationReturnRoute } from '@/utils/celebration'
 
 export default {
   name: 'Project',
@@ -192,6 +200,22 @@ export default {
     celebrationLinks() {
       if (!this.project?.slug) return []
       return findCelebrationsForSlug(this.project.slug, config.celebrations)
+    },
+    celebrationReturnId() {
+      const { from, cid } = this.$route.query
+      if (from !== 'celebration' || !cid) return null
+      return cid
+    },
+    celebrationReturn() {
+      if (!this.celebrationReturnId) return null
+      return getCelebrationById(this.celebrationReturnId, config.celebrations)
+    },
+    celebrationReturnTo() {
+      if (!this.celebrationReturn) return null
+      return buildCelebrationReturnRoute(this.celebrationReturnId)
+    },
+    celebrationReturnTitle() {
+      return pickLocalized(this.celebrationReturn?.titleKey, this.currentLocale)
     },
     hasLongDescription() {
       return this.project && 
@@ -243,6 +267,12 @@ export default {
     },
     celebrationTitle(celebration) {
       return pickLocalized(celebration.titleKey, this.currentLocale)
+    },
+    celebrationLinkTo(celebration) {
+      if (this.celebrationReturnId === celebration.id) {
+        return buildCelebrationReturnRoute(celebration.id)
+      }
+      return `/celebration/${celebration.id}`
     },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'

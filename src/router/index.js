@@ -158,6 +158,9 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition
     }
+    if (to.name === 'Celebration' && to.query.restore === '1') {
+      return false
+    }
     return { top: 0 }
   }
 })
