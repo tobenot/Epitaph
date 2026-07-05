@@ -9,7 +9,8 @@ export default {
       experience: "Experience Guide",
       paintings: "Paintings",
       photographs: "Photography",
-      sounds: "Sounds"
+      sounds: "Sounds",
+      celebration: "Heart World Conference"
     },
     search: {
       placeholder: "Search works (title, description, tags…)",
@@ -103,6 +104,7 @@ export default {
     achievements: "Milestones & Stats",
     series: "In This Series",
     seriesCurrent: "Current",
+    celebrationLink: "Exhibited at {title}",
     statusBadge: {
       experienceable: "Playable"
     },
@@ -161,5 +163,9 @@ export default {
     lyrics: "Lyrics",
     noLyrics: "(No lyrics)",
     noSounds: "No audio works available"
+  },
+  celebration: {
+    notFound: "Celebration not found.",
+    missingBooth: "Booth project \"{slug}\" is missing or not configured."
   }
 } 

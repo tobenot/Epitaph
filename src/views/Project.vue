@@ -90,6 +90,17 @@
             >{{ localizedTag(tag) }}</span>
           </div>
 
+          <div class="celebration-links" v-if="celebrationLinks.length">
+            <router-link
+              v-for="item in celebrationLinks"
+              :key="item.id"
+              :to="`/celebration/${item.id}`"
+              class="celebration-link"
+            >
+              {{ $t('project.celebrationLink', { title: celebrationTitle(item) }) }}
+            </router-link>
+          </div>
+
           <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
 
           <!-- Developer Notes -->
@@ -151,6 +162,7 @@ import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
 import { resolveTagFilter, localizedTag } from '@/utils/tagFacets'
 import { buildHomeQuery } from '@/utils/homeFilters'
+import { findCelebrationsForSlug, pickLocalized } from '@/utils/celebration'
 
 export default {
   name: 'Project',
@@ -176,6 +188,10 @@ export default {
       if (!this.seriesMeta) return []
       const bySlug = new Map(config.projects.map(p => [p.slug, p]))
       return this.seriesMeta.slugs.map(slug => bySlug.get(slug)).filter(Boolean)
+    },
+    celebrationLinks() {
+      if (!this.project?.slug) return []
+      return findCelebrationsForSlug(this.project.slug, config.celebrations)
     },
     hasLongDescription() {
       return this.project && 
@@ -224,6 +240,9 @@ export default {
         tag: filter.type === 'tag' ? filter.value : null
       })
       this.$router.push({ path: '/', query })
+    },
+    celebrationTitle(celebration) {
+      return pickLocalized(celebration.titleKey, this.currentLocale)
     },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
@@ -535,6 +554,24 @@ export default {
         color: white;
         transform: translateY(-2px);
       }
+    }
+  }
+
+  .celebration-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .celebration-link {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
   

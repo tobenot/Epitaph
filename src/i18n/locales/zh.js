@@ -9,7 +9,8 @@ export default {
       experience: "体验指南",
       paintings: "绘画",
       photographs: "摄影",
-      sounds: "留声"
+      sounds: "留声",
+      celebration: "心界大会"
     },
     search: {
       placeholder: "搜索作品（标题、描述、标签…）",
@@ -103,6 +104,7 @@ export default {
     achievements: "里程碑与数据",
     series: "同系列作品",
     seriesCurrent: "当前",
+    celebrationLink: "参展于 {title}",
     statusBadge: {
       experienceable: "可体验"
     },
@@ -161,5 +163,9 @@ export default {
     lyrics: "歌词",
     noLyrics: "（无歌词）",
     noSounds: "暂无音频作品"
+  },
+  celebration: {
+    notFound: "未找到该届庆典。",
+    missingBooth: "摊位作品「{slug}」尚未配置或不存在。"
   }
 } 

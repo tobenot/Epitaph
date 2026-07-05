@@ -6,6 +6,7 @@ import Gallery from '../views/Gallery.vue'
 import Sounds from '../views/Sounds.vue'
 import Sound from '../views/Sound.vue'
 import GalleryItem from '../views/GalleryItem.vue'
+import Celebration from '../views/Celebration.vue'
 
 const routes = [
   {
@@ -61,6 +62,11 @@ const routes = [
     path: '/sound/:id',
     name: 'Sound',
     component: Sound
+  },
+  {
+    path: '/celebration/:id',
+    name: 'Celebration',
+    component: Celebration
   }
 ]
 
@@ -129,6 +135,12 @@ export function updatePageMeta(to) {
     if (item) {
       title = `${pickLocalized(item.titleKey, locale)} | Epitaph`
       description = pickLocalized(item.descriptionKey, locale)
+    }
+  } else if (to.name === 'Celebration') {
+    const celebration = config.celebrations?.[to.params.id]
+    if (celebration) {
+      title = `${pickLocalized(celebration.titleKey, locale)} | Epitaph`
+      description = pickLocalized(celebration.descriptionKey, locale)
     }
   }
 
