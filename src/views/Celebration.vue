@@ -1,6 +1,11 @@
 <template>
 	<div class="celebration-page" :class="themeClass" v-if="celebration">
-		<div class="celebration-bg" aria-hidden="true">
+		<div
+			class="celebration-bg"
+			:class="{ 'has-image': !!backgroundUrl }"
+			:style="backgroundLayerStyle"
+			aria-hidden="true"
+		>
 			<div class="bunting"></div>
 		</div>
 
@@ -28,6 +33,7 @@
 						v-else-if="block.type === 'project' && resolveProject(block.slug)"
 						:project="resolveProject(block.slug)"
 						:intro="block.intro"
+						:align="block.align"
 						:locale="currentLocale"
 						@click="openProject"
 					/>
@@ -79,6 +85,15 @@ export default {
 			const themeId = this.celebration?.theme?.id || "blackstone-beach"
 			return `theme-${themeId}`
 		},
+		backgroundUrl() {
+			return this.celebration?.theme?.backgroundUrl || ""
+		},
+		backgroundLayerStyle() {
+			if (!this.backgroundUrl) return {}
+			return {
+				backgroundImage: `url(${this.backgroundUrl})`
+			}
+		},
 		title() {
 			return pickLocalized(this.celebration?.titleKey, this.currentLocale)
 		},
@@ -96,6 +111,12 @@ export default {
 			}
 			return period.start || period.end
 		}
+	},
+	mounted() {
+		document.body.classList.add("celebration-active")
+	},
+	unmounted() {
+		document.body.classList.remove("celebration-active")
 	},
 	methods: {
 		resolveCharacter(characterId) {
@@ -117,7 +138,7 @@ export default {
 
 <style scoped lang="scss">
 .celebration-page {
-	--fair-bg: #0f1419;
+	--fair-bg: #0a0e14;
 	--fair-surface: #1a2332;
 	--fair-text: #e8eef4;
 	--fair-muted: rgba(200, 215, 230, 0.72);
@@ -129,10 +150,15 @@ export default {
 	--shadow-color: rgba(0, 0, 0, 0.35);
 
 	position: relative;
-	min-height: 60vh;
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	min-height: 100vh;
 	color: var(--fair-text);
-	margin: -2rem -1rem 0;
-	padding: 2rem 1rem 4rem;
+	margin-top: -2rem;
+	margin-bottom: -3rem;
+	padding: 2rem 1rem 5rem;
+	overflow: hidden;
 }
 
 .celebration-bg {
@@ -143,6 +169,24 @@ export default {
 		linear-gradient(180deg, #0a0e14 0%, #0f1419 40%, #141c28 100%);
 	pointer-events: none;
 	z-index: 0;
+
+	&.has-image {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(8, 12, 18, 0.62);
+	}
+
+	&.has-image::after {
+		background: rgba(8, 12, 18, 0.48);
+	}
 }
 
 .bunting {
@@ -159,6 +203,7 @@ export default {
 		#4d96ff 72px 96px
 	);
 	opacity: 0.85;
+	z-index: 1;
 }
 
 .celebration-article {
@@ -255,7 +300,21 @@ export default {
 @media (max-width: 768px) {
 	.celebration-page {
 		margin-top: -1rem;
-		padding-bottom: 3rem;
+		padding-bottom: 4rem;
+	}
+
+	.celebration-bg.has-image {
+		background-attachment: scroll;
+	}
+}
+</style>
+
+<style lang="scss">
+body.celebration-active {
+	background-color: #0a0e14;
+
+	&::before {
+		opacity: 0;
 	}
 }
 </style>

@@ -60,6 +60,12 @@
 
 - 顶栏彩旗、立绘边框、作品卡左侧色条等局部高饱和点缀
 
+**背景图**
+
+- `theme.backgroundUrl`：指向 `public/` 下的 webp，如 `/img/celebrations/heart-world-conference-82/blackstone-beach.webp`
+- 庆典页全宽全屏铺底，`fixed` 视差；无图时回退深色渐变
+- 进入庆典路由时隐藏全站纸纹背景（`body.celebration-active`）
+
 ---
 
 ## 5. 配置文件
@@ -93,7 +99,10 @@ export default {
     descriptionKey: { zh: "…", en: "…" },
 
     period: { start: "2025-09", end: "2026-03" },
-    theme: { id: "blackstone-beach" },
+    theme: {
+      id: "blackstone-beach",
+      backgroundUrl: "/img/celebrations/heart-world-conference-82/blackstone-beach.webp"
+    },
 
     characters: { /* §5.3 */ },
     body: [ /* §5.4 */ ]
@@ -129,7 +138,7 @@ characters: {
 |--------|------|------|
 | `prose` | Markdown 段落 | `textKey: { zh, en }` |
 | `portrait` | 立绘 | `character`（characters id）；`align`: `left` \| `right` \| `center`（默认 `left`） |
-| `project` | 作品嵌入 | `slug`；可选 `introKey: { zh, en }` 策展语（显示在卡片下方） |
+| `project` | 作品嵌入 | `slug`；可选 `introKey: { zh, en }` 策展语（卡片旁/下方）；`align`: `left` \| `right` \| `center`（默认 `left`） |
 
 ```javascript
 body: [
@@ -148,6 +157,7 @@ body: [
   {
     type: "project",
     slug: "heart-world",
+    align: "left",
     introKey: {
       zh: "这是心界系列的入口。本届我想把它放在最前面……",
       en: "This is the gateway to the Heart World series…"
@@ -175,9 +185,9 @@ body: [
 
 ## 6. 作品嵌入卡
 
-- 横向紧凑布局：96×54 缩略图 + 标题 + 项目简介（各最多 2 行）+「访问项目」
-- 数据从 `config.projects` 按 `slug` 解析，不在庆典配置重复 `titleKey` / `image`
-- `introKey` 为**本届策展语**，显示在卡片下方，支持 Markdown
+- 样式与首页 `experience-card` 相同：封面在上、标题与简介在下，宽约 220px
+- `align: left` / `right` 时卡片浮动，**`introKey` 策展语在另一侧环绕**；`center` 时卡片居中、介绍在下方
+- 数据从 `config.projects` 按 `slug` 解析
 - 点击卡片 → `/project/:slug`
 - 边框色与首页卡片逻辑一致（习作 / 完成度）
 

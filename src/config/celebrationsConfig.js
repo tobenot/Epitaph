@@ -14,7 +14,8 @@ export default {
 		period: { start: "2025-09", end: "2026-03" },
 
 		theme: {
-			id: "blackstone-beach"
+			id: "blackstone-beach",
+			backgroundUrl: "/img/celebrations/heart-world-conference-82/blackstone-beach.webp"
 		},
 
 		characters: {
@@ -58,6 +59,7 @@ export default {
 			{
 				type: "project",
 				slug: "heart-world",
+				align: "left",
 				introKey: {
 					zh: "这是心界系列的入口。本届我想把它放在路线最前面——从这里可以进入银月寺、书界，以及之后所有 Heart World 作品的语境。",
 					en: "This is the gateway to the Heart World series. For this conference I put it first—from here you enter Silver Moon, the Book Realm, and the context for all later Heart World works."
@@ -73,6 +75,7 @@ export default {
 			{
 				type: "project",
 				slug: "beyond-books-silver-moon",
+				align: "right",
 				introKey: {
 					zh: "银月寺是书界线里我最常回去的地方之一。",
 					en: "Silver Moon Temple is one of the Book Realm locations I return to most often."
@@ -80,7 +83,8 @@ export default {
 			},
 			{
 				type: "project",
-				slug: "heart-world-jin-captain"
+				slug: "heart-world-jin-captain",
+				align: "left"
 			},
 			{
 				type: "prose",

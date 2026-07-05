@@ -37,7 +37,8 @@ export function getCelebrationBody(celebration, locale) {
 			return {
 				type: "project",
 				slug: block.slug,
-				intro: pickLocalized(block.introKey, locale)
+				intro: pickLocalized(block.introKey, locale),
+				align: block.align || "left"
 			}
 		}
 		return block
