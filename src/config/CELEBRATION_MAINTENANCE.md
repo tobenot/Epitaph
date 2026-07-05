@@ -22,15 +22,15 @@
 | 项 | 值 |
 |----|-----|
 | 路径 | `/celebration/:id` |
-| 第一届 id | `heartsworld-conference-82` |
+| 第一届 id | `heart-world-conference-82` |
 | 顶栏 | `siteConfig.navItems` 增加一项，链到当前活跃届（或庆典索引，见 §9） |
 | 作品详情 | 仍用 `/project/:slug`；摊位卡点击行为与首页 `experience-card` 相同 |
 
 多届示例：
 
 ```
-/celebration/heartsworld-conference-82   ← 第一届
-/celebration/heartsworld-conference-83   ← 未来届次
+/celebration/heart-world-conference-82   ← 第一届
+/celebration/heart-world-conference-83   ← 未来届次
 ```
 
 ---
@@ -96,8 +96,8 @@
 ```javascript
 // celebrationsConfig.js
 export default {
-  "heartsworld-conference-82": {
-    id: "heartsworld-conference-82",
+  "heart-world-conference-82": {
+    id: "heart-world-conference-82",
     hidden: false,
 
     titleKey: { zh: "第 82 届心界大会", en: "82nd Heart World Conference" },
@@ -174,7 +174,7 @@ stops: [
       variant: "booth",
       speaker: "robert",
       textKey: { zh: "…", en: "…" },
-      boardKey: { zh: "心灵世界展区", en: "Heart World Booth" }
+      boardKey: { zh: "心界展区", en: "Heart World Booth" }
     }
   },
 
@@ -250,7 +250,7 @@ stops: [
 
 若某 `slug` 出现在活跃届的 `stops` 中，Project 详情页可显示：
 
-> 参展于 [第 82 届心界大会](/celebration/heartsworld-conference-82)
+> 参展于 [第 82 届心界大会](/celebration/heart-world-conference-82)
 
 由庆典配置单向引用 slug 即可推导，不必给 project 加 `celebration` 字段。
 
@@ -265,7 +265,7 @@ stops: [
 
 ## 9. 顶栏与多届
 
-**第一届**：顶栏一项指向 `/celebration/heartsworld-conference-82`。
+**第一届**：顶栏一项指向 `/celebration/heart-world-conference-82`。
 
 **多届之后**（二选一，实现时再定）：
 
@@ -285,14 +285,14 @@ stops: [
 
 ## 11. 第一届 checklist（内容填写）
 
-1. 定 `id`: `heartsworld-conference-82`
+1. 定 `id`: `heart-world-conference-82`
 2. 写 `titleKey` / `subtitleKey` / `descriptionKey`
 3. 在 `characters` 中登记所有 in-universe 说话人及素材路径
 4. 排 `stops`：header → intro → booth… → ambient… → closing
 5. 每个 `booth.slug` 确认在 `projects` 中存在
 6. 准备黑石海滩基底 + 庆祝点缀的样式资源（页眉图、装饰素材等）
 7. 顶栏文案与路由
-8. 本地打开 `/celebration/heartsworld-conference-82` 检查路线顺序与海报密度
+8. 本地打开 `/celebration/heart-world-conference-82` 检查路线顺序与海报密度
 
 ---
 

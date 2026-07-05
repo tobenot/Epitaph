@@ -88,7 +88,7 @@ status: "archived"
 // → 完成度高
 ```
 
-### 心灵世界（上架但不推荐，完成度低）
+### 心界（上架但不推荐，完成度低）
 
 ```javascript
 completeness: "partial",

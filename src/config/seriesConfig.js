@@ -19,19 +19,19 @@ export default {
 			"beyond-books"
 		]
 	},
-	"heartsworld": {
+	"heart-world": {
 		titleKey: {
-			zh: "心灵世界",
+			zh: "心界",
 			en: "Heart World"
 		},
 		descriptionKey: {
-			zh: "心灵世界游戏与同系列动画，同一原创宇宙的不同媒介。",
+			zh: "心界游戏与同系列动画，同一原创宇宙的不同媒介。",
 			en: "The Heart World game and animations in the same series — one original universe across media."
 		},
 		slugs: [
 			"heart-world",
-			"heartsworld-jin-captain",
-			"heartsworld-wave-breaker"
+			"heart-world-jin-captain",
+			"heart-world-wave-breaker"
 		]
 	},
 	"gaokao": {

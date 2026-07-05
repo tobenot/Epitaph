@@ -2,13 +2,13 @@ export default {
   id: 5,
   pride: 3072,
   slug: "heart-world",
-  series: "heartsworld",
+  series: "heart-world",
   category: "game",
   completeness: "partial",
   experienceable: true,
   status: "released",
   titleKey: {
-    zh: "心灵世界",
+    zh: "心界",
     en: "Heart World"
   },
   image: require('@/assets/images/hw_header_schinese.webp'),
@@ -18,7 +18,7 @@ export default {
   },
   date: { year: 2020, month: 12, day: 24 },
   genres: ["第一人称砍杀"],
-  themes: ["心灵世界探索"],
+  themes: ["心界探索"],
   engine: "虚幻引擎 4.24",
   platform: ["PC"],
   scale: {

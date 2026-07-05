@@ -24,7 +24,7 @@ export default {
 	'课程作业': { zh: '课程作业', en: 'Coursework' },
 	'独立游戏': { zh: '独立游戏', en: 'Indie Game' },
 	'星铭世界': { zh: '星铭世界', en: 'Xingming World' },
-	'心灵世界': { zh: '心灵世界', en: 'Heart World' },
+	'心界': { zh: '心界', en: 'Heart World' },
 	'世界观': { zh: '世界观', en: 'Worldview' },
 	'世界观核心': { zh: '世界观核心', en: 'Worldview Core' },
 	'AI大世界范式Ⅰ': { zh: 'AI大世界范式Ⅰ', en: 'AI Grand World Paradigm I' },
