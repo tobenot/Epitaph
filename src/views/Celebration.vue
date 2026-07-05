@@ -26,6 +26,7 @@
 						v-else-if="block.type === 'portrait'"
 						:character="resolveCharacter(block.character)"
 						:align="block.align"
+						:link="block.link"
 						:locale="currentLocale"
 					/>
 

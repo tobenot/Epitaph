@@ -27,10 +27,12 @@ export function getCelebrationBody(celebration, locale) {
 			}
 		}
 		if (block.type === "portrait") {
+			const character = celebration.characters?.[block.character]
 			return {
 				type: "portrait",
 				character: block.character,
-				align: block.align || "left"
+				align: block.align || "left",
+				link: block.link || character?.link || ""
 			}
 		}
 		if (block.type === "project") {

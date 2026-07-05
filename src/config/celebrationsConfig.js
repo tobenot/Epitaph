@@ -23,6 +23,7 @@ export default {
 				nameKey: { zh: "萝北", en: "Luobei" },
 				roleKey: { zh: "参展者", en: "Exhibitor" }
 				// portrait: require("@/assets/celebrations/hw82/luobei.webp")
+				// link: "https://example.com/luobei"
 			},
 			robert: {
 				nameKey: { zh: "罗伯特", en: "Robert" },

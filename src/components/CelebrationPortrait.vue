@@ -1,5 +1,12 @@
 <template>
-	<figure class="celebration-portrait" :class="[`align-${align}`]">
+	<component
+		:is="link ? 'a' : 'figure'"
+		class="celebration-portrait"
+		:class="[`align-${align}`, { 'is-linked': !!link }]"
+		:href="link || undefined"
+		:target="isExternalLink ? '_blank' : undefined"
+		:rel="isExternalLink ? 'noopener noreferrer' : undefined"
+	>
 		<div class="portrait-slot">
 			<img v-if="character?.portrait" :src="character.portrait" :alt="name">
 			<div v-else class="portrait-placeholder" aria-hidden="true"></div>
@@ -8,7 +15,7 @@
 			<span class="portrait-name" v-if="name">{{ name }}</span>
 			<span class="portrait-role" v-if="role">{{ role }}</span>
 		</figcaption>
-	</figure>
+	</component>
 </template>
 
 <script>
@@ -25,6 +32,10 @@ export default {
 			type: String,
 			default: "left"
 		},
+		link: {
+			type: String,
+			default: ""
+		},
 		locale: {
 			type: String,
 			required: true
@@ -36,6 +47,9 @@ export default {
 		},
 		role() {
 			return pickLocalized(this.character?.roleKey, this.locale)
+		},
+		isExternalLink() {
+			return /^https?:\/\//i.test(this.link)
 		}
 	}
 }
@@ -45,6 +59,17 @@ export default {
 .celebration-portrait {
 	margin: 0 0 1.25rem;
 	width: min(200px, 42vw);
+	text-decoration: none;
+	color: inherit;
+
+	&.is-linked {
+		cursor: pointer;
+
+		&:hover .portrait-name {
+			color: var(--fair-accent);
+			text-decoration: underline;
+		}
+	}
 
 	.portrait-slot {
 		aspect-ratio: 2 / 3;
@@ -86,6 +111,7 @@ export default {
 		font-family: "Playfair Display", serif;
 		font-size: 0.95rem;
 		color: var(--fair-text);
+		transition: color 0.2s ease;
 	}
 
 	.portrait-role {

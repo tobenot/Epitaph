@@ -129,15 +129,16 @@ characters: {
 | `nameKey` | 立绘下方姓名 |
 | `roleKey` | 可选，身份小字 |
 | `portrait` | 立绘素材；**2:3 竖图**，在 2:3 槽内 `object-fit: cover`，`object-position: top center` |
+| `link` | 可选，点击立绘跳转；`portrait` 块上的 `link` 优先于角色级 |
 
-无 `portrait` 时显示占位渐变，不影响排版。
+无 `portrait` 时显示占位渐变，不影响排版。无 `link` 时立绘不可点击。
 
 ### 5.4 `body[]`（文章块）
 
 | `type` | 含义 | 字段 |
 |--------|------|------|
 | `prose` | Markdown 段落 | `textKey: { zh, en }` |
-| `portrait` | 立绘 | `character`（characters id）；`align`: `left` \| `right` \| `center`（默认 `left`） |
+| `portrait` | 立绘 | `character`（characters id）；`align`: `left` \| `right` \| `center`（默认 `left`）；可选 `link` 或角色级 `characters.*.link` |
 | `project` | 作品嵌入 | `slug`；可选 `introKey: { zh, en }` 策展语（卡片旁/下方）；`align`: `left` \| `right` \| `center`（默认 `left`） |
 
 ```javascript
