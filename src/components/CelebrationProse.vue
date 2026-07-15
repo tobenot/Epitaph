@@ -96,36 +96,16 @@ export default {
 		color: rgba(255, 200, 120, 0.75);
 	}
 
-	:deep(.celebration-dialog) {
-		margin: 0 0 1.1rem;
-		padding: 0.65rem 0.85rem 0.55rem;
-		border-left: 3px solid rgba(255, 200, 120, 0.5);
-		background: rgba(0, 0, 0, 0.14);
-	}
-
-	:deep(.dialog-line) {
-		display: flex;
-		gap: 0.55rem;
-		align-items: baseline;
-		margin: 0 0 0.7rem;
-		line-height: 1.72;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-
-	:deep(.dialog-speaker) {
-		flex-shrink: 0;
-		color: var(--fair-accent);
-		font-weight: 600;
-		white-space: nowrap;
-	}
-
-	:deep(.dialog-body) {
-		flex: 1;
-		min-width: 0;
+	:deep(blockquote) {
+		margin: 0 0 1rem;
+		padding: 0.75rem 1rem;
+		border-left: 6px solid var(--fair-accent);
+		border-top: 1px solid rgba(255, 200, 120, 0.15);
+		border-bottom: 1px solid rgba(255, 200, 120, 0.15);
 		color: var(--fair-text);
+		font-style: normal;
+		background: rgba(0, 0, 0, 0.22);
+		box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
 	}
 
 	:deep(a) {
@@ -137,20 +117,6 @@ export default {
 	:deep(strong) {
 		color: var(--fair-text);
 		font-weight: 700;
-	}
-}
-
-@media (max-width: 520px) {
-	.celebration-prose {
-		:deep(.dialog-line) {
-			flex-direction: column;
-			gap: 0.15rem;
-			margin-bottom: 0.85rem;
-		}
-
-		:deep(.dialog-speaker) {
-			white-space: normal;
-		}
 	}
 }
 </style>
