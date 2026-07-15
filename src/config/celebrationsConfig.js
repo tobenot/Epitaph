@@ -13,59 +13,68 @@ export default {
 		period: { start: "2026-07-05", end: "2026-08-05" },
 
 		theme: {
-			id: "blackstone-beach",
-			backgroundUrl: "/img/celebrations/blackstone-beach-fair-82/blackstone-beach.webp"
+			id: "blackstone-beach"
 		},
 
 		characters: {
 			yuqing: {
 				nameKey: { zh: "雨晴" },
-				roleKey: { zh: "游园来宾" },
+				roleKey: { zh: "机械工蜂" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing.webp"
+			},
+			yuqingFarewell: {
+				nameKey: { zh: "雨晴" },
+				roleKey: { zh: "机械工蜂" },
+				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing-farewell.webp"
 			},
 			huhuan: {
 				nameKey: { zh: "呼唤" },
-				roleKey: { zh: "作息修复" },
+				roleKey: { zh: "本能" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huhuan.webp"
 			},
 			luobei: {
 				nameKey: { zh: "萝北" },
-				roleKey: { zh: "参展者" },
+				roleKey: { zh: "海之眼号随船记者" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/luobei.webp"
 			},
 			yin: {
 				nameKey: { zh: "银" },
-				roleKey: { zh: "高考逆袭" },
+				roleKey: { zh: "圣人" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yin.webp"
 			},
 			huarui: {
 				nameKey: { zh: "花蕊" },
-				roleKey: { zh: "游戏开发" },
+				roleKey: { zh: "心棱域天使队教官" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huarui.webp"
 			},
 			xingsui: {
 				nameKey: { zh: "星髓" },
-				roleKey: { zh: "基建" },
+				roleKey: { zh: "弦论地景" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/xingsui.webp"
 			},
 			jin: {
 				nameKey: { zh: "金" },
-				roleKey: { zh: "超长期规划" },
+				roleKey: { zh: "海之眼号船长" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/jin.webp"
 			},
 			muse: {
 				nameKey: { zh: "缪斯" },
-				roleKey: { zh: "理想主义" },
+				roleKey: { zh: "灵感" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/muse.webp"
 			},
 			gongli: {
 				nameKey: { zh: "公理" },
-				roleKey: { zh: "现实主义" },
+				roleKey: { zh: "规则" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/gongli.webp"
+			},
+			shizi: {
+				nameKey: { zh: "柿子" },
+				roleKey: { zh: "心棱域皇家医生" },
+				portrait: "/img/celebrations/blackstone-beach-fair-82/shizi.webp"
 			},
 			yuqi: {
 				nameKey: { zh: "于启" },
-				roleKey: { zh: "具身探索" },
+				roleKey: { zh: "阴影面" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqi.webp"
 			}
 		},
@@ -88,9 +97,14 @@ export default {
 				align: "right"
 			},
 			{
+				type: "portrait",
+				character: "shizi",
+				align: "right"
+			},
+			{
 				type: "prose",
 				textKey: {
-					zh: "## 庆典如何诞生？\n\n> **呼唤**：你问这游园会怎么来的？\n\n> **雨晴**：对呀，感觉不像突然办起来的。\n\n> **呼唤**：在前砂糖云里雾里莎的支撑下，背叛书上篇完结，完成重伤疗愈。在背叛书得到大家的反馈和喜爱之后，生活和情感状态平凡稳定下来。稳定下来的状态让注意力在方法论上滚雪球，在工作和创作上都有了重大的效率突破。在急剧放大的产出之后，再加之新朋友们的支持，我进入了一个黄金时代——上一次类似这样的时期，是 2023 年 2 月写作鸿律篇小说的高创作阶段。我愿将这份喜悦分享给大家！"
+					zh: "## 庆典如何诞生？\n\n> **柿子**：你问这游园会怎么来的？\n\n> **雨晴**：对呀，感觉不像突然办起来的。\n\n> **柿子**：在前砂糖云里雾里莎的支撑下，背叛书上篇完结，完成重伤疗愈。在背叛书得到大家的反馈和喜爱之后，生活和情感状态平凡稳定下来。稳定下来的状态让注意力在方法论上滚雪球，在工作和创作上都有了重大的效率突破。在急剧放大的产出之后，再加之新朋友们的支持，我进入了一个黄金时代——上一次类似这样的时期，是 2023 年 2 月写作鸿律篇小说的高创作阶段。我愿将这份喜悦分享给大家！"
 				}
 			},
 			{
@@ -331,7 +345,7 @@ export default {
 			},
 			{
 				type: "portrait",
-				character: "yuqing",
+				character: "yuqingFarewell",
 				align: "center"
 			},
 			{
