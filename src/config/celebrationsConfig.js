@@ -44,7 +44,7 @@ export default {
 			},
 			huarui: {
 				nameKey: { zh: "花蕊" },
-				roleKey: { zh: "心棱域天使队长官" },
+				roleKey: { zh: "心棱域天使队教官" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huarui.webp"
 			},
 			xingsui: {
