@@ -219,50 +219,28 @@ export default {
 
 .embed-side {
 	font-size: 0.95rem;
-	text-align: center;
+	text-align: left;
+	line-height: 1.8;
+}
 
-	:deep(p:last-child) {
-		margin-bottom: 0;
-	}
+.align-left .embed-card {
+	float: left;
+	margin: 0 1.25rem 0.75rem 0;
+}
+
+.align-right .embed-card {
+	float: right;
+	margin: 0 0 0.75rem 1.25rem;
 }
 
 .align-left.has-intro,
 .align-right.has-intro {
-	display: flex;
-	align-items: center;
-	gap: 1.25rem;
-
-	.embed-card {
-		float: none;
-		flex-shrink: 0;
-		margin: 0;
-	}
-
 	.embed-side {
-		flex: 1;
-		min-width: 0;
+		display: contents;
 	}
-}
 
-.align-left.has-intro {
-	flex-direction: row;
-}
-
-.align-right.has-intro {
-	flex-direction: row-reverse;
-}
-
-.align-left {
-	&:not(.has-intro) .embed-card {
-		float: left;
-		margin: 0 1.25rem 0.5rem 0;
-	}
-}
-
-.align-right {
-	&:not(.has-intro) .embed-card {
-		float: right;
-		margin: 0 0 0.5rem 1.25rem;
+	:deep(.celebration-prose > :last-child) {
+		margin-bottom: 0;
 	}
 }
 
@@ -281,8 +259,9 @@ export default {
 @media (max-width: 600px) {
 	.align-left.has-intro,
 	.align-right.has-intro {
-		flex-direction: column;
-		align-items: center;
+		.embed-side {
+			display: block;
+		}
 	}
 
 	.embed-card {
