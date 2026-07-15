@@ -270,15 +270,31 @@ export default {
 			{
 				type: "prose",
 				textKey: {
-					zh: "## 小说类\n\n> **缪斯**：文字这边，有两件值得单独摆出来。"
+					zh: "## 小说类\n\n> **缪斯**：小说创作——从来都是没有经济价值和意义的创作类型。纯粹是因为自己想写，纯粹的创作。"
+				}
+			},
+			{
+				type: "project",
+				slug: "beyond-books-silver-moon",
+				align: "right",
+				introKey: {
+					zh: "虽然银月篇是很早的小说，初中初稿，高中改稿，大学再改稿，最近才定稿，可能舞龙篇写了之后还想回头改改细节。如果你喜欢背叛书的话，银月篇也是不错的小说，里面充满了信息差，谎言和欺骗。"
 				}
 			},
 			{
 				type: "project",
 				slug: "beyond-books-rule",
+				align: "left",
+				introKey: {
+					zh: "而如果你更喜欢情情爱爱，那就去看鸿律篇吧！鸿律篇已经公开发布了！"
+				}
+			},
+			{
+				type: "project",
+				slug: "beyond-books-dragon-dance",
 				align: "right",
 				introKey: {
-					zh: "鸿律篇小说公开发布。"
+					zh: "而舞龙篇正在重写中，不久后就会推出定稿了吧！其中有出现一种独特语言，我想给它真正做一套语系规则，于是就做了【三维通用语】。"
 				}
 			},
 			{
@@ -286,7 +302,7 @@ export default {
 				slug: "tricommon-language",
 				align: "left",
 				introKey: {
-					zh: "造语创作（无目的创作的例子）——【三维通用语】。"
+					zh: "舞龙篇中出现的独特语言，为其所做的一套语系规则。"
 				}
 			},
 			{
