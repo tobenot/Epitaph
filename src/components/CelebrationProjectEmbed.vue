@@ -219,17 +219,14 @@ export default {
 
 .embed-side {
 	font-size: 0.95rem;
-	text-align: center;
-
-	:deep(p:last-child) {
-		margin-bottom: 0;
-	}
+	text-align: left;
+	line-height: 1.8;
 }
 
 .align-left.has-intro,
 .align-right.has-intro {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 1.25rem;
 
 	.embed-card {

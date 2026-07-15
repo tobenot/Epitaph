@@ -22,7 +22,7 @@ export function buildBodyFlowGroups(blocks) {
 
 		const tail = []
 		let j = i + 1
-		while (j < blocks.length && !isSidePortrait(blocks[j])) {
+		while (j < blocks.length && blocks[j].type === "prose") {
 			tail.push(blocks[j])
 			j++
 		}
