@@ -29,17 +29,17 @@ export default {
 			},
 			huhuan: {
 				nameKey: { zh: "呼唤" },
-				roleKey: { zh: "作息修复" },
+				roleKey: { zh: "动物本能" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huhuan.webp"
 			},
 			luobei: {
 				nameKey: { zh: "萝北" },
-				roleKey: { zh: "参展者" },
+				roleKey: { zh: "随船记者" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/luobei.webp"
 			},
 			yin: {
 				nameKey: { zh: "银" },
-				roleKey: { zh: "高考逆袭" },
+				roleKey: { zh: "最初的图帕" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yin.webp"
 			},
 			huarui: {
@@ -54,27 +54,27 @@ export default {
 			},
 			jin: {
 				nameKey: { zh: "金" },
-				roleKey: { zh: "超长期规划" },
+				roleKey: { zh: "理性规划" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/jin.webp"
 			},
 			muse: {
 				nameKey: { zh: "缪斯" },
-				roleKey: { zh: "理想主义" },
+				roleKey: { zh: "灵感替身（非图帕）" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/muse.webp"
 			},
 			gongli: {
 				nameKey: { zh: "公理" },
-				roleKey: { zh: "现实主义" },
+				roleKey: { zh: "规则替身（非图帕）" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/gongli.webp"
 			},
 			shizi: {
 				nameKey: { zh: "柿子" },
-				roleKey: { zh: "情感修复" },
+				roleKey: { zh: "皇家医生" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/shizi.webp"
 			},
 			yuqi: {
 				nameKey: { zh: "于启" },
-				roleKey: { zh: "具身探索" },
+				roleKey: { zh: "阴影面" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqi.webp"
 			}
 		},
