@@ -56,7 +56,7 @@ export default {
 	inset: 0;
 	overflow: hidden;
 	pointer-events: none;
-	z-index: 1;
+	z-index: 5;
 }
 
 .confetti-piece {
