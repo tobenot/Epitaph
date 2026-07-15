@@ -1,5 +1,5 @@
 <template>
-	<div class="celebration-project-embed" :class="[`align-${align}`, { 'has-intro': !!intro }]">
+	<div class="celebration-project-embed" :class="[`align-${align}`, { 'has-intro': !!intro, 'intro-short': isShortIntro }]">
 		<div
 			class="experience-card embed-card"
 			:class="getCardFrameClass(project)"
@@ -63,6 +63,11 @@ export default {
 		},
 		projectImage() {
 			return getProjectBilibiliCover(this.project)
+		},
+		isShortIntro() {
+			if (!this.intro) return false
+			const plain = this.intro.replace(/[#>*_\[\]()\-]/g, "").replace(/\s+/g, "")
+			return plain.length > 0 && plain.length <= 80
 		}
 	},
 	methods: {
@@ -244,6 +249,33 @@ export default {
 	}
 }
 
+.align-left.has-intro.intro-short,
+.align-right.has-intro.intro-short {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+
+	&::after {
+		display: none;
+	}
+
+	.embed-card {
+		float: none;
+		margin: 0;
+		flex-shrink: 0;
+	}
+
+	.embed-side {
+		display: block;
+		flex: 1;
+		min-width: 0;
+	}
+}
+
+.align-right.has-intro.intro-short {
+	flex-direction: row-reverse;
+}
+
 .align-center {
 	.embed-card {
 		margin-left: auto;
@@ -257,6 +289,12 @@ export default {
 }
 
 @media (max-width: 600px) {
+	.align-left.has-intro.intro-short,
+	.align-right.has-intro.intro-short {
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.align-left.has-intro,
 	.align-right.has-intro {
 		.embed-side {
