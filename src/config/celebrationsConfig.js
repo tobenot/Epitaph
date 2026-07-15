@@ -229,7 +229,7 @@ export default {
 				slug: "catmaid-commander",
 				align: "left",
 				introKey: {
-					zh: "星髓说的指挥官系统，说的就是我。帮你盯着手边一群 Claude Code 窗口，情绪价值和喝水睡觉提醒也归我管。"
+					zh: "这就是苏雨晴的外骨骼。"
 				}
 			},
 			{
