@@ -18,8 +18,8 @@ export default {
 	themes: ["AI大世界", "互动叙事", "涌现式叙事"],
 	tags: ["LLM", "AI大世界", "叙事设计", "游戏开发", "独立游戏"],
 	developerNotesKey: {
-		zh: "作家之屋长文。梳理虚拟恋人、文明进化游戏、毕设ARPG、银月篇剧本杀等过往探索，提出当前阶段更可行的五种优化范式。",
-		en: "Long-form essay on Sanctuary of Writers. Reviews past experiments and proposes five optimization paradigms feasible at the current stage."
+		zh: "作家之屋长文。梳理虚拟恋人、文明进化游戏、毕设ARPG、银月篇剧本杀等过往探索，提出当前阶段更可行的五种优化范式。是万象魔法学院（OMA）的理论基础——OMA 按范式Ⅱ（AI MUD）推进。",
+		en: "Long-form essay on Sanctuary of Writers. Reviews past experiments and proposes five optimization paradigms feasible at the current stage. The theoretical foundation for Omnivista Magic Academy (OMA), which follows Paradigm II (AI MUD)."
 	},
 	longDescriptionKey: {
 		zh: "自 ChatGPT 问世以来，「玩家自由行动、世界随之真实改变」的 AI 大世界是许多人的共同愿景。完全自下而上的模拟在算力与复杂度上仍不现实。本文基于 AI 虚拟恋人、《文明史诗》、全 AI NPC 毕设、《不止于纸上的故事：银月篇》等实践，提出五条优化路径：增强型 AI 剧本杀（导游式扰动）、AI MUD（周期性大思考与人工干预）、Book Diff（精确时间线剧本的强因果推演）、AI 戏剧 / AI 肥皂剧（深度角色与关系演化）、LOD 混合模拟（宏观抽象与微观细节动态平衡）。",
@@ -30,6 +30,11 @@ export default {
 			type: "blog",
 			url: "https://tobenot.top/p/ai-world-game-paradigms/",
 			textKey: { zh: "阅读全文", en: "Read Article" }
+		},
+		{
+			type: "web",
+			url: "/project/omnivista-magic-academy",
+			textKey: { zh: "实践项目：万象魔法学院", en: "Practice Project: Omnivista Magic Academy" }
 		}
 	]
 }

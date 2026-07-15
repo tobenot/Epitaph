@@ -23,8 +23,8 @@ export default {
     en: "On Hold"
   },
   developerNotesKey: {
-    zh: "项目目前处于停工状态。曾用 MUD 框架 Evennia 尝试重制，小红书上有零星关注度，暂未继续推进。",
-    en: "The project is currently on hold. A remake was attempted with the MUD framework Evennia. It received sporadic attention on Xiaohongshu, but development has not resumed."
+    zh: "项目目前处于停工状态。理论基础见《AI大世界游戏的5种可能范式》；本项按范式Ⅱ（AI MUD）推进。曾用 MUD 框架 Evennia 尝试重制，小红书上有零星关注度，暂未继续推进。",
+    en: "The project is currently on hold. Theoretical basis: Five Paradigms for AI Open-World Games; this project follows Paradigm II (AI MUD). A remake was attempted with the MUD framework Evennia. It received sporadic attention on Xiaohongshu, but development has not resumed."
   },
   tags: ["LLM", "AI大世界范式Ⅱ"],
   longDescriptionKey: {
@@ -32,6 +32,7 @@ export default {
     en: ""
   },
   links: [
+    { type: "web", url: "/project/ai-world-game-paradigms", textKey: { zh: "理论基础：五种范式", en: "Theoretical Basis: Five Paradigms" } },
     { type: "xiaohongshu", url: "http://xhslink.com/a/eKWmczIAd6e5", textKey: { zh: "小红书主页", en: "Xiaohongshu Page" } },
     { type: "wechat", url: "https://mp.weixin.qq.com/s/71Ss_3ZKkt4ILZfh3J8IVQ", textKey: { zh: "开发日志", en: "Dev Log" } }
   ]
