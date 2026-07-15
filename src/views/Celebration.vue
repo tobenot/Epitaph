@@ -169,9 +169,18 @@ export default {
 			if (this.$route.query.restore !== "1") return
 			const y = consumeCelebrationScroll(this.celebrationId)
 			if (y == null) return
+
+			const applyScroll = () => window.scrollTo(0, y)
+
 			this.$nextTick(() => {
-				window.scrollTo(0, y)
-				this.$router.replace({ path: this.$route.path })
+				applyScroll()
+				requestAnimationFrame(() => {
+					applyScroll()
+					if (this.$route.query.restore === "1") {
+						this.$router.replace({ path: this.$route.path })
+					}
+					requestAnimationFrame(applyScroll)
+				})
 			})
 		},
 		resolveCharacter(characterId) {

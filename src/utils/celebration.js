@@ -101,6 +101,14 @@ export function saveCelebrationScroll(celebrationId) {
 	sessionStorage.setItem(`${SCROLL_KEY_PREFIX}${celebrationId}`, String(window.scrollY))
 }
 
+export function peekCelebrationScroll(celebrationId) {
+	if (!celebrationId) return null
+	const raw = sessionStorage.getItem(`${SCROLL_KEY_PREFIX}${celebrationId}`)
+	if (raw == null) return null
+	const y = Number(raw)
+	return Number.isFinite(y) ? y : null
+}
+
 export function consumeCelebrationScroll(celebrationId) {
 	if (!celebrationId) return null
 	const key = `${SCROLL_KEY_PREFIX}${celebrationId}`

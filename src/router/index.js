@@ -7,6 +7,7 @@ import Sounds from '../views/Sounds.vue'
 import Sound from '../views/Sound.vue'
 import GalleryItem from '../views/GalleryItem.vue'
 import Celebration from '../views/Celebration.vue'
+import { peekCelebrationScroll } from '../utils/celebration'
 
 const routes = [
   {
@@ -159,6 +160,13 @@ const router = createRouter({
       return savedPosition
     }
     if (to.name === 'Celebration' && to.query.restore === '1') {
+      const y = peekCelebrationScroll(to.params.id)
+      if (y != null) {
+        return { left: 0, top: y }
+      }
+      return false
+    }
+    if (to.name === 'Celebration' && from.name === 'Celebration' && to.path === from.path) {
       return false
     }
     return { top: 0 }
