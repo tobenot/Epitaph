@@ -10,8 +10,6 @@
 			<div class="fair-lights" role="presentation"></div>
 		</div>
 
-		<CelebrationConfettiRain />
-
 		<article class="celebration-article">
 			<header class="celebration-header">
 				<p class="celebration-period" v-if="periodLabel">{{ periodLabel }}</p>
@@ -20,6 +18,8 @@
 				<div class="decorative-line"></div>
 				<p class="celebration-description" v-if="description">{{ description }}</p>
 			</header>
+
+			<CelebrationConfettiRain />
 
 			<div class="celebration-body">
 				<template v-for="(group, groupIndex) in bodyFlowGroups" :key="groupIndex">

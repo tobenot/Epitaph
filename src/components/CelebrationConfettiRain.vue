@@ -28,7 +28,7 @@ export default {
 		}
 	},
 	created() {
-		this.pieces = Array.from({ length: 36 }, (_, id) => {
+		this.pieces = Array.from({ length: 24 }, (_, id) => {
 			const isWide = Math.random() > 0.75
 			const width = isWide ? randomBetween(8, 14) : randomBetween(3, 6)
 			const height = isWide ? randomBetween(10, 16) : randomBetween(16, 32)
@@ -52,16 +52,16 @@ export default {
 
 <style scoped lang="scss">
 .confetti-rain {
-	position: fixed;
-	inset: 0;
+	position: relative;
+	height: 5.5rem;
+	margin: 0 -0.75rem 0.75rem;
 	overflow: hidden;
 	pointer-events: none;
-	z-index: 1;
 }
 
 .confetti-piece {
 	position: absolute;
-	top: -5vh;
+	top: -0.5rem;
 	display: block;
 	transform: rotate(var(--ribbon-spin, 0deg));
 	animation-name: confetti-fall;
@@ -72,23 +72,23 @@ export default {
 
 @keyframes confetti-fall {
 	0% {
-		transform: translate3d(0, -5vh, 0) rotate(var(--ribbon-spin, 0deg));
+		transform: translate3d(0, -0.5rem, 0) rotate(var(--ribbon-spin, 0deg));
 	}
 
 	25% {
-		transform: translate3d(12px, 25vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 180deg));
+		transform: translate3d(12px, 1.5rem, 0) rotate(calc(var(--ribbon-spin, 0deg) + 180deg));
 	}
 
 	50% {
-		transform: translate3d(-8px, 50vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 360deg));
+		transform: translate3d(-8px, 3rem, 0) rotate(calc(var(--ribbon-spin, 0deg) + 360deg));
 	}
 
 	75% {
-		transform: translate3d(10px, 75vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 540deg));
+		transform: translate3d(10px, 4.5rem, 0) rotate(calc(var(--ribbon-spin, 0deg) + 540deg));
 	}
 
 	100% {
-		transform: translate3d(-6px, 105vh, 0) rotate(calc(var(--ribbon-spin, 0deg) + 720deg));
+		transform: translate3d(-6px, 7rem, 0) rotate(calc(var(--ribbon-spin, 0deg) + 720deg));
 	}
 }
 
