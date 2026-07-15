@@ -1,3 +1,7 @@
+function isSidePortrait(block) {
+	return block.type === "portrait" && (block.align === "left" || block.align === "right")
+}
+
 export function buildBodyFlowGroups(blocks) {
 	const groups = []
 	let plain = { type: "plain", items: [] }
@@ -8,22 +12,28 @@ export function buildBodyFlowGroups(blocks) {
 		plain = { type: "plain", items: [] }
 	}
 
-	for (const block of blocks) {
-		const isSidePortrait =
-			block.type === "portrait" && (block.align === "left" || block.align === "right")
+	for (let i = 0; i < blocks.length; i++) {
+		const block = blocks[i]
 
-		if (isSidePortrait) {
-			flushPlain()
-			groups.push({ type: "aside", portrait: block, tail: [] })
+		if (!isSidePortrait(block)) {
+			plain.items.push(block)
 			continue
 		}
 
-		const last = groups[groups.length - 1]
-		if (last?.type === "aside") {
-			last.tail.push(block)
-		} else {
-			plain.items.push(block)
+		const tail = []
+		let j = i + 1
+		while (j < blocks.length && !isSidePortrait(blocks[j])) {
+			tail.push(blocks[j])
+			j++
 		}
+
+		if (tail.length === 0 && plain.items.length > 0 && plain.items[plain.items.length - 1].type === "prose") {
+			tail.push(plain.items.pop())
+		}
+
+		flushPlain()
+		groups.push({ type: "aside", portrait: block, tail })
+		i = j - 1
 	}
 
 	flushPlain()

@@ -313,7 +313,7 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 .celebration-article {
 	position: relative;
 	z-index: 2;
-	max-width: 680px;
+	max-width: 720px;
 	margin: 0 auto;
 	padding: 2rem 1.75rem 2.5rem;
 	background: #0c1118;
@@ -392,22 +392,27 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 
 .celebration-aside-flow {
 	display: grid;
-	gap: 0.35rem 2.25rem;
-	margin-bottom: 1rem;
+	gap: 0.5rem 1.75rem;
+	margin-bottom: 1.25rem;
 	align-items: start;
 
 	:deep(.celebration-portrait) {
 		float: none;
 		margin: 0;
 		width: 100%;
+		align-self: start;
 	}
 
 	.aside-content {
 		min-width: 0;
+
+		:deep(.celebration-prose > :first-child) {
+			margin-top: 0;
+		}
 	}
 
 	&.aside-portrait-left {
-		grid-template-columns: min(200px, 42vw) 1fr;
+		grid-template-columns: min(210px, 34%) 1fr;
 
 		:deep(.celebration-portrait) {
 			grid-column: 1;
@@ -421,7 +426,7 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 	}
 
 	&.aside-portrait-right {
-		grid-template-columns: 1fr min(200px, 42vw);
+		grid-template-columns: 1fr min(210px, 34%);
 
 		:deep(.celebration-portrait) {
 			grid-column: 2;
