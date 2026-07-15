@@ -23,6 +23,11 @@ export default {
 				roleKey: { zh: "游园来宾" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing.webp"
 			},
+			yuqingFarewell: {
+				nameKey: { zh: "雨晴" },
+				roleKey: { zh: "游园来宾" },
+				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing-farewell.webp"
+			},
 			huhuan: {
 				nameKey: { zh: "呼唤" },
 				roleKey: { zh: "作息修复" },
@@ -331,7 +336,7 @@ export default {
 			},
 			{
 				type: "portrait",
-				character: "yuqing",
+				character: "yuqingFarewell",
 				align: "center"
 			},
 			{
