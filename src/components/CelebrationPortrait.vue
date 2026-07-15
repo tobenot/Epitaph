@@ -154,11 +154,11 @@ export default {
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 	.celebration-portrait {
-		float: none !important;
+		float: none;
 		width: min(180px, 70vw);
-		margin: 0 auto 1.75rem !important;
+		margin: 0 auto 1.75rem;
 	}
 }
 </style>

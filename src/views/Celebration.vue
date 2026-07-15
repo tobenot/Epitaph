@@ -487,19 +487,19 @@ $bunting-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 	}
 
 	.celebration-aside-flow {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		gap: 0.75rem;
 
 		:deep(.celebration-portrait) {
-			grid-column: 1 !important;
-			grid-row: 1 !important;
 			width: min(180px, 70vw);
-			margin: 0 auto !important;
+			margin: 0 auto;
 		}
 
 		.aside-content {
-			grid-column: 1 !important;
-			grid-row: 2 !important;
+			width: 100%;
+			align-self: stretch;
 		}
 	}
 }

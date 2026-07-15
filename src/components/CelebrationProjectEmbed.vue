@@ -288,31 +288,35 @@ export default {
 	}
 }
 
-@media (max-width: 600px) {
-	.align-left.has-intro.intro-short,
-	.align-right.has-intro.intro-short {
+@media (max-width: 768px) {
+	.celebration-project-embed {
+		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
 
-	.align-left.has-intro,
-	.align-right.has-intro {
-		.embed-side {
-			display: block;
+		&::after {
+			display: none;
 		}
 	}
 
-	.embed-card {
-		float: none !important;
-		width: min(220px, 100%);
-		margin-left: auto !important;
-		margin-right: auto !important;
+	.align-left,
+	.align-right,
+	.align-center {
+		.embed-card {
+			float: none;
+			width: min(220px, 100%);
+			margin: 0 0 0.75rem;
+		}
+
+		.embed-side {
+			display: block;
+			width: 100%;
+			align-self: stretch;
+		}
 	}
 
-	.embed-side {
-		clear: both;
-		padding-top: 0.75rem;
-		width: 100%;
+	.align-right.has-intro.intro-short {
+		flex-direction: column;
 	}
 }
 </style>
