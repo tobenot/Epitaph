@@ -7,7 +7,7 @@ import Sounds from '../views/Sounds.vue'
 import Sound from '../views/Sound.vue'
 import GalleryItem from '../views/GalleryItem.vue'
 import Celebration from '../views/Celebration.vue'
-import { peekCelebrationScroll } from '../utils/celebration'
+import { getActiveCelebration, getCelebrationById, peekCelebrationScroll, resolveCelebrationId } from '../utils/celebration'
 
 const routes = [
   {
@@ -65,9 +65,22 @@ const routes = [
     component: Sound
   },
   {
-    path: '/celebration/:id',
+    path: '/celebration/:id?',
     name: 'Celebration',
-    component: Celebration
+    component: Celebration,
+    beforeEnter(to, _from, next) {
+      const routeId = to.params.id
+      if (!routeId) {
+        next()
+        return
+      }
+      const active = getActiveCelebration(config.celebrations)
+      if (active?.id === routeId) {
+        next({ path: '/celebration', query: to.query, hash: to.hash, replace: true })
+        return
+      }
+      next()
+    }
   }
 ]
 
@@ -138,7 +151,8 @@ export function updatePageMeta(to) {
       description = pickLocalized(item.descriptionKey, locale)
     }
   } else if (to.name === 'Celebration') {
-    const celebration = config.celebrations?.[to.params.id]
+    const celebrationId = resolveCelebrationId(to.params.id, config.celebrations)
+    const celebration = getCelebrationById(celebrationId, config.celebrations)
     if (celebration) {
       title = `${pickLocalized(celebration.titleKey, locale)} | Epitaph`
       description = pickLocalized(celebration.descriptionKey, locale)
@@ -160,7 +174,8 @@ const router = createRouter({
       return savedPosition
     }
     if (to.name === 'Celebration' && to.query.restore === '1') {
-      const y = peekCelebrationScroll(to.params.id)
+      const celebrationId = resolveCelebrationId(to.params.id, config.celebrations)
+      const y = peekCelebrationScroll(celebrationId)
       if (y != null) {
         return { left: 0, top: y }
       }

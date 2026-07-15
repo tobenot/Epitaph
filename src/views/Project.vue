@@ -170,7 +170,7 @@ import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
 import { resolveTagFilter, localizedTag } from '@/utils/tagFacets'
 import { buildHomeQuery } from '@/utils/homeFilters'
-import { findCelebrationsForSlug, getCelebrationById, pickLocalized, buildCelebrationReturnRoute } from '@/utils/celebration'
+import { findCelebrationsForSlug, getCelebrationById, pickLocalized, buildCelebrationPath, buildCelebrationReturnRoute } from '@/utils/celebration'
 
 export default {
   name: 'Project',
@@ -212,7 +212,7 @@ export default {
     },
     celebrationReturnTo() {
       if (!this.celebrationReturn) return null
-      return buildCelebrationReturnRoute(this.celebrationReturnId)
+      return buildCelebrationReturnRoute(this.celebrationReturnId, config.celebrations)
     },
     celebrationReturnTitle() {
       return pickLocalized(this.celebrationReturn?.titleKey, this.currentLocale)
@@ -270,9 +270,9 @@ export default {
     },
     celebrationLinkTo(celebration) {
       if (this.celebrationReturnId === celebration.id) {
-        return buildCelebrationReturnRoute(celebration.id)
+        return buildCelebrationReturnRoute(celebration.id, config.celebrations)
       }
-      return `/celebration/${celebration.id}`
+      return buildCelebrationPath(celebration.id, config.celebrations)
     },
     getLinkIcon(type) {
       const a = 'xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'

@@ -43,6 +43,7 @@ const routes = [
   '/paintings',
   '/photographs',
   '/sounds',
+  '/celebration',
   ...projectIds.map(id => `/project/${id}`),
   ...soundIds.map(id => `/sound/${id}`),
   ...paintingIds.map(id => `/painting/${id}`),

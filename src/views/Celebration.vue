@@ -100,7 +100,7 @@ import CelebrationProse from "@/components/CelebrationProse.vue"
 import CelebrationPortrait from "@/components/CelebrationPortrait.vue"
 import CelebrationProjectEmbed from "@/components/CelebrationProjectEmbed.vue"
 import CelebrationConfettiRain from "@/components/CelebrationConfettiRain.vue"
-import { getCelebrationById, getCelebrationBody, buildBodyFlowGroups, pickLocalized, saveCelebrationScroll, consumeCelebrationScroll } from "@/utils/celebration"
+import { getCelebrationById, getCelebrationBody, buildBodyFlowGroups, pickLocalized, resolveCelebrationId, saveCelebrationScroll, consumeCelebrationScroll } from "@/utils/celebration"
 
 export default {
 	name: "Celebration",
@@ -115,7 +115,7 @@ export default {
 			return this.$i18n.locale
 		},
 		celebrationId() {
-			return this.$route.params.id
+			return resolveCelebrationId(this.$route.params.id, config.celebrations)
 		},
 		celebration() {
 			return getCelebrationById(this.celebrationId, config.celebrations)
