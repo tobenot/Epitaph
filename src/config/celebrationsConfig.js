@@ -286,7 +286,7 @@ export default {
 				slug: "beyond-books-rule",
 				align: "left",
 				introKey: {
-					zh: "而如果你更喜欢情情爱爱，那就去看鸿律篇吧！鸿律篇已经公开发布了！"
+					zh: "而如果你更喜欢情情爱爱和非常激烈的打打杀杀，那就去看鸿律篇吧！鸿律篇已经公开发布了！"
 				}
 			},
 			{
@@ -313,7 +313,7 @@ export default {
 			{
 				type: "prose",
 				textKey: {
-					zh: "## 工作上\n\n> **公理**：完成了多个大系统，提审版本。这半年的工作里进步不小——我从普通程序员成长为能独当一面的程序员了。\n\n> **苏雨晴**：听起来，工作和创作是互相喂饱的。"
+					zh: "## 工作上\n\n> **公理**：这半年在工作上的进步比先前几年加起来都要大，十倍的效率换来十倍的工作量，如今负责工作项目里主要的内容，让我独当一面。虽然我不想要，但我也得去做主程了。\n\n> **苏雨晴**：从这半年的工作中也磨砺了生产力体系。至少从工作中找到充足的意义了！"
 				}
 			},
 			{
@@ -324,7 +324,7 @@ export default {
 			{
 				type: "prose",
 				textKey: {
-					zh: "## 视频创作方面\n\n> **于启**：视频这边，挑几个代表性的。"
+					zh: "## 视频创作方面\n\n> **于启**：虽然这不是我们的主要方向，但还是因为探索技术做了许多动漫的。"
 				}
 			},
 			{
@@ -332,23 +332,23 @@ export default {
 				slug: "vrc-became-eku",
 				align: "right",
 				introKey: {
-					zh: "Eku 的奥本海默鬼畜二创视频。"
-				}
-			},
-			{
-				type: "project",
-				slug: "exam-cheer-2026",
-				align: "left",
-				introKey: {
-					zh: "大考加油视频。"
+					zh: "有奇怪灵感所以做了一个 Eku 相关的奥本海默电影致敬鬼畜视频。对了解梗的人来说，想必是非常好笑，做到一半得停下来笑会。"
 				}
 			},
 			{
 				type: "project",
 				slug: "heart-world-wave-breaker",
+				align: "left",
+				introKey: {
+					zh: "车辙时代的事情，写背叛书那时候真的是很崩溃！"
+				}
+			},
+			{
+				type: "project",
+				slug: "exam-cheer-2026",
 				align: "right",
 				introKey: {
-					zh: "破浪者动漫。"
+					zh: "少有的心界图帕数量暴涨的时期，借助高考时间大家都亮相了一下，留下影像记录！"
 				}
 			},
 			{
