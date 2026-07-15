@@ -19,57 +19,57 @@ export default {
 		characters: {
 			yuqing: {
 				nameKey: { zh: "雨晴" },
-				roleKey: { zh: "游园来宾" },
+				roleKey: { zh: "机械工蜂" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing.webp"
 			},
 			yuqingFarewell: {
 				nameKey: { zh: "雨晴" },
-				roleKey: { zh: "游园来宾" },
+				roleKey: { zh: "机械工蜂" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yuqing-farewell.webp"
 			},
 			huhuan: {
 				nameKey: { zh: "呼唤" },
-				roleKey: { zh: "动物本能" },
+				roleKey: { zh: "本能" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huhuan.webp"
 			},
 			luobei: {
 				nameKey: { zh: "萝北" },
-				roleKey: { zh: "随船记者" },
+				roleKey: { zh: "海之眼号随船记者" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/luobei.webp"
 			},
 			yin: {
 				nameKey: { zh: "银" },
-				roleKey: { zh: "最初的图帕" },
+				roleKey: { zh: "圣人" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/yin.webp"
 			},
 			huarui: {
 				nameKey: { zh: "花蕊" },
-				roleKey: { zh: "游戏开发" },
+				roleKey: { zh: "心棱域天使队长官" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/huarui.webp"
 			},
 			xingsui: {
 				nameKey: { zh: "星髓" },
-				roleKey: { zh: "基建" },
+				roleKey: { zh: "弦论地景" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/xingsui.webp"
 			},
 			jin: {
 				nameKey: { zh: "金" },
-				roleKey: { zh: "理性规划" },
+				roleKey: { zh: "海之眼号船长" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/jin.webp"
 			},
 			muse: {
 				nameKey: { zh: "缪斯" },
-				roleKey: { zh: "灵感替身（非图帕）" },
+				roleKey: { zh: "灵感" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/muse.webp"
 			},
 			gongli: {
 				nameKey: { zh: "公理" },
-				roleKey: { zh: "规则替身（非图帕）" },
+				roleKey: { zh: "规则" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/gongli.webp"
 			},
 			shizi: {
 				nameKey: { zh: "柿子" },
-				roleKey: { zh: "皇家医生" },
+				roleKey: { zh: "心棱域皇家医生" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/shizi.webp"
 			},
 			yuqi: {
