@@ -17,6 +17,57 @@ function listLevel(indent) {
 	return Math.floor(indent.length / 2)
 }
 
+function parseDialogLine(text) {
+	const match = text.match(/^\*\*(.+?)\*\*([：:])\s*(.*)$/)
+	if (!match) return null
+	return {
+		speaker: match[1],
+		colon: match[2],
+		body: match[3]
+	}
+}
+
+function renderDialogLine(text) {
+	const dialog = parseDialogLine(text)
+	if (dialog) {
+		return `<p class="dialog-line"><span class="dialog-speaker">${escapeHtml(dialog.speaker)}${dialog.colon}</span><span class="dialog-body">${inlineMarkdown(dialog.body)}</span></p>`
+	}
+	return `<p class="dialog-line dialog-line-plain">${inlineMarkdown(text)}</p>`
+}
+
+function collectDialogLines(lines, startIndex) {
+	const dialogLines = []
+	let i = startIndex
+
+	while (i < lines.length) {
+		const trimmed = lines[i].trim()
+
+		if (trimmed.startsWith("> ")) {
+			dialogLines.push(trimmed.slice(2))
+			i++
+			continue
+		}
+
+		if (!trimmed && dialogLines.length > 0) {
+			let j = i + 1
+			while (j < lines.length && !lines[j].trim()) j++
+			if (j < lines.length && lines[j].trim().startsWith("> ")) {
+				i = j
+				continue
+			}
+		}
+
+		break
+	}
+
+	return { dialogLines, nextIndex: i }
+}
+
+function renderDialogGroup(dialogLines) {
+	const lines = dialogLines.map(renderDialogLine).join("\n")
+	return `<div class="celebration-dialog">\n${lines}\n</div>`
+}
+
 function renderListItems(items) {
 	if (!items.length) return ""
 
@@ -64,7 +115,8 @@ export function renderCelebrationMarkdown(text) {
 		flushList()
 	}
 
-	for (const line of lines) {
+	for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+		const line = lines[lineIndex]
 		const trimmed = line.trim()
 
 		if (!trimmed) {
@@ -104,7 +156,9 @@ export function renderCelebrationMarkdown(text) {
 
 		if (trimmed.startsWith("> ")) {
 			flushParagraph()
-			html.push(`<blockquote>${inlineMarkdown(trimmed.slice(2))}</blockquote>`)
+			const { dialogLines, nextIndex } = collectDialogLines(lines, lineIndex)
+			html.push(renderDialogGroup(dialogLines))
+			lineIndex = nextIndex - 1
 			continue
 		}
 
