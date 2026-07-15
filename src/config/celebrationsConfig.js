@@ -13,8 +13,7 @@ export default {
 		period: { start: "2026-07-05", end: "2026-08-05" },
 
 		theme: {
-			id: "blackstone-beach",
-			backgroundUrl: "/img/celebrations/blackstone-beach-fair-82/blackstone-beach.webp"
+			id: "blackstone-beach"
 		},
 
 		characters: {
@@ -67,6 +66,11 @@ export default {
 				nameKey: { zh: "公理" },
 				roleKey: { zh: "现实主义" },
 				portrait: "/img/celebrations/blackstone-beach-fair-82/gongli.webp"
+			},
+			shizi: {
+				nameKey: { zh: "柿子" },
+				roleKey: { zh: "情感修复" },
+				portrait: "/img/celebrations/blackstone-beach-fair-82/shizi.webp"
 			},
 			yuqi: {
 				nameKey: { zh: "于启" },
