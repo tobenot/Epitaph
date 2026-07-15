@@ -44,6 +44,26 @@ export function getCelebrationById(id, celebrations) {
 	return celebrations?.[id] ?? null
 }
 
+export function getActiveCelebration(celebrations) {
+	if (!celebrations) return null
+	const active = Object.values(celebrations).filter((celebration) => !celebration.hidden && celebration.active)
+	return active[0] ?? null
+}
+
+export function resolveCelebrationId(routeId, celebrations) {
+	if (routeId) return routeId
+	return getActiveCelebration(celebrations)?.id ?? null
+}
+
+export function buildCelebrationPath(celebrationId, celebrations) {
+	if (!celebrationId) return "/celebration"
+	const active = getActiveCelebration(celebrations)
+	if (active?.id === celebrationId) {
+		return "/celebration"
+	}
+	return `/celebration/${celebrationId}`
+}
+
 function celebrationIncludesSlug(celebration, slug) {
 	if (celebration.body?.some((block) => block.type === "project" && block.slug === slug)) {
 		return true
@@ -119,9 +139,9 @@ export function consumeCelebrationScroll(celebrationId) {
 	return Number.isFinite(y) ? y : null
 }
 
-export function buildCelebrationReturnRoute(celebrationId) {
+export function buildCelebrationReturnRoute(celebrationId, celebrations) {
 	return {
-		path: `/celebration/${celebrationId}`,
+		path: buildCelebrationPath(celebrationId, celebrations),
 		query: { restore: "1" }
 	}
 }
