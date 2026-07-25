@@ -93,7 +93,7 @@ export default {
 			{
 				type: "prose",
 				textKey: {
-					zh: "## 黄金时代\n\n彩旗挂在黑石上方，海风把灯串吹得轻轻晃。\n\n> **苏雨晴**：咦，这里好热闹，是游园会吗？灯串、彩旗，还有远处那种庆祝的气氛？\n\n> **柿子**：在前砂糖云里雾里莎的支撑下，背叛书上篇完结，完成了重伤疗愈。在背叛书得到大家的反馈和喜爱之后，我们的生活和情感状态平凡稳���下来。稳定下来的状态让注意力在方法论上滚雪球，在工作和创作上都有了重大的效率突破。在急剧放大的产出之后，再加之新朋友们的支持，我进入了一个黄金时代，之前类似这样的时期，是 2023 年 2 月写作鸿律篇小说，和 2025 年入坑 VRChat 之前的高创作阶段。我愿将这份喜悦分享给大家！",
+					zh: "## 黄金时代\n\n彩旗挂在黑石上方，海风把灯串吹得轻轻晃。\n\n> **苏雨晴**：咦，这里好热闹，是游园会吗？灯串、彩旗，还有远处那种庆祝的气氛？\n\n> **柿子**：在前砂糖云里雾里莎的支撑下，背叛书上篇完结，完成了重伤疗愈。在背叛书得到大家的反馈和喜爱之后，我们的生活和情感状态平凡稳定下来。稳定下来的状态让注意力在方法论上滚雪球，在工作和创作上都有了重大的效率突破。在急剧放大的产出之后，再加之新朋友们的支持，我进入了一个黄金时代，之前类似这样的时期，是 2023 年 2 月写作鸿律篇小说，和 2025 年入坑 VRChat 之前的高创作阶段。我愿将这份喜悦分享给大家！",
 					en: "## The Golden Age\n\nBunting hangs above the black stones, and the sea breeze sets the string lights swaying gently.\n\n> **Su Yuqing**: Oh? It's so lively here — is this a fair? String lights, bunting, and that festive mood in the distance?\n\n> **Shizi**: Thanks to the support of Sugar Cloud and Wulisha, the first part of *Book of Betrayals* was finished and my grievous wounds were healed. Once *Book of Betrayals* received everyone's feedback and affection, our life and emotions settled into something calm and steady. That steadiness let our attention snowball into methodology, and we made major breakthroughs in efficiency at both work and creation. After that surge in output, compounded by the support of new friends, I entered a Golden Age. Earlier stretches like this were February 2023, when I wrote the Hong-Lü novella, and the high-output phase before I fell into VRChat in 2025. I want to share this joy with everyone!"
 				}
 			},
@@ -170,7 +170,7 @@ export default {
 			{
 				type: "prose",
 				textKey: {
-					zh: "> **苏雨晴**：这个时代竟然还想要学习技术吗！明明AI已经无所不能了，继续学习又有什么意义呢？\n\n> **银**：无非是一种娱乐，我想懂它！你学习怎么在死亡搁浅2里面送货，这也是一种学习的过程呀！学习就是娱乐！\n\n> **苏雨晴**：曼彻斯特的工业革命时期，有些工人们很喜欢泡在城市给他们建设的公共图书馆里，也有些工人喜欢下班之后和工友们一起排练铜管乐队，这些理性娱乐在当时很流行！\n\n> **银**：不理性娱乐也不错！你看我们每天只有那么半小时一小时来玩自己想玩的游戏，这时候还要带什么目的，什么学习的那些娱乐，想必是对自己要求太高了！\n\n> **苏雨晴**：嗯嗯，也需要蜂蜜一般甜甜的馈赠给自己！让自己留有快���的余裕，对工作和创作都是非常好的事情！",
+					zh: "> **苏雨晴**：这个时代竟然还想要学习技术吗！明明AI已经无所不能了，继续学习又有什么意义呢？\n\n> **银**：无非是一种娱乐，我想懂它！你学习怎么在死亡搁浅2里面送货，这也是一种学习的过程呀！学习就是娱乐！\n\n> **苏雨晴**：曼彻斯特的工业革命时期，有些工人们很喜欢泡在城市给他们建设的公共图书馆里，也有些工人喜欢下班之后和工友们一起排练铜管乐队，这些理性娱乐在当时很流行！\n\n> **银**：不理性娱乐也不错！你看我们每天只有那么半小时一小时来玩自己想玩的游戏，这时候还要带什么目的，什么学习的那些娱乐，想必是对自己要求太高了！\n\n> **苏雨晴**：嗯嗯，也需要蜂蜜一般甜甜的馈赠给自己！让自己留有快乐的余裕，对工作和创作都是非常好的事情！",
 					en: "> **Su Yuqing**: In this era you still want to learn technology? AI can already do anything — what's the point of going on learning?\n\n> **Yin**: It's nothing but entertainment; I want to understand it! You learning how to deliver cargo in Death Stranding 2 is also a process of learning! Learning *is* entertainment!\n\n> **Su Yuqing**: During the Industrial Revolution in Manchester, some workers loved to hang out in the public libraries the city built for them, and others liked rehearsing brass bands with coworkers after shifts — that kind of rational recreation was all the rage back then!\n\n> **Yin**: Irrational recreation is nice too! Look, we only get half an hour to an hour a day to play the games we actually want; to bring goals and 'learning' into that play is surely demanding too much of oneself!\n\n> **Su Yuqing**: Mhm, we also need honey-sweet little treats for ourselves! Leaving yourself a margin of happiness is a very good thing for both work and creation!"
 				}
 			},
@@ -374,7 +374,7 @@ export default {
 				slug: "vrc-became-eku",
 				align: "right",
 				introKey: {
-					zh: "有奇怪灵感所以做了一个 Eku 相关的奥本海默电影致敬鬼畜视频。对了解梗的人来说，想必是非���好笑，做到一半得停下来笑会。",
+					zh: "有奇怪灵感所以做了一个 Eku 相关的奥本海默电影致敬鬼畜视频。对了解梗的人来说，想必是非常好笑，做到一半得停下来笑会。",
 					en: "A weird spark of inspiration led to an Eku-themed Oppenheimer-homage shitpost video. For anyone who gets the meme, it's surely hilarious — I had to stop halfway through to laugh for a bit."
 				}
 			},
