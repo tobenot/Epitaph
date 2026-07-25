@@ -1,30 +1,11 @@
 <template>
   <div class="project-container" v-if="project">
-    <div class="back-link-top">
-      <router-link
-        v-if="celebrationReturnTo"
-        :to="celebrationReturnTo"
-        class="back-button"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        {{ $t('project.backToCelebration', { title: celebrationReturnTitle }) }}
-      </router-link>
-      <router-link v-else to="/" class="back-button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        {{ $t('common.actions.back') }}
-      </router-link>
-    </div>
+    <BackButton v-if="celebrationReturnTo" :to="celebrationReturnTo">
+      {{ $t('project.backToCelebration', { title: celebrationReturnTitle }) }}
+    </BackButton>
+    <BackButton v-else to="/" />
 
-    <div class="project-header">
-      <div class="frame-decoration">
-        <div class="frame-corner top-left"></div>
-        <div class="frame-corner top-right"></div>
-        <div class="frame-corner bottom-left"></div>
-        <div class="frame-corner bottom-right"></div>
-      </div>
-      <h1>{{ project.titleKey[currentLocale] }}</h1>
-      <div class="decorative-line"></div>
-    </div>
+    <PageHeader>{{ project.titleKey[currentLocale] }}</PageHeader>
     
     <div class="project-content">
       <div class="project-image-wrapper" v-if="projectImage">
@@ -32,6 +13,7 @@
           :src="projectImage"
           :alt="project.titleKey[currentLocale]"
           class="project-image"
+          decoding="async"
           :referrerpolicy="project.bilibiliVideoId ? 'no-referrer' : undefined"
         >
       </div>
@@ -148,6 +130,8 @@
             <img
               :src="getSeriesImage(item)"
               :alt="item.titleKey[currentLocale]"
+              loading="lazy"
+              decoding="async"
               :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
             >
           </div>
@@ -165,6 +149,8 @@
 <script>
 import config from '../config'
 import { useI18n } from 'vue-i18n'
+import PageHeader from '@/components/PageHeader.vue'
+import BackButton from '@/components/BackButton.vue'
 import { getBilibiliCover, getProjectBilibiliCover } from '@/utils/bilibili'
 import { formatDate } from '@/utils/date'
 import tagFacets from '@/config/tagFacets'
@@ -174,6 +160,7 @@ import { findCelebrationsForSlug, getCelebrationById, pickLocalized, buildCelebr
 
 export default {
   name: 'Project',
+  components: { PageHeader, BackButton },
   setup() {
     const { t, locale } = useI18n()
     return { t, locale }
@@ -312,111 +299,6 @@ export default {
   position: relative;
 }
 
-.back-link-top {
-  position: fixed;
-  top: 5.5rem;
-  right: 1.5rem;
-  z-index: 100;
-}
-
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Lora', serif;
-  font-size: 0.9rem;
-  color: var(--primary-color);
-  text-decoration: none;
-  white-space: nowrap;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--accent-color);
-  border-radius: 4px;
-  background-color: var(--card-bg);
-  box-shadow: 0 2px 8px var(--shadow-color);
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  svg {
-    margin-right: 0.5rem;
-    flex-shrink: 0;
-  }
-
-  &:hover {
-    background-color: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-}
-
-.project-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-  
-  .frame-decoration {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: calc(100% + 40px);
-    z-index: -1;
-    
-    .frame-corner {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-color: var(--accent-color);
-      opacity: 0.8;
-      
-      &.top-left {
-        top: 0;
-        left: 0;
-        border-top: 1px solid;
-        border-left: 1px solid;
-      }
-      
-      &.top-right {
-        top: 0;
-        right: 0;
-        border-top: 1px solid;
-        border-right: 1px solid;
-      }
-      
-      &.bottom-left {
-        bottom: 0;
-        left: 0;
-        border-bottom: 1px solid;
-        border-left: 1px solid;
-      }
-      
-      &.bottom-right {
-        bottom: 0;
-        right: 0;
-        border-bottom: 1px solid;
-        border-right: 1px solid;
-      }
-    }
-  }
-  
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-  }
-  
-  .decorative-line {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    margin: 0 auto;
-  }
-}
-
 .project-content {
   display: flex;
   flex-direction: column;
@@ -456,7 +338,7 @@ export default {
     margin-bottom: 1.5rem;
     
     h2 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       color: var(--primary-color);
       margin-bottom: 0;
       font-size: 1.8rem;
@@ -482,7 +364,7 @@ export default {
     border-radius: 0 4px 4px 0;
 
     h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.2rem;
       color: var(--primary-color);
       margin-bottom: 0.5rem;
@@ -492,7 +374,7 @@ export default {
       margin: 0;
       padding-left: 1.2rem;
       li {
-        font-family: 'Lora', serif;
+        font-family: var(--font-body);
         font-size: 0.95rem;
         color: var(--secondary-color);
         margin-bottom: 0.3rem;
@@ -521,7 +403,7 @@ export default {
       }
 
       .meta-value {
-        font-family: 'Lora', serif;
+        font-family: var(--font-body);
         font-size: 1rem;
         color: var(--primary-color);
         font-weight: bold;
@@ -539,7 +421,7 @@ export default {
     margin-bottom: 2rem;
     
     h4 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.1rem;
       color: var(--primary-color);
       margin-bottom: 0.5rem;
@@ -548,11 +430,11 @@ export default {
     blockquote {
       margin: 0;
       padding: 1rem 1.5rem;
-      background: #f9f9f9;
-      border-left: 3px solid #ccc;
-      font-family: 'Lora', serif;
+      background: rgba(var(--accent-color-rgb), 0.06);
+      border-left: 3px solid rgba(var(--accent-color-rgb), 0.6);
+      font-family: var(--font-body);
       font-style: italic;
-      color: #555;
+      color: var(--text-color);
       line-height: 1.6;
       border-radius: 0 4px 4px 0;
     }
@@ -595,7 +477,7 @@ export default {
   }
 
   .celebration-link {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     color: var(--accent-color);
     text-decoration: none;
@@ -606,7 +488,7 @@ export default {
   }
   
   .description {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--secondary-color);
@@ -624,7 +506,7 @@ export default {
   text-decoration: none;
   border-radius: 3px;
   transition: all 0.3s ease;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   
   .link-icon {
     display: inline-flex;
@@ -650,7 +532,7 @@ export default {
   padding: 0 1rem;
 
   h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 1.6rem;
     color: var(--primary-color);
     text-align: center;
@@ -658,7 +540,7 @@ export default {
   }
 
   .series-desc {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--secondary-color);
@@ -723,7 +605,7 @@ export default {
   min-width: 0;
 
   h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 1.1rem;
     color: var(--primary-color);
     margin: 0 0 0.4rem;
@@ -731,7 +613,7 @@ export default {
   }
 
   p {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     line-height: 1.5;
     color: var(--secondary-color);
@@ -745,7 +627,7 @@ export default {
   .series-current {
     display: inline-block;
     margin-top: 0.5rem;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.75rem;
     color: var(--accent-color);
     letter-spacing: 0.05em;
@@ -753,96 +635,40 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .back-link-top {
-    top: 4.5rem;
-    right: 1rem;
+  .project-container {
+    padding: 1.5rem 1rem;
   }
 
   .project-image-wrapper,
   .project-details {
     width: 100%;
   }
-  
-  .project-header h1 {
-    font-size: 2.2rem;
-  }
-}
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .project-container {
-    padding: 1.5rem 1rem;
-  }
-  
-  .project-header {
-    margin-bottom: 2rem;
-    
-    h1 {
-      font-size: 2.2rem;
-    }
-    
-    .project-metadata {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-  }
-  
-  .project-cover {
-    height: auto;
-    margin-bottom: 2rem;
-  }
-  
   .project-content {
     padding: 1.5rem;
-    
-    p {
-      font-size: 1rem;
-    }
-    
-    h2 {
-      font-size: 1.5rem;
-      margin: 1.5rem 0 1rem;
-    }
-    
-    .image-gallery {
-      gap: 1rem;
-      
-      .gallery-item {
-        flex: 0 0 calc(50% - 0.5rem);
-      }
-    }
-    
+
     .project-links {
       flex-direction: column;
       gap: 1rem;
-      
+
       .project-link {
         width: 100%;
       }
     }
   }
-  
-  .section-divider {
-    margin: 2rem 0;
-  }
-  
-  .back-to-home {
-    margin-top: 2rem;
+
+  .project-container :deep(.page-header) {
+    margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .project-header h1 {
+  .project-container :deep(.page-title) {
     font-size: 1.8rem;
   }
-  
+
   .project-content {
     padding: 1.2rem;
-    
-    .image-gallery .gallery-item {
-      flex: 0 0 100%;
-    }
   }
 }
 </style>

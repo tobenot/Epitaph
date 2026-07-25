@@ -8,12 +8,21 @@
           </router-link>
         </div>
         <nav>
-          <div class="mobile-nav-toggle" @click="toggleMobileNav">
+          <button
+            class="mobile-nav-toggle"
+            :class="{ active: mobileNavActive }"
+            :aria-expanded="mobileNavActive"
+            aria-controls="nav-items"
+            :aria-label="mobileNavActive ? '关闭导航菜单' : '打开导航菜单'"
+            @click="toggleMobileNav">
             <span></span>
             <span></span>
             <span></span>
-          </div>
-          <div class="nav-items" :class="{ 'active': mobileNavActive }">
+          </button>
+          <transition name="nav-fade">
+            <div v-if="mobileNavActive" class="nav-overlay" @click="closeMobileNav"></div>
+          </transition>
+          <div id="nav-items" class="nav-items" :class="{ 'active': mobileNavActive }">
             <router-link v-for="item in navItems" :key="item.path" :to="item.path">
               {{ $t(item.nameKey) }}
             </router-link>
@@ -43,9 +52,11 @@
 
     <main>
       <router-view v-slot="{ Component }">
-        <keep-alive include="Home">
-          <component :is="Component" />
-        </keep-alive>
+        <transition name="page" mode="out-in">
+          <keep-alive include="Home">
+            <component :is="Component" />
+          </keep-alive>
+        </transition>
       </router-view>
     </main>
 
@@ -58,6 +69,17 @@
         <p class="copyright">&copy; {{ new Date().getFullYear() }} {{ $t('common.siteTitle') }}. {{ $t('common.footer.copyright') }}</p>
       </div>
     </footer>
+
+    <transition name="nav-fade">
+      <button
+        v-show="showBackToTop"
+        class="back-to-top"
+        :aria-label="$t('common.actions.backToTop')"
+        :title="$t('common.actions.backToTop')"
+        @click="scrollToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      </button>
+    </transition>
   </div>
 </template>
 
@@ -76,7 +98,8 @@ export default {
   data() {
     return {
       siteTitle: this.$t('common.siteTitle'),
-      mobileNavActive: false
+      mobileNavActive: false,
+      showBackToTop: false
     }
   },
   computed: {
@@ -94,10 +117,15 @@ export default {
     },
     currentLocale: {
       immediate: true,
-      handler() {
+      handler(locale) {
         this.siteTitle = this.$t('common.siteTitle')
+        document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
         updatePageMeta(this.$route)
       }
+    },
+    mobileNavActive(active) {
+      // 抽屉打开时锁定背景滚动
+      document.body.style.overflow = active ? 'hidden' : ''
     }
   },
   methods: {
@@ -107,73 +135,34 @@ export default {
     },
     toggleMobileNav() {
       this.mobileNavActive = !this.mobileNavActive
+    },
+    closeMobileNav() {
+      this.mobileNavActive = false
+    },
+    handleScroll() {
+      this.showBackToTop = window.scrollY > 500
+    },
+    scrollToTop() {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })
     }
   },
   mounted() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
     this.$nextTick(() => {
       this.siteTitle = this.$t('common.siteTitle')
       updatePageMeta(this.$route)
       document.dispatchEvent(new Event('custom-render-trigger'))
     })
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+    document.body.style.overflow = ''
   }
 }
 </script>
 
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;700&display=swap');
-
-:root {
-  --primary-color: #4a4a4a;
-  --secondary-color: #8d8d8d;
-  --accent-color: #bca979;
-  --text-color: #333;
-  --light-text: #f5f5f5;
-  --background-color: #f0efe9;
-  --card-bg: #f9f8f4;
-  --shadow-color: rgba(0, 0, 0, 0.15);
-  --footer-bg: #2c2c2c;
-  --texture-color: rgba(0, 0, 0, 0.04);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scrollbar-gutter: stable;
-}
-
-body {
-  font-family: 'Playfair Display', 'Times New Roman', serif;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='marble'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='4' result='noise'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23marble)'/%3E%3C/svg%3E");
-  background-size: cover;
-  z-index: -1;
-  opacity: 0.8;
-  mix-blend-mode: multiply;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+<style scoped lang="scss">
 header {
   background-color: var(--card-bg);
   box-shadow: 0 2px 4px var(--shadow-color);
@@ -195,7 +184,7 @@ header {
     }
 
     .logo-text {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--primary-color);
@@ -213,6 +202,9 @@ header {
       justify-content: space-between;
       width: 30px;
       height: 21px;
+      padding: 0;
+      background: none;
+      border: none;
       cursor: pointer;
       z-index: 1000;
       
@@ -224,6 +216,20 @@ header {
         border-radius: 2px;
         transition: all 0.3s ease;
       }
+
+      &.active {
+        span:nth-child(1) {
+          transform: translateY(9px) rotate(45deg);
+        }
+
+        span:nth-child(2) {
+          opacity: 0;
+        }
+
+        span:nth-child(3) {
+          transform: translateY(-9px) rotate(-45deg);
+        }
+      }
     }
     
     .nav-items {
@@ -234,7 +240,7 @@ header {
         color: var(--secondary-color);
         text-decoration: none;
         margin-left: 2rem;
-        font-family: 'Lora', serif;
+        font-family: var(--font-body);
         font-weight: 400;
         font-size: 1rem;
         letter-spacing: 0.5px;
@@ -279,8 +285,13 @@ header {
   }
 }
 
+.nav-overlay {
+  display: none;
+}
+
 main {
   flex-grow: 1;
+  width: 100%;
   max-width: 1500px;
   margin: 2rem auto;
   padding: 0 1rem;
@@ -303,35 +314,19 @@ footer {
     margin-bottom: 2rem;
     
     .quote {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-style: italic;
       font-size: 1.2rem;
       margin-bottom: 1rem;
       letter-spacing: 0.5px;
     }
-    
-    .decorative-line {
-      width: 100px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-      margin: 0 auto;
-    }
   }
   
   .copyright {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.6);
   }
-}
-
-h1, h2, h3 {
-  margin-bottom: 1rem;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 .lang-switcher {
@@ -344,7 +339,7 @@ img {
     border: none;
     color: var(--secondary-color);
     cursor: pointer;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     opacity: 0.6;
     transition: all 0.3s ease;
@@ -365,6 +360,42 @@ img {
     margin: 0 0.2rem;
     opacity: 0.6;
   }
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-color);
+  background-color: var(--card-bg);
+  color: var(--accent-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal, 0.3s) ease;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+}
+
+.nav-fade-enter-active,
+.nav-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.nav-fade-enter-from,
+.nav-fade-leave-to {
+  opacity: 0;
 }
 
 /* 响应式样式 */
@@ -430,6 +461,14 @@ img {
       }
     }
   }
+
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 998;
+  }
   
   main {
     margin: 1rem auto;
@@ -443,6 +482,11 @@ img {
       font-size: 1rem;
       padding: 0 1rem;
     }
+  }
+
+  .back-to-top {
+    right: 1rem;
+    bottom: 1rem;
   }
 }
 

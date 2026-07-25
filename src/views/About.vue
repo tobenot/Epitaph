@@ -8,17 +8,10 @@
         </filter>
       </defs>
     </svg>
-    <div class="epitaph-header">
-      <div class="frame-decoration">
-        <div class="frame-corner top-left"></div>
-        <div class="frame-corner top-right"></div>
-        <div class="frame-corner bottom-left"></div>
-        <div class="frame-corner bottom-right"></div>
-      </div>
-      <h1>{{ $t('about.title') }}</h1>
-      <div class="decorative-line"></div>
-      <p class="quote">{{ $t('about.subtitle') }}</p>
-    </div>
+    <PageHeader>
+      {{ $t('about.title') }}
+      <template #subtitle>{{ $t('about.subtitle') }}</template>
+    </PageHeader>
     
     <div class="papers-stack">
       <div 
@@ -47,6 +40,7 @@
           <div class="epitaph-text">{{ ver.contentKey[currentLocale] }}</div>
         </div>
         <div class="flip-hint" v-if="index === currentIndex">
+          <span class="version-counter">{{ currentLocale === 'zh' ? `第 ${currentIndex + 1} / ${about.versions.length} 版` : `Version ${currentIndex + 1} / ${about.versions.length}` }}</span>
           <span>{{ currentLocale === 'zh' ? '点击纸张翻阅下一版' : 'Click to flip to next version' }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
         </div>
@@ -79,10 +73,12 @@
 
 <script>
 import config from '../config'
+import PageHeader from '@/components/PageHeader.vue'
 import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'About',
+  components: { PageHeader },
   setup() {
     const { t, locale } = useI18n()
     return { t, locale }
@@ -520,81 +516,6 @@ export default {
   padding: 2rem 1rem;
 }
 
-.epitaph-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-  
-  .frame-decoration {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: calc(100% + 40px);
-    z-index: -1;
-    
-    .frame-corner {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-color: var(--accent-color);
-      opacity: 0.8;
-      
-      &.top-left {
-        top: 0;
-        left: 0;
-        border-top: 1px solid;
-        border-left: 1px solid;
-      }
-      
-      &.top-right {
-        top: 0;
-        right: 0;
-        border-top: 1px solid;
-        border-right: 1px solid;
-      }
-      
-      &.bottom-left {
-        bottom: 0;
-        left: 0;
-        border-bottom: 1px solid;
-        border-left: 1px solid;
-      }
-      
-      &.bottom-right {
-        bottom: 0;
-        right: 0;
-        border-bottom: 1px solid;
-        border-right: 1px solid;
-      }
-    }
-  }
-  
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-  }
-  
-  .decorative-line {
-    width: 100px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    margin: 0 auto 1.5rem;
-  }
-  
-  .quote {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    color: var(--secondary-color);
-    font-size: 1.2rem;
-  }
-}
-
 .papers-stack {
   display: grid;
   grid-template-columns: 1fr;
@@ -620,7 +541,7 @@ export default {
     position: absolute;
     top: 2rem;
     left: 2rem;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 5rem;
     color: rgba(0, 0, 0, 0.05);
     line-height: 0;
@@ -631,7 +552,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-style: italic;
   color: var(--accent-color);
   font-size: 0.95rem;
@@ -642,7 +563,7 @@ export default {
 }
 
 .version-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.6rem;
   color: var(--primary-color);
   margin-bottom: 1.5rem;
@@ -654,7 +575,7 @@ export default {
 .flip-hint {
   text-align: right;
   margin-top: 2rem;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-style: italic;
   color: var(--accent-color);
   font-size: 0.9rem;
@@ -669,6 +590,14 @@ export default {
   svg {
     animation: bounce-x 2s infinite;
   }
+  
+  .version-counter {
+    margin-right: auto;
+    font-style: normal;
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
 }
 
 @keyframes bounce-x {
@@ -677,7 +606,7 @@ export default {
 }
 
 .about-content {
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   line-height: 1.9;
   color: var(--secondary-color);
@@ -687,7 +616,7 @@ export default {
 
 .epitaph-text {
   white-space: pre-line;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   line-height: 1.9;
   color: var(--secondary-color);
@@ -714,12 +643,16 @@ export default {
   }
 
   .paper-meta {
-    color: rgba(188, 169, 121, 0.72);
-    border-bottom-color: rgba(188, 169, 121, 0.18);
+    color: rgba(var(--accent-color-rgb), 0.72);
+    border-bottom-color: rgba(var(--accent-color-rgb), 0.18);
   }
 
   .version-title {
     color: rgba(245, 245, 245, 0.82);
+  }
+
+  .flip-hint .version-counter {
+    color: rgba(245, 245, 245, 0.5);
   }
 }
 
@@ -752,7 +685,7 @@ export default {
 }
 
 .spray-french {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -773,7 +706,7 @@ export default {
 
 .spray-translation {
   margin-top: 1.6rem;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: clamp(1.05rem, 3vw, 1.7rem);
   letter-spacing: 0.14em;
@@ -812,7 +745,7 @@ export default {
   margin-bottom: 4rem;
   
   p {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-size: 1.5rem;
     color: var(--accent-color);
@@ -823,7 +756,7 @@ export default {
   margin-top: 4rem;
   
   h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 2.2rem;
     color: var(--primary-color);
     text-align: center;
@@ -832,8 +765,6 @@ export default {
   
   .decorative-line {
     width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
     margin: 0 auto 3rem;
   }
   
@@ -858,7 +789,7 @@ export default {
       margin-bottom: 1rem;
       
       h3 {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-display);
         font-size: 1.5rem;
         color: var(--primary-color);
         margin: 0;
@@ -866,7 +797,7 @@ export default {
       
       .work-annotation {
         flex-shrink: 0;
-        font-family: 'Lora', serif;
+        font-family: var(--font-body);
         font-size: 0.8rem;
         font-style: italic;
         color: var(--secondary-color);
@@ -882,7 +813,7 @@ export default {
     }
     
     p {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.05rem;
       color: var(--secondary-color);
       line-height: 1.7;
@@ -893,7 +824,7 @@ export default {
       display: inline-block;
       color: var(--accent-color);
       text-decoration: none;
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-weight: bold;
       transition: color 0.3s ease;
       
@@ -909,72 +840,14 @@ export default {
     padding: 1.5rem 1rem;
   }
   
-  .epitaph-header {
-    h1 {
-      font-size: 2.2rem;
-    }
-    
-    .quote {
-      font-size: 1rem;
-      padding: 0 1rem;
-    }
-  }
-  
   .paper-card {
     padding: 1.5rem;
-  }
-  
-  .about-section {
-    margin-bottom: 2rem;
-    
-    h2 {
-      font-size: 1.5rem;
-    }
-    
-    p {
-      font-size: 1rem;
-    }
-  }
-  
-  .author-section {
-    flex-direction: column;
-    
-    .author-photo {
-      margin-right: 0;
-      margin-bottom: 1.5rem;
-      
-      img {
-        width: 180px;
-        height: 180px;
-      }
-    }
-  }
-  
-  .contact-links {
-    flex-wrap: wrap;
-    
-    a {
-      margin-bottom: 1rem;
-    }
   }
 }
 
 @media (max-width: 480px) {
-  .epitaph-header h1 {
-    font-size: 1.8rem;
-  }
-  
   .paper-card {
     padding: 1.2rem;
-  }
-  
-  .author-section .author-photo img {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .contact-links a {
-    flex: 0 0 calc(50% - 1rem);
   }
 }
 </style>

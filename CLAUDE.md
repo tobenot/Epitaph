@@ -64,6 +64,12 @@ Home page has three toggles: 完成度高 (complete) / 习作 (study) / 进行�
 
 See `src/config/TAGS_MAINTENANCE.md` for the facet list and `src/config/PRIDE_SORT_MAINTENANCE.md` for full pride docs. **These three `*_MAINTENANCE.md` files are the authoritative reference** — read them before touching classification, tags, or ordering.
 
+### Frontend styling
+
+- **`src/assets/styles/global.scss`** (imported in `main.js`) is the single source of truth for design tokens (`--accent-color-rgb` exists for `rgba()` usage), the marble `body::before` texture, font stacks (`--font-display` / `--font-body` — always use these, never hardcode `'Playfair Display'`/`'Lora'`), the shared `.decorative-line` class, route `page-*` transitions, and global `prefers-reduced-motion` handling.
+- Fonts are loaded via `<link>` in `public/index.html` (Playfair Display + Lora + Noto Serif SC), not CSS `@import`.
+- Shared components: **`src/components/PageHeader.vue`** (framed page title + optional `#subtitle` slot; `large` prop for the home hero) and **`src/components/BackButton.vue`** (back link, fixed top-right on desktop, in-flow on mobile). Detail pages use these instead of local copies.
+
 ### i18n
 
 `src/i18n/` with `vue-i18n` (composition mode, `legacy: false`). Locales in `src/i18n/locales/{zh,en}.js`, fallback `zh`. Locale chosen from `localStorage('locale')` else browser language. Localized project fields use the `*Key: { zh, en }` pattern (e.g. `titleKey`, `descriptionKey`); a `pickLocalized` helper falls back to `zh` when a locale is missing.

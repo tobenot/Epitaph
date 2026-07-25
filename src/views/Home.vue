@@ -1,17 +1,10 @@
 <template>
   <div class="home">
-    <div class="epitaph-header">
-      <div class="frame-decoration">
-        <div class="frame-corner top-left"></div>
-        <div class="frame-corner top-right"></div>
-        <div class="frame-corner bottom-left"></div>
-        <div class="frame-corner bottom-right"></div>
-      </div>
-      <h1 class="site-title">{{ $t('common.siteTitle') }}</h1>
-      <p class="site-subtitle">{{ $t('home.subtitle') }}</p>
-      <div class="decorative-line"></div>
-    </div>
-    
+    <PageHeader large>
+      {{ $t('common.siteTitle') }}
+      <template #subtitle>{{ $t('home.subtitle') }}</template>
+    </PageHeader>
+
     <div class="experience-container">
       <div class="search-container">
         <div class="search-input-wrapper">
@@ -99,32 +92,34 @@
           >{{ $t('common.filter.clearAll') }}</button>
         </div>
 
-        <div class="sort-controls">
-          <span class="sort-title">{{ $t('common.sort.title') }}:</span>
-          <button
-            @click="sortBy = 'pride'"
-            :class="{ active: sortBy === 'pride' }"
-            class="sort-button">
-            {{ $t('common.sort.byPride') }}
-          </button>
-          <button
-            @click="sortBy = 'date'"
-            :class="{ active: sortBy === 'date' }"
-            class="sort-button">
-            {{ $t('common.sort.byDate') }}
-          </button>
-        </div>
+        <div class="filter-toolbar">
+          <div class="sort-controls">
+            <span class="sort-title">{{ $t('common.sort.title') }}:</span>
+            <button
+              @click="sortBy = 'pride'"
+              :class="{ active: sortBy === 'pride' }"
+              class="sort-button">
+              {{ $t('common.sort.byPride') }}
+            </button>
+            <button
+              @click="sortBy = 'date'"
+              :class="{ active: sortBy === 'date' }"
+              class="sort-button">
+              {{ $t('common.sort.byDate') }}
+            </button>
+          </div>
 
-        <div class="sort-controls portfolio-kind-controls">
-          <span class="sort-title">{{ $t('common.filter.portfolioKind') }}:</span>
-          <button
-            v-for="kind in portfolioFilterKinds"
-            :key="kind"
-            @click="togglePortfolioKind(kind)"
-            :class="{ active: activePortfolioKinds.includes(kind) }"
-            class="sort-button">
-            {{ $t(`common.filter.portfolioKinds.${kind}`) }}
-          </button>
+          <div class="sort-controls portfolio-kind-controls">
+            <span class="sort-title">{{ $t('common.filter.portfolioKind') }}:</span>
+            <button
+              v-for="kind in portfolioFilterKinds"
+              :key="kind"
+              @click="togglePortfolioKind(kind)"
+              :class="{ active: activePortfolioKinds.includes(kind) }"
+              class="sort-button">
+              {{ $t(`common.filter.portfolioKinds.${kind}`) }}
+            </button>
+          </div>
         </div>
 
         <div class="experience-grid" ref="experienceGrid">
@@ -132,13 +127,15 @@
             <div v-if="item.isDivider" class="date-divider-row">
               <span>{{ currentLocale === 'zh' ? '日期未知' : 'Unknown Date' }}</span>
             </div>
-            <div v-else
-                 :class="['experience-card', getCardFrameClass(item)]"
-                 @click="openProjectDetails(item.slug)">
+            <router-link v-else
+                 :to="{ name: 'Project', params: { slug: item.slug } }"
+                 :class="['experience-card', getCardFrameClass(item)]">
               <div class="card-image" v-if="getProjectImage(item)">
                 <img
                   :src="getProjectImage(item)"
                   :alt="item.titleKey[currentLocale]"
+                  loading="lazy"
+                  decoding="async"
                   :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
                 >
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
@@ -153,7 +150,7 @@
                     v-for="tag in getDisplayTags(item)"
                     :key="tag"
                     class="small-tag clickable"
-                    @click.stop="handleCardTagClick(tag)"
+                    @click.stop.prevent="handleCardTagClick(tag)"
                   >{{ localizedTag(tag) }}</span>
                   <span v-if="item.tags && item.tags.length > getDisplayTags(item).length" class="small-tag more-tag">...</span>
                 </div>
@@ -162,12 +159,13 @@
                   <span v-if="getCardAnnotationParts(item).length" class="card-footer-note">{{ formatCardAnnotation(item) }}</span>
                 </div>
               </div>
-            </div>
+            </router-link>
           </template>
         </div>
 
         <div v-if="filteredProjects.length === 0" class="no-results">
-          {{ $t('common.search.noResults') }}
+          <div class="decorative-line" aria-hidden="true"></div>
+          <p>{{ $t('common.search.noResults') }}</p>
         </div>
 
         <Pagination
@@ -197,6 +195,7 @@ import config from '../config'
 import tagFacets from '../config/tagFacets'
 import { useI18n } from 'vue-i18n'
 import Pagination from '@/components/Pagination.vue'
+import PageHeader from '@/components/PageHeader.vue'
 import { getProjectBilibiliCover } from '@/utils/bilibili'
 import { formatDate, compareDateDesc } from '@/utils/date'
 import {
@@ -226,7 +225,8 @@ import {
 export default {
   name: 'Home',
   components: {
-    Pagination
+    Pagination,
+    PageHeader
   },
   setup() {
     const { t, locale } = useI18n()
@@ -234,7 +234,6 @@ export default {
   },
   data() {
     return {
-      siteTitle: this.$t('common.siteTitle'),
       projects: config.projects,
       tagFacets,
       activeCategoryId: 'all',
@@ -362,12 +361,6 @@ export default {
     }
   },
   watch: {
-    currentLocale: {
-      immediate: true,
-      handler() {
-        this.siteTitle = this.$t('common.siteTitle')
-      }
-    },
     searchTerm() {
       this.currentPage = 1
       clearTimeout(this.searchDebounceTimer)
@@ -476,9 +469,6 @@ export default {
     },
     isHighCompleteness,
     formatDate,
-    openProjectDetails(slug) {
-      this.$router.push({ name: 'Project', params: { slug: slug } })
-    },
     handlePageChange(page) {
       this.currentPage = page;
       this.$nextTick(() => {
@@ -502,76 +492,12 @@ export default {
   },
   deactivated() {
     this.savedScrollY = window.scrollY
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.siteTitle = this.$t('common.siteTitle')
-    })
+    clearTimeout(this.searchDebounceTimer)
   }
 }
 </script>
 
 <style scoped lang="scss">
-@use "sass:color";
-
-.epitaph-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem 0 0 0;
-  position: relative;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  
-  .frame-decoration {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: calc(100% + 40px);
-    z-index: -1;
-    
-    .frame-corner {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-color: var(--accent-color);
-      opacity: 0.8;
-      
-      &.top-left { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
-      &.top-right { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
-      &.bottom-left { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
-      &.bottom-right { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
-    }
-  }
-  
-  .site-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-  }
-  
-  .site-subtitle {
-    font-family: 'Lora', serif;
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-  
-  .decorative-line {
-    width: 150px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    margin: 0 auto;
-  }
-}
-
 .experience-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -595,7 +521,7 @@ export default {
     padding: 0.8rem 1rem 0.8rem 2.5rem;
     border: 1px solid var(--accent-color);
     border-radius: 4px;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     color: var(--primary-color);
     background-color: transparent;
@@ -625,7 +551,7 @@ export default {
   position: relative;
   
   p {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 1.1rem;
     line-height: 1.9;
     color: var(--secondary-color);
@@ -638,7 +564,7 @@ export default {
     position: absolute;
     top: 2rem;
     left: 2rem;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 5rem;
     color: rgba(0, 0, 0, 0.05);
     line-height: 0;
@@ -704,7 +630,7 @@ export default {
     min-width: 0;
     
     h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.3rem;
       color: var(--primary-color);
       margin: 0 0 0.5rem 0;
@@ -732,7 +658,7 @@ export default {
   margin-bottom: 2.5rem;
   
   h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 2.2rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -758,7 +684,7 @@ export default {
     margin-bottom: 1rem;
     
     .facets-title {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-weight: 600;
       color: var(--primary-color);
       font-size: 1.1rem;
@@ -775,7 +701,7 @@ export default {
       border: 1px solid transparent;
       padding: 0.4rem 1rem;
       border-radius: 20px;
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 0.9rem;
       color: var(--secondary-color);
       cursor: pointer;
@@ -810,7 +736,7 @@ export default {
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   color: var(--secondary-color);
   
   .tag-chip {
@@ -828,7 +754,7 @@ export default {
     color: #e53935;
     cursor: pointer;
     text-decoration: underline;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     padding: 0;
     
@@ -838,20 +764,24 @@ export default {
   }
 }
 
+.filter-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .sort-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2.5rem;
   flex-wrap: wrap;
   gap: 0.5rem;
-
-  &.portfolio-kind-controls {
-    margin-top: -1.5rem;
-  }
   
   .sort-title {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     margin-right: 1rem;
     color: var(--secondary-color);
   }
@@ -863,7 +793,7 @@ export default {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;
     cursor: pointer;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     transition: all 0.3s ease;
     border-radius: 4px;
     
@@ -883,7 +813,7 @@ export default {
   padding: 0.75rem 0 0.25rem;
   border-top: 1px solid var(--accent-color);
   opacity: 0.55;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 0.8rem;
   color: var(--secondary-color);
   letter-spacing: 0.05em;
@@ -901,6 +831,8 @@ export default {
   transition: all 0.3s ease;
   position: relative;
   border-left: 4px solid transparent;
+  text-decoration: none;
+  color: inherit;
   
   &.is-study {
     border-left: 3px solid #9e8e7e;
@@ -944,6 +876,10 @@ export default {
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px var(--shadow-color);
+  }
+
+  &:hover,
+  &:focus-within {
     .explore-text { opacity: 1; }
   }
 }
@@ -969,10 +905,14 @@ export default {
     border-radius: 6px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     letter-spacing: 1px;
     z-index: 2;
     pointer-events: none;
+
+    @media (hover: none) {
+      opacity: 0.75;
+    }
   }
 }
 
@@ -987,7 +927,7 @@ export default {
     margin-bottom: 1rem;
     
     h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.4rem;
       line-height: 1.35;
       color: var(--primary-color);
@@ -1000,7 +940,7 @@ export default {
   }
 
 .card-desc {
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--secondary-color);
@@ -1024,7 +964,7 @@ export default {
     font-size: 0.75rem;
     padding: 0.1rem 0.5rem;
     border-radius: 4px;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1060,7 +1000,7 @@ export default {
   color: var(--secondary-color);
   opacity: 0.75;
   font-style: italic;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
 
   .card-footer-date {
     flex-shrink: 0;
@@ -1085,12 +1025,22 @@ export default {
 }
 
 .no-results {
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   color: var(--secondary-color);
   text-align: center;
   width: 100%;
-  padding: 2rem;
+  padding: 4rem 2rem;
   font-style: italic;
+
+  .decorative-line {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
 }
 
 .experience-conclusion {
@@ -1102,7 +1052,7 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.05);
   
   p {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-size: 1.1rem;
     line-height: 1.9;
     color: var(--secondary-color);
@@ -1123,7 +1073,7 @@ export default {
       border: 1px solid var(--accent-color);
       border-radius: 4px;
       padding: 0.8rem 2rem;
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.1rem;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -1149,7 +1099,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .epitaph-header { padding: 1rem 0 0 0; .site-title { font-size: 2.5rem; } }
   .experience-intro { padding: 1.5rem; p { font-size: 1rem; } }
   .pathways-grid, .experience-grid { grid-template-columns: 1fr; }
   .experience-conclusion { padding: 1.5rem; p { font-size: 1rem; } }

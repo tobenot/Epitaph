@@ -1,18 +1,16 @@
 <template>
   <div class="gallery-container">
-    <div class="gallery-header">
-      <h1 class="page-title">
-        <template v-if="$route.path === '/paintings'">
-          {{ $t('paintings.title') }}
-        </template>
-        <template v-else-if="$route.path === '/photographs'">
-          {{ $t('photographs.title') }}
-        </template>
-        <template v-else>
-          {{ $t('gallery.title') }}
-        </template>
-      </h1>
-      <p class="page-description">
+    <PageHeader class="gallery-header">
+      <template v-if="$route.path === '/paintings'">
+        {{ $t('paintings.title') }}
+      </template>
+      <template v-else-if="$route.path === '/photographs'">
+        {{ $t('photographs.title') }}
+      </template>
+      <template v-else>
+        {{ $t('gallery.title') }}
+      </template>
+      <template #subtitle>
         <template v-if="$route.path === '/paintings'">
           {{ $t('paintings.description') }}
         </template>
@@ -22,8 +20,8 @@
         <template v-else>
           {{ $t('gallery.description') }}
         </template>
-      </p>
-    </div>
+      </template>
+    </PageHeader>
 
     <!-- 画廊分类导航 - 只在总画廊页面显示 -->
     <div class="gallery-nav" v-if="$route.path === '/gallery'">
@@ -56,7 +54,7 @@
               class="gallery-item"
             >
               <div class="item-image-container">
-                <img :src="item.image" :alt="item.titleKey[$i18n.locale] || item.titleKey.zh" class="item-image" />
+                <img :src="item.image" :alt="item.titleKey[$i18n.locale] || item.titleKey.zh" class="item-image" loading="lazy" decoding="async" />
               </div>
               <div class="item-details">
                 <h3 class="item-title">{{ item.titleKey[$i18n.locale] || item.titleKey.zh }}</h3>
@@ -94,12 +92,14 @@
 <script>
 import config from '@/config';
 import Pagination from '@/components/Pagination.vue';
+import PageHeader from '@/components/PageHeader.vue';
 import { formatDate } from '@/utils/date';
 
 export default {
   name: 'GalleryView',
   components: {
-    Pagination
+    Pagination,
+    PageHeader
   },
   props: {
     defaultGalleryType: {
@@ -177,7 +177,7 @@ export default {
     handleGalleryPageChange(page) {
       if (this.activeGallery) {
           this.galleryPagination[this.activeGallery] = page;
-          window.scrollTo(0, 0);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }
@@ -192,18 +192,10 @@ export default {
 }
 
 .gallery-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.page-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.page-description {
-  font-size: 1.1rem;
-  color: var(--secondary-color);
+  :deep(.page-subtitle) {
+    font-style: normal;
+    font-size: 1.1rem;
+  }
 }
 
 .gallery-nav {
@@ -217,17 +209,24 @@ export default {
 .gallery-nav-btn {
   padding: 0.5rem 1.5rem;
   background: none;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.45);
   border-radius: 30px;
   cursor: pointer;
+  font-family: var(--font-body);
   font-size: 1rem;
-  transition: all 0.3s ease;
+  color: var(--primary-color);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.gallery-nav-btn:hover:not(.active) {
+  background-color: rgba(var(--accent-color-rgb), 0.12);
+  border-color: var(--accent-color);
 }
 
 .gallery-nav-btn.active {
-  background-color: #000;
+  background-color: var(--accent-color);
   color: #fff;
-  border-color: #000;
+  border-color: var(--accent-color);
 }
 
 .gallery-content {
@@ -255,7 +254,7 @@ export default {
   display: block;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s ease;
+  transition: transform var(--duration-normal) var(--ease-out);
 }
 
 .gallery-item:hover {
@@ -267,13 +266,18 @@ export default {
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 0.8rem;
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.gallery-item:hover .item-image-container {
+  box-shadow: 0 12px 28px var(--shadow-color);
 }
 
 .item-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform var(--duration-normal) var(--ease-out);
 }
 
 .gallery-item:hover .item-image {
@@ -287,7 +291,7 @@ export default {
 
 .item-date {
   font-size: 0.9rem;
-  color: #777;
+  color: var(--secondary-color);
 }
 
 .item-location {
@@ -298,7 +302,7 @@ export default {
   text-align: center;
   color: var(--secondary-color);
   font-style: italic;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   margin-top: 2rem;
 }
 
@@ -310,10 +314,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .page-title {
-    font-size: 2.2rem;
-  }
-
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -323,10 +323,6 @@ export default {
 @media (max-width: 480px) {
   .gallery-grid {
     grid-template-columns: 1fr;
-  }
-
-  .page-title {
-    font-size: 1.8rem;
   }
 }
 </style>

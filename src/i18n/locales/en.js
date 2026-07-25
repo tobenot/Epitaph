@@ -23,9 +23,12 @@ export default {
     },
     actions: {
       back: "Back to Portfolio",
+      backToTop: "Back to Top",
       viewProject: "Visit Project",
       click: "Click to Visit",
-      explore: "Click to Explore"
+      explore: "Click to Explore",
+      prev: "Previous",
+      next: "Next"
     },
     sort: {
       title: "Sort by",

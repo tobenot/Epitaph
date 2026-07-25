@@ -1,9 +1,9 @@
 <template>
   <div class="sounds-container">
-    <div class="sounds-header">
-      <h1 class="page-title">{{ $t('sounds.title') }}</h1>
-      <p class="page-description">{{ $t('sounds.description') }}</p>
-    </div>
+    <PageHeader class="sounds-header">
+      {{ $t('sounds.title') }}
+      <template #subtitle>{{ $t('sounds.description') }}</template>
+    </PageHeader>
 
     <div class="sounds-grid">
       <router-link
@@ -45,12 +45,14 @@
 <script>
 import config from '@/config';
 import Pagination from '@/components/Pagination.vue';
+import PageHeader from '@/components/PageHeader.vue';
 import { formatDate } from '@/utils/date';
 
 export default {
   name: 'SoundsView',
   components: {
-    Pagination
+    Pagination,
+    PageHeader
   },
   data() {
     return {
@@ -87,21 +89,10 @@ export default {
 }
 
 .sounds-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.page-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.page-description {
-  font-family: 'Lora', serif;
-  font-size: 1.1rem;
-  color: var(--secondary-color);
+  :deep(.page-subtitle) {
+    font-style: normal;
+    font-size: 1.1rem;
+  }
 }
 
 .sounds-grid {
@@ -118,7 +109,7 @@ export default {
   box-shadow: 0 5px 15px var(--shadow-color);
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition: all var(--duration-normal) var(--ease-out);
 
   &:hover {
     transform: translateY(-5px);
@@ -144,7 +135,7 @@ export default {
   min-width: 0;
 
   h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 1.25rem;
     line-height: 1.35;
     color: var(--primary-color);
@@ -153,7 +144,7 @@ export default {
 }
 
 .card-desc {
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--secondary-color);
@@ -175,7 +166,7 @@ export default {
     font-size: 0.72rem;
     padding: 0.1rem 0.5rem;
     border-radius: 4px;
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
   }
 }
 
@@ -186,13 +177,12 @@ export default {
   align-items: center;
   gap: 0.4rem;
   color: var(--secondary-color);
-  transition: color 0.3s ease;
-  padding-left: 0.5rem;
+  transition: color var(--duration-normal) var(--ease-out);
   border-left: 1px solid rgba(0, 0, 0, 0.06);
   padding-left: 1.2rem;
 
   .cta-text {
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     font-style: italic;
     font-size: 0.78rem;
     white-space: nowrap;
@@ -204,16 +194,12 @@ export default {
   margin-top: 3rem;
   color: var(--secondary-color);
   font-style: italic;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
 }
 
 @media (max-width: 768px) {
   .sounds-container {
     padding: 1.5rem 1rem;
-  }
-
-  .page-title {
-    font-size: 2rem;
   }
 
   .sounds-grid {

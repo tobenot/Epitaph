@@ -23,9 +23,12 @@ export default {
     },
     actions: {
       back: "返回作品集",
+      backToTop: "回到顶部",
       viewProject: "访问项目",
       click: "点击访问",
-      explore: "点击探索"
+      explore: "点击探索",
+      prev: "上一张",
+      next: "下一张"
     },
     sort: {
       title: "排序方式",
