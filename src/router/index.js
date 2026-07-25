@@ -136,7 +136,7 @@ export function updatePageMeta(to) {
     }
   } else if (to.name === 'About') {
     title = `${t('about.title')} | Epitaph`
-    description = pickLocalized(aboutConfig.contentKey, locale).split('\n')[0]
+    description = pickLocalized(aboutConfig.versions[0]?.contentKey, locale).split('\n')[0]
   } else if (to.name === 'Sound') {
     const sound = config.sounds?.find(s => s.id === to.params.id)
     if (sound) {
