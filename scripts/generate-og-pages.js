@@ -127,11 +127,13 @@ allProjectFiles.forEach(filePath => {
       .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${description}">`)
       .replace(/<meta property="og:description" content=".*?">/, `<meta property="og:description" content="${description}">`);
 
-    // 插入 og:image
-    if (!projectHtml.includes('property="og:image"')) {
+    // 替换/插入 og:image（基础模板自带默认图，有项目图则替换）
+    if (projectHtml.includes('property="og:image"')) {
+      projectHtml = projectHtml.replace(/<meta property="og:image" content=".*?">/, `<meta property="og:image" content="${ogImage}">`);
+    } else {
       projectHtml = projectHtml.replace(
         /<meta property="og:type" content="website">/,
-        `<meta property="og:type" content="website">\n    <meta property="og:image" content="${ogImage}">\n    <meta name="twitter:card" content="summary_large_image">`
+        `<meta property="og:type" content="website">\n    <meta property="og:image" content="${ogImage}">`
       );
     }
 
