@@ -44,12 +44,15 @@ function scanProjectFiles(dir) {
   });
 }
 
-// 项目 id → lastmod（取自每个项目文件自身的 date 字段）
+// 项目 slug → lastmod（取自每个项目文件自身的 date 字段）。
+// 用 slug（与 generate-og-pages.js 一致）：数字 id 的老项目和新 slug 项目都按站点真实 URL 输出。
 const projectLastmods = {};
 scanProjectFiles(path.join(cfgDir, 'projects')).forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
+  const slugMatch = content.match(/slug:\s*['"]([^'"]+)['"]/);
   const idMatch = content.match(/id:\s*(\d+)/);
-  if (idMatch) projectLastmods[idMatch[1]] = extractDate(content);
+  const key = slugMatch ? slugMatch[1] : (idMatch ? idMatch[1] : null);
+  if (key) projectLastmods[key] = extractDate(content);
 });
 
 // 留声 id → lastmod
