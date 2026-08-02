@@ -34,7 +34,7 @@ There is no test suite or linter configured.
 
 Almost all site content lives in `src/config/`. The app reads these at runtime; views are thin renderers.
 
-- **`src/config.js`** — barrel that merges `siteConfig`, `projectsConfig`, `galleriesConfig`, `soundsConfig`, `aboutConfig`, `seriesConfig` into one default export consumed app-wide.
+- **`src/config.js`** — barrel that merges `siteConfig`, `projectsConfig`, `galleriesConfig`, `soundsConfig`, `aboutConfig`, `seriesConfig`, `celebrationsConfig` into one default export consumed app-wide.
 - **`src/config/projects/`** — one file per project (e.g. `aftergrass.js`). `projectsConfig.js` uses webpack `require.context` to **auto-load every `.js` file recursively**, drops `hidden: true` entries, then sorts by `pride` descending. New subfolders are picked up automatically — no registry to update.
 - Video projects live in `src/config/projects/videos/`. Build scripts that scan projects hardcode both the root and the `videos/` subdir, so a new third subfolder would need updates in `fetch-bilibili-covers.js` and `generate-og-pages.js`.
 
@@ -62,7 +62,7 @@ Home page has three toggles: 完成度高 (complete) / 习作 (study) / 进行�
 - **Facets** in `src/config/tagFacets.js` — `match` rules that group scattered tags into home-page "技术栈" filter buttons. Matching is bidirectional substring (`tag.includes(rule) || rule.includes(tag)`); zero-count facets auto-hide.
 - Shared matching logic lives in `src/utils/tagFacets.js` (used by both `Home.vue` and `Project.vue`). Add a facet by editing `tagFacets.js` — no util changes needed.
 
-See `src/config/TAGS_MAINTENANCE.md` for the facet list and `src/config/PRIDE_SORT_MAINTENANCE.md` for full pride docs. **These three `*_MAINTENANCE.md` files are the authoritative reference** — read them before touching classification, tags, or ordering.
+See `src/config/TAGS_MAINTENANCE.md` for the facet list, `src/config/PRIDE_SORT_MAINTENANCE.md` for full pride docs, and `src/config/CELEBRATION_MAINTENANCE.md` for the celebrations feature. **These four `*_MAINTENANCE.md` files are the authoritative reference** — read them before touching classification, tags, ordering, or celebrations.
 
 ### Frontend styling
 
@@ -76,9 +76,9 @@ See `src/config/TAGS_MAINTENANCE.md` for the facet list and `src/config/PRIDE_SO
 
 ### Routing & SEO
 
-`src/router/index.js` defines routes: `/`, `/project/:slug`, `/about`, `/gallery`, `/paintings`, `/photographs`, `/sounds`. `router.afterEach` runs `updatePageMeta` which sets `<title>`, description, and OG tags per route (project pages prefer `metaTitleKey`/`metaDescriptionKey`, falling back to `titleKey`/`descriptionKey`).
+`src/router/index.js` defines routes: `/`, `/project/:slug`, `/about`, `/gallery`, `/paintings`, `/photographs`, `/sounds`, `/sound/:id`, `/painting/:itemId`, `/photograph/:itemId`, `/celebration/:id?`. `router.afterEach` runs `updatePageMeta` which sets `<title>`, description, and OG tags per route (project pages prefer `metaTitleKey`/`metaDescriptionKey`, falling back to `titleKey`/`descriptionKey`).
 
-Because this is an SPA on GitHub Pages, per-project OG previews are generated **statically at build time** by `generate-og-pages.js`, which regex-extracts slug/title/description/image from each project file and writes a `dist/project/<slug>/index.html` (cloned from the built `dist/index.html` with meta tags swapped). It copies local cover images into `dist/img/og/` and falls back to cached bilibili covers. The sitemap is similarly regenerated each build.
+Because this is an SPA on GitHub Pages, OG previews are generated **statically at build time** by `generate-og-pages.js`, which regex-extracts slug/title/description/image from each config file and writes `dist/project/<slug>/index.html`, `dist/sound/<id>/index.html`, and `dist/{painting,photograph}/<itemId>/index.html` (cloned from the built `dist/index.html` with meta tags swapped). It copies local cover images into `dist/img/og/` and falls back to cached bilibili covers. The sitemap is similarly regenerated each build.
 
 ### Sounds (留声)
 
@@ -87,6 +87,10 @@ List page `/sounds` shows **preview cards only** — no `<audio>` elements, no p
 ### Galleries (绘画 / 摄影)
 
 `/paintings`, `/photographs`, and the combined `/gallery` all render `Gallery.vue`, which reads `config.galleries` (array of `{ id, titleKey, descriptionKey, items[] }` from `galleriesConfig.js`). List cards are minimal (image + title + date); clicking a card routes to a real detail page — `/painting/:itemId` or `/photograph/:itemId` — both served by `GalleryItem.vue` (distinguished by route `meta.type`). The old lightbox was removed in favor of these routes, mirroring `/sound/:id`.
+
+### Celebrations (庆典游园)
+
+Time-bound / themed fair pages — `/celebration/:id` (`src/views/Celebration.vue`), driven by `src/config/celebrationsConfig.js` (keyed by id; `active: true` marks the current fair, which the nav links to). Each celebration is a **Markdown article** whose `body[]` is an ordered list of `prose` / `portrait` / `project` blocks — a curation layer over projects & series, not another project list. Prose is Markdown rendered via `src/utils/celebrationMarkdown.js`; portraits show `characters`, and `project` embeds render project cards with scroll-restore back to the fair. The route's `beforeEnter` collapses `/celebration/<active-id>` → `/celebration`. See `CELEBRATION_MAINTENANCE.md` for field docs.
 
 
 
