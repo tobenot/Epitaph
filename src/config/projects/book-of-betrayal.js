@@ -40,5 +40,6 @@ export default {
   },
   links: [
     { type: "vrchat", url: "https://vrchat.com/home/world/wrld_acff8904-fb49-44b8-8351-caf50883c8e5/info", textKey: { zh: "VRChat 阅读", en: "Read on VRChat" } }
-  ]
+  ],
+  promoUrl: 'https://tobenot.top/pr/book-of-betrayal/'
 };

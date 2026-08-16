@@ -26,5 +26,6 @@ export default {
 	},
 	links: [
 		{ type: "web", url: "https://image.tobenot.top/", textKey: { zh: "在线使用", en: "Use Online" } }
-	]
+	],
+	promoUrl: 'https://tobenot.top/pr/online-image-generation/'
 };

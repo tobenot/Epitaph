@@ -38,5 +38,6 @@ export default {
     { type: "bilibili", url: "https://play-live.bilibili.com/details/1729301917890", textKey: { zh: "B站互动玩法发布页", en: "Bilibili Interactive Play Page" } },
     { type: "bilibili", url: "https://www.bilibili.com/video/BV1tzCoYREEX/", textKey: { zh: "玩法介绍视频", en: "Gameplay Intro Video" } },
     { type: "bilibili", url: "https://www.bilibili.com/video/BV1Su1CYREAA/", textKey: { zh: "精彩录像：虫族文明发展史", en: "Highlight: Zerg Civilization History" } }
-  ]
+  ],
+  promoUrl: 'https://tobenot.top/pr/civilization-epic-2/'
 };
