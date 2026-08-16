@@ -93,6 +93,10 @@
 
           <div class="description" v-html="hasLongDescription ? project.longDescriptionKey[currentLocale] : project.descriptionKey[currentLocale]"></div>
 
+          <!-- Promo page CTA (only when promoUrl configured) -->
+          <a v-if="project.promoUrl" :href="project.promoUrl" target="_blank" rel="noopener"
+             class="promo-cta">{{ $t('project.promoCta') }} ↗</a>
+
           <!-- Developer Notes -->
           <div class="developer-notes" v-if="project.developerNotesKey && project.developerNotesKey[currentLocale]">
             <h4>{{ $t('project.developerNotes') }}</h4>
@@ -414,6 +418,25 @@ export default {
           color: var(--secondary-color);
         }
       }
+    }
+  }
+
+  .promo-cta {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+      color: #fff;
     }
   }
 

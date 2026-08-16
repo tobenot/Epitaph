@@ -73,6 +73,7 @@ export default {
   project: {
     aboutWork: "关于此作品",
     tags: "标签",
+    promoCta: "了解更多 · 宣发页",
     filterByTag: "查看包含 {tag} 的作品",
     category: {
       all: "全部",

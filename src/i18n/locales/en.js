@@ -73,6 +73,7 @@ export default {
   project: {
     aboutWork: "About This Work",
     tags: "Tags",
+    promoCta: "Learn More · Promo Page",
     filterByTag: "View works tagged with {tag}",
     category: {
       all: "All",
