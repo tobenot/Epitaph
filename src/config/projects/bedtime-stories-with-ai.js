@@ -33,5 +33,6 @@ export default {
   },
   links: [
     { type: "web", url: "https://ai.tobenot.top/", textKey: { zh: "在线使用", en: "Use Online" } }
-  ]
+  ],
+  promoUrl: 'https://tobenot.top/pr/bedtime-stories/'
 };

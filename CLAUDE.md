@@ -102,8 +102,9 @@ Setting `bilibiliVideoId: "BV..."` on a project pulls the cover from the B站 AP
 
 1. Create `src/config/projects/<slug>.js` (or `.../videos/<slug>.js` for video projects). `id` must equal the filename. Full field template is in the project memory at `C:\Users\L\.claude\projects\D--GitRep-Epitaph\memory\project-adding-guide.md`.
 2. Set `status` (required), and optionally `portfolioKind`, `completeness`, `experienceable`, `tags`. Run through the checklist in `PORTFOLIO_MAINTENANCE.md`.
-3. Placement in the pride order: run `npm run pride-sort -- move-after <new-id> <anchor-id>` to position it; only `renumber` if a gap is exhausted.
-4. `publicPath` is `/` (custom domain root), so asset paths are absolute from site root.
+3. Optional `promoUrl` (e.g. `promoUrl: 'https://tobenot.top/pr/bedtime-stories/'`): links the project to a standalone promo page on the blog (`tobenot.top/pr/<slug>/`). When set, the home card shows a small "宣发" badge and the detail page shows a promo CTA; when absent, no entry renders. Promo pages live in the Sanctuary-Of-Writers repo (`source/pr/<slug>/`), see its `docs/宣发页维护手册.md`.
+4. Placement in the pride order: run `npm run pride-sort -- move-after <new-id> <anchor-id>` to position it; only `renumber` if a gap is exhausted.
+5. `publicPath` is `/` (custom domain root), so asset paths are absolute from site root.
 
 ## Deployment
 
