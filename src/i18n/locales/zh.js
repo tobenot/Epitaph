@@ -27,6 +27,7 @@ export default {
       viewProject: "访问项目",
       click: "点击访问",
       explore: "点击探索",
+      promoBadge: "宣发",
       prev: "上一张",
       next: "下一张"
     },

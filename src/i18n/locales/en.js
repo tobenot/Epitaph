@@ -27,6 +27,7 @@ export default {
       viewProject: "Visit Project",
       click: "Click to Visit",
       explore: "Click to Explore",
+      promoBadge: "Promo",
       prev: "Previous",
       next: "Next"
     },

@@ -132,12 +132,15 @@
                  :class="['experience-card', getCardFrameClass(item)]">
               <div class="card-image" v-if="getProjectImage(item)">
                 <img
-                  :src="getProjectImage(item)"
-                  :alt="item.titleKey[currentLocale]"
-                  loading="lazy"
-                  decoding="async"
-                  :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
+                 :src="getProjectImage(item)"
+                 :alt="item.titleKey[currentLocale]"
+                 loading="lazy"
+                 decoding="async"
+                 :referrerpolicy="item.bilibiliVideoId ? 'no-referrer' : undefined"
                 >
+                <a v-if="item.promoUrl" :href="item.promoUrl" target="_blank" rel="noopener"
+                   class="promo-badge" @click.stop
+                   :title="$t('common.actions.promoBadge')">{{ $t('common.actions.promoBadge') }} ↗</a>
                 <div class="explore-text">{{ $t('common.actions.explore') }}</div>
               </div>
               <div class="card-content">
@@ -893,6 +896,27 @@ export default {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
+  }
+
+  .promo-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 0.72rem;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
   }
   
   .explore-text {
