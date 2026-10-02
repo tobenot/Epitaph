@@ -1,6 +1,6 @@
 # 《背叛书·上》发布版本
 
-作者2026-10-03 00:09批准。只更新已认可的中文摘要与主介绍，英文及开发者说明沿用原线上版本。
+中文由作者2026-10-03 00:09批准，英文主介绍、摘要与开发者说明由作者01:01批准。英文规模单位为Chinese characters。以下从实际配置导出。
 
 ## 摘要 · zh
 
@@ -8,7 +8,7 @@
 
 ## 摘要 · en
 
-"Don't Look for Sugar". Book of Betrayals: Everyone Hurts Everyone — Part 1 complete. Episodic format, readable out of order, ~70k words.
+A novel by Luobei, partly based on real experiences. Part 1 is complete, with five chapters and 219 numbered passages totaling about 70,000 Chinese characters. Available to read in VRChat.
 
 ## 主介绍 · zh
 
@@ -34,7 +34,25 @@
 
 ## 主介绍 · en
 
-"Don't Look for Sugar". Book of Betrayals: Everyone Hurts Everyone — Part 1 is complete, following Luobei as she betrays others and is betrayed in turn. Main characters: a self-styled clever landmine type, a stone-hearted avoidant type, and a clingy opportunist type. An episodic long-form story with 219 chapters, readable out of order, totaling ~70,000 words. Available on VRChat. Join the reader group "Don't Look for Sugar" by searching NOSGR.
+Book of Betrayals: Everyone Hurts Everyone is a novel by Luobei, partly based on real experiences. Part 1 is complete, with five chapters divided into 219 numbered passages, totaling about 70,000 Chinese characters. It is available to read in VRChat.
+
+The story begins around the time Luobei enters a virtual world called Xingming. She has been living a lonely life. After arriving, she makes friends and develops feelings for Qingye. Spending time together, taking photographs, and being physically close lead her to expect more from their relationship. But they understand the relationship differently. Luobei wants more time together and a clear commitment, while Qingye’s responses often leave her confused. Their relationships become more complicated as Shuangbai and others become involved.
+
+The novel follows how these relationships develop, including how people become close, interpret each other’s words, and try to repair things after a conflict. Luobei often helps friends think through their relationship problems and believes she can manage her own. But her jealousy and insecurity also lead her to hurt others, sometimes by making decisions for them. The book describes both the times she is betrayed and the times she betrays someone else.
+
+“Don’t Look for Sugar” is one of the novel’s themes. In the story, “sugar” refers to a romantic partner. Luobei wants a lasting relationship and keeps trying to make one work, but repeatedly encounters the problems she hoped to avoid.
+
+Structure and reading
+
+Part 1 contains five chapters: Flight to Demise, Floating Dreamscape, Starfall, Call Me a Fool, and A Blade Called Love. They follow Luobei’s arrival in Xingming, her pursuit of love, and the conflicts that develop among the main characters.
+
+The novel is arranged as numbered passages that are mostly self-contained. You can start with any passage, though reading in order gives you a fuller understanding of the relationships and events.
+
+In the VRChat world, the text is displayed on stone tablets in a grassy landscape under the stars. Readers can walk up to the tablets to read. The reader group is also called “Don’t Look for Sugar.” Search NOSGR in VRChat Groups to find it.
+
+Content notice
+
+The book includes betrayal in intimate relationships, emotional manipulation, separation anxiety, emotional dependency, psychological trauma, and intense negative emotions. Some passages may be upsetting or bring back difficult memories. You can also explore the world without reading.
 
 ## 开发者说明 · zh
 
@@ -42,4 +60,8 @@
 
 ## 开发者说明 · en
 
-Novel series in the Starfall line, pivoted from the eponymous VN project. A 70,000-word documentary novel recording emotional upheavals, now publicly available on VRChat. Roughly 1,000 of the visits were from before public release, so the favorite rate looks lower than it is. Several readers left feedback; dozens read it through to the end. There was substantial negative feedback and equally deep positive feedback. Readers close to the story read it and responded. It healed Luobei's year-long emotional upheaval.
+This novel is part of the Starfall series. It began as a visual novel project of the same name and later became a prose novel about Luobei’s experiences in relationships.
+
+Dozens of readers have read the book in full. Responses have included strong criticism as well as detailed accounts of how readers related to the story. People connected to the events have also read it and shared their views. For Luobei, writing the book and sharing it with readers helped her work through a year of relationship difficulties.
+
+About 1,000 visits took place before the world’s public release. These are included in the total visit count, which makes the proportion of favorites to visits appear lower.
