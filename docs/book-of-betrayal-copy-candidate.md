@@ -1,82 +1,45 @@
-# 《背叛书·上》作品页完整候选
+# 《背叛书·上》发布版本
 
-本地审阅稿，未发布。目标：https://e.tobenot.top/project/book-of-betrayal
+作者2026-10-03 00:09批准。只更新已认可的中文摘要与主介绍，英文及开发者说明沿用原线上版本。
 
-## 中文
+## 摘要 · zh
 
-### 标题 / Title
+萝北创作的长篇小说，部分情节取材于真实经历。上篇已经完结，共五章、219 篇，约七万字，目前可以在 VRChat 中阅读。
 
-背叛书·上
+## 摘要 · en
 
-### 摘要 / Summary
+"Don't Look for Sugar". Book of Betrayals: Everyone Hurts Everyone — Part 1 complete. Episodic format, readable out of order, ~70k words.
 
-萝北来到虚拟世界寻找亲密关系，后来既被背叛，也背叛了别人。取材于真实经历的长篇小说，219 篇文字散落在 VRChat 的星空草地与石碑之间。上篇已完结，约 7 万字。
+## 主介绍 · zh
 
-### 规模 / Scale
+《背叛书·人人害人人》是萝北创作的长篇小说，部分情节取材于真实经历。上篇已经完结，共五章、219 篇，约七万字，目前可以在 VRChat 中阅读。
 
-219 篇 · 约 70,000 字
+故事从萝北进入虚拟世界「星铭世界」前后写起。她原本过着孤独的生活，来到这里后认识了一些朋友，也开始追求清野。和对方一起看风景、拍照、亲热，让她对这段关系有了很多期待。但两人对关系的理解并不一致，萝北想要更多陪伴和明确的名分，清野的回应却常常让她困惑。随着霜白等人加入，几个人之间的关系变得更加复杂。
 
-### 主介绍 / About this work
+小说写了这些关系发展的具体过程，包括怎样开始亲近、怎样理解对方的话，以及发生矛盾之后怎样尝试挽回。萝北常常替朋友分析感情问题，也相信自己能够处理好自己的关系。但她同样会因为嫉妒和不安做出伤害别人的事，有时还会替别人作决定。书中既记录了她被背叛的经历，也写下了她背叛他人的部分。
 
-「不要找砂糖」。在星铭世界里，砂糖是情侣的称呼。萝北刚来的时候还不懂这个词，她只是孤独太久，想有人陪。
+「不要找砂糖」是这部小说的主题之一。「砂糖」在故事中指情侣或恋人。萝北希望找到一段能够长久维持的亲密关系，为此反复尝试，也一次次陷入自己原本想避免的问题。
 
-一张合照被贴在独居的宿舍里，成了房间里唯一不属于自己的东西。摸头、看风景、等一个人上线，这些小事让她觉得生活终于有了盼头。她开始追求清野，也逐渐卷入与霜白的关系。谁在等谁，谁愿意给出名分，谁又舍不得放开其他人，原本说好的事一次次变了样。
+内容与阅读方式
 
-《背叛书·人人害人人》写萝北被背叛，也写她背叛别人。她会彻夜分析朋友的感情问题，相信自己能把关系处理好，轮到自己时却同样会嫉妒、强求，替别人做决定。她想要每个人都不受伤，又总能给自己的下一步找到理由。
+上篇包括《向死而飞》《浮空梦境》《星辉落》《叫我笨蛋》和《尚方宝剑》五章，写到萝北进入星铭世界、追求爱情，以及后来几位主要角色之间的冲突。
 
-【五章，219 篇】
-上篇已完结，约七万字。从《向死而飞》《浮空梦境》初入新世界的渴望，经过《星辉落》的追寻，走到《叫我笨蛋》《尚方宝剑》中越来越难收场的关系。小说采用经文体，每篇相对独立，可以随意读一篇，也可以按顺序读，看那些承诺怎样在后来的相处中变了意思。
+小说采用经文体，按篇编号，每篇相对独立。可以从任意一篇开始读，按顺序阅读则能更完整地了解人物关系和事情的经过。
 
-【在 VRChat 里读】
-文字放在星空草地上的石碑中。你可以在碑间走走，在一篇面前停下来，慢慢读。这里写到的虚拟世界里的亲密、等待与疏远，也发生在许多读者熟悉的生活里。
+在 VRChat 世界里，小说文字放在星空草地上的石碑中，读者可以走到石碑前阅读。读者群组名为「不要找砂糖」，在 VRChat 群组中搜索 NOSGR 即可找到。
 
-【阅读前】
-作品部分取材于真实经历，涉及亲密关系中的背叛、情感操控、依赖、心理创伤和强烈负面情绪。如果这些内容让你难受，可以随时停下，只游览这个世界。
+内容提示
 
-读者群组也叫「不要找砂糖」，在 VRChat 群组中搜索 NOSGR 即可找到。
+本书涉及亲密关系中的背叛、情感操控、分离焦虑、依赖关系、心理创伤及强烈负面情绪，部分内容可能引起不适或唤起不愉快的回忆。如果暂时不想阅读，也可以只游览世界。
 
-### 开发者的话 / Developer notes
+## 主介绍 · en
 
-这部小说属于星辉落系列，由同名视觉小说企划转入，记录了萝北的情感变故。写作时，萝北把自己背叛别人的部分也写了下来。作品公开后，有数十位读者认真读完，收到的反馈里有很重的批评，也有很深的共鸣。对萝北来说，写完并被人读到，帮助她走过了长达一年的感情变故。
+"Don't Look for Sugar". Book of Betrayals: Everyone Hurts Everyone — Part 1 is complete, following Luobei as she betrays others and is betrayed in turn. Main characters: a self-styled clever landmine type, a stone-hearted avoidant type, and a clingy opportunist type. An episodic long-form story with 219 chapters, readable out of order, totaling ~70,000 words. Available on VRChat. Join the reader group "Don't Look for Sugar" by searching NOSGR.
 
-## English
+## 开发者说明 · zh
 
-### 标题 / Title
+星辉落系列小说。由同名视觉小说企划转入。记录情感变故，7万字，已在 VRChat 公开。访问量中约一千次来自公开发布前，收藏率因此看起来偏低。有多个读者反馈，数十个读者仔细读完了。有众多负面反馈，正面反馈也很深。相关读者已阅读并有过反馈。这治愈了萝北长达一年的感情变故。
 
-Book of Betrayals Pt.1
+## 开发者说明 · en
 
-### 摘要 / Summary
-
-Luobei enters a virtual world looking for closeness. She is betrayed, and betrays others in turn. A novel drawing on lived experience, told across 219 stone tablets in a VRChat world. Part 1 is complete, at roughly 70,000 Chinese characters.
-
-### 规模 / Scale
-
-219 episodes · Approx. 70,000 Chinese characters
-
-### 主介绍 / About this work
-
-Don't Look for Sugar. In the virtual world of Xingming, sugar is what people call a romantic partner. Luobei does not know the term when she arrives. She has been lonely for a long time and wants someone to be with.
-
-She puts a photograph of herself and Qingye on her dorm room wall. It is the only thing in the room that is not hers alone. A hand on her head, a shared view, waiting for someone to come online: these small things give her something to look forward to. She pursues Qingye and becomes involved with Shuangbai. Who waits for whom, who will call it a relationship, who cannot let someone else go? Their agreements keep changing.
-
-Book of Betrayals: Everyone Hurts Everyone follows Luobei both as someone who is betrayed and as someone who betrays. She stays up all night untangling her friends' relationship problems and believes she can handle her own. Yet she gets jealous, pushes too hard, and makes decisions for other people. She wants nobody to get hurt. She can always find a reason for what she does next.
-
-[FIVE CHAPTERS, 219 EPISODES]
-Part 1 is complete, at roughly 70,000 Chinese characters. It begins with the longing and arrival of Flight to Demise and Floating Dreamscape, follows the pursuit of love in Starfall, and reaches the increasingly fraught relationships of Call Me a Fool and A Blade Called Love. Written as short, numbered passages, the episodes can be read individually. Reading in order lets you follow how promises change meaning over time.
-
-[READ IN VRCHAT]
-The text appears on stone tablets in a grassy landscape beneath the stars. Walk among them, stop at a passage, and take your time. The closeness, waiting, and distance in these virtual relationships may be familiar to readers from their own lives.
-
-[BEFORE READING]
-Parts of the novel draw on lived experience. It includes betrayal in intimate relationships, emotional manipulation, dependency, psychological trauma, and intense distress. If you find it upsetting, you can stop reading and simply explore the world.
-
-To find the reader group, Don't Look for Sugar, search NOSGR in VRChat Groups.
-
-### 开发者的话 / Developer notes
-
-This novel belongs to the Starfall series and grew out of the visual novel project of the same name. It records Luobei's emotional upheaval, including the times she betrayed other people. Dozens of readers have read it through. Their responses include harsh criticism as well as deeply personal connections to the story. For Luobei, writing it and having it read helped her through a year of upheaval.
-
-## 保留的入口 / Unchanged links
-
-- https://vrchat.com/home/world/wrld_acff8904-fb49-44b8-8351-caf50883c8e5/info
-- https://tobenot.top/pr/book-of-betrayal/
+Novel series in the Starfall line, pivoted from the eponymous VN project. A 70,000-word documentary novel recording emotional upheavals, now publicly available on VRChat. Roughly 1,000 of the visits were from before public release, so the favorite rate looks lower than it is. Several readers left feedback; dozens read it through to the end. There was substantial negative feedback and equally deep positive feedback. Readers close to the story read it and responded. It healed Luobei's year-long emotional upheaval.
