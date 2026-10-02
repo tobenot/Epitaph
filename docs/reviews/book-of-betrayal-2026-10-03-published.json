@@ -1,0 +1,13 @@
+{
+  "url": "https://e.tobenot.top/project/book-of-betrayal",
+  "source_commit": "f0f0db5410e4fbf7aab81d2b3cfd81dcb5b16ae1",
+  "ci": "https://github.com/tobenot/Epitaph/actions/runs/37032484247",
+  "assets": [
+    {
+      "url": "https://e.tobenot.top/js/app.3e3bcd7c.js",
+      "sha256": "36028a67fd02fbdc04fbed99368750b86e6e3d2bc041f2e969708dd25ad5fadc",
+      "approved_text": true,
+      "rejected_text_absent": true
+    }
+  ]
+}
