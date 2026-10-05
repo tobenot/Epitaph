@@ -4,7 +4,7 @@ export default {
   slug: "beyond-books-dragon-dance",
   series: "beyond-books",
   category: "novel",
-  status: "concept",
+  status: "released",
   experienceable: true,
   titleKey: {
     zh: "不止于纸上的故事：舞龙篇",
@@ -12,15 +12,15 @@ export default {
   },
   image: require('@/assets/images/bbdd.webp'),
   descriptionKey: {
-    zh: "初稿阶段，五方异能者会战，力量与选择主题。",
-    en: "Draft stage. A five-way esper battle, themed around power and choice."
+    zh: "完成稿，五方异能者会战，力量与选择主题。",
+    en: "Completed novel. A five-way esper battle, themed around power and choice."
   },
   date: { year: 2024, month: 1 },
   genres: ["超能力智斗", "都市奇幻"],
   themes: ["力量与选择", "五方会战"],
   scale: {
-    zh: "初稿阶段",
-    en: "Draft stage"
+    zh: "完成稿",
+    en: "Completed manuscript"
   },
   developerNotesKey: {
     zh: "小说的读者都是个位数。发布在微信公众号，个人博客。这是主要的世界观核心作品。",
@@ -32,6 +32,6 @@ export default {
     en: ""
   },
   links: [
-    { type: "blog", url: "https://tobenot.top/p/story-bb-dragon-dance/", textKey: { zh: "博客阅读（初稿）", en: "Read Draft on Blog" } }
+    { type: "blog", url: "https://tobenot.top/p/story-bb-dragon-dance/", textKey: { zh: "博客阅读", en: "Read on Blog" } }
   ]
 };
