@@ -134,3 +134,6 @@ dist
 
 # Build artifacts regenerated each build
 public/sitemap.xml
+
+# Generated/private working data stays local; source and concise evidence stay versioned.
+/.hermes-builds/
